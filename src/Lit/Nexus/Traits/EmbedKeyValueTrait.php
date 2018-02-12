@@ -47,7 +47,7 @@ trait EmbedKeyValueTrait
     }
 
     /**
-     * @return array|\ArrayAccess
+     * @return KeyValueInterface
      */
     public function getInnerKeyValue()
     {

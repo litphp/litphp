@@ -39,6 +39,7 @@ trait KeyValueTrait
         /**
          * @var KeyValueInterface|self $this
          */
+        assert($this instanceof KeyValueInterface);
         return PrefixKeyValue::wrap($this, $prefix . $this->getPrefixDelimiter());
     }
 

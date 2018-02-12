@@ -1,9 +1,10 @@
 <?php namespace Lit\Bolt;
 
-use Psr\Http\Server\MiddlewareInterface;
 use Lit\Bolt\Traits\ContainerAppTrait;
 use Lit\Bolt\Traits\EventHookedAppTrait;
 use Lit\Core\App;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class BoltApp extends App
 {
@@ -15,6 +16,9 @@ class BoltApp extends App
     public function __construct(BoltContainer $boltContainer, MiddlewareInterface $middleware = null)
     {
         $this->container = $boltContainer;
+        /**
+         * @var RequestHandlerInterface $businessLogicHandler
+         */
         $businessLogicHandler = $boltContainer->get(self::MAIN_HANDLER);
         parent::__construct($businessLogicHandler, $middleware);
     }

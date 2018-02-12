@@ -13,7 +13,7 @@ trait ContainerAppTrait
      */
     protected $container;
 
-    public static function run(BoltContainer $container = null)
+    public static function run(BoltContainer $container)
     {
         Inspector::setGlobalHandler();
         $factory = Factory::of($container);

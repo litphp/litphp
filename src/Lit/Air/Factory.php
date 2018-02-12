@@ -46,6 +46,8 @@ class Factory
      * @param string $className
      * @param array $extraParameters
      * @return object
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \ReflectionException
      */
     public function instantiate(string $className, array $extraParameters = [])
     {
@@ -66,6 +68,7 @@ class Factory
      * @param callable $callback
      * @param array $extra
      * @return mixed
+     * @throws \ReflectionException
      */
     public function invoke(callable $callback, array $extra = [])
     {
@@ -97,6 +100,7 @@ class Factory
      * @param array $extraParameters
      * @return object of $className«
      * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \ReflectionException
      */
     public function produce(string $className, array $extraParameters = [])
     {
@@ -119,6 +123,7 @@ class Factory
      * @param string $className
      * @return object of $className
      * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \ReflectionException
      */
     public function getOrProduce(string $className)
     {
@@ -130,7 +135,7 @@ class Factory
     }
 
     /**
-     * @param $obj
+     * @param object $obj
      * @param array $extra
      * @throws \Psr\Container\ContainerExceptionInterface
      */
@@ -152,12 +157,13 @@ class Factory
     /**
      * @param $className
      * @param array $keys
-     * @param null $dependencyClassName
+     * @param null|string $dependencyClassName
      * @param array $extra
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \ReflectionException
      */
-    public function produceDependency($className, array $keys, $dependencyClassName = null, array $extra = [])
+    public function produceDependency($className, array $keys, ?string $dependencyClassName = null, array $extra = [])
     {
         if ($value = $this->produceFromClass($className, $keys, $extra)) {
             return $value[0];
@@ -175,13 +181,13 @@ class Factory
     }
 
     /**
-     * @param $className
+     * @param string $className
      * @param array $keys
      * @param array $extra
      * @return array|null
      * @throws \Psr\Container\ContainerExceptionInterface
      */
-    protected function produceFromClass($className, array $keys, array $extra = [])
+    protected function produceFromClass(string $className, array $keys, array $extra = [])
     {
         $currentClassName = $className;
         do {
@@ -228,6 +234,7 @@ class Factory
      * @param array $extraParameters
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \ReflectionException
      */
     protected function resolveParam($className, \ReflectionParameter $parameter, array $extraParameters)
     {
@@ -272,7 +279,7 @@ class Factory
             if (!empty($paramClass)) {
                 $keys[] = $paramClassName = $paramClass->name;
             }
-        } catch (\ReflectionException $e) {
+        } /** @noinspection PhpRedundantCatchClauseInspection */ catch (\ReflectionException $e) {
             //ignore exception when $parameter is type hinting for interface
         }
 

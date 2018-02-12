@@ -32,6 +32,9 @@ class InstanceRecipe extends AbstractRecipe
             throw new ContainerException('unknown autowire class name');
         }
 
-        return Factory::of($container)->instantiate($className, $this->extra);
+        return Factory::of($container)->instantiate(
+            /** @scrutinizer ignore-type */$className,
+            $this->extra
+        );
     }
 }
