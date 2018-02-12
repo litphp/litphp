@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:LitPHP/lit-nexus
+	branch = master
+	commit = 09b4253638cdd4471c768117fc7f2bc5d0f030f0
+	parent = 0913e78236f6f4d243beca1e8e3e7aa272c11033
+	cmdver = 0.3.1
