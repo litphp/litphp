@@ -10,12 +10,15 @@ filter:
     excluded_paths:
         - "*/Tests/*"
 build:
-    tests:
-        override:
-            -
-                command: 'vendor/bin/phpunit --coverage-clover=clover.xml -c .'
-                coverage:
-                    file: 'clover.xml'
-                    format: 'php-clover'
-    environment:
-        php: 7.1
+    nodes:
+        my-tests:
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: 'vendor/bin/phpunit --coverage-clover=clover.xml -c .'
+                        coverage:
+                            file: 'clover.xml'
+                            format: 'php-clover'
+            environment:
+                php: 7.1
