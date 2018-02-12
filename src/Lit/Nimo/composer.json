@@ -1,0 +1,45 @@
+{
+    "name": "litphp/nimo",
+    "description": "Nimo Is your Middleware Organizer",
+    "type": "library",
+    "license": "MIT",
+    "keywords": [
+        "middleware",
+        "psr",
+        "psr-7",
+        "psr-15",
+        "http",
+        "http-middleware"
+    ],
+    "authors": [
+        {
+            "name": "McFog Wang",
+            "email": "mcfogw@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nimo\\": ""
+        },
+        "exclude-from-classmap": [
+            "/Tests/"
+        ]
+    },
+    "require": {
+        "http-interop/http-server-handler": "^1.0",
+        "http-interop/http-server-middleware": "^1.0",
+        "php": ">=7.1.0",
+        "psr/http-message": "^1.0"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.4.x-dev"
+        }
+    },
+    "suggest": {
+        "zendframework/zend-diactoros": "PSR-7 implementation and middleware runner"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    }
+}
