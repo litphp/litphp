@@ -19,7 +19,7 @@
     "require": {
         "php": ">=7.1.0",
         "psr/http-message": "^1.0",
-        "litphp/nimo": "^0.4@dev"
+        "litphp/nimo": "^0.8@dev"
     },
     "require-dev": {
         "zendframework/zend-diactoros": "^1.6",
