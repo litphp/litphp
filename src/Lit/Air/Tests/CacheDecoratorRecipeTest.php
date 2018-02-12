@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Air\Tests;
 
 use Lit\Air\Psr\Container;
-use Lit\Air\Recipe\CachedRecipe;
 use Lit\Air\Recipe\Decorator\CacheDecorator;
 
 class CacheDecoratorRecipeTest extends AbstractTestCase

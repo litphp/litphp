@@ -7,6 +7,7 @@ namespace Lit\Air\Psr;
 use Lit\Air\Configurator;
 use Lit\Air\Factory;
 use Lit\Air\Injection\InjectorInterface;
+use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\AliasRecipe;
 use Lit\Air\Recipe\AutowireRecipe;
 use Lit\Air\Recipe\BuilderRecipe;
@@ -44,27 +45,27 @@ class Container implements ContainerInterface, WritableContainerInterface
         }
     }
 
-    public static function alias(string $alias): RecipeInterface
+    public static function alias(string $alias): AbstractRecipe
     {
         return new AliasRecipe($alias);
     }
 
-    public static function autowire(?string $className = null, array $extra = []): RecipeInterface
+    public static function autowire(?string $className = null, array $extra = []): AbstractRecipe
     {
         return new AutowireRecipe($className, $extra);
     }
 
-    public static function instance(?string $className = null, array $extra = []): RecipeInterface
+    public static function instance(?string $className = null, array $extra = []): AbstractRecipe
     {
         return new InstanceRecipe($className, $extra);
     }
 
-    public static function builder(callable $builder, array $extra = []): RecipeInterface
+    public static function builder(callable $builder, array $extra = []): AbstractRecipe
     {
         return new BuilderRecipe($builder, $extra);
     }
 
-    public static function value($value): RecipeInterface
+    public static function value($value): AbstractRecipe
     {
         return new FixedValueRecipe($value);
     }
@@ -203,9 +204,9 @@ class Container implements ContainerInterface, WritableContainerInterface
     /**
      * @param callable $wrapper
      * @param RecipeInterface $recipe
-     * @return RecipeInterface
+     * @return AbstractRecipe
      */
-    protected static function applyRecipeWrapper(callable $wrapper, RecipeInterface $recipe): RecipeInterface
+    protected static function applyRecipeWrapper(callable $wrapper, RecipeInterface $recipe): AbstractRecipe
     {
         $recipe = $wrapper($recipe);
 

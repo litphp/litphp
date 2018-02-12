@@ -7,7 +7,7 @@ namespace Lit\Router\FastRoute;
 use FastRoute\Dispatcher;
 use Lit\Core\AbstractRouter;
 use Lit\Core\Interfaces\RouterStubResolverInterface;
-use Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ServerRequestInterface;
 
 class FastRouteRouter extends AbstractRouter
