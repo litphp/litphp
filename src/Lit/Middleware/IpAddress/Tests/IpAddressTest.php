@@ -2,9 +2,9 @@
 
 namespace Lit\Middleware\IpAddress\Tests;
 
-use Lit\Middleware\IpAddress;
-use Nimo\Handlers\CallableHandler;
-use Nimo\Tests\NimoTestCase;
+use Lit\Middleware\IpAddress\IpAddress;
+use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Tests\NimoTestCase;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\ServerRequestFactory;

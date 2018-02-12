@@ -11,7 +11,9 @@ use Lit\Router\FastRoute\FastRouteDefinition;
 use Lit\Router\FastRoute\FastRouteRouter;
 use Psr\Http\Message\ResponseInterface;
 
-require(__DIR__ . '/../vendor/autoload.php');
+is_readable(__DIR__ . '/../vendor/autoload.php')
+    ? require(__DIR__ . '/../vendor/autoload.php')
+    : require(__DIR__ . '/../../../../vendor/autoload.php');
 
 class NotFoundAction extends BoltAction
 {

@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Middlewares;
+namespace Lit\Nimo\Middlewares;
 
-use Nimo\AbstractMiddleware;
+use Lit\Nimo\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 
 final class NoopMiddleware extends AbstractMiddleware

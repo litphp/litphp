@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Nimo;
+namespace Lit\Nimo;
 
 use Interop\Http\Server\MiddlewareInterface;
-use Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

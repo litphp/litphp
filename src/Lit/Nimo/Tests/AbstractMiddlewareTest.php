@@ -1,11 +1,11 @@
-<?php namespace Nimo\Tests;
+<?php namespace Lit\Nimo\Tests;
 
 /**
  * User: mcfog
  * Date: 15/9/13
  */
 
-use Nimo\AbstractMiddleware;
+use Lit\Nimo\AbstractMiddleware;
 
 class AbstractMiddlewareTest extends NimoTestCase
 {

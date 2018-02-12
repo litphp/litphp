@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Middlewares;
+namespace Lit\Nimo\Middlewares;
 
 use Interop\Http\Server\MiddlewareInterface;
 use Interop\Http\Server\RequestHandlerInterface;
-use Nimo\Interfaces\RequestPredictionInterface;
+use Lit\Nimo\Interfaces\RequestPredictionInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class PredictionWrapperMiddleware extends AbstractConditionMiddleware

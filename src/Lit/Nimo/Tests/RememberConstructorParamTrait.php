@@ -1,4 +1,4 @@
-<?php namespace Nimo\Tests;
+<?php namespace Lit\Nimo\Tests;
 
 trait RememberConstructorParamTrait
 {

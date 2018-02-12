@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Handlers;
+namespace Lit\Nimo\Handlers;
 
 use Interop\Http\Server\MiddlewareInterface;
 use Interop\Http\Server\RequestHandlerInterface;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Middlewares;
+namespace Lit\Nimo\Middlewares;
 
 use Interop\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;

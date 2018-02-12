@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Handlers;
+namespace Lit\Nimo\Handlers;
 
 use Interop\Http\Server\RequestHandlerInterface;
-use Nimo\AbstractHandler;
+use Lit\Nimo\AbstractHandler;
 use Psr\Http\Message\ResponseInterface;
 
 class FixedResponseHandler extends AbstractHandler

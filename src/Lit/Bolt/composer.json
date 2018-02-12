@@ -25,7 +25,7 @@
     "litphp/nexus": "^0.8@dev",
     "litphp/nimo": "^0.4@dev",
     "litphp/air": "^0.1.6",
-    "symfony/event-dispatcher": "^3.0",
+    "symfony/event-dispatcher": "^4.0",
     "zendframework/zend-diactoros": "^1.6"
   },
   "require-dev": {

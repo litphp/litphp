@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Traits;
+namespace Lit\Nimo\Traits;
 
 use Interop\Http\Server\MiddlewareInterface;
-use Nimo\Interfaces\RequestPredictionInterface;
-use Nimo\MiddlewarePipe;
-use Nimo\Middlewares\CatchMiddleware;
-use Nimo\Middlewares\PredictionWrapperMiddleware;
+use Lit\Nimo\Interfaces\RequestPredictionInterface;
+use Lit\Nimo\MiddlewarePipe;
+use Lit\Nimo\Middlewares\CatchMiddleware;
+use Lit\Nimo\Middlewares\PredictionWrapperMiddleware;
 
 trait MiddlewareTrait
 {

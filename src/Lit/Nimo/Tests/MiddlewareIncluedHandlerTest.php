@@ -1,9 +1,9 @@
 <?php
 
-namespace Nimo\Tests;
+namespace Lit\Nimo\Tests;
 
-use Nimo\Handlers\CallableHandler;
-use Nimo\Handlers\MiddlewareIncluedHandler;
+use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Handlers\MiddlewareIncluedHandler;
 use PHPUnit\Framework\Assert;
 
 class MiddlewareIncluedHandlerTest extends NimoTestCase

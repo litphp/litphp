@@ -5,7 +5,9 @@ use Lit\Bolt\BoltApp;
 use Lit\Bolt\BoltContainer;
 use Psr\Http\Message\ResponseInterface;
 
-require(__DIR__ . '/../vendor/autoload.php');
+is_readable(__DIR__ . '/../vendor/autoload.php')
+    ? require(__DIR__ . '/../vendor/autoload.php')
+    : require(__DIR__ . '/../../../../vendor/autoload.php');
 
 class HelloAction extends BoltAction
 {

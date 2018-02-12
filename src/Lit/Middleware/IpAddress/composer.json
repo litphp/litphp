@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Lit\\Middleware\\": ""
+            "Lit\\Middleware\\IpAddress": ""
         },
         "exclude-from-classmap": [
             "/Tests/"

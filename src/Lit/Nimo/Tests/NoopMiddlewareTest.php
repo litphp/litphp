@@ -1,8 +1,8 @@
 <?php
 
-namespace Nimo\Tests;
+namespace Lit\Nimo\Tests;
 
-use Nimo\Middlewares\NoopMiddleware;
+use Lit\Nimo\Middlewares\NoopMiddleware;
 use PHPUnit\Framework\Assert;
 
 class NoopMiddlewareTest extends NimoTestCase

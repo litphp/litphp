@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Interfaces;
+namespace Lit\Nimo\Interfaces;
 
 use Psr\Http\Message\ServerRequestInterface;
 

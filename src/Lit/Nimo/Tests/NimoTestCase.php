@@ -1,4 +1,4 @@
-<?php namespace Nimo\Tests;
+<?php namespace Lit\Nimo\Tests;
 
 /**
  * User: mcfog
@@ -6,9 +6,9 @@
  */
 
 use Interop\Http\Server\RequestHandlerInterface;
-use Nimo\AbstractHandler;
-use Nimo\AbstractMiddleware;
-use Nimo\Handlers\CallableHandler;
+use Lit\Nimo\AbstractHandler;
+use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Handlers\CallableHandler;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;

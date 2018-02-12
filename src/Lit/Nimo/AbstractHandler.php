@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Nimo;
+namespace Lit\Nimo;
 
 use Interop\Http\Server\RequestHandlerInterface;
-use Nimo\Traits\HandlerTrait;
+use Lit\Nimo\Traits\HandlerTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

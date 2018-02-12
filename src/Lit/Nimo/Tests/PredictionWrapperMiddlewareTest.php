@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Tests;
+namespace Lit\Nimo\Tests;
 
-use Nimo\Interfaces\RequestPredictionInterface;
-use Nimo\Middlewares\PredictionWrapperMiddleware;
+use Lit\Nimo\Interfaces\RequestPredictionInterface;
+use Lit\Nimo\Middlewares\PredictionWrapperMiddleware;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ServerRequestInterface;
 

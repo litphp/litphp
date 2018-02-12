@@ -1,6 +1,6 @@
-<?php namespace Nimo\Tests;
+<?php namespace Lit\Nimo\Tests;
 
-use Nimo\MiddlewarePipe;
+use Lit\Nimo\MiddlewarePipe;
 
 /**
  * User: mcfog

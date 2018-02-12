@@ -3,8 +3,8 @@
 use Interop\Http\Server\RequestHandlerInterface;
 use Lit\Bolt\BoltContainer;
 use Lit\Core\Interfaces\RouterStubResolverInterface;
-use Nimo\Handlers\CallableHandler;
-use Nimo\Handlers\FixedResponseHandler;
+use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Handlers\FixedResponseHandler;
 use Psr\Http\Message\ResponseInterface;
 
 class BoltStubResolver implements RouterStubResolverInterface

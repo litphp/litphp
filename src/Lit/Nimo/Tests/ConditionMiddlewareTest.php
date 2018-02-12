@@ -1,4 +1,4 @@
-<?php namespace Nimo\Tests;
+<?php namespace Lit\Nimo\Tests;
 
 /**
  * User: mcfog
@@ -7,8 +7,8 @@
 
 use Interop\Http\Server\MiddlewareInterface;
 use Interop\Http\Server\RequestHandlerInterface;
-use Nimo\AbstractMiddleware;
-use Nimo\Middlewares\AbstractConditionMiddleware;
+use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Middlewares\AbstractConditionMiddleware;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Nimo\Traits;
+namespace Lit\Nimo\Traits;
 
 use Interop\Http\Server\MiddlewareInterface;
 use Interop\Http\Server\RequestHandlerInterface;
-use Nimo\Handlers\MiddlewareIncluedHandler;
+use Lit\Nimo\Handlers\MiddlewareIncluedHandler;
 
 trait HandlerTrait
 {

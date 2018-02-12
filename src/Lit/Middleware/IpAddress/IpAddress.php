@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Lit\Middleware;
+namespace Lit\Middleware\IpAddress;
 
-use Nimo\AbstractMiddleware;
-use Nimo\Traits\MiddlewareTrait;
+use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
