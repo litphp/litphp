@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Middlewares;
 
-use Interop\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class CatchMiddleware extends AbstractWrapperMiddleware

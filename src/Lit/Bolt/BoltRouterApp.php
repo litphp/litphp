@@ -1,6 +1,6 @@
 <?php namespace Lit\Bolt;
 
-use Interop\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Lit\Bolt\Traits\ContainerAppTrait;
 use Lit\Bolt\Traits\EventHookedAppTrait;
 use Lit\Core\Interfaces\RouterInterface;

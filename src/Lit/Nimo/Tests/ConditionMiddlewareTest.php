@@ -5,8 +5,8 @@
  * Date: 15/9/13
  */
 
-use Interop\Http\Server\MiddlewareInterface;
-use Interop\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Nimo\AbstractMiddleware;
 use Lit\Nimo\Middlewares\AbstractConditionMiddleware;
 use PHPUnit\Framework\Assert;

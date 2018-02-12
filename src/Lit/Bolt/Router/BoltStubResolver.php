@@ -1,6 +1,6 @@
 <?php namespace Lit\Bolt\Router;
 
-use Interop\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Bolt\BoltContainer;
 use Lit\Core\Interfaces\RouterStubResolverInterface;
 use Lit\Nimo\Handlers\CallableHandler;

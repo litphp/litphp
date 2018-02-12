@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo;
 
-use Interop\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

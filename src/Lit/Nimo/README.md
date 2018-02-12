@@ -14,6 +14,6 @@ TBD
 ### todos
 
 + [x] PHPDoc
-+ [ ] Tests
-+ [ ] Wait PSR-15 and switch interface from http-interop to psr
++ [x] Tests
++ [x] Wait PSR-15 and switch interface from http-interop to psr
 + [ ] Tutorials / Examples

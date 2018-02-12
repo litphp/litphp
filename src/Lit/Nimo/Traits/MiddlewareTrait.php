@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Traits;
 
-use Interop\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\MiddlewareInterface;
 use Lit\Nimo\Interfaces\RequestPredictionInterface;
 use Lit\Nimo\MiddlewarePipe;
 use Lit\Nimo\Middlewares\CatchMiddleware;

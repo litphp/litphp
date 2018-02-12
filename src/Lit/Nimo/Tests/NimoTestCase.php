@@ -5,7 +5,7 @@
  * Date: 15/9/13
  */
 
-use Interop\Http\Server\RequestHandlerInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Nimo\AbstractHandler;
 use Lit\Nimo\AbstractMiddleware;
 use Lit\Nimo\Handlers\CallableHandler;
