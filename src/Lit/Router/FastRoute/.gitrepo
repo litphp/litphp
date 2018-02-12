@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:LitPHP/router-fast-route
+	branch = master
+	commit = 83828490110f49fd1501bb4076224fe1dd1ecf76
+	parent = 768f244286bae5cc517e895831b2fb184a7c69a6
+	cmdver = 0.3.1
