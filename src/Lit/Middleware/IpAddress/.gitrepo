@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:LitPHP/middleware-ip-address
+	remote = git@github.com:litphp/middleware-ip-address
 	branch = master
 	commit = 82cb370879f45386722359b1312c4d5958172708
 	parent = a3c2a9ad3e6dbcb9d2e7972e5e7fd02acfbb4103

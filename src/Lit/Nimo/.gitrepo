@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:LitPHP/nimo
+	remote = git@github.com:litphp/nimo
 	branch = master
 	commit = 846185c365e1dab029fd6d30f2b2f523946d1d3e
 	parent = 5414b4541d37baed57fa849ce74166593c216fb0
