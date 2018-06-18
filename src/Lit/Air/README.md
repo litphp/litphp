@@ -7,9 +7,6 @@ Lit Air
 
 > Dependency Injection for Lit
 
-[![Build Status](https://travis-ci.org/LitPHP/lit-air.svg?branch=master)](https://travis-ci.org/LitPHP/lit-air)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LitPHP/lit-air/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/lit-air/?branch=master)
-
 ### Features
 
 - PSR-11 compliant
