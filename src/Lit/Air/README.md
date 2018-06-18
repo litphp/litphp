@@ -42,13 +42,13 @@ Lit Air
 - Configure your container with several approach
   - chained method call (php native)
   - php array
-  - ​json/yaml
+  - ​json/yaml (not yet)
 
 ### Todo
 
 - [x] basic container implement
 - [x] autowire (constructor injection)
 - [x] method injection
-- [ ] setter injection
+- [x] setter injection
 - [ ] test coverage
 - [ ] documentation

@@ -6,6 +6,7 @@ namespace Lit\Air\Tests;
 
 use Lit\Air\Configurator;
 use Lit\Air\Psr\Container;
+use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\Decorator\SingletonDecorator;
 
 class SingletonDecoratorTest extends AbstractTestCase
@@ -21,7 +22,7 @@ class SingletonDecoratorTest extends AbstractTestCase
             $counter++;
             return $obj;
         };
-        $stub = Configurator::convertToRecipe($builder);
+        $stub = (new BuilderRecipe($builder))->singleton();
         $stub2 = Configurator::convertToRecipe($builder);
 
         self::assertTrue($stub instanceof SingletonDecorator);
