@@ -4,8 +4,12 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
+use Lit\Air\Injection\SetterInjector;
+
 class Foo
 {
+    const SETTER_INJECTOR = SetterInjector::class;
+
     public $bar;
     /**
      * @var \stdClass
@@ -19,6 +23,17 @@ class Foo
      * @var string
      */
     public $ng;
+
+    /**
+     * @var \SplObjectStorage
+     */
+    private $splObjectStorage;
+
+    public function injectSplObjectStorage(\SplObjectStorage $splObjectStorage)
+    {
+        $this->splObjectStorage = $splObjectStorage;
+        return $this;
+    }
 
     public function __construct(
         $bar,
@@ -37,4 +52,13 @@ class Foo
     {
         return $x;
     }
+
+    /**
+     * @return \SplObjectStorage
+     */
+    public function getSplObjectStorage()
+    {
+        return $this->splObjectStorage;
+    }
+
 }

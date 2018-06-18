@@ -50,5 +50,5 @@ Lit Air
 - [x] autowire (constructor injection)
 - [x] method injection
 - [x] setter injection
-- [ ] test coverage
+- [x] test coverage
 - [ ] documentation
