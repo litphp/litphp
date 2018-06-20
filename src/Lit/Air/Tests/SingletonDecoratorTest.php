@@ -9,7 +9,7 @@ use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\Decorator\SingletonDecorator;
 
-class SingletonDecoratorTest extends AbstractTestCase
+class SingletonDecoratorTest extends AirTestCase
 {
     public function testSmoke()
     {

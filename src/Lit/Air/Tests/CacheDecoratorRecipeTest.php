@@ -7,7 +7,7 @@ namespace Lit\Air\Tests;
 use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\Decorator\CacheDecorator;
 
-class CacheDecoratorRecipeTest extends AbstractTestCase
+class CacheDecoratorRecipeTest extends AirTestCase
 {
     public function testSmoke()
     {

@@ -5,7 +5,7 @@ namespace Lit\Air\Tests;
 use Lit\Air\Configurator;
 use Lit\Air\Recipe\FixedValueRecipe;
 
-class ConfiguratorTest extends AbstractTestCase
+class ConfiguratorTest extends AirTestCase
 {
     public function testBuilder()
     {

@@ -4,7 +4,7 @@ namespace Lit\Air\Tests;
 
 use Lit\Air\Recipe\FixedValueRecipe;
 
-class CallbackDecoratorTest extends AbstractTestCase
+class CallbackDecoratorTest extends AirTestCase
 {
 
 

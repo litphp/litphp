@@ -9,7 +9,7 @@ use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\FixedValueRecipe;
 use Lit\Air\Recipe\RecipeInterface;
 
-class ContainerTest extends AbstractTestCase
+class ContainerTest extends AirTestCase
 {
     public function testSetGet()
     {

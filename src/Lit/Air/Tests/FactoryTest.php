@@ -10,7 +10,7 @@ use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
 use Psr\Container\ContainerInterface;
 
-class FactoryTest extends AbstractTestCase
+class FactoryTest extends AirTestCase
 {
     /**
      * @var Factory

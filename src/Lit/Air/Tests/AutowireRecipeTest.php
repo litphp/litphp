@@ -8,7 +8,7 @@ use Lit\Air\Injection\SetterInjector;
 use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\AutowireRecipe;
 
-class AutowireRecipeTest extends AbstractTestCase
+class AutowireRecipeTest extends AirTestCase
 {
     public function testSmoke()
     {

@@ -9,7 +9,7 @@ use Lit\Air\Psr\NotFoundException;
 use PHPUnit\Framework\TestCase;
 use Psr\Container\NotFoundExceptionInterface;
 
-abstract class AbstractTestCase extends TestCase
+abstract class AirTestCase extends TestCase
 {
 
     /**
