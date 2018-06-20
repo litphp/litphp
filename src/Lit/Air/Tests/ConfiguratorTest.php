@@ -102,6 +102,4 @@ class ConfiguratorTest extends AbstractTestCase
         self::assertSame($val6, $this->container->get($key6));
         self::assertSame($val7, $val6->answer);
     }
-
-
 }
