@@ -24,16 +24,16 @@
     "litphp/lit": "^0.8@dev",
     "litphp/nexus": "^0.8@dev",
     "litphp/nimo": "^0.8@dev",
-    "litphp/air": "^0.1.6",
+    "litphp/air": "^0.8@dev",
     "symfony/event-dispatcher": "^4.0",
     "zendframework/zend-diactoros": "^1.6"
   },
   "require-dev": {
-    "litphp/router-fast-route": "^0.1@dev"
+    "litphp/router-fast-route": "^0.8@dev"
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.3.x-dev"
+      "dev-master": "0.8.x-dev"
     }
   },
   "suggest": {
