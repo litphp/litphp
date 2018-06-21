@@ -1,5 +1,7 @@
 <?php
 
+// @codeCoverageIgnoreStart
+
 use Lit\Bolt\BoltAction;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\BoltContainer;
@@ -24,3 +26,5 @@ class HelloAction extends BoltAction
 BoltApp::run(new BoltContainer([
     BoltApp::MAIN_HANDLER => ['$' => 'autowire', HelloAction::class]
 ]));
+
+// @codeCoverageIgnoreEnd

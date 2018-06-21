@@ -1,4 +1,5 @@
 <?php
+// @codeCoverageIgnoreStart
 
 use FastRoute\RouteCollector;
 use Lit\Air\Configurator;
@@ -82,3 +83,5 @@ $config = [
 ];
 
 BoltRouterApp::run(new BoltContainer($config + FastRouteConfiguration::default()));
+
+// @codeCoverageIgnoreEnd

@@ -98,7 +98,7 @@ class Container implements ContainerInterface, WritableContainerInterface
             return $this->delegateContainer->get($id);
         }
 
-        throw new NotFoundException();
+        throw new NotFoundException($id);
     }
 
     public function has($id)

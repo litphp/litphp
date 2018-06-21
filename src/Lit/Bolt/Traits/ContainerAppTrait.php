@@ -13,6 +13,11 @@ trait ContainerAppTrait
      */
     protected $container;
 
+    /**
+     * @param BoltContainer $container
+     * @throws \ReflectionException
+     * @codeCoverageIgnore
+     */
     public static function run(BoltContainer $container)
     {
         Inspector::setGlobalHandler();

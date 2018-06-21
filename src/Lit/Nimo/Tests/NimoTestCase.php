@@ -5,7 +5,6 @@
  * Date: 15/9/13
  */
 
-use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Nimo\AbstractHandler;
 use Lit\Nimo\AbstractMiddleware;
 use Lit\Nimo\Handlers\CallableHandler;
@@ -13,6 +12,8 @@ use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
+use Zend\Diactoros\Request\ArraySerializer;
 
 abstract class NimoTestCase extends TestCase
 {
@@ -39,21 +40,31 @@ abstract class NimoTestCase extends TestCase
         return $this->getMockForAbstractClass(ResponseInterface::class);
     }
 
-    protected function assertedHandler(ServerRequestInterface $expectedRequest, ResponseInterface $response)
+    protected function assertedHandler(
+        ServerRequestInterface $expectedRequest,
+        ResponseInterface $response,
+        string $assertion = 'same'
+    )
     {
-        return new class($expectedRequest, $response) extends AbstractHandler
+        return new class($expectedRequest, $response, $assertion) extends AbstractHandler
         {
             use RememberConstructorParamTrait;
 
             protected function main(): ResponseInterface
             {
                 /** @noinspection PhpUndefinedFieldInspection */
-                list($expectedRequest, $response) = $this->params;
-                Assert::assertSame($expectedRequest, $this->request);
+                [$expectedRequest, $response, $assertion] = $this->params;
+                if ($assertion === 'equal') {
+                    Assert::assertEquals(
+                        ArraySerializer::toArray($expectedRequest),
+                        ArraySerializer::toArray($this->request)
+                    );
+                } else {
+                    Assert::assertSame($expectedRequest, $this->request);
+                }
                 return $response;
             }
         };
-
     }
 
     protected function assertedNoopMiddleware(
