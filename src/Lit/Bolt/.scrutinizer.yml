@@ -15,5 +15,10 @@ build:
             tests:
                 override:
                     - php-scrutinizer-run
+                    -
+                        command: 'vendor/bin/phpunit --coverage-clover=clover.xml -c .'
+                        coverage:
+                            file: 'clover.xml'
+                            format: 'php-clover'
             environment:
                 php: 7.1
