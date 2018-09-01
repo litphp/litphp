@@ -10,11 +10,10 @@ use const Lit\Bolt\EVENT_BEFORE_LOGIC;
  * Trait EventHookedAppTrait
  * @package Lit\Bolt\Traits
  * @mixin App
+ * @mixin ContainerAppTrait
  */
 trait EventHookedAppTrait
 {
-    use ContainerAppTrait;
-
     protected function main(): ResponseInterface
     {
         /**
