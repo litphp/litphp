@@ -1,8 +1,8 @@
 <?php namespace Lit\Bolt;
 
-use Interop\Http\Factory\ResponseFactoryInterface;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Core\Action;
+use Psr\Http\Message\ResponseFactoryInterface;
 
 abstract class BoltAction extends Action
 {

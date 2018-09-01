@@ -1,8 +1,8 @@
 <?php namespace Lit\Bolt;
 
-use Interop\Http\Factory\ResponseFactoryInterface;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Air\Psr\Container;
+use Psr\Http\Message\ResponseFactoryInterface;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
