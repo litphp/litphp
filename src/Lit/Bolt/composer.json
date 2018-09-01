@@ -26,7 +26,8 @@
     "litphp/nimo": "^0.8@dev",
     "litphp/air": "^0.8@dev",
     "symfony/event-dispatcher": "^4.0",
-    "zendframework/zend-diactoros": "^1.6"
+    "zendframework/zend-diactoros": "^1.8",
+    "zendframework/zend-httphandlerrunner": "^1.0"
   },
   "require-dev": {
     "litphp/router-fast-route": "^0.8@dev"

@@ -3,16 +3,17 @@
 use Lit\Bolt\BoltAppEvent;
 use Lit\Core\App;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 use const Lit\Bolt\EVENT_AFTER_LOGIC;
 use const Lit\Bolt\EVENT_BEFORE_LOGIC;
 
+/**
+ * Trait EventHookedAppTrait
+ * @package Lit\Bolt\Traits
+ * @mixin App
+ */
 trait EventHookedAppTrait
 {
-    /**
-     * @var ServerRequestInterface
-     */
-    protected $request;
+    use ContainerAppTrait;
 
     protected function main(): ResponseInterface
     {

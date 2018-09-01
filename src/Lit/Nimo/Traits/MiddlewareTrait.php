@@ -4,12 +4,17 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Traits;
 
-use Psr\Http\Server\MiddlewareInterface;
 use Lit\Nimo\Interfaces\RequestPredictionInterface;
 use Lit\Nimo\MiddlewarePipe;
 use Lit\Nimo\Middlewares\CatchMiddleware;
 use Lit\Nimo\Middlewares\PredictionWrapperMiddleware;
+use Psr\Http\Server\MiddlewareInterface;
 
+/**
+ * Trait MiddlewareTrait
+ * @package Lit\Nimo\Traits
+ * @mixin MiddlewareInterface
+ */
 trait MiddlewareTrait
 {
     use AttachToRequestTrait;

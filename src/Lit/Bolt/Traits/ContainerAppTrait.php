@@ -3,8 +3,8 @@
 use Lit\Air\Factory;
 use Lit\Bolt\BoltContainer;
 use Lit\Nexus\Utilities\Inspector;
-use Zend\Diactoros\Response\SapiEmitter;
 use Zend\Diactoros\ServerRequestFactory;
+use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 
 trait ContainerAppTrait
 {
