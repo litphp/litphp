@@ -6,6 +6,9 @@
         "litphp/nexus": "^0.8@dev",
         "nikic/fast-route": "^1.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "^6.5"
+    },
     "license": "ISC",
     "autoload": {
         "psr-4": {

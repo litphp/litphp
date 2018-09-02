@@ -30,7 +30,8 @@
     "zendframework/zend-httphandlerrunner": "^1.0"
   },
   "require-dev": {
-    "litphp/router-fast-route": "^0.8@dev"
+    "litphp/router-fast-route": "^0.8@dev",
+    "phpunit/phpunit": "^6.5"
   },
   "extra": {
     "branch-alias": {
