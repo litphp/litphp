@@ -20,7 +20,7 @@
     "require": {
         "php": "^7.1",
         "ext-json": "*",
-        "litphp/nimo": "^0.8@dev",
+        "litphp/nimo": "^0.8",
         "psr/http-factory": "^1.0"
     },
     "extra": {

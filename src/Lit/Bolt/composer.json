@@ -21,16 +21,16 @@
     ]
   },
   "require": {
-    "litphp/lit": "^0.8@dev",
-    "litphp/nexus": "^0.8@dev",
-    "litphp/nimo": "^0.8@dev",
-    "litphp/air": "^0.8@dev",
+    "litphp/lit": "^0.8",
+    "litphp/nexus": "^0.8",
+    "litphp/nimo": "^0.8",
+    "litphp/air": "^0.8",
     "symfony/event-dispatcher": "^4.0",
     "zendframework/zend-diactoros": "^1.8",
     "zendframework/zend-httphandlerrunner": "^1.0"
   },
   "require-dev": {
-    "litphp/router-fast-route": "^0.8@dev",
+    "litphp/router-fast-route": "^0.8",
     "phpunit/phpunit": "^6.5"
   },
   "extra": {
