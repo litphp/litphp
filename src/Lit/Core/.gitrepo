@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:litphp/lit
 	branch = v0.8
-	commit = 311bb8c2b6d0f71e3fb29be7d40ad2ac4d692072
-	parent = 79e1ff199ff05346595d405593b4d55240c31b8e
+	commit = 8d87e70fb86ca4ad2a6db8c7db420e60f9836a10
+	parent = 810465d031f24fb57de1efb4f7d3c37e60e8cfe5
 	cmdver = 0.3.1
