@@ -6,6 +6,6 @@
 [subrepo]
 	remote = git@github.com:litphp/lit-nexus
 	branch = v0.8
-	commit = 09b4253638cdd4471c768117fc7f2bc5d0f030f0
-	parent = c871cffe371b056cf1b923b8dbdfd79064b90fcd
+	commit = 0e6fd1b617d012cc013ab0f5cf2810c546676538
+	parent = dad3b9840b554c73c5c500993e10575a58826551
 	cmdver = 0.3.1
