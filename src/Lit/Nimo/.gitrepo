@@ -5,7 +5,7 @@
 ;
 [subrepo]
 	remote = git@github.com:litphp/nimo
-	branch = master
+	branch = v0.8
 	commit = 846185c365e1dab029fd6d30f2b2f523946d1d3e
-	parent = 5414b4541d37baed57fa849ce74166593c216fb0
+	parent = c871cffe371b056cf1b923b8dbdfd79064b90fcd
 	cmdver = 0.3.1

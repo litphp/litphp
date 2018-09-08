@@ -5,7 +5,7 @@
 ;
 [subrepo]
 	remote = git@github.com:litphp/lit-bolt
-	branch = master
+	branch = v0.8
 	commit = 8ea167001ef7c6fc3db619a2e6f46a1305804f5a
 	parent = 0a3b1f772d3b1b52d3d09390eb74943bde6fcfde
 	cmdver = 0.3.1

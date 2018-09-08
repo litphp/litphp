@@ -5,7 +5,7 @@
 ;
 [subrepo]
 	remote = git@github.com:litphp/middleware-ip-address
-	branch = master
+	branch = v0.8
 	commit = 82cb370879f45386722359b1312c4d5958172708
 	parent = a3c2a9ad3e6dbcb9d2e7972e5e7fd02acfbb4103
 	cmdver = 0.3.1
