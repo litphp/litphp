@@ -21,21 +21,21 @@
     ]
   },
   "require": {
-    "litphp/lit": "^0.8@dev",
-    "litphp/nexus": "^0.8@dev",
-    "litphp/nimo": "^0.8@dev",
-    "litphp/air": "^0.8@dev",
+    "litphp/lit": "^0.9@dev",
+    "litphp/nexus": "^0.9@dev",
+    "litphp/nimo": "^0.9@dev",
+    "litphp/air": "^0.9@dev",
     "symfony/event-dispatcher": "^4.0",
     "zendframework/zend-diactoros": "^1.8",
     "zendframework/zend-httphandlerrunner": "^1.0"
   },
   "require-dev": {
-    "litphp/router-fast-route": "^0.8@dev",
+    "litphp/router-fast-route": "^0.9@dev",
     "phpunit/phpunit": "^6.5"
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.8.x-dev"
+      "dev-master": "0.9.x-dev"
     }
   },
   "suggest": {

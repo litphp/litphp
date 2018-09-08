@@ -2,8 +2,8 @@
     "name": "litphp/router-fast-route",
     "description": "Lit router utilizing fast-route",
     "require": {
-        "litphp/lit": "^0.8@dev",
-        "litphp/nexus": "^0.8@dev",
+        "litphp/lit": "^0.9@dev",
+        "litphp/nexus": "^0.9@dev",
         "nikic/fast-route": "^1.2"
     },
     "require-dev": {
@@ -21,12 +21,9 @@
             "email": "mcfogw@gmail.com"
         }
     ],
-    "provide": {
-        "litphp/router-implementation": "0.8"
-    },
     "extra": {
         "branch-alias": {
-            "dev-master": "0.8.x-dev"
+            "dev-master": "0.9.x-dev"
         }
     }
 }
