@@ -1,0 +1,18 @@
+{
+  "docs": {
+    "QuickStart": [
+      "index"
+    ],
+    "Lit": [
+      "lit",
+      "lit-view",
+      "lit-router"
+    ],
+    "Nimo": [
+      "nimo",
+      "nimo-condition",
+      "nimo-exception",
+      "nimo-roll"
+    ]
+  }
+}

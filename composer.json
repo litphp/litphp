@@ -52,5 +52,12 @@
         "branch-alias": {
             "dev-master": "0.9.x-dev"
         }
+    },
+    "archive": {
+        "exclude": [
+            "/.*",
+            "/docs",
+            "/website"
+        ]
     }
 }
