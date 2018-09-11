@@ -70,7 +70,7 @@ class Configurator
         return $config;
     }
 
-    public static function provideParameter(array $extra): array
+    public static function provideParameter(array $extra = []): array
     {
         return [
             '$'=>'autowire',
@@ -79,7 +79,7 @@ class Configurator
         ];
     }
 
-    public static function produce(string $classname, array $extra = []): array
+    public static function produce(?string $classname, array $extra = []): array
     {
         return [
             '$' => 'autowire',

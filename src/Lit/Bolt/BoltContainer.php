@@ -7,12 +7,7 @@ namespace Lit\Bolt;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Air\Psr\Container;
 use Psr\Http\Message\ResponseFactoryInterface;
-use Symfony\Component\EventDispatcher\EventDispatcher;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
-/**
- * @property EventDispatcherInterface $events
- */
 class BoltContainer extends Container
 {
     public function __construct(?array $config = null)
@@ -26,7 +21,6 @@ class BoltContainer extends Container
                 static::class => $this,
 
                 ResponseFactoryInterface::class => ['$' => 'autowire', BoltResponseFactory::class],
-                'events' => ['$' => 'autowire', EventDispatcher::class],
             ]);
     }
 

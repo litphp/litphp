@@ -5,6 +5,7 @@ namespace Lit\Bolt\Tests;
 use FastRoute\RouteCollector;
 use Lit\Air\Configurator;
 use Lit\Air\Factory;
+use Lit\Bolt\BoltApp;
 use Lit\Bolt\BoltRouterApp;
 use Lit\Core\Interfaces\RouterInterface;
 use Lit\Nexus\Traits\RememberConstructorParamTrait;
@@ -55,7 +56,7 @@ class BoltRouterAppTest extends BoltTestCase
         /**
          * @var BoltRouterApp $app
          */
-        $app = $factory->getOrProduce(BoltRouterApp::class);
+        $app = $factory->getOrProduce(BoltApp::class);
 
         $result = $app->handle($request);
         self::assertSame($result, $response);

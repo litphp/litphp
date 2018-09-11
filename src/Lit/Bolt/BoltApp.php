@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Bolt\Traits\ContainerAppTrait;
-use Lit\Bolt\Traits\EventHookedAppTrait;
 use Lit\Core\App;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
@@ -13,7 +12,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 class BoltApp extends App
 {
     use ContainerAppTrait;
-    use EventHookedAppTrait;
 
     public const MAIN_HANDLER = 'BoltApp::MAIN_HANDLER';
 

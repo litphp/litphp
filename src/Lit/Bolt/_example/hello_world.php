@@ -2,6 +2,7 @@
 
 // @codeCoverageIgnoreStart
 
+use Lit\Air\Configurator;
 use Lit\Bolt\BoltAction;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\BoltContainer;
@@ -24,7 +25,7 @@ class HelloAction extends BoltAction
 }
 
 BoltApp::run(new BoltContainer([
-    BoltApp::MAIN_HANDLER => ['$' => 'autowire', HelloAction::class]
+    BoltApp::MAIN_HANDLER => Configurator::produce(HelloAction::class)
 ]));
 
 // @codeCoverageIgnoreEnd

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Handlers;
 
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Psr\Http\Message\ResponseInterface;
 
 class MiddlewareIncluedHandler extends AbstractWrapperHandler
 {

@@ -4,16 +4,14 @@ declare(strict_types=1);
 
 namespace Lit\Bolt;
 
-use Psr\Http\Server\MiddlewareInterface;
 use Lit\Bolt\Traits\ContainerAppTrait;
-use Lit\Bolt\Traits\EventHookedAppTrait;
 use Lit\Core\Interfaces\RouterInterface;
 use Lit\Core\RouterApp;
+use Psr\Http\Server\MiddlewareInterface;
 
 class BoltRouterApp extends RouterApp
 {
     use ContainerAppTrait;
-    use EventHookedAppTrait;
 
     public function __construct(BoltContainer $container, MiddlewareInterface $middleware = null)
     {
