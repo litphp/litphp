@@ -1,4 +1,8 @@
-<?php namespace Lit\Nexus\Derived;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Nexus\Derived;
 
 use Lit\Nexus\Interfaces\ReadableSingleValueInterface;
 use Lit\Nexus\Interfaces\SingleValueInterface;

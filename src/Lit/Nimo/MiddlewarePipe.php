@@ -4,15 +4,11 @@ declare(strict_types=1);
 
 namespace Lit\Nimo;
 
-use Psr\Http\Server\MiddlewareInterface;
 use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
-/**
- * User: mcfog
- * Date: 15/9/4
- */
 class MiddlewarePipe extends AbstractMiddleware
 {
     /**

@@ -1,11 +1,11 @@
-<?php namespace Lit\Nimo\Tests;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Nimo\Tests;
 
 use Lit\Nimo\MiddlewarePipe;
 
-/**
- * User: mcfog
- * Date: 15/9/12
- */
 class MiddlewarePipeTest extends NimoTestCase
 {
     public function testEmptyStack()

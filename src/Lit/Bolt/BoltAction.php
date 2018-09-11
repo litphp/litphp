@@ -1,4 +1,8 @@
-<?php namespace Lit\Bolt;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Bolt;
 
 use Lit\Air\Injection\SetterInjector;
 use Lit\Core\Action;

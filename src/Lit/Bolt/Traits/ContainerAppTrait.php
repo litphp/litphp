@@ -1,4 +1,8 @@
-<?php namespace Lit\Bolt\Traits;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Bolt\Traits;
 
 use Lit\Air\Factory;
 use Lit\Bolt\BoltContainer;

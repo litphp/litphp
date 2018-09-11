@@ -1,4 +1,8 @@
-<?php namespace Lit\Nexus\Traits;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Nexus\Traits;
 
 trait KeyValueObjectAccessTrait
 {

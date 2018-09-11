@@ -1,4 +1,8 @@
-<?php namespace Lit\Bolt\Router;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Bolt\Router;
 
 use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Bolt\BoltContainer;

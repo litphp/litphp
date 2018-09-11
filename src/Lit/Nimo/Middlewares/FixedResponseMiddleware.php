@@ -7,10 +7,6 @@ namespace Lit\Nimo\Middlewares;
 use Lit\Nimo\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 
-/**
- * User: mcfog
- * Date: 15/9/4
- */
 class FixedResponseMiddleware extends AbstractMiddleware
 {
     protected $fixedResponse;

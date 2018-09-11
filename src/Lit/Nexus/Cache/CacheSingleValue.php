@@ -1,4 +1,8 @@
-<?php namespace Lit\Nexus\Cache;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Nexus\Cache;
 
 use Lit\Nexus\Interfaces\SingleValueInterface;
 use Lit\Nexus\Traits\SingleValueTrait;

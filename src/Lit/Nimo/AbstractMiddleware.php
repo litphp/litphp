@@ -4,16 +4,12 @@ declare(strict_types=1);
 
 namespace Lit\Nimo;
 
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
-/**
- * User: mcfog
- * Date: 15/9/4
- */
 abstract class AbstractMiddleware implements MiddlewareInterface
 {
     use MiddlewareTrait;

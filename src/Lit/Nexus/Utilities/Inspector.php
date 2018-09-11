@@ -1,4 +1,8 @@
-<?php namespace Lit\Nexus\Utilities;
+<?php
+
+declare(strict_types=1);
+
+namespace Lit\Nexus\Utilities;
 
 class Inspector
 {

@@ -1,9 +1,8 @@
-<?php namespace Lit\Nimo\Tests;
+<?php
 
-/**
- * User: mcfog
- * Date: 15/9/13
- */
+declare(strict_types=1);
+
+namespace Lit\Nimo\Tests;
 
 use Lit\Nimo\AbstractHandler;
 use Lit\Nimo\AbstractMiddleware;

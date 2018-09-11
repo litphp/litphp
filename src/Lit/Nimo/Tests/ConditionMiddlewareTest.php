@@ -1,17 +1,16 @@
-<?php namespace Lit\Nimo\Tests;
+<?php
 
-/**
- * User: mcfog
- * Date: 15/9/13
- */
+declare(strict_types=1);
 
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+namespace Lit\Nimo\Tests;
+
 use Lit\Nimo\AbstractMiddleware;
 use Lit\Nimo\Middlewares\AbstractConditionMiddleware;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class ConditionMiddlewareTest extends NimoTestCase
 {

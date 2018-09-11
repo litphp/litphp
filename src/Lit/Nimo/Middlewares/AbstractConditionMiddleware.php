@@ -8,10 +8,6 @@ use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-/**
- * User: mcfog
- * Date: 15/9/4
- */
 abstract class AbstractConditionMiddleware extends AbstractWrapperMiddleware
 {
     protected function main(): ResponseInterface
