@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Middlewares;
 
-use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\MiddlewareInterface;
 
 class CatchMiddleware extends AbstractWrapperMiddleware
 {
@@ -36,7 +36,7 @@ class CatchMiddleware extends AbstractWrapperMiddleware
             return $this->innerMiddleware->process($this->request, $this->handler);
         } catch (\Throwable $e) {
             if ($e instanceof $this->catchClass) {
-                return ($this->catcher)($e, $this->request, $this->handler);
+                return ($this->catcher)($e, $this->request, $this->handler, $this->innerMiddleware);
             }
             throw $e;
         }

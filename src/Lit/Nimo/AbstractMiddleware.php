@@ -41,9 +41,4 @@ abstract class AbstractMiddleware implements MiddlewareInterface
     {
         return $this->handler->handle($request ?: $this->request);
     }
-
-    protected function invokeCallback(callable $callback)
-    {
-        return call_user_func($callback, $this->request, $this->handler);
-    }
 }
