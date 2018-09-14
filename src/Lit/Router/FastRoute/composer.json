@@ -4,7 +4,7 @@
     "require": {
         "litphp/lit": "^0.9@dev",
         "litphp/nexus": "^0.9@dev",
-        "nikic/fast-route": "^1.2"
+        "nikic/fast-route": "^1.3"
     },
     "require-dev": {
         "phpunit/phpunit": "^6.5"
