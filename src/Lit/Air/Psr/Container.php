@@ -43,6 +43,8 @@ class Container implements ContainerInterface, WritableContainerInterface
              */
             $class::config($this, $config);
         }
+        $this->set(static::class, $this);
+        $this->set(ContainerInterface::class, $this);
     }
 
     public static function alias(string $alias): AbstractRecipe

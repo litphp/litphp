@@ -6,7 +6,6 @@ use FastRoute\RouteCollector;
 use Lit\Air\Configurator;
 use Lit\Air\Factory;
 use Lit\Bolt\BoltApp;
-use Lit\Bolt\BoltRouterApp;
 use Lit\Core\Interfaces\RouterInterface;
 use Lit\Nexus\Traits\RememberConstructorParamTrait;
 use Lit\Router\FastRoute\FastRouteConfiguration;
@@ -54,7 +53,7 @@ class BoltRouterAppTest extends BoltTestCase
 
         $factory = Factory::of($this->container);
         /**
-         * @var BoltRouterApp $app
+         * @var BoltApp $app
          */
         $app = $factory->getOrProduce(BoltApp::class);
 

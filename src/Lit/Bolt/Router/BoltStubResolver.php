@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Lit\Bolt\Router;
 
-use Psr\Http\Server\RequestHandlerInterface;
-use Lit\Bolt\BoltContainer;
 use Lit\Core\Interfaces\RouterStubResolverInterface;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Handlers\FixedResponseHandler;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class BoltStubResolver implements RouterStubResolverInterface
 {
     /**
-     * @var BoltContainer
+     * @var ContainerInterface
      */
     protected $container;
 
-    public function __construct(BoltContainer $container)
+    public function __construct(ContainerInterface $container)
     {
         $this->container = $container;
     }

@@ -2,9 +2,9 @@
 
 namespace Lit\Bolt\Tests;
 
+use Http\Factory\Diactoros\ResponseFactory;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Bolt\BoltAction;
-use Lit\Bolt\BoltResponseFactory;
 use Lit\Core\ThrowableResponse;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\ServerRequest;
@@ -37,7 +37,7 @@ class BoltActionTest extends BoltTestCase
         $result = $action->handle($request);
         self::assertSame($response, $result);
 
-        $factory = new BoltResponseFactory();
+        $factory = new ResponseFactory();
         self::assertEquals(SetterInjector::class, BoltAction::SETTER_INJECTOR);
         $reflectionObject = new \ReflectionObject($action);
         $reflectionProperty = $reflectionObject->getProperty('responseFactory');

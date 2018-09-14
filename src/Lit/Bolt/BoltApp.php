@@ -4,24 +4,28 @@ declare(strict_types=1);
 
 namespace Lit\Bolt;
 
-use Lit\Bolt\Traits\ContainerAppTrait;
+use Lit\Air\Psr\Container;
 use Lit\Core\App;
+use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
 class BoltApp extends App
 {
-    use ContainerAppTrait;
+    /**
+     * @var ContainerInterface
+     */
+    protected $container;
 
     public const MAIN_HANDLER = 'BoltApp::MAIN_HANDLER';
 
-    public function __construct(BoltContainer $boltContainer, MiddlewareInterface $middleware = null)
+    public function __construct(Container $container, MiddlewareInterface $middleware = null)
     {
-        $this->container = $boltContainer;
+        $this->container = $container;
         /**
          * @var RequestHandlerInterface $businessLogicHandler
          */
-        $businessLogicHandler = $boltContainer->get(self::MAIN_HANDLER);
+        $businessLogicHandler = $container->get(self::MAIN_HANDLER);
         parent::__construct($businessLogicHandler, $middleware);
     }
 }

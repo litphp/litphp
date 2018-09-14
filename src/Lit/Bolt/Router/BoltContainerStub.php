@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lit\Bolt\Router;
 
 use Lit\Air\Factory;
-use Lit\Bolt\BoltContainer;
+use Psr\Container\ContainerInterface;
 
 class BoltContainerStub
 {
@@ -43,12 +43,12 @@ class BoltContainerStub
         throw new \RuntimeException("cannot understand stub");
     }
 
-    public function produceFrom(BoltContainer $container, $extraParameters = [])
+    public function produceFrom(ContainerInterface $container, $extraParameters = [])
     {
         return Factory::of($container)->produce($this->className, $extraParameters + $this->extraParameters);
     }
 
-    public function instantiateFrom(BoltContainer $container, $extraParameters = [])
+    public function instantiateFrom(ContainerInterface $container, $extraParameters = [])
     {
         return Factory::of($container)->instantiate($this->className, $extraParameters + $this->extraParameters);
     }

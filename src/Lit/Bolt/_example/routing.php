@@ -4,8 +4,7 @@
 use FastRoute\RouteCollector;
 use Lit\Air\Configurator;
 use Lit\Bolt\BoltAction;
-use Lit\Bolt\BoltApp;
-use Lit\Bolt\BoltContainer;
+use Lit\Bolt\Zend\BoltRunner;
 use Lit\Core\Interfaces\RouterInterface;
 use Lit\Router\FastRoute\FastRouteConfiguration;
 use Lit\Router\FastRoute\FastRouteDefinition;
@@ -82,6 +81,6 @@ $config = [
     ),
 ];
 
-BoltApp::run(new BoltContainer($config + FastRouteConfiguration::default()));
+BoltRunner::run($config + FastRouteConfiguration::default());
 
 // @codeCoverageIgnoreEnd

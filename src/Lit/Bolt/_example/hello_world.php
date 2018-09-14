@@ -5,7 +5,7 @@
 use Lit\Air\Configurator;
 use Lit\Bolt\BoltAction;
 use Lit\Bolt\BoltApp;
-use Lit\Bolt\BoltContainer;
+use Lit\Bolt\Zend\BoltRunner;
 use Psr\Http\Message\ResponseInterface;
 
 is_readable(__DIR__ . '/../vendor/autoload.php')
@@ -24,8 +24,8 @@ class HelloAction extends BoltAction
     }
 }
 
-BoltApp::run(new BoltContainer([
+BoltRunner::run([
     BoltApp::MAIN_HANDLER => Configurator::produce(HelloAction::class)
-]));
+]);
 
 // @codeCoverageIgnoreEnd

@@ -25,6 +25,7 @@
     "litphp/nexus": "^0.9@dev",
     "litphp/nimo": "^0.9@dev",
     "litphp/air": "^0.9@dev",
+    "http-interop/http-factory-diactoros": "^1.0",
     "symfony/event-dispatcher": "^4.0",
     "zendframework/zend-diactoros": "^1.8",
     "zendframework/zend-httphandlerrunner": "^1.0"
