@@ -56,8 +56,6 @@ TEXT;
         }
 
         echo $msg;
-
-        exit(255);
     }
 
     public static function formatThrowable(\Throwable $throwable)
