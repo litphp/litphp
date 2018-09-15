@@ -6,7 +6,7 @@ namespace Lit\Air\Recipe;
 
 use Lit\Air\Factory;
 use Lit\Air\Psr\ContainerException;
-use Lit\Air\WritableContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class InstanceRecipe extends AbstractRecipe
 {
@@ -25,7 +25,7 @@ class InstanceRecipe extends AbstractRecipe
         $this->extra = $extra;
     }
 
-    public function resolve(WritableContainerInterface $container, ?string $id = null)
+    public function resolve(ContainerInterface $container, ?string $id = null)
     {
         $className = is_null($this->className) ? $id : $this->className;
         if (!class_exists($className)) {

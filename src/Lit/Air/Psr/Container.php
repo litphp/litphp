@@ -14,10 +14,9 @@ use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\FixedValueRecipe;
 use Lit\Air\Recipe\InstanceRecipe;
 use Lit\Air\Recipe\RecipeInterface;
-use Lit\Air\WritableContainerInterface;
 use Psr\Container\ContainerInterface;
 
-class Container implements ContainerInterface, WritableContainerInterface
+class Container implements ContainerInterface
 {
     const KEY_FACTORY = Factory::class;
     const KEY_INJECTORS = InjectorInterface::class;

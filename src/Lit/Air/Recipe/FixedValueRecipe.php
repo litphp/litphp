@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Recipe;
 
-use Lit\Air\WritableContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class FixedValueRecipe extends AbstractRecipe
 {
@@ -15,7 +15,7 @@ class FixedValueRecipe extends AbstractRecipe
         $this->value = $value;
     }
 
-    public function resolve(WritableContainerInterface $container, ?string $id = null)
+    public function resolve(ContainerInterface $container, ?string $id = null)
     {
         return $this->value;
     }

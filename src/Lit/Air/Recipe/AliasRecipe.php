@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Recipe;
 
-use Lit\Air\WritableContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class AliasRecipe extends AbstractRecipe
 {
@@ -21,7 +21,7 @@ class AliasRecipe extends AbstractRecipe
         $this->alias = $alias;
     }
 
-    public function resolve(WritableContainerInterface $container, ?string $id = null)
+    public function resolve(ContainerInterface $container, ?string $id = null)
     {
         return $container->get($this->alias);
     }

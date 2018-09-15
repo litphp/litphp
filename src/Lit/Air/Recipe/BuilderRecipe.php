@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lit\Air\Recipe;
 
 use Lit\Air\Factory;
-use Lit\Air\WritableContainerInterface;
+use Psr\Container\ContainerInterface;
 
 class BuilderRecipe extends AbstractRecipe
 {
@@ -29,7 +29,7 @@ class BuilderRecipe extends AbstractRecipe
         $this->extra = $extra;
     }
 
-    public function resolve(WritableContainerInterface $container, ?string $id = null)
+    public function resolve(ContainerInterface $container, ?string $id = null)
     {
         return Factory::of($container)->invoke($this->builder, $this->extra);
     }
