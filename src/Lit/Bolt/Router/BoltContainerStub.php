@@ -24,12 +24,12 @@ class BoltContainerStub
         $this->extraParameters = $extraParameters;
     }
 
-    public static function of(string $className, array $extraParameters = [])
+    public static function of(string $className, array $extraParameters = []): self
     {
         return new static($className, $extraParameters);
     }
 
-    public static function tryParse($stub)
+    public static function tryParse($stub): ?self
     {
         if (is_string($stub) && class_exists($stub)) {
             return static::of($stub);
@@ -40,12 +40,7 @@ class BoltContainerStub
             return static::of($stub[0], $stub[1]);
         }
 
-        throw new \RuntimeException("cannot understand stub");
-    }
-
-    public function produceFrom(ContainerInterface $container, $extraParameters = [])
-    {
-        return Factory::of($container)->produce($this->className, $extraParameters + $this->extraParameters);
+        return null;
     }
 
     public function instantiateFrom(ContainerInterface $container, $extraParameters = [])

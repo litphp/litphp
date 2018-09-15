@@ -24,8 +24,8 @@ class FastRouteRouter extends AbstractRouter
     public function __construct(
         Dispatcher $dispatcher,
         RouterStubResolverInterface $stubResolver,
-        $notFound,
-        $methodNotAllowed = null
+        $methodNotAllowed = null,
+        $notFound = null
     ) {
         parent::__construct($stubResolver, $notFound);
         $this->dispatcher = $dispatcher;

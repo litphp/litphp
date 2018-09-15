@@ -40,9 +40,6 @@
         },
         "exclude-from-classmap": [
             "**/Tests/"
-        ],
-        "files": [
-            "src/Lit/Bolt/constants.php"
         ]
     },
     "prefer-stable": true,

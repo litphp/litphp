@@ -7,11 +7,9 @@ use Lit\Bolt\Router\BoltContainerStub;
 
 class BoltContainerStubTest extends BoltTestCase
 {
-
-
     public function testSmoke()
     {
-        $result = BoltContainerStub::of(\stdClass::class)->produceFrom($this->container);
+        $result = BoltContainerStub::of(\stdClass::class)->instantiateFrom($this->container);
         self::assertInstanceOf(\stdClass::class, $result);
 
         $result2 = BoltContainerStub::tryParse([

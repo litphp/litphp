@@ -13,16 +13,13 @@ use Lit\Bolt\RouterConfiguration;
 use Lit\Core\Interfaces\RouterInterface;
 use Lit\Core\Interfaces\RouterStubResolverInterface;
 use Lit\Nexus\Void\VoidSingleValue;
-use Zend\Diactoros\Response\EmptyResponse;
 
 class FastRouteConfiguration
 {
     public static function default()
     {
         return [
-                RouterInterface::class => C::singleton(FastRouteRouter::class, [
-                    'notFound' => new EmptyResponse(404),
-                ]),
+                RouterInterface::class => C::singleton(FastRouteRouter::class),
                 RouterStubResolverInterface::class => C::singleton(BoltStubResolver::class),
 
                 DataGenerator::class => C::singleton(DataGenerator\GroupCountBased::class),

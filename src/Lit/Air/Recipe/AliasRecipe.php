@@ -15,7 +15,6 @@ class AliasRecipe extends AbstractRecipe
 
     /**
      * @param string $alias
-     * @param array $extra
      */
     public function __construct(string $alias)
     {
