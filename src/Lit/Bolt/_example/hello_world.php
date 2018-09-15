@@ -2,11 +2,12 @@
 
 // @codeCoverageIgnoreStart
 
-use Lit\Air\Configurator;
+use Lit\Air\Configurator as C;
 use Lit\Bolt\BoltAction;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\Zend\BoltRunner;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 is_readable(__DIR__ . '/../vendor/autoload.php')
     ? require(__DIR__ . '/../vendor/autoload.php')
@@ -25,7 +26,9 @@ class HelloAction extends BoltAction
 }
 
 BoltRunner::run([
-    BoltApp::MAIN_HANDLER => Configurator::produce(HelloAction::class)
+    BoltApp::class => C::provideParameter([
+        RequestHandlerInterface::class => C::produce(HelloAction::class),
+    ])
 ]);
 
 // @codeCoverageIgnoreEnd

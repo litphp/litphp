@@ -75,7 +75,6 @@ class BoltRouterAppTest extends BoltTestCase
          */
         $app = $factory->getOrProduce(BoltApp::class);
 
-
         $result = $app->handle($request);
         self::assertSame($result, $response);
 

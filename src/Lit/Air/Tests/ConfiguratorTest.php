@@ -2,7 +2,7 @@
 
 namespace Lit\Air\Tests;
 
-use Lit\Air\Configurator;
+use Lit\Air\Configurator as C;
 use Lit\Air\Recipe\FixedValueRecipe;
 
 class ConfiguratorTest extends AirTestCase
@@ -15,7 +15,7 @@ class ConfiguratorTest extends AirTestCase
             '$' => 'instance',
             $name,
             $extra,
-        ], Configurator::instance($name, $extra));
+        ], C::instance($name, $extra));
 
         $name = uniqid();
         $extra = [uniqid() => uniqid()];
@@ -23,14 +23,14 @@ class ConfiguratorTest extends AirTestCase
             '$' => 'autowire',
             $name,
             $extra,
-        ], Configurator::produce($name, $extra));
+        ], C::produce($name, $extra));
 
         $extra = [uniqid() => uniqid()];
         self::assertEquals([
             '$' => 'autowire',
             null,
             $extra,
-        ], Configurator::provideParameter($extra));
+        ], C::provideParameter($extra));
 
         $name = uniqid();
         $extra = [uniqid() => uniqid()];
@@ -39,32 +39,32 @@ class ConfiguratorTest extends AirTestCase
             '$' => 'instance',
             $name,
             $extra,
-        ], Configurator::singleton($name, $extra));
+        ], C::singleton($name, $extra));
 
         $builder = function () {
         };
         self::assertEquals([
             '$' => 'builder',
             $builder,
-        ], Configurator::builder($builder));
+        ], C::builder($builder));
 
         $alias = uniqid();
         self::assertEquals([
             '$' => 'alias',
             $alias
-        ], Configurator::alias($alias));
+        ], C::alias($alias));
 
         $value = uniqid();
         self::assertEquals([
             '$' => 'value',
             $value
-        ], Configurator::value($value));
+        ], C::value($value));
 
         $name = uniqid();
         $extra = [uniqid() => uniqid()];
         $cb = function () {
         };
-        $cfg = Configurator::decorateCallback(Configurator::singleton($name, $extra), $cb);
+        $cfg = C::decorateCallback(C::singleton($name, $extra), $cb);
         self::assertEquals([
             'decorator' => ['singleton' => true, 'callback' => $cb],
             '$' => 'instance',
@@ -76,15 +76,15 @@ class ConfiguratorTest extends AirTestCase
     public function testConfig()
     {
         $val7 = new \stdClass();
-        Configurator::config($this->container, [
+        C::config($this->container, [
             $key1 = uniqid() => $val1 = uniqid(),
-            $key2 = uniqid() => Configurator::value($val2 = new \stdClass()),
+            $key2 = uniqid() => C::value($val2 = new \stdClass()),
             $key3 = uniqid() => new FixedValueRecipe($val3 = new \stdClass()),
-            $key4 = Configurator::class . '::' => [
-                $key5 = uniqid() => Configurator::value($val5 = new \stdClass()),
+            $key4 = C::class . '::' => [
+                $key5 = uniqid() => C::value($val5 = new \stdClass()),
             ],
-            $key6 = uniqid() => Configurator::decorateCallback(
-                Configurator::value($val6 = new \stdClass()),
+            $key6 = uniqid() => C::decorateCallback(
+                C::value($val6 = new \stdClass()),
                 function ($delegate, $container, $key) use ($val7, $val6, $key6) {
                     self::assertTrue(is_callable($delegate));
                     self::assertEquals($key6, $key);

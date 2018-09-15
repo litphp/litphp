@@ -3,7 +3,9 @@
 namespace Lit\Bolt\Tests;
 
 use Lit\Air\Factory;
+use Lit\Air\Psr\Container;
 use Lit\Bolt\BoltApp;
+use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response;
 use Zend\Diactoros\ServerRequest;
 
@@ -13,11 +15,10 @@ class BoltAppTest extends BoltTestCase
     {
         $response = new Response();
         $request = new ServerRequest();
-        $this->container->set(
-            BoltApp::MAIN_HANDLER,
-            $this->assertedHandler($request, $response)
-        );
 
+        $this->container->define(BoltApp::class, Container::autowire(null, [
+            RequestHandlerInterface::class => $this->assertedHandler($request, $response)
+        ]));
         $factory = Factory::of($this->container);
         $result = $factory->getOrProduce(BoltApp::class)->handle($request);
 

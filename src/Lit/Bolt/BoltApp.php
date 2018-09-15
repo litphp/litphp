@@ -17,15 +17,12 @@ class BoltApp extends App
      */
     protected $container;
 
-    public const MAIN_HANDLER = 'BoltApp::MAIN_HANDLER';
-
-    public function __construct(Container $container, MiddlewareInterface $middleware = null)
-    {
+    public function __construct(
+        Container $container,
+        RequestHandlerInterface $businessLogicHandler,
+        MiddlewareInterface $middleware = null
+    ) {
         $this->container = $container;
-        /**
-         * @var RequestHandlerInterface $businessLogicHandler
-         */
-        $businessLogicHandler = $container->get(self::MAIN_HANDLER);
         parent::__construct($businessLogicHandler, $middleware);
     }
 }
