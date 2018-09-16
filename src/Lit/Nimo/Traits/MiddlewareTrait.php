@@ -56,6 +56,12 @@ trait MiddlewareTrait
         return new PredictionWrapperMiddleware($this, $requestPrediction);
     }
 
+    public function unless(RequestPredictionInterface $requestPrediction): MiddlewareInterface
+    {
+        /** @noinspection PhpParamsInspection */
+        return new PredictionWrapperMiddleware($this, $requestPrediction, true);
+    }
+
     public function catch(callable $catcher, string $catchClass = \Throwable::class): MiddlewareInterface
     {
         return new CatchMiddleware($this, $catcher, $catchClass);
