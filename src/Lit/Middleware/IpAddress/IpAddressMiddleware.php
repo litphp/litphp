@@ -5,14 +5,11 @@ declare(strict_types=1);
 namespace Lit\Middleware\IpAddress;
 
 use Lit\Nimo\AbstractMiddleware;
-use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class IpAddress extends AbstractMiddleware
+class IpAddressMiddleware extends AbstractMiddleware
 {
-    use MiddlewareTrait;
-
     /**
      * @var array
      */

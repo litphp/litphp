@@ -1,0 +1,24 @@
+checks:
+    php:
+        code_rating: true
+        duplication: true
+tools:
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
+filter:
+    excluded_paths:
+        - Tests/*
+build:
+    nodes:
+        my-tests:
+            tests:
+                override:
+                    - php-scrutinizer-run
+                    -
+                        command: 'vendor/bin/phpunit --coverage-clover=clover.xml -c .'
+                        coverage:
+                            file: 'clover.xml'
+                            format: 'php-clover'
+            environment:
+                php: 7.1

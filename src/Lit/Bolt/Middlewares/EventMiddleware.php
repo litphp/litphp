@@ -7,9 +7,10 @@ namespace Lit\Bolt\Middlewares;
 use Lit\Bolt\BoltEvent;
 use Lit\Nimo\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class EventHookedMiddleware extends AbstractMiddleware
+class EventMiddleware extends AbstractMiddleware
 {
     /**
      * @var EventDispatcher
@@ -19,6 +20,24 @@ class EventHookedMiddleware extends AbstractMiddleware
     public function __construct(EventDispatcher $eventDispatcher)
     {
         $this->eventDispatcher = $eventDispatcher;
+    }
+
+    /**
+     * @return EventDispatcher
+     */
+    public function getEventDispatcher(): EventDispatcher
+    {
+        return $this->eventDispatcher;
+    }
+
+    public function addListener($eventName, $listener, $priority = 0)
+    {
+        $this->eventDispatcher->addListener($eventName, $listener, $priority);
+    }
+
+    public function dispatch($eventName, Event $event = null)
+    {
+        $this->eventDispatcher->dispatch($eventName, $event);
     }
 
     protected function main(): ResponseInterface

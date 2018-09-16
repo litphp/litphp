@@ -13,7 +13,6 @@ use Psr\Http\Server\MiddlewareInterface;
 /**
  * Trait MiddlewareTrait
  * @package Lit\Nimo\Traits
- * @mixin MiddlewareInterface
  */
 trait MiddlewareTrait
 {
@@ -29,6 +28,7 @@ trait MiddlewareTrait
     {
         $stack = new MiddlewarePipe();
 
+        /** @noinspection PhpParamsInspection */
         return $stack
             ->append($this)
             ->append($middleware);
@@ -44,6 +44,7 @@ trait MiddlewareTrait
     {
         $stack = new MiddlewarePipe();
 
+        /** @noinspection PhpParamsInspection */
         return $stack
             ->prepend($this)
             ->prepend($middleware);
@@ -51,6 +52,7 @@ trait MiddlewareTrait
 
     public function when(RequestPredictionInterface $requestPrediction): MiddlewareInterface
     {
+        /** @noinspection PhpParamsInspection */
         return new PredictionWrapperMiddleware($this, $requestPrediction);
     }
 
