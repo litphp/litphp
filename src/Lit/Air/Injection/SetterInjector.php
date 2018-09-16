@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lit\Air\Injection;
 
 use Lit\Air\Factory;
+use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
 use ReflectionMethod;
 
@@ -79,5 +80,14 @@ class SetterInjector implements InjectorInterface
             }
         }
         return false;
+    }
+
+    public static function configuration()
+    {
+        return [
+            Container::KEY_INJECTORS => [
+                new SetterInjector(),
+            ],
+        ];
     }
 }

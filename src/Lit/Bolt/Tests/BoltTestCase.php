@@ -6,6 +6,7 @@ namespace Lit\Bolt\Tests;
 
 use Lit\Air\Psr\Container;
 use Lit\Bolt\BoltContainerConfiguration;
+use Lit\Bolt\Zend\BoltZendConfiguration;
 use Lit\Nimo\Tests\NimoTestCase;
 
 abstract class BoltTestCase extends NimoTestCase
@@ -18,6 +19,6 @@ abstract class BoltTestCase extends NimoTestCase
     protected function setUp()
     {
         parent::setUp();
-        $this->container = BoltContainerConfiguration::createContainer();
+        $this->container = BoltContainerConfiguration::createContainer(BoltZendConfiguration::default());
     }
 }
