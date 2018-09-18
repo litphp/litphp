@@ -27,11 +27,12 @@ class FastRouteConfiguration
                 Dispatcher::class => C::singleton(
                     CachedDispatcher::class,
                     [
-                        'cache' => new VoidSingleValue(),
+                        'cache' => C::alias(C::join(Dispatcher::class, 'cache')),
                         'routeDefinition' => C::alias(FastRouteDefinition::class),
                         'dispatcherClass' => Dispatcher\GroupCountBased::class,
                     ]
                 ),
+                C::join(Dispatcher::class, 'cache') => C::produce(VoidSingleValue::class),
             ] + RouterConfiguration::default();
     }
 }

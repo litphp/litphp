@@ -218,4 +218,9 @@ class Configurator
 
         return $recipe;
     }
+
+    public static function join(string... $args): string
+    {
+        return implode('::', $args);
+    }
 }
