@@ -14,7 +14,10 @@ class ContextMiddleware extends \ArrayObject implements MiddlewareInterface
 {
     use MiddlewareTrait;
     use AttachToRequestTrait;
-    use MiddlewareCompositeTrait;
+    use MiddlewareCompositeTrait {
+        append as public appendMiddleware; // avoid override ArrayObject::append
+        prepend as public prependMiddleware; // for consistency, also rename prepend
+    }
 
     public function __construct(array $input = [])
     {
