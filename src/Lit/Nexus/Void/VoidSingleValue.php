@@ -35,6 +35,4 @@ class VoidSingleValue implements SingleValueInterface
     {
         //noop
     }
-
-
 }

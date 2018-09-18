@@ -195,8 +195,7 @@ class Factory
                 return $value;
             }
 
-            if (
-                class_exists($currentClassName)
+            if (class_exists($currentClassName)
                 && $this->container->has("$currentClassName::")
                 && ($value = $this->findFromArray($this->container->get("$currentClassName::"), $keys))
             ) {

@@ -73,7 +73,7 @@ class Container implements ContainerInterface
 
     public static function wrap(ContainerInterface $container): self
     {
-        return (new static)->setDelegateContainer($container);
+        return (new static())->setDelegateContainer($container);
     }
 
     /**

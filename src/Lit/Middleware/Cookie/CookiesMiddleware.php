@@ -80,46 +80,9 @@ class CookiesMiddleware extends AbstractMiddleware
     ) {
         if (!$value instanceof SetCookie) {
             if (is_array($value)) {
-                $arr = $value;
-                $value = SetCookie::create($name, $arr['value']);
-                if (isset($arr['domain'])) {
-                    $value = $value->withDomain($arr['domain']);
-                }
-                if (isset($arr['expires'])) {
-                    $value = $value->withExpires($arr['expires']);
-                }
-                if (isset($arr['httpOnly'])) {
-                    $value = $value->withHttpOnly($arr['httpOnly']);
-                }
-                if (isset($arr['maxAge'])) {
-                    $value = $value->withMaxAge($arr['maxAge']);
-                }
-                if (isset($arr['path'])) {
-                    $value = $value->withPath($arr['path']);
-                }
-                if (isset($arr['secure'])) {
-                    $value = $value->withSecure($arr['secure']);
-                }
+                $value = self::arrayToSetCookie($name, $value);
             } elseif (count($args = func_get_args()) > 2) {
-                $value = SetCookie::create($name, $value);
-                if (isset($domain)) {
-                    $value = $value->withDomain($domain);
-                }
-                if (isset($expires)) {
-                    $value = $value->withExpires($expires);
-                }
-                if (isset($httpOnly)) {
-                    $value = $value->withHttpOnly($httpOnly);
-                }
-                if (isset($maxAge)) {
-                    $value = $value->withMaxAge($maxAge);
-                }
-                if (isset($path)) {
-                    $value = $value->withPath($path);
-                }
-                if (isset($secure)) {
-                    $value = $value->withSecure($secure);
-                }
+                $value = self::arrayToSetCookie($name, get_defined_vars());
             } elseif (is_string($value)) {
                 $value = SetCookie::create($name, $value);
             }
@@ -148,5 +111,30 @@ class CookiesMiddleware extends AbstractMiddleware
         }
 
         return $cookies->renderIntoSetCookieHeader($response);
+    }
+
+    protected static function arrayToSetCookie(string $name, array $arr): SetCookie
+    {
+        $cookie = SetCookie::create($name, $arr['value']);
+        if (isset($arr['domain'])) {
+            $cookie = $cookie->withDomain($arr['domain']);
+        }
+        if (isset($arr['expires'])) {
+            $cookie = $cookie->withExpires($arr['expires']);
+        }
+        if (isset($arr['httpOnly'])) {
+            $cookie = $cookie->withHttpOnly($arr['httpOnly']);
+        }
+        if (isset($arr['maxAge'])) {
+            $cookie = $cookie->withMaxAge($arr['maxAge']);
+        }
+        if (isset($arr['path'])) {
+            $cookie = $cookie->withPath($arr['path']);
+        }
+        if (isset($arr['secure'])) {
+            $cookie = $cookie->withSecure($arr['secure']);
+        }
+
+        return $cookie;
     }
 }

@@ -24,8 +24,7 @@ class PredictionWrapperMiddleware extends AbstractConditionMiddleware
         MiddlewareInterface $innerMiddleware,
         RequestPredictionInterface $requestPrediction,
         $reverted = false
-    )
-    {
+    ) {
         parent::__construct($innerMiddleware);
         $this->requestPrediction = $requestPrediction;
         $this->reverted = $reverted;

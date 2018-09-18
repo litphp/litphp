@@ -74,4 +74,3 @@ class SlicedValue implements SingleValueInterface
         $this->keyValue->delete($this->key);
     }
 }
- 

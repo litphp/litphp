@@ -88,7 +88,6 @@ TEXT;
         $traceline = '#%s %4$s(%5$s) @ %2$s:%3$s';
         $key = 0;
         foreach ($trace as $key => $stackPoint) {
-
             if (isset($stackPoint['args'])) {
                 foreach ($stackPoint['args'] as $k => $arg) {
                     unset($stackPoint['args'][$k]); //args下可能有引用，先unset防止串改

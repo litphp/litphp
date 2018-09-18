@@ -23,7 +23,7 @@ class PrefixKeyValue implements KeyValueInterface
     protected function __construct(KeyValueInterface $store, $prefix)
     {
         if (empty($prefix)) {
-            throw new \InvalidArgumentException;
+            throw new \InvalidArgumentException();
         }
 
         $this->store = $store;

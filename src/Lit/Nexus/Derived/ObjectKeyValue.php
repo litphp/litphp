@@ -37,7 +37,7 @@ class ObjectKeyValue implements KeyValueInterface
             return new static($content);
         }
 
-        throw new \InvalidArgumentException;
+        throw new \InvalidArgumentException();
     }
     /**
      * @param string $key

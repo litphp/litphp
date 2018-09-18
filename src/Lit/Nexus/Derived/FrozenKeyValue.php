@@ -61,4 +61,3 @@ class FrozenKeyValue implements ReadableKeyValueInterface
         return $this->keyValue->exists($key);
     }
 }
- 

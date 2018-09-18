@@ -49,7 +49,7 @@ class SimpleTemplate
 
     public function compile()
     {
-        if(!isset($this->compiledCode)) {
+        if (!isset($this->compiledCode)) {
             $templateCode = $this->code;
 
             $templateCode = strtr($templateCode, $this->pre);

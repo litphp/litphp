@@ -71,7 +71,7 @@ class Configurator
     public static function provideParameter(array $extra = []): array
     {
         return [
-            '$'=>'autowire',
+            '$' => 'autowire',
             null,
             $extra,
         ];
@@ -126,8 +126,7 @@ class Configurator
             return;
         }
 
-        if (
-            substr($key, -2) === '::'
+        if (substr($key, -2) === '::'
             && class_exists(substr($key, 0, -2))
         ) {
             $container->set($key, self::convertArray($value));

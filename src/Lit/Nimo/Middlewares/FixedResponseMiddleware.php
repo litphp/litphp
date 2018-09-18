@@ -23,5 +23,4 @@ class FixedResponseMiddleware extends AbstractMiddleware
     {
         return $this->fixedResponse;
     }
-
 }
