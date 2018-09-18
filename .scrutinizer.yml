@@ -16,6 +16,7 @@ build:
             tests:
                 override:
                     - php-scrutinizer-run
+                    - phpcs-run
                     -
                         command: 'vendor/bin/phpunit --coverage-clover=clover.xml -c .'
                         coverage:
