@@ -8,12 +8,10 @@ use Dflydev\FigCookies\Cookies;
 use Dflydev\FigCookies\SetCookie;
 use Dflydev\FigCookies\SetCookies;
 use Lit\Nimo\AbstractMiddleware;
-use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Message\ResponseInterface;
 
 class CookiesMiddleware extends AbstractMiddleware
 {
-    use MiddlewareTrait;
     /**
      * @var Cookies
      */

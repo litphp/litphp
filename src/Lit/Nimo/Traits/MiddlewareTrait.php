@@ -4,11 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Traits;
 
-use Lit\Nimo\Interfaces\RequestPredictionInterface;
-use Lit\Nimo\MiddlewarePipe;
-use Lit\Nimo\Middlewares\CatchMiddleware;
-use Lit\Nimo\Middlewares\PredictionWrapperMiddleware;
-use Psr\Http\Server\MiddlewareInterface;
+use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Trait MiddlewareTrait
@@ -16,54 +14,32 @@ use Psr\Http\Server\MiddlewareInterface;
  */
 trait MiddlewareTrait
 {
-    use AttachToRequestTrait;
+    /**
+     * @var ServerRequestInterface
+     */
+    protected $request;
 
     /**
-     * append $middleware after this one, return the new $middlewareStack
-     *
-     * @param $middleware
-     * @return MiddlewarePipe
+     * @var RequestHandlerInterface
      */
-    public function append(MiddlewareInterface $middleware): MiddlewarePipe
-    {
-        $stack = new MiddlewarePipe();
+    protected $handler;
 
-        /** @noinspection PhpParamsInspection */
-        return $stack
-            ->append($this)
-            ->append($middleware);
+
+    public function process(ServerRequestInterface $request, RequestHandlerInterface $handler): ResponseInterface
+    {
+        $this->request = $request;
+        $this->handler = $handler;
+
+        return $this->main();
     }
 
     /**
-     * prepend $middleware before this one, return the new $middlewareStack
-     *
-     * @param $middleware
-     * @return MiddlewarePipe
+     * @return ResponseInterface
      */
-    public function prepend(MiddlewareInterface $middleware): MiddlewarePipe
-    {
-        $stack = new MiddlewarePipe();
+    abstract protected function main(): ResponseInterface;
 
-        /** @noinspection PhpParamsInspection */
-        return $stack
-            ->prepend($this)
-            ->prepend($middleware);
-    }
-
-    public function when(RequestPredictionInterface $requestPrediction): MiddlewareInterface
+    protected function delegate(ServerRequestInterface $request = null): ResponseInterface
     {
-        /** @noinspection PhpParamsInspection */
-        return new PredictionWrapperMiddleware($this, $requestPrediction);
-    }
-
-    public function unless(RequestPredictionInterface $requestPrediction): MiddlewareInterface
-    {
-        /** @noinspection PhpParamsInspection */
-        return new PredictionWrapperMiddleware($this, $requestPrediction, true);
-    }
-
-    public function catch(callable $catcher, string $catchClass = \Throwable::class): MiddlewareInterface
-    {
-        return new CatchMiddleware($this, $catcher, $catchClass);
+        return $this->handler->handle($request ?: $this->request);
     }
 }
