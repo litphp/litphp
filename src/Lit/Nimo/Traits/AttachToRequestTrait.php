@@ -17,10 +17,10 @@ trait AttachToRequestTrait
         /** @noinspection PhpUndefinedClassConstantInspection */
         $key = defined('static::ATTR_KEY') ? static::ATTR_KEY : static::class;
         if (!$instance = $request->getAttribute($key)) {
-            throw new \RuntimeException('middleware not found:' . $key);
+            throw new \RuntimeException('attribute empty:' . $key);
         }
         if (!$instance instanceof static) {
-            throw new \RuntimeException('middleware class error:' . $key);
+            throw new \RuntimeException('instance error:' . $key);
         }
 
         return $instance;
@@ -41,7 +41,7 @@ trait AttachToRequestTrait
         /** @noinspection PhpUndefinedClassConstantInspection */
         $key = defined('static::ATTR_KEY') ? static::ATTR_KEY : static::class;
         if ($request->getAttribute($key)) {
-            throw new \RuntimeException('middleware collision:' . $key);
+            throw new \RuntimeException('attribute collision:' . $key);
         }
 
         return $this->request = $request->withAttribute($key, $this);

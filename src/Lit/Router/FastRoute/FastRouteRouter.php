@@ -40,10 +40,10 @@ class FastRouteRouter extends AbstractRouter
 
         $routeInfo = $this->dispatcher->dispatch($method, $path);
 
-        return $this->stub($routeInfo);
+        return $this->parseRouteInfo($routeInfo);
     }
 
-    protected function stub($routeInfo)
+    protected function parseRouteInfo($routeInfo)
     {
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
