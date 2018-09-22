@@ -3,7 +3,7 @@
 
 use FastRoute\RouteCollector;
 use Lit\Air\Configurator;
-use Lit\Bolt\BoltAction;
+use Lit\Bolt\BoltAbstractAction;
 use Lit\Bolt\Zend\BoltRunner;
 use Lit\Core\Interfaces\RouterInterface;
 use Lit\Router\FastRoute\FastRouteConfiguration;
@@ -15,7 +15,7 @@ is_readable(__DIR__ . '/../vendor/autoload.php')
     ? require(__DIR__ . '/../vendor/autoload.php')
     : require(__DIR__ . '/../../../../vendor/autoload.php');
 
-class NotFoundAction extends BoltAction
+class NotFoundAction extends BoltAbstractAction
 {
     protected function main(): ResponseInterface
     {
@@ -28,7 +28,7 @@ class NotFoundAction extends BoltAction
     }
 }
 
-class ThrowResponseAction extends BoltAction
+class ThrowResponseAction extends BoltAbstractAction
 {
     /**
      * @return ResponseInterface
@@ -52,7 +52,7 @@ class ThrowResponseAction extends BoltAction
     }
 }
 
-class FixedResponseAction extends BoltAction
+class FixedResponseAction extends BoltAbstractAction
 {
     protected function main(): ResponseInterface
     {
@@ -76,7 +76,7 @@ $config = [
         };
     },
     RouterInterface::class => Configurator::singleton(FastRouteRouter::class, [
-            'notFound' => NotFoundAction::class,
+            'notFound' => NotFoundAbstractAction::class,
         ]
     ),
 ];

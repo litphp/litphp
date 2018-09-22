@@ -3,7 +3,7 @@
 // @codeCoverageIgnoreStart
 
 use Lit\Air\Configurator as C;
-use Lit\Bolt\BoltAction;
+use Lit\Bolt\BoltAbstractAction;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\Zend\BoltRunner;
 use Psr\Http\Message\ResponseInterface;
@@ -13,7 +13,7 @@ is_readable(__DIR__ . '/../vendor/autoload.php')
     ? require(__DIR__ . '/../vendor/autoload.php')
     : require(__DIR__ . '/../../../../vendor/autoload.php');
 
-class HelloAction extends BoltAction
+class HelloAction extends BoltAbstractAction
 {
     protected function main(): ResponseInterface
     {
@@ -27,7 +27,7 @@ class HelloAction extends BoltAction
 
 BoltRunner::run([
     BoltApp::class => C::provideParameter([
-        RequestHandlerInterface::class => C::produce(HelloAction::class),
+        RequestHandlerInterface::class => C::produce(HelloAbstractAction::class),
     ])
 ]);
 

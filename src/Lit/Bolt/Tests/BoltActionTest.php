@@ -4,32 +4,18 @@ namespace Lit\Bolt\Tests;
 
 use Http\Factory\Diactoros\ResponseFactory;
 use Lit\Air\Injection\SetterInjector;
-use Lit\Bolt\BoltAction;
-use Lit\Core\ThrowableResponse;
+use Lit\Bolt\BoltAbstractAction;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\ServerRequest;
 
 class BoltActionTest extends BoltTestCase
 {
-    public function testThrowResponse()
-    {
-        $response = new EmptyResponse();
-        try {
-            BoltAction::throwResponse($response);
-        } catch (ThrowableResponse $throwableResponse) {
-            self::assertSame($response, $throwableResponse->getResponse());
-            return;
-        }
-
-        self::fail('should return in catch');
-    }
-
     public function testSmoke()
     {
         $request = new ServerRequest();
         $response = new EmptyResponse();
 
-        $action = $this->getMockForAbstractClass(BoltAction::class);
+        $action = $this->getMockForAbstractClass(BoltAbstractAction::class);
         $action->method('main')
             ->with()
             ->willReturn($response);
@@ -38,7 +24,7 @@ class BoltActionTest extends BoltTestCase
         self::assertSame($response, $result);
 
         $factory = new ResponseFactory();
-        self::assertEquals(SetterInjector::class, BoltAction::SETTER_INJECTOR);
+        self::assertEquals(SetterInjector::class, BoltAbstractAction::SETTER_INJECTOR);
         $reflectionObject = new \ReflectionObject($action);
         $reflectionProperty = $reflectionObject->getProperty('responseFactory');
         self::assertEquals(\ReflectionProperty::IS_PROTECTED, $reflectionProperty->getModifiers());

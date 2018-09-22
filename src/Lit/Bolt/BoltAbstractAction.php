@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Injection\SetterInjector;
-use Lit\Core\Action;
+use Lit\Core\AbstractAction;
 use Psr\Http\Message\ResponseFactoryInterface;
 
-abstract class BoltAction extends Action
+abstract class BoltAbstractAction extends AbstractAction
 {
     const SETTER_INJECTOR = SetterInjector::class;
 
@@ -17,7 +17,7 @@ abstract class BoltAction extends Action
      * @param ResponseFactoryInterface $responseFactory
      * @return $this
      */
-    public function injectResponseFactory(ResponseFactoryInterface $responseFactory): BoltAction
+    public function injectResponseFactory(ResponseFactoryInterface $responseFactory): BoltAbstractAction
     {
         $this->responseFactory = $responseFactory;
 
