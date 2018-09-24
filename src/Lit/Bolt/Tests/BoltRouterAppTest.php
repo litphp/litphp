@@ -8,10 +8,8 @@ use Lit\Air\Factory;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\Router\StubResolveException;
 use Lit\Core\Interfaces\RouterInterface;
-use Lit\Nexus\Traits\RememberConstructorParamTrait;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Router\FastRoute\FastRouteConfiguration;
-use Lit\Router\FastRoute\FastRouteDefinition;
 use Lit\Router\FastRoute\FastRouteRouter;
 use Psr\Http\Message\ServerRequestInterface;
 use Zend\Diactoros\Request\ArraySerializer;
@@ -51,22 +49,11 @@ class BoltRouterAppTest extends BoltTestCase
             RouterInterface::class => Configurator::singleton(FastRouteRouter::class, [
                 'notFound' => $response404,
             ]),
-            FastRouteDefinition::class => function () use ($handler) {
-                return new class($handler) extends FastRouteDefinition
-                {
-                    use RememberConstructorParamTrait;
-
-                    public function __invoke(RouteCollector $routeCollector): void
-                    {
-                        [$handler] = $this->params;
-
-                        $routeCollector->get('/book/{id:\d+}/author', $handler);
-                        $routeCollector->put('/foo', VoidHandler::class);
-                    }
-                };
-            },
         ];
-        $config += FastRouteConfiguration::default();
+        $config += FastRouteConfiguration::default(function (RouteCollector $routeCollector) use ($handler) {
+            $routeCollector->get('/book/{id:\d+}/author', $handler);
+            $routeCollector->put('/foo', VoidHandler::class);
+        });
         Configurator::config($this->container, $config);
 
         $factory = Factory::of($this->container);

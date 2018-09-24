@@ -16,9 +16,14 @@ use Lit\Nexus\Void\VoidSingleValue;
 
 class FastRouteConfiguration
 {
-    public static function default()
+    public static function default($routeDefinition)
     {
+        if ($routeDefinition instanceof \Closure) {
+            $routeDefinition = C::value($routeDefinition);
+        }
+
         return [
+                FastRouteDefinition::class => $routeDefinition,
                 RouterInterface::class => C::singleton(FastRouteRouter::class),
                 RouterStubResolverInterface::class => C::singleton(BoltStubResolver::class),
 

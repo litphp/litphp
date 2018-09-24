@@ -18,7 +18,7 @@ class BoltZendConfiguration
     {
         return [
             RequestHandlerRunner::class => C::provideParameter([
-                C::produce(BoltApp::class),
+                C::alias(BoltApp::class),
                 C::produce(SapiEmitter::class),
                 C::value([ServerRequestFactory::class, 'fromGlobals']),
                 C::value(function (\Throwable $e) {

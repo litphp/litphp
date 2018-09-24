@@ -2,31 +2,14 @@
 // @codeCoverageIgnoreStart
 
 use FastRoute\RouteCollector;
-use Lit\Air\Configurator;
 use Lit\Bolt\BoltAbstractAction;
 use Lit\Bolt\Zend\BoltRunner;
-use Lit\Core\Interfaces\RouterInterface;
 use Lit\Router\FastRoute\FastRouteConfiguration;
-use Lit\Router\FastRoute\FastRouteDefinition;
-use Lit\Router\FastRoute\FastRouteRouter;
 use Psr\Http\Message\ResponseInterface;
 
 is_readable(__DIR__ . '/../vendor/autoload.php')
     ? require(__DIR__ . '/../vendor/autoload.php')
     : require(__DIR__ . '/../../../../vendor/autoload.php');
-
-class NotFoundAction extends BoltAbstractAction
-{
-    protected function main(): ResponseInterface
-    {
-        return $this->json()->render([
-            'not' => 'found',
-            'try' => ['/test.json', '/throw.json'],
-            'method' => $this->request->getMethod(),
-            'uri' => $this->request->getUri()->__toString(),
-        ])->withStatus(404);
-    }
-}
 
 class ThrowResponseAction extends BoltAbstractAction
 {
@@ -64,23 +47,11 @@ class FixedResponseAction extends BoltAbstractAction
     }
 }
 
-$config = [
-    FastRouteDefinition::class => function () {
-        return new class extends FastRouteDefinition
-        {
-            public function __invoke(RouteCollector $routeCollector): void
-            {
-                $routeCollector->get('/test.json', FixedResponseAction::class);
-                $routeCollector->get('/throw.json', ThrowResponseAction::class);
-            }
-        };
-    },
-    RouterInterface::class => Configurator::singleton(FastRouteRouter::class, [
-            'notFound' => NotFoundAbstractAction::class,
-        ]
-    ),
-];
+$routes = function (RouteCollector $routeCollector) {
+    $routeCollector->get('/test.json', FixedResponseAction::class);
+    $routeCollector->get('/throw.json', ThrowResponseAction::class);
+};
 
-BoltRunner::run($config + FastRouteConfiguration::default());
+BoltRunner::run(FastRouteConfiguration::default($routes));
 
 // @codeCoverageIgnoreEnd
