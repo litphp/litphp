@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:litphp/runner-zend-sapi.git
+	branch = master
+	commit = 91a968e1dfaa58b2d23fae66182aab3ec8721a07
+	parent = e11f5e77e8ae92ef732b7361c737743ad7eab8ac
+	cmdver = 0.3.1
