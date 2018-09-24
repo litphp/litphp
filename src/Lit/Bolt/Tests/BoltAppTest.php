@@ -17,7 +17,7 @@ class BoltAppTest extends BoltTestCase
         $request = new ServerRequest();
 
         $this->container->define(BoltApp::class, Container::autowire(null, [
-            RequestHandlerInterface::class => $this->assertedHandler($request, $response)
+            RequestHandlerInterface::class => $this->assertedHandler($request, $response, 'equal')
         ]));
         $factory = Factory::of($this->container);
         $result = $factory->getOrProduce(BoltApp::class)->handle($request);
