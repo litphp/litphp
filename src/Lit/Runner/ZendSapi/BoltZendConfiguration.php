@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lit\Bolt\Zend;
+namespace Lit\Runner\ZendSapi;
 
 use Http\Factory\Diactoros\ResponseFactory;
 use Lit\Air\Configurator as C;

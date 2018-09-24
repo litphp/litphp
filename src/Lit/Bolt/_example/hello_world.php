@@ -5,7 +5,7 @@
 use Lit\Air\Configurator as C;
 use Lit\Bolt\BoltAbstractAction;
 use Lit\Bolt\BoltApp;
-use Lit\Bolt\Zend\BoltRunner;
+use Lit\Runner\ZendSapi\BoltZendRunner;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -25,7 +25,7 @@ class HelloAction extends BoltAbstractAction
     }
 }
 
-BoltRunner::run([
+BoltZendRunner::run([
     BoltApp::class => C::provideParameter([
         RequestHandlerInterface::class => C::produce(HelloAbstractAction::class),
     ])

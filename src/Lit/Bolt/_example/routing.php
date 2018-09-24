@@ -3,8 +3,8 @@
 
 use FastRoute\RouteCollector;
 use Lit\Bolt\BoltAbstractAction;
-use Lit\Bolt\Zend\BoltRunner;
 use Lit\Router\FastRoute\FastRouteConfiguration;
+use Lit\Runner\ZendSapi\BoltZendRunner;
 use Psr\Http\Message\ResponseInterface;
 
 is_readable(__DIR__ . '/../vendor/autoload.php')
@@ -52,6 +52,6 @@ $routes = function (RouteCollector $routeCollector) {
     $routeCollector->get('/throw.json', ThrowResponseAction::class);
 };
 
-BoltRunner::run(FastRouteConfiguration::default($routes));
+BoltZendRunner::run(FastRouteConfiguration::default($routes));
 
 // @codeCoverageIgnoreEnd

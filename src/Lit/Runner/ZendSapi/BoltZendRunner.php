@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace Lit\Bolt\Zend;
+namespace Lit\Runner\ZendSapi;
 
 use Lit\Bolt\BoltContainerConfiguration;
 use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
-class BoltRunner
+class BoltZendRunner
 {
     public static function run($config = [])
     {
