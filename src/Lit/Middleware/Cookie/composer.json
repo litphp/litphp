@@ -1,5 +1,5 @@
 {
-    "name": "litphp/middleware-ip-address",
+    "name": "litphp/middleware-cookie",
     "license": "ISC",
     "authors": [
         {
@@ -9,7 +9,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Lit\\Middleware\\IpAddress\\": ""
+            "Lit\\Middleware\\Cookie\\": ""
         },
         "exclude-from-classmap": [
             "/Tests/"
@@ -23,8 +23,6 @@
         "dflydev/fig-cookies": "^1.0"
     },
     "require-dev": {
-        "zendframework/zend-diactoros": "^1.8",
-        "zendframework/zend-httphandlerrunner": "^1.0",
         "phpunit/phpunit": "^6.5"
     }
 }

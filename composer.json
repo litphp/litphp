@@ -32,9 +32,11 @@
         "litphp/bolt": "self.version",
         "litphp/lit": "self.version",
         "litphp/middleware-ip-address": "self.version",
+        "litphp/middleware-cookie": "self.version",
         "litphp/nexus": "self.version",
         "litphp/nimo": "self.version",
-        "litphp/router-fast-route": "self.version"
+        "litphp/router-fast-route": "self.version",
+        "litphp/runner-zend-sapi": "self.version"
     },
     "autoload": {
         "psr-4": {
