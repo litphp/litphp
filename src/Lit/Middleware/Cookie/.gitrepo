@@ -1,0 +1,11 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
+;
+[subrepo]
+	remote = git@github.com:litphp/middleware-cookie.git
+	branch = master
+	commit = 98b660807fe193414d8e8d56c7eea7c23240fac1
+	parent = c1cb367dafd3136e14815003a1e6380b76248fc7
+	cmdver = 0.3.1
