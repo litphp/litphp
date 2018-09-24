@@ -163,7 +163,7 @@ class Factory
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
      */
-    public function produceDependency($className, array $keys, ?string $dependencyClassName = null, array $extra = [])
+    public function resolveDependency($className, array $keys, ?string $dependencyClassName = null, array $extra = [])
     {
         if ($value = $this->produceFromClass($className, $keys, $extra)) {
             return $value[0];
@@ -246,7 +246,7 @@ class Factory
             $this->circularStore[$hash] = true;
             list($keys, $paramClassName) = $this->parseParameter($parameter);
 
-            return $this->produceDependency($className, $keys, $paramClassName, $extraParameters);
+            return $this->resolveDependency($className, $keys, $paramClassName, $extraParameters);
         } catch (CircularDependencyException $e) {
             throw $e;
         } catch (ContainerException $e) {

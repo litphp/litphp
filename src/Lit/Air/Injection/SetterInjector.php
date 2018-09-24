@@ -38,7 +38,7 @@ class SetterInjector implements InjectorInterface
             }
 
             try {
-                $value = $factory->produceDependency($class->name, $keys, $paramClassName, $extra);
+                $value = $factory->resolveDependency($class->name, $keys, $paramClassName, $extra);
                 $method->invoke($obj, $value);
             } catch (ContainerException $e) {
                 //ignore
