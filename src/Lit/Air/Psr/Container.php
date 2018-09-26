@@ -188,21 +188,6 @@ class Container implements ContainerInterface
     }
 
     /**
-     * @param $name
-     * @return mixed
-     * @throws \Psr\Container\ContainerExceptionInterface
-     */
-    public function __get($name)
-    {
-        return $this->get($name);
-    }
-
-    public function __isset($name)
-    {
-        return $this->has($name);
-    }
-
-    /**
      * @param callable $wrapper
      * @param RecipeInterface $recipe
      * @return AbstractRecipe

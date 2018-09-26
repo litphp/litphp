@@ -37,7 +37,7 @@ class Configurator
         }
 
         if (is_callable($value)) {
-            return new SingletonDecorator(new BuilderRecipe($value));
+            return (new BuilderRecipe($value))->singleton();
         }
 
         if (is_array($value) && array_key_exists(0, $value) && isset($value['$'])) {

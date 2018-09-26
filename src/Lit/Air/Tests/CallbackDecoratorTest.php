@@ -6,8 +6,6 @@ use Lit\Air\Recipe\FixedValueRecipe;
 
 class CallbackDecoratorTest extends AirTestCase
 {
-
-
     public function testSmoke()
     {
         $key = self::randKey();
