@@ -35,23 +35,16 @@ trait KeyValueTrait
     }
 
     /**
-     * @param $prefix
+     * @param string $prefix
+     * @param string $delimeter
      * @return PrefixKeyValue
      */
-    public function prefix($prefix)
+    public function prefix(string $prefix, string $delimeter = '!!')
     {
         /**
          * @var KeyValueInterface|self $this
          */
         assert($this instanceof KeyValueInterface);
-        return PrefixKeyValue::wrap($this, $prefix . $this->getPrefixDelimiter());
-    }
-
-    /**
-     * @return string
-     */
-    protected function getPrefixDelimiter()
-    {
-        return '!!';
+        return PrefixKeyValue::wrap($this, $prefix . $delimeter);
     }
 }

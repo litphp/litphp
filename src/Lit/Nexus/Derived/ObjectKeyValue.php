@@ -5,9 +5,12 @@ declare(strict_types=1);
 namespace Lit\Nexus\Derived;
 
 use Lit\Nexus\Interfaces\KeyValueInterface;
+use Lit\Nexus\Traits\KeyValueTrait;
 
 class ObjectKeyValue implements KeyValueInterface
 {
+    use KeyValueTrait;
+
     /**
      * @var object
      */
