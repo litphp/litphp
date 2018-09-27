@@ -3,6 +3,7 @@
 namespace Lit\Nimo\Tests;
 
 use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Middlewares\CatchMiddleware;
 use Lit\Nimo\Middlewares\NoopMiddleware;
 
 class CatchMiddlewareTest extends NimoTestCase
@@ -16,19 +17,16 @@ class CatchMiddlewareTest extends NimoTestCase
         $response = $this->getResponseMock();
         $request = $this->getRequestMock();
 
-        $noop = new NoopMiddleware();
-
-        $catcher = $noop->catch(function ($e, $req, $hdl, $mdw) use (
+        $catcher = CatchMiddleware::catcher(function ($e, $req, $hdl, $mdw) use (
             $response,
             $runtimeException,
             $request,
-            $handler,
-            $noop
+            $handler
         ) {
             self::assertSame($runtimeException, $e);
             self::assertSame($request, $req);
             self::assertSame($handler, $hdl);
-            self::assertSame($noop, $mdw);
+            self::assertTrue($mdw instanceof NoopMiddleware);
 
             return $response;
         });

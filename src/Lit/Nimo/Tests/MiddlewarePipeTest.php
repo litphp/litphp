@@ -36,6 +36,11 @@ class MiddlewarePipeTest extends NimoTestCase
 
         $res = $stack->process($request, $handler);
         self::assertSame($response, $res);
+
+        $res = $middleware1
+            ->append($middleware2)
+            ->process($request, $handler);
+        self::assertSame($response, $res);
     }
 
     public function testPrepend()
@@ -54,6 +59,12 @@ class MiddlewarePipeTest extends NimoTestCase
             ->prepend($middleware1);
 
         $res = $stack->process($request, $handler);
+        self::assertSame($response, $res);
+
+
+        $res = $middleware2
+            ->prepend($middleware1)
+            ->process($request, $handler);
         self::assertSame($response, $res);
     }
 }

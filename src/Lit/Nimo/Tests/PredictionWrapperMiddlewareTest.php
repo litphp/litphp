@@ -29,11 +29,17 @@ class PredictionWrapperMiddlewareTest extends NimoTestCase
             }
         };
 
-        $middleware = new PredictionWrapperMiddleware($inner, $prediction);
+        $middleware = $inner->when($prediction);
         $actualResponse = $middleware->process($req, $hdl);
         Assert::assertSame($res, $actualResponse);
-    }
 
+        try {
+            $inner->unless($prediction)->process($req, $hdl);
+            self::fail('should throw');
+        } catch (\Exception $e) {
+
+        }
+    }
 
     public function testNegativeCase()
     {

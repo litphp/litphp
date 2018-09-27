@@ -43,6 +43,7 @@ class FixedResponseAction extends BoltAbstractAction
             'test.json' => 'should be this',
             'bool' => false,
             'nil' => null,
+            'query' => $this->request->getQueryParams(),
         ]);
     }
 }
