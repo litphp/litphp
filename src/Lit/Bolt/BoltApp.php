@@ -33,7 +33,7 @@ class BoltApp extends App
         $factory = Factory::of($this->container);
         /** @noinspection PhpParamsInspection */
         $this->middlewarePipe
-            ->append($factory->produce(ContextMiddleware::class))
-            ->append($factory->produce(EventMiddleware::class));
+            ->prepend($factory->produce(EventMiddleware::class))
+            ->prepend($factory->produce(ContextMiddleware::class));
     }
 }
