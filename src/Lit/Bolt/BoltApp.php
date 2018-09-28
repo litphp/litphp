@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Factory;
-use Lit\Air\Psr\Container;
 use Lit\Bolt\Middlewares\ContextMiddleware;
 use Lit\Bolt\Middlewares\EventMiddleware;
 use Lit\Core\App;
@@ -21,7 +20,7 @@ class BoltApp extends App
     protected $container;
 
     public function __construct(
-        Container $container,
+        ContainerInterface $container,
         RequestHandlerInterface $businessLogicHandler,
         MiddlewareInterface $middleware = null
     ) {
