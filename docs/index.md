@@ -70,7 +70,7 @@ If you are using some view other that `JsonView`, you should add a factory metho
 
 #### Routing to find stub
 
-We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which is a `nikic/fast-route` adapter.The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
+We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which is a `nikic/fast-route` adapter. The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
 
 The value you fed into `RouteCollector` is called **stub**, it's a stub for concrete **action** class, so you can delay the instantiate, reducing cost for having bunch of actions (often with different but many service instances bounded)
 
@@ -91,7 +91,7 @@ The variable caught by `FastRoute` is available in `$request->getAttribute(KEY)`
 
 #### Not found
 
-Both `FastRouteRouter` and `BoltStubResolver` receives a `$notFound` parameter, to 
+We use `null` value to indicate not found, and both `FastRouteRouter` and `BoltStubResolver` receives a `$notFound` parameter, to be used as the stub of not found. If finally the stub is still a `null`, or failed to be recognized, a `StubResolveException` will be thrown, which in the case, contains a default 404 response. Use a catch to catch that exception is another way to handle not found (by this way, it will include both router not found and wrong stub provided by router).
 
 ### Middleware
 
@@ -115,8 +115,101 @@ C::join(BoltApp::class, MiddlewareInterface::class) => function() {
 
 #### Write your own middleware
 
-Nimo is 
+TODO
 
 ### Dependency Injection
 
 > Connect everything with dependency injection
+
+We assume you have basic concept of dependency injection here. If you don't, you may read some [introduction from php-di](http://php-di.org/doc/understanding-di.html) first.
+
+In the example above, we run our app like this
+
+```php
+BoltZendRunner::run(FastRouteConfiguration::default($routes));
+```
+
+As our convention, class named with `Configuration` provides DI config (a php array) to our DI factory, indicating how to instantiate other class. `Lit\Air\Configurator` is the helper class to build such config array, we usually alias it to make configuration more readable `use Lit\Air\Configurator as C;`
+
+#### Basic Configuration
+
+##### Instance and singleton
+
+Create a `FastRouteRouter` singleton instance for who need a `RouterInterface`
+
+```php
+RouterInterface::class => C::singleton(FastRouteRouter::class),
+```
+
+If you need multiple instance, use `C::instance` instead.
+
+##### Builder
+
+Write a builder method / closure to create you instance.
+
+```php
+Schema::class => function (SourceBuilder $sourceBuilder, TypeConfigDecorator $typeConfigDecorator) {
+    return BuildSchema::build($sourceBuilder->build(), $typeConfigDecorator);
+},
+```
+
+(the example comes from experimental GraphQL integration)
+
+We use a closure directly here, that means a singleton builder. If you need multiple instance, use `C::builder` instead.
+
+Also you can see the builder can have some parameter, which will be injected automatically.
+
+##### Value / Alias
+
+Use `C::value` to wrap a pre-populated value, we recommend you always do this. Currently, closure and array containing key `$` are required to be wrapped, but this may change in future.
+
+Use `C::alias` to get some other value from the DI container. This can be useful for embedded configuration ($extra). Note that when you use some class name as alias, that class will not be autowired by default. You should add a `YOURCLASS => C::produce()` entry in configuration to indicate that.
+
+There is a example use of alias in next section.
+
+##### Autowire and extra parameters
+
+DI factory will try to populate constructor parameters required. The precedence is:
+
+1. Extra
+
+  + search the `$extra` parameter provided in `C::instance($classname:string, $extra:array)` first, the key `"$classname::"` secondly.
+  + for each array provided, search following key
+      1. the parameter name
+      2. the parameter classname (typehint)
+      3. the parameter index (?th parameter, zero-based)
+    + the value in `$extra` can be another configuration array value
+2. Defined configuration entry with classname as key
+3. Try to populate instance by classname
+4. Default value of the parameter
+5. At last, throw a ContainerException
+
+Here's the default configuration we provide for `\FastRoute\Dispatcher` (interface)
+
+```php
+//configurataion entries
+Dispatcher::class => C::singleton(
+    CachedDispatcher::class,
+    [// we skip some of the param, also there are callable and string param, so we use param name as key here
+        'cache' => C::alias(C::join(Dispatcher::class, 'cache')), //alias so can be easily overrided
+        'routeDefinition' => C::alias(FastRouteDefinition::class),  //alias so can be easily overrided
+        'dispatcherClass' => Dispatcher\GroupCountBased::class,
+    ]
+),
+DataGenerator::class => C::singleton(DataGenerator\GroupCountBased::class),
+RouteParser::class => C::singleton(RouteParser\Std::class),
+C::join(Dispatcher::class, 'cache') => C::produce(VoidSingleValue::class), // provide default implementation
+
+//CachedDispatcher's constructor signature
+function __construct(
+    SingleValueInterface $cache, //provided in $extra
+    RouteParser $routeParser,// not in $extra, provided by class name key
+    DataGenerator $dataGenerator,// same as above
+    callable $routeDefinition,// provided in $extra
+    string $dispatcherClass// provided in $extra
+)
+```
+
+As you can see, the configuration array value can be "embedded" via `$extra.` But we use a simple array union (`+`) to merge configurations, it works well for the top level keys, but no luck in deep ones. We recommend use `alias` to solve this problem, so the configuration merge is still a single `+`. You should namespace the alias key with `C::join` which is a simple string concat helper with our recommended delimeter `::`
+
+#### Setter Injection

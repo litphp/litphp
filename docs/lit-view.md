@@ -35,14 +35,14 @@ class RestfulView extends AbstractView
 
 `render` accept an array of data, but sometime you might want have type hint, signature, or code completion for some kind of data or metadata, or dependency. We recommend you pass these data by either constructor parameter, or dedicated setter function.
 
-```
+```php
 class PlateView extends AbstractView
 {
-	protected $plate;
+    protected $plate;
     protected $templateName;
 
-	public function __construct(League\Plates\Engine $plate)
-	{
+    public function __construct(League\Plates\Engine $plate)
+    {
         $this->plate = plate;
     }
     
