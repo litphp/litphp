@@ -174,7 +174,7 @@ class Factory
         }
 
         if (isset($dependencyClassName) && class_exists($dependencyClassName)) {
-            return $this->produce($dependencyClassName);
+            return $this->instantiate($dependencyClassName);
         }
 
         throw new ContainerException('failed to produce dependency');
@@ -190,11 +190,11 @@ class Factory
     protected function produceFromClass(string $className, array $keys, array $extra = [])
     {
         $currentClassName = $className;
-        do {
-            if (!empty($extra) && ($value = $this->findFromArray($extra, $keys))) {
-                return $value;
-            }
+        if (!empty($extra) && ($value = $this->findFromArray($extra, $keys))) {
+            return $value;
+        }
 
+        do {
             if (class_exists($currentClassName)
                 && $this->container->has("$currentClassName::")
                 && ($value = $this->findFromArray($this->container->get("$currentClassName::"), $keys))
