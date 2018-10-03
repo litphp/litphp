@@ -8,7 +8,7 @@ use Lit\Nimo\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
-class IpAddressMiddleware extends AbstractMiddleware
+class IpAddressParser extends AbstractMiddleware
 {
     /**
      * @var array

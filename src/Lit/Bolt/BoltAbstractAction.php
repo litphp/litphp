@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Injection\SetterInjector;
-use Lit\Bolt\Middlewares\ContextMiddleware;
-use Lit\Bolt\Middlewares\EventMiddleware;
+use Lit\Bolt\Middlewares\RequestContext;
+use Lit\Bolt\Middlewares\EventsHub;
 use Lit\Core\AbstractAction;
 use Psr\Http\Message\ResponseFactoryInterface;
 
@@ -26,13 +26,13 @@ abstract class BoltAbstractAction extends AbstractAction
         return $this;
     }
 
-    protected function events(): EventMiddleware
+    protected function events(): EventsHub
     {
-        return EventMiddleware::fromRequest($this->request);
+        return EventsHub::fromRequest($this->request);
     }
 
-    protected function context(): ContextMiddleware
+    protected function context(): RequestContext
     {
-        return ContextMiddleware::fromRequest($this->request);
+        return RequestContext::fromRequest($this->request);
     }
 }

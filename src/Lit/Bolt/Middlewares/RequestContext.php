@@ -10,7 +10,7 @@ use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
-class ContextMiddleware extends \ArrayObject implements MiddlewareInterface
+class RequestContext extends \ArrayObject implements MiddlewareInterface
 {
     use MiddlewareTrait;
     use AttachToRequestTrait;

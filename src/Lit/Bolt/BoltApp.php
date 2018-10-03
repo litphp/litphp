@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Factory;
-use Lit\Bolt\Middlewares\ContextMiddleware;
-use Lit\Bolt\Middlewares\EventMiddleware;
+use Lit\Bolt\Middlewares\RequestContext;
+use Lit\Bolt\Middlewares\EventsHub;
 use Lit\Core\App;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -33,7 +33,7 @@ class BoltApp extends App
         $factory = Factory::of($this->container);
         /** @noinspection PhpParamsInspection */
         $this->middlewarePipe
-            ->prepend($factory->produce(EventMiddleware::class))
-            ->prepend($factory->produce(ContextMiddleware::class));
+            ->prepend($factory->produce(EventsHub::class))
+            ->prepend($factory->produce(RequestContext::class));
     }
 }

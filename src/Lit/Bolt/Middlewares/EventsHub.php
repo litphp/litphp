@@ -10,7 +10,7 @@ use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
-class EventMiddleware extends AbstractMiddleware
+class EventsHub extends AbstractMiddleware
 {
     /**
      * @var EventDispatcher

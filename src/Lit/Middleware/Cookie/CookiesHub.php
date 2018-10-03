@@ -10,7 +10,7 @@ use Dflydev\FigCookies\SetCookies;
 use Lit\Nimo\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 
-class CookiesMiddleware extends AbstractMiddleware
+class CookiesHub extends AbstractMiddleware
 {
     /**
      * @var Cookies

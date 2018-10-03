@@ -2,7 +2,7 @@
 
 namespace Lit\Middleware\IpAddress\Tests;
 
-use Lit\Middleware\IpAddress\IpAddressMiddleware;
+use Lit\Middleware\IpAddress\IpAddressParser;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Tests\NimoTestCase;
 use PHPUnit\Framework\Assert;
@@ -13,7 +13,7 @@ class IpAddressTest extends NimoTestCase
 {
     public function testIpSetByRemoteAddr()
     {
-        $middleware = new IpAddressMiddleware();
+        $middleware = new IpAddressParser();
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -25,7 +25,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testIpIsNullIfMissing()
     {
-        $middleware = new IpAddressMiddleware();
+        $middleware = new IpAddressParser();
 
         $request = ServerRequestFactory::fromGlobals();
         $this->runRequest($middleware, $request);
@@ -36,7 +36,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testXForwardedForIp()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -49,7 +49,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testProxyIpIsIgnored()
     {
-        $middleware = new IpAddressMiddleware();
+        $middleware = new IpAddressParser();
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.0.1',
@@ -62,7 +62,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testHttpClientIp()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -75,7 +75,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testXForwardedForIpV6()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -88,7 +88,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testXForwardedForWithInvalidIp()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -101,7 +101,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testXForwardedForIpWithTrustedProxy()
     {
-        $middleware = new IpAddressMiddleware(['192.168.0.1', '192.168.0.2']);
+        $middleware = new IpAddressParser(['192.168.0.1', '192.168.0.2']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.0.2',
@@ -114,7 +114,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testXForwardedForIpWithUntrustedProxy()
     {
-        $middleware = new IpAddressMiddleware(['192.168.0.1']);
+        $middleware = new IpAddressParser(['192.168.0.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.0.2',
@@ -127,7 +127,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testForwardedWithMultipleFor()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -140,7 +140,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testForwardedWithAllOptions()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -153,7 +153,7 @@ class IpAddressTest extends NimoTestCase
 
     public function testForwardedWithWithIpV6()
     {
-        $middleware = new IpAddressMiddleware(['192.168.1.1']);
+        $middleware = new IpAddressParser(['192.168.1.1']);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -169,7 +169,7 @@ class IpAddressTest extends NimoTestCase
         $headersToInspect = [
             'Foo-Bar'
         ];
-        $middleware = new IpAddressMiddleware(['192.168.1.1'], $headersToInspect);
+        $middleware = new IpAddressParser(['192.168.1.1'], $headersToInspect);
 
         $request = ServerRequestFactory::fromGlobals([
             'REMOTE_ADDR' => '192.168.1.1',
@@ -184,11 +184,11 @@ class IpAddressTest extends NimoTestCase
      * @param $middleware
      * @param $request
      */
-    protected function runRequest(IpAddressMiddleware $middleware, ServerRequestInterface $request): void
+    protected function runRequest(IpAddressParser $middleware, ServerRequestInterface $request): void
     {
         $response = $this->getResponseMock();
         $handler = CallableHandler::wrap(function (ServerRequestInterface $request) use ($response, $middleware) {
-            $actualMiddleware = IpAddressMiddleware::fromRequest($request);
+            $actualMiddleware = IpAddressParser::fromRequest($request);
             Assert::assertSame($middleware, $actualMiddleware);
 
             return $response;
