@@ -51,10 +51,11 @@ class EventsHub extends AbstractMiddleware
 
         $interceptedResponse = $beforeEvent->getResponse();
         if ($interceptedResponse) {
-            return $interceptedResponse;
+            $response = $interceptedResponse;
+        } else {
+            $this->request = $beforeEvent->getRequest() ?: $this->request;
+            $response = $this->delegate();
         }
-
-        $response = $this->delegate();
 
         $afterEvent = BoltEvent::of($this, [
             'request' => $this->request,

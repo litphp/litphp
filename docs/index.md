@@ -117,6 +117,54 @@ C::join(BoltApp::class, MiddlewareInterface::class) => function() {
 },
 ```
 
+#### Embedded middleware
+
+We provide some middleware useful to communicate between different part of your application by default.
+
+##### RequestContext
+
+This is a std `\ArrayObject` subclass, implementing `MiddlewareInterface`, and attached to the request. Use this object saves keyspace of psr request attributes, and, an `\ArrayObject` is way more convenience.
+
+```php
+// in somewhere you may write the context
+RequestContext::fromRequest($request)['foo'] = 'bar';
+
+
+// later you may read from it
+$foo = RequestContext::fromRequest($request)['foo']; // 'bar'
+// we enable ARRAY_AS_PROPS flag by default, so this also works
+$foo = $this->context()->foo; // 'bar'
+// p.s. if you are in `BoltAbstractAction`, just use $this->context() to get RequestContext instance like above
+
+```
+
+##### EventsHub
+
+This is `symfony/event-dispatcher` integration. You can find a `EventDispatcher` instance inside this.
+
+```php
+// we passthru `addListener` and `dispatch` method to EventDispatcher
+EventsHub::fromRequest($request)->addListener(MyEvent::EVENT_FOO, $listener);
+
+// events() method in `BoltAbstractAction` get the instance
+// later you may trigger above listener
+$this->events()->dispatch(MyEvent::EVENT_FOO, new MyEvent());
+
+// if you need other method of EventDispatcher, get it
+$this->events()->getEventDispatcher();// the instance
+```
+
+Also, EventsHub will trigger before & after event around inner logic
+
+```php
+BoltEvent::EVENT_BEFORE_LOGIC
+BoltEvent::EVENT_AFTER_LOGIC
+```
+
+Note although the instance is attached to request, but the before event is dispatched **before** action runs, so you need listen to it early. Get the event hub instance by `$app->getEventsHub()` in that case.
+
+The `BoltEvent` is sent with these two event. You may change the `$beforeEvent['request']` or `$afterEvent['response']` to change the request / response. You may set `$beforeEvent['response']` (by default it's not exist) to intercept the logic. `$afterEvent['request']` is provided, but changing that has no effect.
+
 ### Dependency Injection
 
 > Connect everything with dependency injection
