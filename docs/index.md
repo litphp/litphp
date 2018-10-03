@@ -141,7 +141,7 @@ Create a `FastRouteRouter` singleton instance for who need a `RouterInterface`
 RouterInterface::class => C::singleton(FastRouteRouter::class),
 ```
 
-If you need multiple instance, use `C::instance` instead.
+If you need multiple instance, use `C::instance` instead. There's a second parameter `array $extra`, we will discuss it later.
 
 ##### Builder
 
@@ -169,17 +169,16 @@ There is a example use of alias in next section.
 
 ##### Autowire and extra parameters
 
-DI factory will try to populate constructor parameters required. The precedence is:
+DI factory will try to populate parameters of constructor and builder function required. The precedence is:
 
 1. Extra
-
-  + search the `$extra` parameter provided in `C::instance($classname:string, $extra:array)` first, the key `"$classname::"` secondly.
-  + for each array provided, search following key
-      1. the parameter name
-      2. the parameter classname (typehint)
-      3. the parameter index (?th parameter, zero-based)
-    + the value in `$extra` can be another configuration array value
-2. Defined configuration entry with classname as key
+    + search the `$extra` parameter provided in `C::instance`/`C::singleton` first, the key `"$classname::"` in container secondly.
+    + for each array provided, search following key
+        1. the parameter name
+        2. the parameter classname (typehint)
+        3. the parameter index (?th parameter, zero-based)
+    + the value can be another configuration array value
+2. Defined configuration entry with parameter classname (typehinted) as key
 3. Try to populate instance by classname
 4. Default value of the parameter
 5. At last, throw a ContainerException
@@ -213,3 +212,23 @@ function __construct(
 As you can see, the configuration array value can be "embedded" via `$extra.` But we use a simple array union (`+`) to merge configurations, it works well for the top level keys, but no luck in deep ones. We recommend use `alias` to solve this problem, so the configuration merge is still a single `+`. You should namespace the alias key with `C::join` which is a simple string concat helper with our recommended delimeter `::`
 
 #### Setter Injection
+
+Constructor injection works in most cases, but **action** classes are often coupled with many other classes, constantly changing these dependencies, and may often be extended serveral times (making write all dependency in constructor function clumsy). We provide setter injection for this use case. Of course you can enable it in any other class, by adding a const `const SETTER_INJECTOR = SetterInjector::class;`
+
+We scan all the public method start with `inject` with one required parameter, then re-use the [autowire](#autowire-and-extra-parameters) process to populate dependency, and invoke the inject method. Below is how we inject `ResponseFactoryInterface` to our base action class.
+
+```php
+	//in action class
+    /**
+     * @var ResponseFactoryInterface
+     */
+    protected $responseFactory;
+    public function injectResponseFactory(ResponseFactoryInterface $responseFactory)
+    {
+        $this->responseFactory = $responseFactory;
+
+        return $this; // not required
+    }
+
+```
+

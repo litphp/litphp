@@ -25,7 +25,7 @@ Some middleware may carry useful runtime data, or function as a service to be re
 
 In Nimo, the `AttachToRequestTrait` provides ability that middleware can "attach" itself to request (attribute), so other middleware/handler can reference the instance easily.
 
-```
+```php
 //in FooMiddleware A's main logic
 $this->attachToRequest(); // to $this->request by default, also would return the attached request instance
 
@@ -35,7 +35,7 @@ FooMiddleware::fromRequest($request) // retrieves the FooMiddleware instance ear
 
 The convention is to use class name as the attribute key, so in most case, name collision is auto avoided. This can be override by define `ATTR_KEY` const in class.
 
-```
+```php
 class FooMiddleware extends AbstractMiddleware {
     const ATTR_KEY = 'foo';
 }

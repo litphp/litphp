@@ -77,7 +77,7 @@ const siteConfig = {
 
     highlight: {
         // Highlight.js theme to use for syntax highlighting in code blocks.
-        theme: 'solarized-light',
+        theme: 'foundation',
     },
 
     // Add custom scripts here that would be placed in <script> tags.
