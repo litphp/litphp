@@ -10,7 +10,7 @@ Nimo features many traits / base classes for writing middlewares.
 
 `AbstractHandler` and `AbstractMiddleware` are main base class of Nimo.
 
-They implement `handle` method by doing two things
+They implement `handle`/`process` method by:
 
 1. first remember all the params in instance property
 2. call the abstract `main` method

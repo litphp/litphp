@@ -36,7 +36,7 @@ BoltZendRunner::run(FastRouteConfiguration::default($routes));
 **Action** is the **C** part in MVC pattern. We take the name action because in many other framework, controller is a class containing multiple endpoint (RequestHandler), whereas action is only one. `BoltAbstractAction` is the dafault base class of action, but we recommend you to have your own base class, even without any code, that extends `BoltAbstractAction`
 
 + Action class is one implementation of `RequestHandlerInterface`, any other implementation can also be used.
-+ We enable setter injection (link TODO) in our `BoltAbstractAction`. In fact, this is the only recommended use case of setter injection.
++ We enable [setter injection](#setter-injection) in our `BoltAbstractAction`. In fact, this is the only recommended use case of setter injection.
 + Psr `ResponseFactoryInterface` is required and by default provided by `BoltZendConfiguration`
 + Action could create view to render response. By default the `json()` method creates a view that render json output. More (template engine view, view with your restful convention, etc) can be added in your base action.
 
@@ -70,7 +70,7 @@ If you are using some view other that `JsonView`, you should add a factory metho
 
 #### Routing to find stub
 
-We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which is a `nikic/fast-route` adapter. The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
+We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which replies `nikic/fast-route` to do actual routing logic. The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
 
 The value you fed into `RouteCollector` is called **stub**, it's a stub for concrete **action** class, so you can delay the instantiate, reducing cost for having bunch of actions (often with different but many service instances bounded)
 
@@ -97,6 +97,10 @@ We use `null` value to indicate not found, and both `FastRouteRouter` and `BoltS
 
 > Organize reusable logic with middleware
 
+#### Create your middleware
+
+Any [PSR-15](https://www.php-fig.org/psr/psr-15/) middleware can be used directly. If you are writing new ones, you may refer [this page](nimo-roll.md).
+
 #### Attach middleware to your app
 
 The `MiddlewareInterface` fed into `BoltApp` is the default middlware injection point. You can pass any middleware instance into it. Or if you have multiple middleware, assemble them into one with `MiddlewarePipe`
@@ -112,10 +116,6 @@ C::join(BoltApp::class, MiddlewareInterface::class) => function() {
     return $middlewarePipe;
 },
 ```
-
-#### Write your own middleware
-
-TODO
 
 ### Dependency Injection
 
