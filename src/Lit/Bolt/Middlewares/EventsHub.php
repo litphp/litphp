@@ -49,11 +49,11 @@ class EventsHub extends AbstractMiddleware
         ]);
         $this->eventDispatcher->dispatch(BoltEvent::EVENT_BEFORE_LOGIC, $beforeEvent);
 
+        $this->request = $beforeEvent->getRequest() ?: $this->request;
         $interceptedResponse = $beforeEvent->getResponse();
         if ($interceptedResponse) {
             $response = $interceptedResponse;
         } else {
-            $this->request = $beforeEvent->getRequest() ?: $this->request;
             $response = $this->delegate();
         }
 
