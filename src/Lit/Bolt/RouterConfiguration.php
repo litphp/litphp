@@ -15,8 +15,8 @@ class RouterConfiguration
     {
         return [
             BoltApp::class => C::produce(null, [
-                RequestHandlerInterface::class => C::alias(C::join(BoltApp::class, RouterDispatchHandler::class)),
-                MiddlewareInterface::class => C::alias(C::join(BoltApp::class, MiddlewareInterface::class)),
+                RequestHandlerInterface::class => C::alias(BoltApp::class, RouterDispatchHandler::class),
+                MiddlewareInterface::class => C::alias(BoltApp::class, MiddlewareInterface::class),
             ]),
             C::join(BoltApp::class, RouterDispatchHandler::class) => C::produce(RouterDispatchHandler::class),
             C::join(BoltApp::class, MiddlewareInterface::class) => null,

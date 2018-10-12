@@ -94,12 +94,12 @@ class Configurator
             $extra,
         ];
     }
-    
-    public static function alias(string $key): array
+
+    public static function alias(string... $key): array
     {
         return [
             '$' => 'alias',
-            $key,
+            self::join(...$key),
         ];
     }
 

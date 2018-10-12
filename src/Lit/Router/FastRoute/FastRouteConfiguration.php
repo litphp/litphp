@@ -32,7 +32,7 @@ class FastRouteConfiguration
                 Dispatcher::class => C::singleton(
                     CachedDispatcher::class,
                     [
-                        'cache' => C::alias(C::join(Dispatcher::class, 'cache')),
+                        'cache' => C::alias(Dispatcher::class, 'cache'),
                         'routeDefinition' => C::alias(FastRouteDefinition::class),
                         'dispatcherClass' => Dispatcher\GroupCountBased::class,
                     ]
