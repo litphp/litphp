@@ -238,7 +238,7 @@ Here's the default configuration we provide for `\FastRoute\Dispatcher` (interfa
 Dispatcher::class => C::singleton(
     CachedDispatcher::class,
     [// we skip some of the param, also there are callable and string param, so we use param name as key here
-        'cache' => C::alias(C::join(Dispatcher::class, 'cache')), //alias so can be easily overrided
+        'cache' => C::alias(Dispatcher::class, 'cache'), //alias so can be easily overrided
         'routeDefinition' => C::alias(FastRouteDefinition::class),  //alias so can be easily overrided
         'dispatcherClass' => Dispatcher\GroupCountBased::class,
     ]
