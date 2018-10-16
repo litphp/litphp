@@ -10,7 +10,7 @@ use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
 use Psr\Container\ContainerInterface;
 
-class Factory
+class Factory implements ContainerInterface
 {
     /**
      * @var Container
@@ -178,6 +178,20 @@ class Factory
         }
 
         throw new ContainerException('failed to produce dependency');
+    }
+
+    public function get($id)
+    {
+        if (!$this->has($id)) {
+            throw new ContainerException('unknown class ' . $id);
+        }
+
+        return $this->getOrProduce($id);
+    }
+
+    public function has($id)
+    {
+        return class_exists($id);
     }
 
     /**
