@@ -66,11 +66,11 @@ If you are using some view other that `JsonView`, you should add a factory metho
 
 > Locate and populate action class in router
 
-**Router** is how you match the request and find correct **action**.
+**Router** is where we match the request and find correct **action**.
 
 #### Routing to find stub
 
-We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which replies `nikic/fast-route` to do actual routing logic. The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
+We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which uses `nikic/fast-route` to do actual routing logic. The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
 
 The value you fed into `RouteCollector` is called **stub**, it's a stub for concrete **action** class, so you can delay the instantiate, reducing cost for having bunch of actions (often with different but many service instances bounded)
 
@@ -123,7 +123,7 @@ We provide some middleware useful to communicate between different part of your 
 
 ##### RequestContext
 
-This is a std `\ArrayObject` subclass, implementing `MiddlewareInterface`, and attached to the request. Use this object saves keyspace of psr request attributes, and, an `\ArrayObject` is way more convenience.
+This is a spl `\ArrayObject` subclass, implementing `MiddlewareInterface`, and attached to the request. Use this object saves keyspace of psr request attributes, and, methods on `\ArrayObject` is available.
 
 ```php
 // in somewhere you may write the context

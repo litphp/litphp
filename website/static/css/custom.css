@@ -21,7 +21,7 @@
     padding: 3px;
 }
 
-.feature-callout strong, .feature-callout a {
+.blockContent strong, .blockContent a {
     color: #FF851B;
 }
 
@@ -31,4 +31,8 @@
 
 .feature-callout .blockImage img {
     max-height: 240px;
+}
+
+.darkBackground {
+    background-color: #474747;
 }

@@ -83,8 +83,7 @@ class HomeSplash extends React.Component {
                     <ProjectTitle/>
                     <PromoSection>
                         <Button href="#try">Try It Out</Button>
-                        <Button href={docUrl('doc1.html', language)}>Example Link</Button>
-                        <Button href={docUrl('doc2.html', language)}>Example Link 2</Button>
+                        <Button href={docUrl('.', language)}>Documentation</Button>
                     </PromoSection>
                 </div>
             </SplashContainer>
@@ -106,16 +105,26 @@ const Features = () => (
     <Block layout="twoColumn" background="dark">
         {[
             {
-                content: 'Following PSR standards to provide maximum flexibility',
+                content: `We love PSR standards.
+                <br>
+                Follow PSR whenever applicable (mainly container and HTTP family),
+                <br>
+                And we implement our own psr container
+                `,
                 image: imgUrl('phpfig.png'),
                 imageAlign: 'top',
-                title: 'PSR Compatible',
+                title: '**PSR** compatible',
             },
             {
-                content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                image: imgUrl('lit.svg'),
+                content: `We try to be adpative facing both modern and legacy challenges and solutions.
+                <br>
+                Scales well from monolith to microservice; from complete application to api glue layer
+                <br>
+                Besides Restful API, GraphQL & GRPC are on roadmap
+                `,
+                image: imgUrl('heart.png'),
                 imageAlign: 'top',
-                title: 'Another key feature',
+                title: '**Friends** of everyone',
             },
         ]}
     </Block>
