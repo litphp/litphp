@@ -120,7 +120,7 @@ const Features = () => (
                 <br>
                 Scales well from monolith to microservice; from complete application to api glue layer
                 <br>
-                Besides Restful API, GraphQL & GRPC are on roadmap
+                And Restful API, GraphQL & GRPC are on roadmap
                 `,
                 image: imgUrl('heart.png'),
                 imageAlign: 'top',
@@ -191,7 +191,8 @@ const TryOut = () => (
                 content: 'A quick taste of **bolt**, our micro framework',
                 image: imgUrl('hello.png'),
                 imageAlign: 'bottom',
-                title: 'Quick Start',
+                imageLink: docUrl('quickstart'),
+                title: 'Try it out',
             },
         ]}
     </Block>

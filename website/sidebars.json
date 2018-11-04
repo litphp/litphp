@@ -1,7 +1,9 @@
 {
   "docs": {
-    "QuickStart": [
-      "index"
+    "Guides": [
+      "index",
+      "quickstart",
+      "runner"
     ],
     "Lit": [
       "lit",
