@@ -27,11 +27,6 @@ class ContainerTest extends AirTestCase
         $this->assertKeyUnexist($key);
     }
 
-    public function testGetFactory()
-    {
-        self::assertInstanceOf(Factory::class, $this->container->get(Container::KEY_FACTORY));
-    }
-
     public function testDelegation()
     {
         $key = self::randKey();

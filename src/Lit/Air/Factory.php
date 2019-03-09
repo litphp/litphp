@@ -12,6 +12,7 @@ use Psr\Container\ContainerInterface;
 
 class Factory implements ContainerInterface
 {
+    const CONTAINER_KEY = Factory::class;
     /**
      * @var Container
      */
@@ -30,16 +31,16 @@ class Factory implements ContainerInterface
         } else {
             $this->container = Container::wrap($container);
         }
-        $this->container->set(Container::KEY_FACTORY, $this);
+        $this->container->set(self::CONTAINER_KEY, $this);
     }
 
     public static function of(ContainerInterface $container): self
     {
-        if (!$container->has(Container::KEY_FACTORY)) {
+        if (!$container->has(self::CONTAINER_KEY)) {
             return new self($container);
         }
 
-        return $container->get(Container::KEY_FACTORY);
+        return $container->get(self::CONTAINER_KEY);
     }
 
     /**

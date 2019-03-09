@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Air\Psr;
 
 use Lit\Air\Configurator;
-use Lit\Air\Factory;
 use Lit\Air\Injection\InjectorInterface;
 use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\AliasRecipe;
@@ -18,7 +17,6 @@ use Psr\Container\ContainerInterface;
 
 class Container implements ContainerInterface
 {
-    const KEY_FACTORY = Factory::class;
     const KEY_INJECTORS = InjectorInterface::class;
     const CONFIGURATOR_CLASS = Configurator::class;
     /**
@@ -91,10 +89,6 @@ class Container implements ContainerInterface
             return $this->recipe[$id]->resolve($this, $id);
         }
 
-        if ($id === static::KEY_FACTORY) {
-            return $this->cache[$id] = new Factory($this);
-        }
-
         if ($this->delegateContainer && $this->delegateContainer->has($id)) {
             return $this->delegateContainer->get($id);
         }
@@ -106,7 +100,6 @@ class Container implements ContainerInterface
     {
         return array_key_exists($id, $this->cache)
             || array_key_exists($id, $this->recipe)
-            || $id === static::KEY_FACTORY
             || ($this->delegateContainer && $this->delegateContainer->has($id));
     }
 
