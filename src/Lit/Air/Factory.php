@@ -13,6 +13,7 @@ use Psr\Container\ContainerInterface;
 class Factory implements ContainerInterface
 {
     const CONTAINER_KEY = Factory::class;
+    const KEY_INJECTORS = InjectorInterface::class;
     /**
      * @var Container
      */
@@ -142,10 +143,10 @@ class Factory implements ContainerInterface
      */
     public function inject($obj, array $extra = []): void
     {
-        if (!$this->container->has(Container::KEY_INJECTORS)) {
+        if (!$this->container->has(self::KEY_INJECTORS)) {
             return;
         }
-        foreach ($this->container->get(Container::KEY_INJECTORS) as $injector) {
+        foreach ($this->container->get(self::KEY_INJECTORS) as $injector) {
             /**
              * @var InjectorInterface $injector
              */
@@ -181,6 +182,20 @@ class Factory implements ContainerInterface
         throw new ContainerException('failed to produce dependency');
     }
 
+    public function addInjector(InjectorInterface $injector): self
+    {
+        if (!$this->container->has(static::KEY_INJECTORS)) {
+            $this->container->set(static::KEY_INJECTORS, [$injector]);
+        } else {
+            $this->container->set(
+                static::KEY_INJECTORS,
+                array_merge($this->container->get(static::KEY_INJECTORS), [$injector])
+            );
+        }
+
+        return $this;
+    }
+
     public function get($id)
     {
         if (!$this->has($id)) {
@@ -194,6 +209,7 @@ class Factory implements ContainerInterface
     {
         return class_exists($id);
     }
+
 
     /**
      * @param string $className

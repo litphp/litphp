@@ -30,7 +30,7 @@ class AutowireRecipeTest extends AirTestCase
         self::assertEquals(null, $instance->getSplObjectStorage());
 
         $key2 = self::randKey();
-        $this->container->addInjector(new SetterInjector());
+        $this->getFactory()->addInjector(new SetterInjector());
         $this->container->define($key2, Container::instance(Foo::class, [
             'bar' => $obj,
         ]));

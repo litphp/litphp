@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Air\Psr;
 
 use Lit\Air\Configurator;
-use Lit\Air\Injection\InjectorInterface;
 use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\AliasRecipe;
 use Lit\Air\Recipe\AutowireRecipe;
@@ -17,7 +16,6 @@ use Psr\Container\ContainerInterface;
 
 class Container implements ContainerInterface
 {
-    const KEY_INJECTORS = InjectorInterface::class;
     const CONFIGURATOR_CLASS = Configurator::class;
     /**
      * @var RecipeInterface[]
@@ -139,17 +137,6 @@ class Container implements ContainerInterface
     public function flush(string $id): self
     {
         unset($this->cache[$id]);
-        return $this;
-    }
-
-    public function addInjector(InjectorInterface $injector): self
-    {
-        if (!isset($this->cache[static::KEY_INJECTORS])) {
-            $this->cache[static::KEY_INJECTORS] = [$injector];
-        } else {
-            $this->cache[static::KEY_INJECTORS][] = $injector;
-        }
-
         return $this;
     }
 

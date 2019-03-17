@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
+use Lit\Air\Factory;
 use Lit\Air\Psr\Container;
 use Lit\Air\Psr\NotFoundException;
 use PHPUnit\Framework\TestCase;
@@ -56,5 +57,10 @@ abstract class AirTestCase extends TestCase
     {
         self::assertTrue($this->container->has($key), '->has should return true after key set');
         self::assertSame($obj, $this->container->get($key), '->get should return the object previously set');
+    }
+
+    protected function getFactory(): Factory
+    {
+        return Factory::of($this->container);
     }
 }
