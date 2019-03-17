@@ -15,6 +15,9 @@
       "nimo-condition",
       "nimo-exception",
       "nimo-roll"
+    ],
+    "Air": [
+      "air"
     ]
   }
 }

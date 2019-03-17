@@ -4,31 +4,66 @@
     "next": "Next",
     "previous": "Previous",
     "tagline": "Flexible component collection for modern application",
-    "design": "Design Principals",
-    "Design Principals": "Design Principals",
-    "index": "Documentation",
-    "Introduction": "Introduction",
-    "lit-router": "Router",
-    "Router": "Router",
-    "lit-view": "View",
-    "View": "View",
-    "lit": "Introduction",
-    "nimo-condition": "Conditional middleware",
-    "Condition": "Condition",
-    "nimo-exception": "Handling Exceptions",
-    "Exception handling": "Exception handling",
-    "nimo-roll": "Write your own",
-    "Write your own": "Write your own",
-    "nimo": "Introduction",
-    "quickstart": "Quick Start",
-    "Quick Start": "Quick Start",
-    "runner": "Runner and servers",
-    "Runner and servers": "Runner and servers",
-    "Docs": "Docs",
-    "Blog": "Blog",
-    "Guides": "Guides",
-    "Lit": "Lit",
-    "Nimo": "Nimo"
+    "docs": {
+      "air": {
+        "title": "Introduction",
+        "sidebar_label": "Introduction"
+      },
+      "design": {
+        "title": "Design Principals",
+        "sidebar_label": "Design Principals"
+      },
+      "index": {
+        "title": "Documentation",
+        "sidebar_label": "Introduction"
+      },
+      "lit-router": {
+        "title": "Router",
+        "sidebar_label": "Router"
+      },
+      "lit-view": {
+        "title": "View",
+        "sidebar_label": "View"
+      },
+      "lit": {
+        "title": "Introduction",
+        "sidebar_label": "Introduction"
+      },
+      "nimo-condition": {
+        "title": "Conditional middleware",
+        "sidebar_label": "Condition"
+      },
+      "nimo-exception": {
+        "title": "Handling Exceptions",
+        "sidebar_label": "Exception handling"
+      },
+      "nimo-roll": {
+        "title": "Write your own",
+        "sidebar_label": "Write your own"
+      },
+      "nimo": {
+        "title": "Introduction",
+        "sidebar_label": "Introduction"
+      },
+      "quickstart": {
+        "title": "Quick Start",
+        "sidebar_label": "Quick Start"
+      },
+      "runner": {
+        "title": "Runner and servers",
+        "sidebar_label": "Runner and servers"
+      }
+    },
+    "links": {
+      "Docs": "Docs",
+      "Blog": "Blog"
+    },
+    "categories": {
+      "Guides": "Guides",
+      "Lit": "Lit",
+      "Nimo": "Nimo",
+      "Air": "Air"
+    }
   },
   "pages-strings": {
     "Help Translate|recruit community translators for your project": "Help Translate",
