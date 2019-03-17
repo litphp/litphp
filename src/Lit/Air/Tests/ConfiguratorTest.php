@@ -3,6 +3,7 @@
 namespace Lit\Air\Tests;
 
 use Lit\Air\Configurator as C;
+use Lit\Air\Recipe\Decorator\CallbackDecorator;
 use Lit\Air\Recipe\FixedValueRecipe;
 
 class ConfiguratorTest extends AirTestCase
@@ -83,15 +84,19 @@ class ConfiguratorTest extends AirTestCase
             $key4 = C::class . '::' => [
                 $key5 = uniqid() => C::value($val5 = new \stdClass()),
             ],
-            $key6 = uniqid() => C::decorateCallback(
-                C::value($val6 = new \stdClass()),
-                function ($delegate, $container, $key) use ($val7, $val6, $key6) {
-                    self::assertTrue(is_callable($delegate));
-                    self::assertEquals($key6, $key);
-                    self::assertSame($val6, $delegate());
-                    $val6->answer = $val7;
-                    return $val6;
-                }),
+            $key6 = uniqid() => [
+                '$' => 'value',
+                $val6 = new \stdClass(),
+                'decorator' => [
+                    CallbackDecorator::class => function ($delegate, $container, $key) use ($val7, $val6, $key6) {
+                        self::assertTrue(is_callable($delegate));
+                        self::assertEquals($key6, $key);
+                        self::assertSame($val6, $delegate());
+                        $val6->answer = $val7;
+                        return $val6;
+                    }
+                ],
+            ],
         ]);
 
         self::assertEquals($val1, $this->container->get($key1));

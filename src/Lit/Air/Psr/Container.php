@@ -170,9 +170,9 @@ class Container implements ContainerInterface
     /**
      * @param callable $wrapper
      * @param RecipeInterface $recipe
-     * @return AbstractRecipe
+     * @return RecipeInterface
      */
-    protected static function applyRecipeWrapper(callable $wrapper, RecipeInterface $recipe): AbstractRecipe
+    protected static function applyRecipeWrapper(callable $wrapper, RecipeInterface $recipe): RecipeInterface
     {
         $recipe = $wrapper($recipe);
 

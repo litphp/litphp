@@ -205,11 +205,12 @@ class Configurator
             if (isset(self::$decorators[$name])) {
                 $recipe = call_user_func([self::$decorators[$name], 'decorate'], $recipe);
             } elseif (is_subclass_of($name, AbstractRecipeDecorator::class)) {
-                $recipe = call_user_func([$option, 'decorate'], $recipe);
+                $recipe = call_user_func([$name, 'decorate'], $recipe);
             } else {
                 throw new ContainerException("cannot understand recipe decorator [$name]");
             }
 
+            assert($recipe instanceof AbstractRecipeDecorator);
             if (!empty($option)) {
                 $recipe->setOption($option);
             }
