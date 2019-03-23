@@ -106,7 +106,7 @@ class Factory implements ContainerInterface
      */
     public function produce(string $className, array $extraParameters = [])
     {
-        if ($this->container->hasCacheEntry($className)) {
+        if ($this->container->hasLocalEntry($className)) {
             return $this->container->get($className);
         }
 

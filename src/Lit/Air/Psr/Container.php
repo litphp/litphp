@@ -21,7 +21,7 @@ class Container implements ContainerInterface
      * @var RecipeInterface[]
      */
     protected $recipe = [];
-    protected $cache = [];
+    protected $local = [];
 
     /**
      * @var ContainerInterface
@@ -79,8 +79,8 @@ class Container implements ContainerInterface
      */
     public function get($id)
     {
-        if (array_key_exists($id, $this->cache)) {
-            return $this->cache[$id];
+        if (array_key_exists($id, $this->local)) {
+            return $this->local[$id];
         }
 
         if (array_key_exists($id, $this->recipe)) {
@@ -96,7 +96,7 @@ class Container implements ContainerInterface
 
     public function has($id)
     {
-        return array_key_exists($id, $this->cache)
+        return array_key_exists($id, $this->local)
             || array_key_exists($id, $this->recipe)
             || ($this->delegateContainer && $this->delegateContainer->has($id));
     }
@@ -129,14 +129,14 @@ class Container implements ContainerInterface
         return $this;
     }
 
-    public function hasCacheEntry(string $id): bool
+    public function hasLocalEntry(string $id): bool
     {
-        return array_key_exists($id, $this->cache);
+        return array_key_exists($id, $this->local);
     }
 
     public function flush(string $id): self
     {
-        unset($this->cache[$id]);
+        unset($this->local[$id]);
         return $this;
     }
 
@@ -152,7 +152,7 @@ class Container implements ContainerInterface
 
     public function set($id, $value): self
     {
-        $this->cache[$id] = $value;
+        $this->local[$id] = $value;
         return $this;
     }
 

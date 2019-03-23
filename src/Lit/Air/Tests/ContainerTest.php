@@ -50,11 +50,11 @@ class ContainerTest extends AirTestCase
             ->willReturn($obj = new \stdClass());
 
         $this->container->define($key, $recipe);
-        self::assertFalse($this->container->hasCacheEntry($key));
+        self::assertFalse($this->container->hasLocalEntry($key));
         self::assertTrue($this->container->has($key));
 
         self::assertKeyExistWithValue($key, $obj);
-        self::assertFalse($this->container->hasCacheEntry($key));
+        self::assertFalse($this->container->hasLocalEntry($key));
 
         $this->container->set($key, $obj2 = new \stdClass());
         self::assertKeyExistWithValue($key, $obj2);
