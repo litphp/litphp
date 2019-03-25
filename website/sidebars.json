@@ -17,7 +17,11 @@
       "nimo-roll"
     ],
     "Air": [
-      "air"
+      "air",
+      "air-local",
+      "air-dynamic",
+      "air-di",
+      "air-config"
     ]
   }
 }

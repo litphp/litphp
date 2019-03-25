@@ -5,6 +5,22 @@
     "previous": "Previous",
     "tagline": "Flexible component collection for modern application",
     "docs": {
+      "air-config": {
+        "title": "Configuration",
+        "sidebar_label": "Configuration"
+      },
+      "air-di": {
+        "title": "Dependency injection",
+        "sidebar_label": "Dependency Injection"
+      },
+      "air-dynamic": {
+        "title": "Dynamic Entries",
+        "sidebar_label": "Dynamic Entries"
+      },
+      "air-local": {
+        "title": "Local entries for object & configuration storage",
+        "sidebar_label": "Local Entries"
+      },
       "air": {
         "title": "Introduction",
         "sidebar_label": "Introduction"
