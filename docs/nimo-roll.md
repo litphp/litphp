@@ -6,7 +6,7 @@ sidebar_label: Write your own
 
 Nimo features many traits / base classes for writing middlewares.
 
-### Base classes
+## Base classes
 
 `AbstractHandler` and `AbstractMiddleware` are main base class of Nimo.
 
@@ -65,4 +65,4 @@ $middleware->when($prediction);
 $middleware->unless($prediction);
 // error handling
 $middleware->catch($catcher, $catchClassName);
-```   
+```

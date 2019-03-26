@@ -28,6 +28,5 @@ It's a relatively low-level way to construct recipe instance by hand and use `$c
 
 ## Delegate
 
-Register delegated container with `$container->setDelegateContainer($delegatedContainer)`. This provide a way to integrate with other PSR-11 compliant container. In air, we simplified the lookup precedence rule as **local => recipe => delegate** (will talk about recipe very soon), that means delegated container are working as a (optional) fallback. When air failed to find local entry & recipe of a key, if there's a delegated container, air will try to find entry from it before complaining not found.
+Register delegate container with `$container->setDelegateContainer($delegatedContainer)`. This provide a way to integrate with other PSR-11 compliant container. In air, we simplified the lookup precedence rule as **local => recipe => delegate**, that means delegated container are working as a (optional) fallback. When air failed to find local entry & recipe of a key, if there's a delegated container, air will try to find entry from it before complaining not found.
 
-## 
