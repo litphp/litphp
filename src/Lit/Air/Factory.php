@@ -90,8 +90,9 @@ class Factory implements ContainerInterface
         } elseif ($method instanceof \ReflectionMethod) {
             $name = sprintf('Method@%s::%s', $method->getDeclaringClass()->name, $method->name);
         } else {
-            $name = (string)$method;
-            $name = substr($name, 0, strpos($name, "{\n"));
+            assert($method instanceof \ReflectionFunction);
+            preg_match('#function\s+([\w\\\\]+)#', (string)$method, $matches);
+            $name = $matches[1];
         }
 
         return call_user_func_array($callback, $this->resolveParams($params, '!' . $name, $extra));

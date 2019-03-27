@@ -32,6 +32,36 @@ class FactoryTest extends AirTestCase
         ]);
         self::assertSame($obj, $returnValue);
 
+        try {
+            $this->factory->invoke([Foo::class, 'identity']);
+            throw new \Exception('should not reach here');
+        } catch (ContainerException $e) {
+
+        }
+        $this->container->set('!Method@Lit\Air\Tests\Foo::identity::', [$obj]);
+        $returnValue = $this->factory->invoke([Foo::class, 'identity']);
+        self::assertSame($obj, $returnValue);
+
+        try {
+            $this->factory->invoke('is_int');
+            throw new \Exception('should not reach here');
+        } catch (ContainerException $e) {
+
+        }
+        $this->container->set('!is_int::', [42]);
+        self::assertTrue($this->factory->invoke('is_int'));
+
+        $funcname = __NAMESPACE__ . '\identity';
+        try {
+            $this->factory->invoke($funcname);
+            throw new \Exception('should not reach here');
+        } catch (ContainerException $e) {
+
+        }
+        $this->container->set(sprintf('!%s::', $funcname), [$obj]);
+        $returnValue = $this->factory->invoke($funcname);
+        self::assertSame($obj, $returnValue);
+
 
         /** @noinspection PhpParamsInspection */
         $returnValue = $this->factory->invoke(new class
@@ -150,4 +180,8 @@ class FactoryTest extends AirTestCase
 
         $this->factory = Factory::of($this->container);
     }
+}
+
+function identity($x) {
+    return $x;
 }
