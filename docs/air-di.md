@@ -6,13 +6,6 @@ sidebar_label: Dependency Injection
 
 [Dependency injection](https://en.wikipedia.org/wiki/Dependency_injection) is a technique to fulfill [the IoC principle](https://en.wikipedia.org/wiki/Inversion_of_control) (**I**nversion **o**f **C**ontrol), or "Hollywood Principle", focusing on provide (inject) dependency for some object (product).
 
-+ Factory
-  + instantiate & produce
-  + dependency resolve rule
-  + invoke
-  + setter injection and more injector
-+ Autowire & instance recipe, config
-
 We devide this article into two parts. First we'll look into the ways to call DI procedure, and then we talk about how to provide (and control) dependencies.
 
 ## Calling dependency injection
@@ -32,6 +25,12 @@ After initialted, Factory will set itself into corresponding `$container` instan
 The most straightforward way to call DI procedure is `$factory->instantiate`, it take \$classname as first parameter, optionally followed by extra parameter (array of dependency), and return a instance of  \$classname
 
 Every time you call `$factory->instantiate` the factory will create a new instance for you, but chances are that you want to create instance only once and reuse it on preceding calls, that's where `$factory->produce` should be used. It takes exactly same parameter with instantiate, behind the scenes we just use the classname to identify instance, so make sure you pass same `$extra` everytime. Only first time the object is created and that `$extra` is used, later calls of same \$classname will simple get previously created instance, the `$extra` will be silently ignored.
+
+#### setter injection
+
+Setter injection is an optional feature of air. When you call instantiate or produce, before the factory return the product, it will check for if there are registered injectors and try to inject dependencies. By default, all instance method begin with "inject" and requires exactly one parameter will be considered an injection point, the factory will run DI procedure to create the dependency and call that method.
+
+There are some boilerplate works need to be done to make setter injection works. First you need include `SetterInjector::configuration()` in your container configuration (or you need more injectors, read its code!), then in class need setter injection, declare `const SETTER_INJECTOR = SetterInjector::class; `to tell setter injector to scan this class.
 
 #### invoke
 
