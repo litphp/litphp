@@ -157,26 +157,26 @@ class Factory implements ContainerInterface
     }
 
     /**
-     * @param $className
+     * @param $basename
      * @param array $keys
-     * @param null|string $dependencyClassName
+     * @param null|string $className
      * @param array $extra
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
      */
-    public function resolveDependency($className, array $keys, ?string $dependencyClassName = null, array $extra = [])
+    public function resolveDependency($basename, array $keys, ?string $className = null, array $extra = [])
     {
-        if ($value = $this->produceFromClass($className, $keys, $extra)) {
+        if ($value = $this->produceFromClass($basename, $keys, $extra)) {
             return $value[0];
         }
 
-        if ($dependencyClassName && $this->container->has($dependencyClassName)) {
-            return $this->container->get($dependencyClassName);
+        if ($className && $this->container->has($className)) {
+            return $this->container->get($className);
         }
 
-        if (isset($dependencyClassName) && class_exists($dependencyClassName)) {
-            return $this->instantiate($dependencyClassName);
+        if (isset($className) && class_exists($className)) {
+            return $this->instantiate($className);
         }
 
         throw new ContainerException('failed to produce dependency');
@@ -212,27 +212,27 @@ class Factory implements ContainerInterface
 
 
     /**
-     * @param string $className
+     * @param string $basename
      * @param array $keys
      * @param array $extra
      * @return array|null
      * @throws \Psr\Container\ContainerExceptionInterface
      */
-    protected function produceFromClass(string $className, array $keys, array $extra = [])
+    protected function produceFromClass(string $basename, array $keys, array $extra = [])
     {
-        $currentClassName = $className;
         if (!empty($extra) && ($value = $this->findFromArray($extra, $keys))) {
             return $value;
         }
+        $current = $basename;
 
         do {
-            if (class_exists($currentClassName)
-                && $this->container->has("$currentClassName::")
-                && ($value = $this->findFromArray($this->container->get("$currentClassName::"), $keys))
+            if (!empty($current)
+                && $this->container->has("$current::")
+                && ($value = $this->findFromArray($this->container->get("$current::"), $keys))
             ) {
                 return $value;
             }
-        } while ($currentClassName = get_parent_class($currentClassName));
+        } while ($current = get_parent_class($current));
 
         return null;
     }
@@ -248,27 +248,27 @@ class Factory implements ContainerInterface
         return null;
     }
 
-    protected function resolveParams(array $params, string $className, array $extra = [])
+    protected function resolveParams(array $params, string $basename, array $extra = [])
     {
         return array_map(
-            function (\ReflectionParameter $parameter) use ($className, $extra) {
-                return $this->resolveParam($className, $parameter, $extra);
+            function (\ReflectionParameter $parameter) use ($basename, $extra) {
+                return $this->resolveParam($basename, $parameter, $extra);
             },
             $params
         );
     }
 
     /**
-     * @param $className
+     * @param $basename
      * @param \ReflectionParameter $parameter
      * @param array $extraParameters
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
      */
-    protected function resolveParam($className, \ReflectionParameter $parameter, array $extraParameters)
+    protected function resolveParam($basename, \ReflectionParameter $parameter, array $extraParameters)
     {
-        $hash = sprintf('%s#%d', $className, $parameter->getPosition());
+        $hash = sprintf('%s#%d', $basename, $parameter->getPosition());
         if (isset($this->circularStore[$hash])) {
             throw new CircularDependencyException(array_keys($this->circularStore));
         }
@@ -277,7 +277,7 @@ class Factory implements ContainerInterface
             $this->circularStore[$hash] = true;
             list($keys, $paramClassName) = $this->parseParameter($parameter);
 
-            return $this->resolveDependency($className, $keys, $paramClassName, $extraParameters);
+            return $this->resolveDependency($basename, $keys, $paramClassName, $extraParameters);
         } catch (CircularDependencyException $e) {
             throw $e;
         } catch (ContainerException $e) {
@@ -286,7 +286,7 @@ class Factory implements ContainerInterface
             }
 
             throw new ContainerException(
-                sprintf('failed to produce constructor parameter "%s" for %s', $parameter->getName(), $className),
+                sprintf('failed to produce constructor parameter "%s" for %s', $parameter->getName(), $basename),
                 0,
                 $e
             );
