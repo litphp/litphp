@@ -12,8 +12,8 @@ use Psr\Container\ContainerInterface;
 
 class Factory implements ContainerInterface
 {
-    const CONTAINER_KEY = Factory::class;
-    const KEY_INJECTORS = InjectorInterface::class;
+    const CONTAINER_KEY = self::class;
+    const KEY_INJECTORS = self::class . '::injectors';
     /**
      * @var Container
      */
@@ -176,7 +176,7 @@ class Factory implements ContainerInterface
             return $this->container->get($className);
         }
 
-        if (isset($className) && class_exists($className)) {
+        if ($className && class_exists($className)) {
             return $this->instantiate($className);
         }
 
