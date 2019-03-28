@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/middleware-ip-address
 	branch = master
-	commit = 4d418ad3cf4131f7d211c8277b7f04167441414c
-	parent = a3c2a9ad3e6dbcb9d2e7972e5e7fd02acfbb4103
+	commit = 18721ea7ae87c874cf1eff4e8dae37c3906e2e0c
+	parent = c1c39b8e2a6076a9085080e7c02dec6787291928
 	cmdver = 0.4.0
 	method = merge
