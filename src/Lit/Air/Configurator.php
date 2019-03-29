@@ -151,13 +151,9 @@ class Configurator
     {
         $result = [];
         foreach ($value as $k => $v) {
-            if (is_scalar($v) || is_resource($v)) {
-                $result[$k] = $v;
-            } else {
-                $result[$k] = self::convertToRecipe($v);
-                if ($result[$k] instanceof FixedValueRecipe) {
-                    $result[$k] = $result[$k]->getValue();
-                }
+            $result[$k] = self::convertToRecipe($v);
+            if ($result[$k] instanceof FixedValueRecipe) {
+                $result[$k] = $result[$k]->getValue();
             }
         }
 

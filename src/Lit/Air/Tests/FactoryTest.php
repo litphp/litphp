@@ -38,7 +38,7 @@ class FactoryTest extends AirTestCase
         } catch (ContainerException $e) {
 
         }
-        $this->container->set('!Method@Lit\Air\Tests\Foo::identity::', [$obj]);
+        $this->container->set('!Lit\Air\Tests\Foo::identity::', [$obj]);
         $returnValue = $this->factory->invoke([Foo::class, 'identity']);
         self::assertSame($obj, $returnValue);
 

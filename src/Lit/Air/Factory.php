@@ -88,7 +88,7 @@ class Factory implements ContainerInterface
         if ($method->isClosure()) {
             $name = sprintf('Closure@%s:%d', $method->getFileName(), $method->getStartLine());
         } elseif ($method instanceof \ReflectionMethod) {
-            $name = sprintf('Method@%s::%s', $method->getDeclaringClass()->name, $method->name);
+            $name = sprintf('%s::%s', $method->getDeclaringClass()->name, $method->name);
         } else {
             assert($method instanceof \ReflectionFunction);
             preg_match('#function\s+([\w\\\\]+)#', (string)$method, $matches);
