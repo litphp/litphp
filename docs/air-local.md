@@ -1,10 +1,10 @@
 ---
 id: air-local
-title: Local entries for object & configuration storage
+title: Local entries
 sidebar_label: Local Entries
 ---
 
-You can store value such as object or configuration in air container directly (local entry). Simply invoke `$container->set`
+You can store value such as object or arbitrary value in air container directly (local entry). Simply invoke `$container->set`
 
 ```php
 assert(!$container->has('answer'));

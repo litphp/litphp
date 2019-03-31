@@ -48,3 +48,37 @@ Finally, there're some recipes calls factory to start DI procedure
 
 ## Working on dependencies
 
+(see `Factory::resolveDependency`)
+
+When air resolve a dependency, it inspect (with reflect API) to get below info first
+
++ string $basename: name of the dependent object
+  + It's the classname of object which is being created (or injected on)
+  + For `$factory->invoke` call, it's "!" following the callable name, full namespaced. For method, name of class and method is glued by `::`
++ string[] $keys "candicate key" of the dependency
+  + for now all the dependency item are represent by parameter
+  + the $keys are (ordered)
+    1. name of the parameter
+    2. classname if the parameter is type hinted
+    3. the index of the parameter (not applicapable for setter injection)
++ string $classname: the classname if the parameter is type hinted 
++ array $extra: extra dependency entries in addition to container
+
+Then `Factory` tries following ways of creating dependency
+
+1. try to find corresponding **configuration** and resolve it
+   + For each candicate key in `$keys`, look for `$extra` provided
+   + Look for container entry with key `$basename . "::"` 
+     + if `$basename` is a classname, also try look for it's parent class until no parent class is available
+2. if `$classname` is available, try to find container entry with key `$classname
+3. try to instantiate `$classname` directly
+
+If all the above approach failed or not available, `Factory` would throw a `ContainerException`
+
+If the procedure is `instantiate` or `produce`, after the instance is created, it will be scanned by registered injectors, and inject if any of them hits. For now the only bundled injector is `SetterInjector`
+
+Since configuration / recipe resolving might involve cascading DI procudure when (just before) constructing instance, it's possible to happen circular dependency, which will be cauth by `Factory` and throw a specific `CircularDependencyException`. We recommend to rethink of your dependency of abstraction of code, try refactor your code to avoid this, but if that's not easy, you can use setter injection, which actually inject **after** object is created, thus can break the loop.
+
+We don't talk about configuration here since it's a *circular dependency of documentation*! Configuration is resolved to recipe object, and recipe can call `Factory` to inject dependency (we do list them in this article), and when DI procedure is running, both configuration and recipe (registered to container) may be involved!
+
+Now you should have enough idea about how DI in air works, please continue to next.
