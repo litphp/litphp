@@ -3,7 +3,7 @@
 namespace Lit\Bolt\Tests;
 
 use FastRoute\RouteCollector;
-use Lit\Air\Configurator;
+use Lit\Air\Configurator as C;
 use Lit\Air\Factory;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\Router\StubResolveException;
@@ -46,15 +46,13 @@ class BoltRouterAppTest extends BoltTestCase
             ->withUri(new Uri('http://localhost/foo'));
 
         $config = [
-            RouterInterface::class => Configurator::singleton(FastRouteRouter::class, [
-                'notFound' => $response404,
-            ]),
+            C::join(FastRouteRouter::class, 'notFound') => $response404,
         ];
         $config += FastRouteConfiguration::default(function (RouteCollector $routeCollector) use ($handler) {
             $routeCollector->get('/book/{id:\d+}/author', $handler);
             $routeCollector->put('/foo', VoidHandler::class);
         });
-        Configurator::config($this->container, $config);
+        C::config($this->container, $config);
 
         $factory = Factory::of($this->container);
         /**
@@ -71,13 +69,23 @@ class BoltRouterAppTest extends BoltTestCase
 
         $router = $this->container->get(RouterInterface::class);
         self::assertInstanceOf(VoidHandler::class, $router->route($fooRequest));
+    }
 
-        $router2 = $factory->instantiate(FastRouteRouter::class);
+    public function testNotFound()
+    {
+        C::config($this->container, FastRouteConfiguration::default(function () {
+        }));
+        $factory = Factory::of($this->container);
+        $request404 = (new ServerRequest())
+            ->withUri(new Uri('http://localhost/404'));
+
+        $router = $factory->getOrProduce(FastRouteRouter::class);
         try {
-            $router2->route($request404);
+            $router->route($request404);
             self::fail('shoulld throw');
         } catch (StubResolveException $exception) {
             self::assertSame(404, $exception->getResponse()->getStatusCode());
         }
+
     }
 }
