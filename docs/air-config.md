@@ -88,8 +88,13 @@ Here's the configuration method for FastRouteRouter which integrates `nikic/Fast
 use FastRoute\DataGenerator\GroupCountBased as GCBDataGenerator;
 use FastRoute\Dispatcher\GroupCountBased as GCBDispatcher;
 
-    public static function default(callable $routeDefinition)
+    public static function default($routeDefinition)
     {
+        if (is_callable($routeDefinition)) {
+            // use C::value to wrap callable value so they can be passed directly
+            $routeDefinition = C::value($routeDefinition);
+        }
+
         return [
                 // provide implementation for RouterInterface, required by RouterConfiguration
                 // use alias to escape nesting
@@ -120,7 +125,7 @@ use FastRoute\Dispatcher\GroupCountBased as GCBDispatcher;
                 C::join(CachedDispatcher::class, 'cache') => C::produce(VoidSingleValue::class), // VoidSingleValue is a stateless class, without construct parameter and no reason to create a second instance, use `C::produce` under this situation to reuse it's instance
                 C::join(CachedDispatcher::class, DataGenerator::class) => C::singleton(GCBDataGenerator::class),
                 C::join(CachedDispatcher::class, RouteParser::class) => C::singleton(StdRouteParser::class),
-                C::join(CachedDispatcher::class, 'routeDefinition') => C::value($routeDefinition), // use C::value to wrap callable & array value so they can be passed directly
+                C::join(CachedDispatcher::class, 'routeDefinition') => $routeDefinition,
             ] + RouterConfiguration::default(); // merge the configuration of common router apps
     }
 
