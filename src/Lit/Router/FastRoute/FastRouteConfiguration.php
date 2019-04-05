@@ -19,8 +19,12 @@ use Lit\Nexus\Void\VoidSingleValue;
 
 class FastRouteConfiguration
 {
-    public static function default(callable $routeDefinition)
+    public static function default($routeDefinition)
     {
+        if (is_callable($routeDefinition)) {
+            $routeDefinition = C::value($routeDefinition);
+        }
+
         return [
                 RouterInterface::class => C::alias(FastRouteRouter::class),
 
@@ -45,7 +49,7 @@ class FastRouteConfiguration
                 C::join(CachedDispatcher::class, 'cache') => C::produce(VoidSingleValue::class),
                 C::join(CachedDispatcher::class, DataGenerator::class) => C::singleton(GCBDataGenerator::class),
                 C::join(CachedDispatcher::class, RouteParser::class) => C::singleton(StdRouteParser::class),
-                C::join(CachedDispatcher::class, 'routeDefinition') => C::value($routeDefinition),
+                C::join(CachedDispatcher::class, 'routeDefinition') => $routeDefinition,
             ] + RouterConfiguration::default();
     }
 }
