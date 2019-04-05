@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/middleware-cookie.git
 	branch = master
-	commit = 56c8fba9c1e3e850fb279935c43797b7d7b8cf5a
-	parent = bae67fe12785a56cd2cb9f5957b05bdbcc9b2e4b
+	commit = f7e483bee40b02df98f168255c63a2a88cae6bce
+	parent = 0fb29a317c9b70bbb99017316f9d4e932126dabe
 	cmdver = 0.4.0
 	method = merge
