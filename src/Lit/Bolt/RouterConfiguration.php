@@ -14,7 +14,7 @@ class RouterConfiguration
     public static function default()
     {
         return [
-            BoltApp::class => C::produce(null, [
+            BoltApp::class => C::provideParameter([
                 RequestHandlerInterface::class => C::alias(BoltApp::class, RouterDispatchHandler::class),
                 MiddlewareInterface::class => C::alias(BoltApp::class, MiddlewareInterface::class),
             ]),
