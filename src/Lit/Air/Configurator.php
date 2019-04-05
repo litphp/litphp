@@ -103,11 +103,12 @@ class Configurator
         ];
     }
 
-    public static function builder(callable $builder): array
+    public static function builder(callable $builder, array $extra = []): array
     {
         return [
             '$' => 'builder',
             $builder,
+            $extra
         ];
     }
 

@@ -44,10 +44,12 @@ class ConfiguratorTest extends AirTestCase
 
         $builder = function () {
         };
+        $extra = [uniqid() => uniqid()];
         self::assertEquals([
             '$' => 'builder',
             $builder,
-        ], C::builder($builder));
+            $extra,
+        ], C::builder($builder, $extra));
 
         $alias = uniqid();
         self::assertEquals([
