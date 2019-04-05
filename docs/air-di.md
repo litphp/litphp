@@ -70,6 +70,9 @@ Then `Factory` tries following ways of creating dependency
    + For each candicate key in `$keys`, look for `$extra` provided
    + Look for container entry with key `$basename . "::"` 
      + if `$basename` is a classname, also try look for it's parent class until no parent class is available
+
+   > See [configuration](air-config#structure-of-configuration) section for more details about how a configuration value is resolved
+
 2. if `$classname` is available, try to find container entry with key `$classname
 3. try to instantiate `$classname` directly
 
@@ -81,4 +84,5 @@ Since configuration / recipe resolving might involve cascading DI procudure when
 
 We don't talk about configuration here since it's a *circular dependency of documentation*! Configuration is resolved to recipe object, and recipe can call `Factory` to inject dependency (we do list them in this article), and when DI procedure is running, both configuration and recipe (registered to container) may be involved!
 
-Now you should have enough idea about how DI in air works, please continue to next.
+Now you should have enough idea about how DI in air works, please head to [configuration section](air-config), if you haven't read that yet.
+
