@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:litphp/lit-nexus
+	remote = git@github.com:litphp/nexus
 	branch = master
 	commit = 4b600023bafbd4b9dab416c83962b63122acd09f
 	parent = 298ca85086282da80a8d5a94dae31cc065ba9e9d

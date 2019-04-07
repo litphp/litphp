@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:litphp/lit-bolt
+	remote = git@github.com:litphp/bolt
 	branch = master
 	commit = 2c706b9be5f98078a3e26d3fd9dd19dd814616e9
 	parent = cf8ea68d5c0601e9828848763c1954aaed23f3d7

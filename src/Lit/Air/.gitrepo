@@ -4,7 +4,7 @@
 ; git-subrepo command. See https://github.com/git-commands/git-subrepo#readme
 ;
 [subrepo]
-	remote = git@github.com:litphp/lit-air
+	remote = git@github.com:litphp/air
 	branch = master
 	commit = b54f666d8f784d03fc328043a2d4c4d337eb8a69
 	parent = 8677b732d67c2a5841f30796d448374432790e1b
