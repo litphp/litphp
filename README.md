@@ -15,7 +15,7 @@ Components included:
 | ---- | ---- |
 | **litphp/air** | dependency injection |
 | **litphp/nimo** | middleware organizer |
-| **litphp/lit** | http application structure |
+| **litphp/voltage** | fundamental application structure |
 | **litphp/bolt** | microframework |
 | **litphp/middleware-ip-address** | a middleware retrieving request ip |
 | **litphp/middleware-cookie** | a middleware read/write http cookies |

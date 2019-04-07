@@ -1,5 +1,5 @@
 ---
-id: lit-view
+id: voltage-view
 title: View
 sidebar_label: View
 ---

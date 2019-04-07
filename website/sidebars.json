@@ -5,16 +5,16 @@
       "quickstart",
       "runner"
     ],
-    "Lit": [
-      "lit",
-      "lit-view",
-      "lit-router"
-    ],
     "Nimo": [
       "nimo",
       "nimo-condition",
       "nimo-exception",
       "nimo-roll"
+    ],
+    "Voltage": [
+      "voltage",
+      "voltage-view",
+      "voltage-router"
     ],
     "Air": [
       "air",

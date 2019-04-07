@@ -46,7 +46,7 @@ BoltZendRunner::run(FastRouteConfiguration::default($routes));
 
 ### Integrating template engine
 
-We are planning to provide some adapter view implementations for popular template engine, before that, you can find a simple example [here](lit-view.md)
+We are planning to provide some adapter view implementations for popular template engine, before that, you can find a simple example [here](voltage-view.md)
 
 If you are using some view other that `JsonView`, you should add a factory method for it in your base action class. 
 

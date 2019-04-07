@@ -33,18 +33,6 @@
         "title": "Documentation",
         "sidebar_label": "Introduction"
       },
-      "lit-router": {
-        "title": "Router",
-        "sidebar_label": "Router"
-      },
-      "lit-view": {
-        "title": "View",
-        "sidebar_label": "View"
-      },
-      "lit": {
-        "title": "Introduction",
-        "sidebar_label": "Introduction"
-      },
       "nimo-condition": {
         "title": "Conditional middleware",
         "sidebar_label": "Condition"
@@ -68,6 +56,18 @@
       "runner": {
         "title": "Runner and servers",
         "sidebar_label": "Runner and servers"
+      },
+      "voltage-router": {
+        "title": "Router",
+        "sidebar_label": "Router"
+      },
+      "voltage-view": {
+        "title": "View",
+        "sidebar_label": "View"
+      },
+      "voltage": {
+        "title": "Introduction",
+        "sidebar_label": "Introduction"
       }
     },
     "links": {
@@ -76,8 +76,8 @@
     },
     "categories": {
       "Guides": "Guides",
-      "Lit": "Lit",
       "Nimo": "Nimo",
+      "Voltage": "Voltage",
       "Air": "Air"
     }
   },
