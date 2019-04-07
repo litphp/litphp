@@ -1,9 +1,9 @@
 LitPHP/middleware-**ip-adress**
 ===============================
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LitPHP/middleware-ip-address/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/middleware-ip-address/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/LitPHP/middleware-ip-address/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/middleware-ip-address/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/LitPHP/middleware-ip-address/badges/build.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/middleware-ip-address/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/litphp/middleware-ip-address/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/litphp/middleware-ip-address/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/litphp/middleware-ip-address/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/litphp/middleware-ip-address/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/litphp/middleware-ip-address/badges/build.png?b=master)](https://scrutinizer-ci.com/g/litphp/middleware-ip-address/build-status/master)
 
 PSR-15 middleware for get client ip address from request
 

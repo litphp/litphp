@@ -1,9 +1,9 @@
 Lit Air
 =======
 
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/LitPHP/air/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/air/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/LitPHP/air/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/air/?branch=master)
-[![Build Status](https://scrutinizer-ci.com/g/LitPHP/air/badges/build.png?b=master)](https://scrutinizer-ci.com/g/LitPHP/air/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/litphp/air/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/litphp/air/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/litphp/air/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/litphp/air/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/litphp/air/badges/build.png?b=master)](https://scrutinizer-ci.com/g/litphp/air/build-status/master)
 
 > Dependency Injection for Lit
 
