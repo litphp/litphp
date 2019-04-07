@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/lit
 	branch = master
-	commit = 9b4735d867d19c74d96febcbd3eeef45d7fc38c0
-	parent = af9511c161f1838bc78b199c6fe1443b4a7539ed
+	commit = 0d3ae24b06d36a246695bc9b9619c3aa235d7f34
+	parent = 4492c104c6031e906875a3b9a11acaf42958b54d
 	cmdver = 0.4.0
 	method = merge
