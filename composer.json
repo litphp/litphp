@@ -30,7 +30,7 @@
     "replace": {
         "litphp/air": "self.version",
         "litphp/bolt": "self.version",
-        "litphp/lit": "self.version",
+        "litphp/voltage": "self.version",
         "litphp/middleware-ip-address": "self.version",
         "litphp/middleware-cookie": "self.version",
         "litphp/nexus": "self.version",

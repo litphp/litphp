@@ -19,7 +19,7 @@
     ]
   },
   "require": {
-    "litphp/lit": "^0.9@dev",
+    "litphp/voltage": "^0.9@dev",
     "litphp/air": "^0.9@dev",
     "symfony/event-dispatcher": "^4.0"
   },

@@ -2,7 +2,7 @@
     "name": "litphp/router-fast-route",
     "description": "Lit router utilizing fast-route",
     "require": {
-        "litphp/lit": "^0.9@dev",
+        "litphp/voltage": "^0.9@dev",
         "litphp/nexus": "^0.9@dev",
         "nikic/fast-route": "^1.3"
     },
