@@ -4,28 +4,37 @@ declare(strict_types=1);
 
 namespace Lit\Bolt;
 
-use Lit\Air\Factory;
+use Lit\Air\Injection\SetterInjector;
 use Lit\Bolt\Middlewares\EventsHub;
 use Lit\Bolt\Middlewares\RequestContext;
 use Lit\Core\App;
-use Psr\Container\ContainerInterface;
-use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
+use Lit\Core\Interfaces\ThrowableResponseInterface;
+use Lit\Nimo\MiddlewarePipe;
+use Psr\Http\Message\ResponseInterface;
 
 class BoltApp extends App
 {
+    const SETTER_INJECTOR = SetterInjector::class;
     /**
-     * @var ContainerInterface
+     * @var EventsHub
      */
-    protected $container;
+    protected $eventsHub;
 
-    public function __construct(
-        ContainerInterface $container,
-        RequestHandlerInterface $businessLogicHandler,
-        MiddlewareInterface $middleware = null
-    ) {
-        $this->container = $container;
-        parent::__construct($businessLogicHandler, $middleware);
+    public function injectEventsHub(EventsHub $eventsHub)
+    {
+        $this->eventsHub = $eventsHub;
+        return $this;
+    }
+
+    /**
+     * @var RequestContext
+     */
+    protected $requestContext;
+
+    public function injectRequestContext(RequestContext $requestContext)
+    {
+        $this->requestContext = $requestContext;
+        return $this;
     }
 
     /**
@@ -33,17 +42,19 @@ class BoltApp extends App
      */
     public function getEventsHub(): EventsHub
     {
-        // factory produce is singletoned, so directly used in getter here
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return Factory::of($this->container)->produce(EventsHub::class);
+        return $this->eventsHub;
     }
 
-    protected function setup()
+    protected function main(): ResponseInterface
     {
-        $factory = Factory::of($this->container);
-        /** @noinspection PhpParamsInspection */
-        $this->middlewarePipe
-            ->prepend($this->getEventsHub())
-            ->prepend($factory->produce(RequestContext::class));
+        try {
+            $pipe = (new MiddlewarePipe())
+                ->append($this->requestContext)
+                ->append($this->eventsHub)
+                ->append($this->middlewarePipe);
+            return $pipe->process($this->request, $this->businessLogicHandler);
+        } catch (ThrowableResponseInterface $e) {
+            return $e->getResponse();
+        }
     }
 }
