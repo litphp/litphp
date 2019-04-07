@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/lit-bolt
 	branch = master
-	commit = 6472acd6976d20411d031894b0f0a16fca8b2e41
-	parent = bbbebab0fe9dfa354a1d846936d30ed7554a8ea3
+	commit = b18cc923de0c287efe70a06424732315503a696a
+	parent = bb7ad57c72feb178bfe3805d3c12d6510a920a89
 	cmdver = 0.4.0
 	method = merge
