@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Bolt\Router;
 
-use Lit\Core\Interfaces\ThrowableResponseInterface;
+use Lit\Voltage\Interfaces\ThrowableResponseInterface;
 use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;

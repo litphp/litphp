@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lit\Router\FastRoute;
 
 use FastRoute\Dispatcher;
-use Lit\Core\AbstractRouter;
-use Lit\Core\Interfaces\RouterStubResolverInterface;
+use Lit\Voltage\AbstractRouter;
+use Lit\Voltage\Interfaces\RouterStubResolverInterface;
 use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ServerRequestInterface;
 

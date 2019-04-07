@@ -16,7 +16,7 @@ class ThrowResponseAction extends BoltAbstractAction
     /**
      * @return ResponseInterface
      * @throws Exception
-     * @throws \Lit\Core\ThrowableResponse
+     * @throws \Lit\Voltage\ThrowableResponse
      */
     protected function main(): ResponseInterface
     {
@@ -25,7 +25,7 @@ class ThrowResponseAction extends BoltAbstractAction
     }
 
     /**
-     * @throws \Lit\Core\ThrowableResponse
+     * @throws \Lit\Voltage\ThrowableResponse
      */
     private function callOtherMethod()
     {

@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Configurator as C;
-use Lit\Core\RouterDispatchHandler;
+use Lit\Voltage\RouterDispatchHandler;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 

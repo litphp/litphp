@@ -7,7 +7,7 @@ use Lit\Air\Configurator as C;
 use Lit\Air\Factory;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\Router\StubResolveException;
-use Lit\Core\Interfaces\RouterInterface;
+use Lit\Voltage\Interfaces\RouterInterface;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Router\FastRoute\FastRouteConfiguration;
 use Lit\Router\FastRoute\FastRouteRouter;

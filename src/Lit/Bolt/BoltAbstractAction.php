@@ -7,7 +7,7 @@ namespace Lit\Bolt;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Bolt\Middlewares\RequestContext;
 use Lit\Bolt\Middlewares\EventsHub;
-use Lit\Core\AbstractAction;
+use Lit\Voltage\AbstractAction;
 use Psr\Http\Message\ResponseFactoryInterface;
 
 abstract class BoltAbstractAction extends AbstractAction
