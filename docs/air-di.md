@@ -73,7 +73,7 @@ Then `Factory` tries following ways of creating dependency
 
    > See [configuration](air-config#structure-of-configuration) section for more details about how a configuration value is resolved
 
-2. if `$classname` is available, try to find container entry with key `$classname
+2. if `$classname` is available, try to find container entry with key `$classname`
 3. try to instantiate `$classname` directly
 
 If all the above approach failed or not available, `Factory` would throw a `ContainerException`

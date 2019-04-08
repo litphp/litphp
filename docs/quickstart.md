@@ -4,29 +4,6 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-We start from the example 
-
-```php
-class MyAction extends BoltAbstractAction
-{
-    protected function main(): ResponseInterface
-    {
-        return $this->json()->render([
-            'test.json' => 'should be this',
-            'bool' => false,
-            'nil' => null,
-            'query' => $this->request->getQueryParams(),
-        ]);
-    }
-}
-
-$routes = function (RouteCollector $routeCollector) {
-    $routeCollector->get('/test.json', MyAction::class);
-};
-
-BoltZendRunner::run(FastRouteConfiguration::default($routes));
-```
-
 ## Action
 
 > Write your controller code in action
@@ -115,7 +92,7 @@ C::join(BoltApp::class, MiddlewareInterface::class) => function() {
 },
 ```
 
-### Embedded middleware
+### Bundled middleware
 
 We provide some middleware useful to communicate between different part of your application by default.
 
@@ -132,7 +109,7 @@ RequestContext::fromRequest($request)['foo'] = 'bar';
 $foo = RequestContext::fromRequest($request)['foo']; // 'bar'
 // we enable ARRAY_AS_PROPS flag by default, so this also works
 $foo = $this->context()->foo; // 'bar'
-// p.s. if you are in `BoltAbstractAction`, just use $this->context() to get RequestContext instance like above
+// p.s. if you are inside `BoltAbstractAction`, just use $this->context() to get RequestContext instance like above
 
 ```
 
@@ -169,13 +146,11 @@ The `BoltEvent` is sent with these two event. You may change the `$beforeEvent['
 
 We assume you have basic concept of dependency injection here. If you don't, you may read some [introduction from php-di](http://php-di.org/doc/understanding-di.html) first.
 
-In the example above, we run our app like this
+In our [template project](https://github.com/litphp/project), we run our app like this
 
 ```php
-BoltZendRunner::run(FastRouteConfiguration::default($routes));
+BoltZendRunner::run($configuration); // configuration for `litphp/air` (dependency injection)
 ```
-
-As our convention, class named with `Configuration` provides DI config (a php array) to our DI factory, indicating how to instantiate other class. `Lit\Air\Configurator` is the helper class to build such config array, we usually alias it to make configuration more readable `use Lit\Air\Configurator as C;`
 
 ### Basic Configuration
 
@@ -184,7 +159,7 @@ As our convention, class named with `Configuration` provides DI config (a php ar
 Create a `FastRouteRouter` singleton instance for who need a `RouterInterface`
 
 ```php
-RouterInterface::class => C::singleton(FastRouteRouter::class),
+RouterInterface::class => C::singleton(FastRouteRouter::class), // use Lit\Air\Configurator as C;
 ```
 
 If you need multiple instance, use `C::instance` instead. There's a second parameter `array $extra`, we will discuss it later.
@@ -209,9 +184,7 @@ Also you can see the builder can have some parameter, which will be injected aut
 
 Use `C::value` to wrap a pre-populated value, we recommend you always do this. Currently, closure and array containing key `$` are required to be wrapped, but this may change in future.
 
-Use `C::alias` to get some other value from the DI container. This can be useful for embedded configuration ($extra). Note that when you use some class name as alias, that class will not be autowired by default. You should add a `YOURCLASS => C::produce()` entry in configuration to indicate that.
-
-There is a example use of alias in next section.
+Use `C::alias` to get some other value from the DI container. This can be useful for embedded configuration ($extra). 
 
 #### Autowire and extra parameters
 
@@ -229,34 +202,6 @@ DI factory will try to populate parameters of constructor and builder function r
 4. Default value of the parameter
 5. At last, throw a ContainerException
 
-Here's the default configuration we provide for `\FastRoute\Dispatcher` (interface)
-
-```php
-//configurataion entries
-Dispatcher::class => C::singleton(
-    CachedDispatcher::class,
-    [// we skip some of the param, also there are callable and string param, so we use param name as key here
-        'cache' => C::alias(Dispatcher::class, 'cache'), //alias so can be easily overrided
-        'routeDefinition' => C::alias(FastRouteDefinition::class),  //alias so can be easily overrided
-        'dispatcherClass' => Dispatcher\GroupCountBased::class,
-    ]
-),
-DataGenerator::class => C::singleton(DataGenerator\GroupCountBased::class),
-RouteParser::class => C::singleton(RouteParser\Std::class),
-C::join(Dispatcher::class, 'cache') => C::produce(VoidSingleValue::class), // provide default implementation
-
-//CachedDispatcher's constructor signature
-function __construct(
-    SingleValueInterface $cache, //provided in $extra
-    RouteParser $routeParser,// not in $extra, provided by class name key
-    DataGenerator $dataGenerator,// same as above
-    callable $routeDefinition,// provided in $extra
-    string $dispatcherClass// provided in $extra
-)
-```
-
-As you can see, the configuration array value can be "embedded" via `$extra.` But we use a simple array union (`+`) to merge configurations, it works well for the top level keys, but no luck in deep ones. We recommend use `alias` to solve this problem, so the configuration merge is still a single `+`. You should namespace the alias key with `C::join` which is a simple string concat helper with our recommended delimeter `::`
-
 ### Setter Injection
 
 Constructor injection works in most cases, but **action** classes are often coupled with many other classes, constantly changing these dependencies, and may often be extended serveral times (making write all dependency in constructor function clumsy). We provide setter injection for this use case. Of course you can enable it in any other class, by adding a const `const SETTER_INJECTOR = SetterInjector::class;`
@@ -264,19 +209,21 @@ Constructor injection works in most cases, but **action** classes are often coup
 We scan all the public method start with `inject` with one required parameter, then re-use the [autowire](#autowire-and-extra-parameters) process to populate dependency, and invoke the inject method. Below is how we inject `ResponseFactoryInterface` to our base action class.
 
 ```php
-	//in action class
-    /**
-     * @var ResponseFactoryInterface
-     */
-    protected $responseFactory;
-    public function injectResponseFactory(ResponseFactoryInterface $responseFactory)
-    {
-        $this->responseFactory = $responseFactory;
-
-        return $this; // not required
-    }
+//in action class
+/**
+ * @var ResponseFactoryInterface
+ */
+protected $responseFactory;
+public function injectResponseFactory(ResponseFactoryInterface $responseFactory)
+{
+    $this->responseFactory = $responseFactory;
+}
 
 ```
+
+#### More details
+
+There are more details about dependency injection at [guide about lit/air](air).
 
 ## Runners
 
