@@ -187,11 +187,7 @@ class Factory implements ContainerInterface
             return $value[0];
         }
 
-        if ($className && $this->container->has($className)) {
-            return $this->container->get($className);
-        }
-
-        if ($className && class_exists($className)) {
+        if ($className) {
             return $this->getOrInstantiate($className);
         }
 
