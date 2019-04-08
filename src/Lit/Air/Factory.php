@@ -138,6 +138,21 @@ class Factory implements ContainerInterface
     }
 
     /**
+     * @param string $className
+     * @return object of $className
+     * @throws \Psr\Container\ContainerExceptionInterface
+     * @throws \ReflectionException
+     */
+    public function getOrInstantiate(string $className)
+    {
+        $recipe = $this->container->getRecipe($className);
+        if ($recipe) {
+            return $this->container->get($className);
+        }
+        return $this->instantiate($className);
+    }
+
+    /**
      * @param object $obj
      * @param array $extra
      * @throws \Psr\Container\ContainerExceptionInterface
@@ -177,7 +192,7 @@ class Factory implements ContainerInterface
         }
 
         if ($className && class_exists($className)) {
-            return $this->instantiate($className);
+            return $this->getOrInstantiate($className);
         }
 
         throw new ContainerException('failed to produce dependency');
@@ -203,7 +218,7 @@ class Factory implements ContainerInterface
             throw new ContainerException('unknown class ' . $id);
         }
 
-        return $this->getOrProduce($id);
+        return $this->getOrInstantiate($id);
     }
 
     public function has($id)
