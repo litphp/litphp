@@ -25,6 +25,10 @@
         "title": "Introduction",
         "sidebar_label": "Introduction"
       },
+      "concepts": {
+        "title": "Core concepts of Lit",
+        "sidebar_label": "Core concepts"
+      },
       "design": {
         "title": "Design Principals",
         "sidebar_label": "Design Principals"

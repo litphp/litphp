@@ -4,227 +4,87 @@ title: Quick Start
 sidebar_label: Quick Start
 ---
 
-## Action
+To create a new project, you may use our project boilerplate:
 
-> Write your controller code in action
-
-**Action** is the **C** part in MVC pattern. We take the name action because in many other framework, controller is a class containing multiple endpoint (RequestHandler), whereas action is only one. `BoltAbstractAction` is the dafault base class of action, but we recommend you to have your own base class, even without any code, that extends `BoltAbstractAction`
-
-+ Action class is one implementation of `RequestHandlerInterface`, any other implementation can also be used.
-+ We enable [setter injection](#setter-injection) in our `BoltAbstractAction`. In fact, this is the only recommended use case of setter injection.
-+ Psr `ResponseFactoryInterface` is required and by default provided by `BoltZendConfiguration`
-+ Action could create view to render response. By default the `json()` method creates a view that render json output. More (template engine view, view with your restful convention, etc) can be added in your base action.
-
-## View
-
-> Populate response in view
-
-**View**, by our definition, is a helper class which is responsible to generate response object for action class.
-
-### Integrating template engine
-
-We are planning to provide some adapter view implementations for popular template engine, before that, you can find a simple example [here](voltage-view.md)
-
-If you are using some view other that `JsonView`, you should add a factory method for it in your base action class. 
-
-```php
-    // in action class
-    protected function plate(string $name)
-    {
-        $view = $this->plateViewFactory->produce();
-    
-        return $this->attachView($view->setTemplateName($name));
-    }
-```
-
-## Router
-
-> Locate and populate action class in router
-
-**Router** is where we match the request and find correct **action**.
-
-### Routing to find stub
-
-We use `FastRouteConfiguration` from `litphp/router-fast-route` package, which uses `nikic/fast-route` to do actual routing logic. The `$routes` param fed into it is a callback with `\FastRoute\RouteCollector` param, on which you can invoke methods to add route into FastRoute. (If you want write a class for it, you can extend `FastRouteDefinition`, which is a invokable class with same signature)
-
-The value you fed into `RouteCollector` is called **stub**, it's a stub for concrete **action** class, so you can delay the instantiate, reducing cost for having bunch of actions (often with different but many service instances bounded)
-
-### Resolving the stub
-
-**Stub** can be following value
-
-+ A `callable` value which follow the signature of `RequestHandlerInterface::handle` (request => response)
-+ A `RequestHandlerInterface` instance, it's used directly
-+ A `ResponseInterface` instance, it's returned without any other operation
-+ At last, a string class name, or array with two value `[string $classname, array $extraParameters]`, this is delegated to `Facotry::instantiate`. see dependency injection part for more details
-
-You can change this behaviour by implementing `RouterStubResolverInterface` and fed it into **router** instance.
-
-### Getting route variables
-
-The variable caught by `FastRoute` is available in `$request->getAttribute(KEY)`
-
-### Not found
-
-We use `null` value to indicate not found, and both `FastRouteRouter` and `BoltStubResolver` receives a `$notFound` parameter, to be used as the stub of not found. If finally the stub is still a `null`, or failed to be recognized, a `StubResolveException` will be thrown, which in the case, contains a default 404 response. Use a catch to catch that exception is another way to handle not found (by this way, it will include both router not found and wrong stub provided by router).
-
-## Middleware
-
-> Organize reusable logic with middleware
-
-### Create your middleware
-
-Any [PSR-15](https://www.php-fig.org/psr/psr-15/) middleware can be used directly. If you are writing new ones, you may refer [this page](nimo-roll.md).
-
-### Attach middleware to your app
-
-The `MiddlewareInterface` fed into `BoltApp` is the default middlware injection point. You can pass any middleware instance into it. Or if you have multiple middleware, assemble them into one with `MiddlewarePipe`
-
-```php
-// configuration
-C::join(BoltApp::class, MiddlewareInterface::class) => function() {
-    $middlewarePipe = new MiddlewarePipe();
-
-    $middlewarePipe->append(SOME_MIDDLEWARE);
-    $middlewarePipe->append(ANOTHER_MIDDLEWARE);
-
-    return $middlewarePipe;
-},
-```
-
-### Bundled middleware
-
-We provide some middleware useful to communicate between different part of your application by default.
-
-#### RequestContext
-
-This is a spl `\ArrayObject` subclass, implementing `MiddlewareInterface`, and attached to the request. Use this object saves keyspace of psr request attributes, and, methods on `\ArrayObject` is available.
-
-```php
-// in somewhere you may write the context
-RequestContext::fromRequest($request)['foo'] = 'bar';
-
-
-// later you may read from it
-$foo = RequestContext::fromRequest($request)['foo']; // 'bar'
-// we enable ARRAY_AS_PROPS flag by default, so this also works
-$foo = $this->context()->foo; // 'bar'
-// p.s. if you are inside `BoltAbstractAction`, just use $this->context() to get RequestContext instance like above
+```bash
+composer create-project --remove-vcs -s dev litphp/project myproject
+# you will be prompt to input your project namespace, we do the replace work for you
+cd myproject
+php -S 127.0.0.1:3080 public/index.php
 
 ```
 
-#### EventsHub
+Before write your business logic, there're some decision you need to take. For some of them we've already pick a default solution (often the most popular one).
 
-This is `symfony/event-dispatcher` integration. You can find a `EventDispatcher` instance inside this.
+## How to run the app
 
-```php
-// we passthru `addListener` and `dispatch` method to EventDispatcher
-EventsHub::fromRequest($request)->addListener(MyEvent::EVENT_FOO, $listener);
+FPM with a single entry point `index.php` is the most common case. (And it's compatible with built-in debug server `php -S`), we've created that entry file for you in `public/index.php`
 
-// events() method in `BoltAbstractAction` get the instance
-// later you may trigger above listener
-$this->events()->dispatch(MyEvent::EVENT_FOO, new MyEvent());
+See [runner](runner) page for more runners (Swoole/ReactPHP and more).
 
-// if you need other method of EventDispatcher, get it
-$this->events()->getEventDispatcher();// the instance
+## Routers (or just not) to use
+
+`nikic/fastroute` is our default choice, it should work fine in most situation. But implement or integrate another route library is easy too.
+
+Here we just continue with the fastroute, and next problem is where and how you call the register methods in `\FastRoute\RouteCollector`, a.k.a route discovery
+
+## Route discovery
+
+In the boilerplate, we just write a single method receiving `\FastRoute\RouteCollector`, and register all routes in there, this should be fine for small to medium project (maybe with help of `$routeCollector->addGroup`, or just breakdown into several smaller methods).
+
+Another paradigm of route discovery, which is "distributed" (compared with centralized route dsicovery where you manage all routes in one place). You may use some filesystem iterator (glob or SPL RecursiveDirectoryIterator or `symfony/finder`) to traverse through you action class file (or other source of route), then get the route info from it somehow, then register it to `\FastRoute\RouteCollector`
+
+## View Layer
+
+If you are writing bare json api, the `$aciton->json()`  is there. But if your view layer is more complicated, here we talk about how to integrate a view engine that's already adapted to be used by lit application.
+
+First require the package
+
+```bash
+composer require litphp/view-twig
 ```
 
-Also, EventsHub will trigger before & after event around inner logic
+Include the configuration (typically `configuration.php`, but don't forget to submit it as `configuration.dist.php`)
 
 ```php
-BoltEvent::EVENT_BEFORE_LOGIC
-BoltEvent::EVENT_AFTER_LOGIC
+$configuration += \Lit\View\Twig\TwigView::configuration(C::instance(\Twig\Loader\FilesystemLoader::class, [
+    __DIR__ . '/templates' // your template path
+]));
 ```
 
-Note although the instance is attached to request, but the before event is dispatched **before** action runs, so you need listen to it early. Get the event hub instance by `$app->getEventsHub()` in that case.
-
-The `BoltEvent` is sent with these two event. You may change the `$beforeEvent['request']` or `$afterEvent['response']` to change the request / response. You may set `$beforeEvent['response']` (by default it's not exist) to intercept the logic. `$afterEvent['request']` is provided, but changing that has no effect.
-
-## Dependency Injection
-
-> Connect everything with dependency injection
-
-We assume you have basic concept of dependency injection here. If you don't, you may read some [introduction from php-di](http://php-di.org/doc/understanding-di.html) first.
-
-In our [template project](https://github.com/litphp/project), we run our app like this
+and use the builder method trait in `BaseAction`
 
 ```php
-BoltZendRunner::run($configuration); // configuration for `litphp/air` (dependency injection)
-```
-
-### Basic Configuration
-
-#### Instance and singleton
-
-Create a `FastRouteRouter` singleton instance for who need a `RouterInterface`
-
-```php
-RouterInterface::class => C::singleton(FastRouteRouter::class), // use Lit\Air\Configurator as C;
-```
-
-If you need multiple instance, use `C::instance` instead. There's a second parameter `array $extra`, we will discuss it later.
-
-#### Builder
-
-Write a builder method / closure to create you instance.
-
-```php
-Schema::class => function (SourceBuilder $sourceBuilder, TypeConfigDecorator $typeConfigDecorator) {
-    return BuildSchema::build($sourceBuilder->build(), $typeConfigDecorator);
-},
-```
-
-(the example comes from experimental GraphQL integration)
-
-We use a closure directly here, that means a singleton builder. If you need multiple instance, use `C::builder` instead.
-
-Also you can see the builder can have some parameter, which will be injected automatically.
-
-#### Value / Alias
-
-Use `C::value` to wrap a pre-populated value, we recommend you always do this. Currently, closure and array containing key `$` are required to be wrapped, but this may change in future.
-
-Use `C::alias` to get some other value from the DI container. This can be useful for embedded configuration ($extra). 
-
-#### Autowire and extra parameters
-
-DI factory will try to populate parameters of constructor and builder function required. The precedence is:
-
-1. Extra
-    + search the `$extra` parameter provided in `C::instance`/`C::singleton` first, the key `"$classname::"` in container secondly.
-    + for each array provided, search following key
-        1. the parameter name
-        2. the parameter classname (typehint)
-        3. the parameter index (?th parameter, zero-based)
-    + the value can be another configuration array value
-2. Defined configuration entry with parameter classname (typehinted) as key
-3. Try to populate instance by classname
-4. Default value of the parameter
-5. At last, throw a ContainerException
-
-### Setter Injection
-
-Constructor injection works in most cases, but **action** classes are often coupled with many other classes, constantly changing these dependencies, and may often be extended serveral times (making write all dependency in constructor function clumsy). We provide setter injection for this use case. Of course you can enable it in any other class, by adding a const `const SETTER_INJECTOR = SetterInjector::class;`
-
-We scan all the public method start with `inject` with one required parameter, then re-use the [autowire](#autowire-and-extra-parameters) process to populate dependency, and invoke the inject method. Below is how we inject `ResponseFactoryInterface` to our base action class.
-
-```php
-//in action class
-/**
- * @var ResponseFactoryInterface
- */
-protected $responseFactory;
-public function injectResponseFactory(ResponseFactoryInterface $responseFactory)
+abstract class BaseAction extends BoltAbstractAction
 {
-    $this->responseFactory = $responseFactory;
-}
+    use TwigViewBuilderTrait;
+    // ...
+```
+
+That's all setup, now we start write some template in `templates/index.twig`
+
+```twig
+Hello {{greetings}}
+```
+
+and change `HomeAction` to render it
+
+```php
+    protected function main(): ResponseInterface
+    {
+        // return new HtmlResponse(self::SOURCE);
+        return $this->twig('index.twig')->render([
+            'greetings' => 'TwigView',
+        ]);
+    }
 
 ```
 
-#### More details
+You should now be able to see your first page rendered by twig in http://127.0.0.1:3080
 
-There are more details about dependency injection at [guide about lit/air](air).
+## Model / Service / Business Logic
 
-## Runners
+We deliberately avoid to make any assumption here. You should write your own business logic in your class  and use DI (setter injector) to inject them in action class to use it.
 
-You should continue to [runners](runner.md) section to see options about how to actually run your application. 
+You may check our [todobackend](https://github.com/litphp/todobackend) implementation, which use repository pattern to decouple data layer (PDO) with business logic.
+

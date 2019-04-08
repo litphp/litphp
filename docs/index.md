@@ -18,6 +18,5 @@ LitPHP is a collection of components, here's a list of them.
 | **litphp/runner-zend-sapi** | run you bolt app with zend-diactoros on standard SAPI | litphp/bolt<br />zendframework/zend-diactoros |
 | **litphp/nexus** | utility / interface helps development | |
 
-To start write your application, you should read [quick start](quickstart.md).
+To start write your application, you should read [quick start](quickstart.md). There's a quick glance of [core concepts](concepts). To run your application, you should look at [this doc about runner](runner.md).
 
-To run your application, you should look at [this doc about runner](runner.md).
