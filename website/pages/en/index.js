@@ -189,7 +189,7 @@ const TryOut = () => (
         {[
             {
                 content: 'A quick taste of **bolt**, our micro framework',
-                image: imgUrl('hello.svg'),
+                image: imgUrl('hello.png'),
                 imageAlign: 'bottom',
                 imageLink: docUrl('quickstart'),
                 title: 'Try it out',
