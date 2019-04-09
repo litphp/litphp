@@ -32,11 +32,11 @@ Here we just continue with the fastroute, and next problem is where and how you 
 
 In the boilerplate, we just write a single method receiving `\FastRoute\RouteCollector`, and register all routes in there, this should be fine for small to medium project (maybe with help of `$routeCollector->addGroup`, or just breakdown into several smaller methods).
 
-Another paradigm of route discovery, which is "distributed" (compared with centralized route dsicovery where you manage all routes in one place). You may use some filesystem iterator (glob or SPL RecursiveDirectoryIterator or `symfony/finder`) to traverse through you action class file (or other source of route), then get the route info from it somehow, then register it to `\FastRoute\RouteCollector`
+Another paradigm of route discovery, which is "distributed" (compared with centralized route discovery where you manage all routes in one place). You may use some filesystem iterator (glob or SPL RecursiveDirectoryIterator or `symfony/finder`) to traverse through you action class file (or other source of route), then get the route info from it somehow, then register it to `\FastRoute\RouteCollector`
 
 ## View Layer
 
-If you are writing bare json api, the `$aciton->json()`  is there. But if your view layer is more complicated, here we talk about how to integrate a view engine that's already adapted to be used by lit application.
+If you are writing bare json api, the `$action->json()`  is there. But if your view layer is more complicated, here we talk about how to integrate a view engine that's already adapted to be used by lit application.
 
 First require the package
 
