@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Lit\Bolt\Router;
 
 use Lit\Air\Factory;
-use Lit\Voltage\Interfaces\RouterStubResolverInterface;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Handlers\FixedResponseHandler;
+use Lit\Voltage\Interfaces\RouterStubResolverInterface;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;

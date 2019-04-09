@@ -42,6 +42,7 @@ class ObjectKeyValue implements KeyValueInterface
 
         throw new \InvalidArgumentException();
     }
+
     /**
      * @param string $key
      * @param mixed $value

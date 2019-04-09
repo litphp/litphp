@@ -34,6 +34,7 @@ class Foo
         $this->splObjectStorage = $splObjectStorage;
         return $this;
     }
+
     public function shoudNotBeInjected(\SplObjectStorage $splObjectStorage)
     {
         throw new \Exception('method must prefixed "inject" to be injected');

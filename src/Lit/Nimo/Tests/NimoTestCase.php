@@ -43,8 +43,7 @@ abstract class NimoTestCase extends TestCase
         ServerRequestInterface $expectedRequest,
         ResponseInterface $response,
         string $assertion = 'same'
-    )
-    {
+    ) {
         return new class($expectedRequest, $response, $assertion) extends AbstractHandler
         {
             use RememberConstructorParamTrait;

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Middlewares;
 
-use Psr\Http\Server\RequestHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 abstract class AbstractConditionMiddleware extends AbstractWrapperMiddleware
 {

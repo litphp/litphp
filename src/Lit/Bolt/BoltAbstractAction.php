@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Injection\SetterInjector;
-use Lit\Bolt\Middlewares\RequestContext;
 use Lit\Bolt\Middlewares\EventsHub;
+use Lit\Bolt\Middlewares\RequestContext;
 use Lit\Voltage\AbstractAction;
 use Psr\Http\Message\ResponseFactoryInterface;
 

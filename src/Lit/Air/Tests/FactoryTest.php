@@ -182,6 +182,7 @@ class FactoryTest extends AirTestCase
     }
 }
 
-function identity($x) {
+function identity($x)
+{
     return $x;
 }

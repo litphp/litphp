@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Handlers;
 
-use Psr\Http\Server\RequestHandlerInterface;
 use Lit\Nimo\AbstractHandler;
 use Psr\Http\Message\ResponseInterface;
+use Psr\Http\Server\RequestHandlerInterface;
 
 class FixedResponseHandler extends AbstractHandler
 {

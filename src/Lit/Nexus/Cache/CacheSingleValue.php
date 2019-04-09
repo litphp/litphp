@@ -36,7 +36,7 @@ class CacheSingleValue implements SingleValueInterface
         $this->key = $key;
         $this->cacheItemPool = $cacheItemPool;
     }
-    
+
     public function get()
     {
         return $this->cacheItemPool->getItem($this->key)->get();

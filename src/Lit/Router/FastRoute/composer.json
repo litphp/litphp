@@ -1,29 +1,29 @@
 {
-    "name": "litphp/router-fast-route",
-    "description": "Lit router utilizing fast-route",
-    "require": {
-        "litphp/voltage": "^0.9@dev",
-        "litphp/nexus": "^0.9@dev",
-        "nikic/fast-route": "^1.3"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^6.5"
-    },
-    "license": "ISC",
-    "autoload": {
-        "psr-4": {
-            "Lit\\Router\\FastRoute\\": ""
-        }
-    },
-    "authors": [
-        {
-            "name": "McFog Wang",
-            "email": "mcfogw@gmail.com"
-        }
-    ],
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.9.x-dev"
-        }
+  "name": "litphp/router-fast-route",
+  "description": "Lit router utilizing fast-route",
+  "require": {
+    "litphp/voltage": "^0.9@dev",
+    "litphp/nexus": "^0.9@dev",
+    "nikic/fast-route": "^1.3"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  },
+  "license": "ISC",
+  "autoload": {
+    "psr-4": {
+      "Lit\\Router\\FastRoute\\": ""
     }
+  },
+  "authors": [
+    {
+      "name": "McFog Wang",
+      "email": "mcfogw@gmail.com"
+    }
+  ],
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.9.x-dev"
+    }
+  }
 }

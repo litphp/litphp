@@ -13,9 +13,9 @@ use FastRoute\RouteParser\Std as StdRouteParser;
 use Lit\Air\Configurator as C;
 use Lit\Bolt\Router\BoltStubResolver;
 use Lit\Bolt\RouterConfiguration;
+use Lit\Nexus\Void\VoidSingleValue;
 use Lit\Voltage\Interfaces\RouterInterface;
 use Lit\Voltage\Interfaces\RouterStubResolverInterface;
-use Lit\Nexus\Void\VoidSingleValue;
 
 class FastRouteConfiguration
 {

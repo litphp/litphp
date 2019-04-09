@@ -1,29 +1,29 @@
 {
-    "name": "litphp/nexus",
-    "description": "misc interfaces, traits, and derived classes for lit components",
-    "license": "MIT",
-    "authors": [
-        {
-            "name": "McFog Wang",
-            "email": "mcfogw@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "Lit\\Nexus\\": ""
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
-    },
-    "require": {
-    },
-    "suggest": {
-        "psr/cache-implementation": "convert cache instance to keyValue instance"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.9.x-dev"
-        }
+  "name": "litphp/nexus",
+  "description": "misc interfaces, traits, and derived classes for lit components",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "McFog Wang",
+      "email": "mcfogw@gmail.com"
     }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Lit\\Nexus\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "require": {
+  },
+  "suggest": {
+    "psr/cache-implementation": "convert cache instance to keyValue instance"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.9.x-dev"
+    }
+  }
 }

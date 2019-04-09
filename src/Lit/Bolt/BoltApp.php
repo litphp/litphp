@@ -7,9 +7,9 @@ namespace Lit\Bolt;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Bolt\Middlewares\EventsHub;
 use Lit\Bolt\Middlewares\RequestContext;
+use Lit\Nimo\MiddlewarePipe;
 use Lit\Voltage\App;
 use Lit\Voltage\Interfaces\ThrowableResponseInterface;
-use Lit\Nimo\MiddlewarePipe;
 use Psr\Http\Message\ResponseInterface;
 
 class BoltApp extends App

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
-use Lit\Air\Factory;
 use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\FixedValueRecipe;
 use Lit\Air\Recipe\RecipeInterface;

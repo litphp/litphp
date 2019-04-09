@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Lit\Router\FastRoute;
 
 use FastRoute\Dispatcher;
+use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Voltage\AbstractRouter;
 use Lit\Voltage\Interfaces\RouterStubResolverInterface;
-use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ServerRequestInterface;
 
 class FastRouteRouter extends AbstractRouter

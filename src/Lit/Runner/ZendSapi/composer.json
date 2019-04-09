@@ -1,34 +1,34 @@
 {
-    "name": "litphp/runner-zend-sapi",
-    "description": "",
-    "license": "ISC",
-    "authors": [
-        {
-            "name": "McFog Wang",
-            "email": "mcfogw@gmail.com"
-        }
-    ],
-    "prefer-stable": true,
-    "autoload": {
-        "psr-4": {
-            "Lit\\Runner\\ZendSapi\\": ""
-        },
-        "exclude-from-classmap": [
-            "/Tests/"
-        ]
-    },
-    "require": {
-        "http-interop/http-factory-diactoros": "^1.0",
-        "litphp/bolt": "^0.9@dev",
-        "zendframework/zend-diactoros": "^1.8",
-        "zendframework/zend-httphandlerrunner": "^1.0"
-    },
-    "require-dev": {
-        "phpunit/phpunit": "^6.5"
-    },
-    "extra": {
-        "branch-alias": {
-            "dev-master": "0.9.x-dev"
-        }
+  "name": "litphp/runner-zend-sapi",
+  "description": "",
+  "license": "ISC",
+  "authors": [
+    {
+      "name": "McFog Wang",
+      "email": "mcfogw@gmail.com"
     }
+  ],
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Lit\\Runner\\ZendSapi\\": ""
+    },
+    "exclude-from-classmap": [
+      "/Tests/"
+    ]
+  },
+  "require": {
+    "http-interop/http-factory-diactoros": "^1.0",
+    "litphp/bolt": "^0.9@dev",
+    "zendframework/zend-diactoros": "^1.8",
+    "zendframework/zend-httphandlerrunner": "^1.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^6.5"
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.9.x-dev"
+    }
+  }
 }

@@ -52,7 +52,7 @@ class Configurator
         return self::decorateSingleton(self::instance($classname, $extra));
     }
 
-    public static function decorateSingleton(array $config):array
+    public static function decorateSingleton(array $config): array
     {
         $config['decorator'] = $config['decorator'] ?? [];
         $config['decorator']['singleton'] = true;
@@ -60,7 +60,7 @@ class Configurator
         return $config;
     }
 
-    public static function decorateCallback(array $config, callable $callback):array
+    public static function decorateCallback(array $config, callable $callback): array
     {
         $config['decorator'] = $config['decorator'] ?? [];
         $config['decorator']['callback'] = $callback;
