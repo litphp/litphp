@@ -10,7 +10,7 @@ use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
 use Psr\Container\ContainerInterface;
 
-class Factory implements ContainerInterface
+class Factory
 {
     const CONTAINER_KEY = self::class;
     const KEY_INJECTORS = self::class . '::injectors';
@@ -211,21 +211,6 @@ class Factory implements ContainerInterface
 
         return $this;
     }
-
-    public function get($id)
-    {
-        if (!$this->has($id)) {
-            throw new ContainerException('unknown class ' . $id);
-        }
-
-        return $this->getOrInstantiate($id);
-    }
-
-    public function has($id)
-    {
-        return class_exists($id);
-    }
-
 
     /**
      * @param string $basename
