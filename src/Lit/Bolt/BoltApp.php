@@ -20,7 +20,7 @@ class BoltApp extends App
      */
     protected $eventsHub;
 
-    public function injectEventsHub(EventsHub $eventsHub)
+    public function injectEventsHub(?EventsHub $eventsHub)
     {
         $this->eventsHub = $eventsHub;
         return $this;
@@ -31,7 +31,7 @@ class BoltApp extends App
      */
     protected $requestContext;
 
-    public function injectRequestContext(RequestContext $requestContext)
+    public function injectRequestContext(?RequestContext $requestContext)
     {
         $this->requestContext = $requestContext;
         return $this;
@@ -48,10 +48,15 @@ class BoltApp extends App
     protected function main(): ResponseInterface
     {
         try {
-            $pipe = (new MiddlewarePipe())
-                ->append($this->requestContext)
-                ->append($this->eventsHub)
-                ->append($this->middlewarePipe);
+            $pipe = new MiddlewarePipe();
+            if (isset($this->requestContext)) {
+                $pipe->append($this->requestContext);
+            }
+            if (isset($this->eventsHub)) {
+                $pipe->append($this->eventsHub);
+            }
+            $pipe->append($this->middlewarePipe);
+
             return $pipe->process($this->request, $this->businessLogicHandler);
         } catch (ThrowableResponseInterface $e) {
             return $e->getResponse();
