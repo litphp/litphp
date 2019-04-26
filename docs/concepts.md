@@ -19,23 +19,11 @@ sidebar_label: Core concepts
 
 > Populate response in view
 
-**View**, by our definition, is a helper class which is responsible to generate response object for action class.
+**View**, by our definition, is a helper class which is responsible to generate response object for action class. It's more close to **Responder** in [ADR pattern](http://pmjones.io/adr/).
 
 ### Integrating template engine
 
-We are planning to provide some adapter view implementations for popular template engine, before that, you can find a simple example [here](voltage-view.md)
-
-If you are using some view other that `JsonView`, you should add a factory method for it in your base action class. 
-
-```php
-    // in action class
-    protected function plate(string $name)
-    {
-        $view = $this->plateViewFactory->produce();
-    
-        return $this->attachView($view->setTemplateName($name));
-    }
-```
+There's a working [twig integration](https://github.com/litphp/view-twig). If you want to work with other template engine, you may also look at it to see how to integrate a template engine.
 
 ## Router
 
@@ -227,4 +215,4 @@ There are more details about dependency injection at [guide about lit/air](air).
 
 ## Runners
 
-You should continue to [runners](runner.md) section to see options about how to actually run your application. 
+You should continue to [runners](runner.md) section to see options about how to actually run your 
