@@ -13,7 +13,7 @@ interface ReadableKeyValueInterface
      * @param string $key
      * @return mixed
      */
-    public function get($key);
+    public function get(string $key);
 
     /**
      * Return whether the key exists
@@ -21,5 +21,5 @@ interface ReadableKeyValueInterface
      * @param string $key
      * @return bool
      */
-    public function exists($key);
+    public function exists(string $key);
 }

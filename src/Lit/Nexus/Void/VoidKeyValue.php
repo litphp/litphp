@@ -16,22 +16,22 @@ class VoidKeyValue implements KeyValueInterface
 {
     use KeyValueTrait;
 
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         //noop
     }
 
-    public function delete($key)
+    public function delete(string $key)
     {
         //noop
     }
 
-    public function get($key)
+    public function get(string $key)
     {
         throw new \RuntimeException('cannot get from void KeyValue');
     }
 
-    public function exists($key)
+    public function exists(string $key)
     {
         return false;
     }

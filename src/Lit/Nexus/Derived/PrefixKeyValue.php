@@ -40,7 +40,7 @@ class PrefixKeyValue implements KeyValueInterface
      * @param mixed $value
      * @return void
      */
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         $this->store->set($this->key($key), $value);
     }
@@ -49,7 +49,7 @@ class PrefixKeyValue implements KeyValueInterface
      * @param string $key
      * @return void
      */
-    public function delete($key)
+    public function delete(string $key)
     {
         $this->store->delete($this->key($key));
     }
@@ -58,7 +58,7 @@ class PrefixKeyValue implements KeyValueInterface
      * @param string $key
      * @return mixed
      */
-    public function get($key)
+    public function get(string $key)
     {
         return $this->store->get($this->key($key));
     }
@@ -67,7 +67,7 @@ class PrefixKeyValue implements KeyValueInterface
      * @param string $key
      * @return bool
      */
-    public function exists($key)
+    public function exists(string $key)
     {
         return $this->store->exists($this->key($key));
     }

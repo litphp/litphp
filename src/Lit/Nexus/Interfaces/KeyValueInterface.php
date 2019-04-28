@@ -15,7 +15,7 @@ interface KeyValueInterface extends ReadableKeyValueInterface
      * @param mixed $value
      * @return void
      */
-    public function set($key, $value);
+    public function set(string $key, $value);
 
     /**
      * Remove value in the key
@@ -24,5 +24,5 @@ interface KeyValueInterface extends ReadableKeyValueInterface
      * @param string $key
      * @return void
      */
-    public function delete($key);
+    public function delete(string $key);
 }

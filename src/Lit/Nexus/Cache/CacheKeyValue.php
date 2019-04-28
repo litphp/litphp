@@ -30,7 +30,7 @@ class CacheKeyValue implements KeyValueInterface
         $this->expire = $expire;
     }
 
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         $item = $this->cacheItemPool->getItem($key);
         $item->set($value);
@@ -41,17 +41,17 @@ class CacheKeyValue implements KeyValueInterface
         $this->cacheItemPool->saveDeferred($item);
     }
 
-    public function delete($key)
+    public function delete(string $key)
     {
         $this->cacheItemPool->deleteItem($key);
     }
 
-    public function get($key)
+    public function get(string $key)
     {
         return $this->cacheItemPool->getItem($key)->get();
     }
 
-    public function exists($key)
+    public function exists(string $key)
     {
         return $this->cacheItemPool->getItem($key)->isHit();
     }
