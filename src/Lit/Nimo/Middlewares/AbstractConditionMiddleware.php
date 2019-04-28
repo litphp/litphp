@@ -21,5 +21,5 @@ abstract class AbstractConditionMiddleware extends AbstractWrapperMiddleware
         return $response;
     }
 
-    abstract public function shouldRun(ServerRequestInterface $request, RequestHandlerInterface $handler): bool;
+    abstract protected function shouldRun(ServerRequestInterface $request, RequestHandlerInterface $handler): bool;
 }

@@ -44,19 +44,19 @@ trait MiddlewareCompositeTrait
             ->prepend($middleware);
     }
 
-    public function when(RequestPredictionInterface $requestPrediction): MiddlewareInterface
+    public function when(RequestPredictionInterface $requestPrediction): PredictionWrapperMiddleware
     {
         /** @noinspection PhpParamsInspection */
         return new PredictionWrapperMiddleware($this, $requestPrediction);
     }
 
-    public function unless(RequestPredictionInterface $requestPrediction): MiddlewareInterface
+    public function unless(RequestPredictionInterface $requestPrediction): PredictionWrapperMiddleware
     {
         /** @noinspection PhpParamsInspection */
         return new PredictionWrapperMiddleware($this, $requestPrediction, true);
     }
 
-    public function catch(callable $catcher, string $catchClass = \Throwable::class): MiddlewareInterface
+    public function catch(callable $catcher, string $catchClass = \Throwable::class): CatchMiddleware
     {
         return new CatchMiddleware($this, $catcher, $catchClass);
     }

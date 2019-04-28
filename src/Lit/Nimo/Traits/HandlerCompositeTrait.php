@@ -11,7 +11,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 trait HandlerCompositeTrait
 {
-    public function includeMiddleware(MiddlewareInterface $middleware): RequestHandlerInterface
+    public function includeMiddleware(MiddlewareInterface $middleware): MiddlewareIncluedHandler
     {
         /**
          * @var RequestHandlerInterface $this
@@ -19,7 +19,7 @@ trait HandlerCompositeTrait
         return new MiddlewareIncluedHandler($this, $middleware);
     }
 
-    public function catch(callable $catcher, string $catchClass = \Throwable::class): RequestHandlerInterface
+    public function catch(callable $catcher, string $catchClass = \Throwable::class): MiddlewareIncluedHandler
     {
         return $this->includeMiddleware(NoopMiddleware::instance()->catch($catcher, $catchClass));
     }

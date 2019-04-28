@@ -30,7 +30,7 @@ class PredictionWrapperMiddleware extends AbstractConditionMiddleware
         $this->reverted = $reverted;
     }
 
-    public function shouldRun(ServerRequestInterface $request, RequestHandlerInterface $handler): bool
+    protected function shouldRun(ServerRequestInterface $request, RequestHandlerInterface $handler): bool
     {
         if ($this->reverted) {
             return !$this->requestPrediction->isTrue($request);

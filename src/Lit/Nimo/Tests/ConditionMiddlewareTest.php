@@ -32,7 +32,7 @@ class ConditionMiddlewareTest extends NimoTestCase
                 $this->params = [$request, $handler];
             }
 
-            public function shouldRun(ServerRequestInterface $request, RequestHandlerInterface $handler): bool
+            protected function shouldRun(ServerRequestInterface $request, RequestHandlerInterface $handler): bool
             {
                 [$request, $handler] = $this->params;
                 Assert::assertSame($request, $this->request);
