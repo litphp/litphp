@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Handlers;
 
-use Lit\Nimo\AbstractHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 

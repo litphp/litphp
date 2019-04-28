@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Tests;
 
-use Lit\Nimo\AbstractHandler;
-use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Handlers\AbstractHandler;
 use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Middlewares\AbstractMiddleware;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;

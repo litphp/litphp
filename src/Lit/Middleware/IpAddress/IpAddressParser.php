@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Middleware\IpAddress;
 
-use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Middlewares\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Tests;
 
-use Lit\Nimo\AbstractMiddleware;
 use Lit\Nimo\Middlewares\AbstractConditionMiddleware;
+use Lit\Nimo\Middlewares\AbstractMiddleware;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

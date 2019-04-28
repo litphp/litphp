@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lit\Nimo;
+namespace Lit\Nimo\Middlewares;
 
 use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ResponseInterface;

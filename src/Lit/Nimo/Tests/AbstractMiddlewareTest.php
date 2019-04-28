@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Tests;
 
-use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Middlewares\AbstractMiddleware;
 
 class AbstractMiddlewareTest extends NimoTestCase
 {

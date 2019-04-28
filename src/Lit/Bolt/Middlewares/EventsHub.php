@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lit\Bolt\Middlewares;
 
 use Lit\Bolt\BoltEvent;
-use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Middlewares\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\EventDispatcher\EventDispatcher;

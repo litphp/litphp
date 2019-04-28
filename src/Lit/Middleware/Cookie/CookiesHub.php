@@ -7,7 +7,7 @@ namespace Lit\Middleware\Cookie;
 use Dflydev\FigCookies\Cookies;
 use Dflydev\FigCookies\SetCookie;
 use Dflydev\FigCookies\SetCookies;
-use Lit\Nimo\AbstractMiddleware;
+use Lit\Nimo\Middlewares\AbstractMiddleware;
 use Psr\Http\Message\ResponseInterface;
 
 class CookiesHub extends AbstractMiddleware

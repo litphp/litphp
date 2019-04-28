@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lit\Nimo\Traits;
 
 use Lit\Nimo\Interfaces\RequestPredictionInterface;
-use Lit\Nimo\MiddlewarePipe;
 use Lit\Nimo\Middlewares\CatchMiddleware;
+use Lit\Nimo\Middlewares\MiddlewarePipe;
 use Lit\Nimo\Middlewares\PredictionWrapperMiddleware;
 use Psr\Http\Server\MiddlewareInterface;
 

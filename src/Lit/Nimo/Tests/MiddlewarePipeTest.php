@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Tests;
 
-use Lit\Nimo\MiddlewarePipe;
+use Lit\Nimo\Middlewares\MiddlewarePipe;
 
 class MiddlewarePipeTest extends NimoTestCase
 {
