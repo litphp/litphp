@@ -6,8 +6,11 @@ namespace Lit\Router\FastRoute;
 
 use FastRoute\Dispatcher;
 use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Router\FastRoute\ArgumentHandler\ArgumentHandlerInterface;
+use Lit\Router\FastRoute\ArgumentHandler\RouteArgumentBag;
 use Lit\Voltage\AbstractRouter;
 use Lit\Voltage\Interfaces\RouterStubResolverInterface;
+use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
 class FastRouteRouter extends AbstractRouter
@@ -20,18 +23,23 @@ class FastRouteRouter extends AbstractRouter
      * @var mixed
      */
     protected $methodNotAllowed;
+    /**
+     * @var ArgumentHandlerInterface
+     */
+    protected $argumentHandler;
 
     public function __construct(
         Dispatcher $dispatcher,
         RouterStubResolverInterface $stubResolver,
-        $methodNotAllowed = null,
-        $notFound = null
+        ArgumentHandlerInterface $argumentHandler = null,
+        $notFound = null,
+        $methodNotAllowed = null
     ) {
         parent::__construct($stubResolver, $notFound);
         $this->dispatcher = $dispatcher;
         $this->methodNotAllowed = $methodNotAllowed;
+        $this->argumentHandler = $argumentHandler ?: new RouteArgumentBag();
     }
-
 
     protected function findStub(ServerRequestInterface $request)
     {
@@ -73,13 +81,12 @@ class FastRouteRouter extends AbstractRouter
 
     protected function proxy($stub, array $vars)
     {
-        $handle = function (ServerRequestInterface $request) use ($stub, $vars) {
-            foreach ($vars as $key => $val) {
-                $request = $request->withAttribute($key, $val);
-            }
+        $handle = function (ServerRequestInterface $request) use ($stub, $vars): ResponseInterface {
             $handler = $this->resolve($stub);
+            $request = $this->argumentHandler->attachArguments($request, $vars);
+            $response = $handler->handle($request);
 
-            return $handler->handle($request);
+            return $response;
         };
 
         return CallableHandler::wrap($handle);
