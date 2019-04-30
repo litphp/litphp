@@ -8,6 +8,7 @@ use Lit\Air\Factory;
 use Lit\Bolt\BoltApp;
 use Lit\Bolt\Router\StubResolveException;
 use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Router\FastRoute\ArgumentHandler\RouteArgumentBag;
 use Lit\Router\FastRoute\FastRouteConfiguration;
 use Lit\Router\FastRoute\FastRouteRouter;
 use Lit\Voltage\Interfaces\RouterInterface;
@@ -32,7 +33,7 @@ class BoltRouterAppTest extends BoltTestCase
                 ArraySerializer::toArray($request),
                 ArraySerializer::toArray($actualRequest)
             );
-            self::assertSame('42', $actualRequest->getAttribute('id'));
+            self::assertSame('42', RouteArgumentBag::fromRequest($actualRequest)->get('id'));
 
             return $response;
         });
