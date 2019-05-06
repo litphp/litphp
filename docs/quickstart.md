@@ -82,6 +82,8 @@ and change `HomeAction` to render it
 
 You should now be able to see your first page rendered by twig in http://127.0.0.1:3080
 
+We also provide [view-php](https://github.com/litphp/view-php) and [view-plates](https://github.com/litphp/view-plates). Both of them works similarly.
+
 ## Model / Service / Business Logic
 
 We deliberately avoid to make any assumption here. You should write your own business logic in your class  and use DI (setter injector) to inject them in action class to use it.

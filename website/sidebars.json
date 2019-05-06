@@ -23,6 +23,9 @@
       "air-dynamic",
       "air-di",
       "air-config"
+    ],
+    "Bolt": [
+      "bolt"
     ]
   }
 }

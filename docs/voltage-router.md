@@ -4,7 +4,7 @@ title: Router
 sidebar_label: Router
 ---
 
-In this article we basicly talking about design concepts of router. For a quick glance of how to use, /* add some link here later */
+In this article we basicly talking about design concepts of router. For a quick glance of how to use, check our [quickstart](quickstart) guide.
 
 
 Routing is about answering "What should I do". There are two core concept in our routing machanism: **router** and **dispatcher**.
