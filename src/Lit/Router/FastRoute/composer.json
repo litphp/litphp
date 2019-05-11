@@ -2,13 +2,15 @@
   "name": "litphp/router-fast-route",
   "description": "Lit router utilizing fast-route",
   "require": {
-    "litphp/voltage": "^0.9@rc",
-    "litphp/nexus": "^0.9@rc",
+    "litphp/voltage": "^0.9",
+    "litphp/nexus": "^0.9",
     "nikic/fast-route": "^1.3"
   },
   "require-dev": {
     "phpunit/phpunit": "^6.5"
   },
+  "minimum-stability": "dev",
+  "prefer-stable": true,
   "license": "ISC",
   "autoload": {
     "psr-4": {
