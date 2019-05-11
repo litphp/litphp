@@ -18,7 +18,6 @@
         "psr/http-factory": "^1.0",
         "psr/http-server-middleware": "^1.0",
         "psr/http-server-handler": "^1.0",
-        "dflydev/fig-cookies": "^1.0",
         "zendframework/zend-diactoros": "^1.8",
         "zendframework/zend-httphandlerrunner": "^1.0",
         "http-interop/http-factory-diactoros": "^1.0"
@@ -31,8 +30,6 @@
         "litphp/air": "self.version",
         "litphp/bolt": "self.version",
         "litphp/voltage": "self.version",
-        "litphp/middleware-ip-address": "self.version",
-        "litphp/middleware-cookie": "self.version",
         "litphp/nexus": "self.version",
         "litphp/nimo": "self.version",
         "litphp/router-fast-route": "self.version",
