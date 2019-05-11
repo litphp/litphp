@@ -1,11 +1,13 @@
 Lit Air
 =======
 
+> Dependency Injection for Lit
+
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/litphp/air/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/litphp/air/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/litphp/air/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/litphp/air/?branch=master)
 [![Build Status](https://scrutinizer-ci.com/g/litphp/air/badges/build.png?b=master)](https://scrutinizer-ci.com/g/litphp/air/build-status/master)
 
-> Dependency Injection for Lit
+[Documentation](http://litphp.github.io/docs/air)
 
 ### Features
 
@@ -41,11 +43,3 @@ Lit Air
   - php array
   - ​json/yaml (not yet)
 
-### Todo
-
-- [x] basic container implement
-- [x] autowire (constructor injection)
-- [x] method injection
-- [x] setter injection
-- [x] test coverage
-- [ ] documentation
