@@ -2,7 +2,6 @@
 id: bolt
 title: Introduction
 sidebar_label: Introduction
-
 ---
 
 Bolt is the microframework of litphp, it's a thin wrapper over `litphp/air` + `litphp/voltage`, aims to be a good start point of any project.
