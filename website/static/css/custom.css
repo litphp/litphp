@@ -36,3 +36,8 @@
 .darkBackground {
     background-color: #474747;
 }
+
+.separateOnPageNav .wrapper,
+.separateOnPageNav .headerWrapper.wrapper {
+    max-width: 1600px;
+}
