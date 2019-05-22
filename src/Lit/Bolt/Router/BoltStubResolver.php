@@ -30,7 +30,7 @@ class BoltStubResolver implements RouterStubResolverInterface
     }
 
     /**
-     * @param $stub
+     * @param mixed $stub
      * @return RequestHandlerInterface
      * @throws \ReflectionException
      */

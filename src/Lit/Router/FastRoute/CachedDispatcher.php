@@ -29,7 +29,7 @@ class CachedDispatcher implements Dispatcher
      */
     protected $dataGenerator;
     /**
-     * @var
+     * @var string
      */
     protected $dispatcherClass;
     /**

@@ -27,14 +27,14 @@ class SimpleTemplate
     protected $compiledCode;
 
     /**
-     * @param $templateCode
+     * @param string $templateCode
      */
-    protected function __construct($templateCode)
+    protected function __construct(string $templateCode)
     {
         $this->code = $templateCode;
     }
 
-    public static function instance($templateCode)
+    public static function instance(string $templateCode)
     {
         return new static($templateCode);
     }
@@ -60,6 +60,37 @@ class SimpleTemplate
         }
 
         return $this->compiledCode;
+    }
+
+    protected function resolve($match)
+    {
+        list(, $statement) = $match;
+
+        $param = preg_replace('#^\S+\s*#', '', $statement);
+        $params = preg_split('#\s+#', $statement);
+        assert($params);
+        $tag = array_shift($params);
+
+        $result = self::parseShortTag($tag{0}, $statement);
+        if ($result !== false) {
+            return $result;
+        }
+
+        foreach ($this->rule as $t => $rule) {
+            if ($t == $tag) {
+                $rule = str_replace('%0', $param, $rule);
+                $k = 0;
+                if (count($params) > 0) {
+                    foreach ($params as $p) {
+                        $rule = str_replace('%' . ++$k, $p, $rule);
+                    }
+                }
+
+                return $rule . "\n";
+            }
+        }
+
+        throw new \Exception('unimplemented');
     }
 
     protected static function parseShortTag($initial, $statement)
@@ -96,36 +127,5 @@ class SimpleTemplate
             default:
                 return false;
         }
-    }
-
-    protected function resolve($match)
-    {
-        list(, $statement) = $match;
-
-        $param = preg_replace('#^\S+\s*#', '', $statement);
-        $params = preg_split('#\s+#', $statement);
-        assert($params);
-        $tag = array_shift($params);
-
-        $result = self::parseShortTag($tag{0}, $statement);
-        if ($result !== false) {
-            return $result;
-        }
-
-        foreach ($this->rule as $t => $rule) {
-            if ($t == $tag) {
-                $rule = str_replace('%0', $param, $rule);
-                $k = 0;
-                if (count($params) > 0) {
-                    foreach ($params as $p) {
-                        $rule = str_replace('%' . ++$k, $p, $rule);
-                    }
-                }
-
-                return $rule . "\n";
-            }
-        }
-
-        throw new \Exception('unimplemented');
     }
 }

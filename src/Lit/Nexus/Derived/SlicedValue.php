@@ -36,7 +36,7 @@ class SlicedValue implements SingleValueInterface
      * @param string $key
      * @return static
      */
-    public static function slice(KeyValueInterface $keyValue, $key)
+    public static function slice(KeyValueInterface $keyValue, string $key)
     {
         return new static($keyValue, $key);
     }

@@ -15,7 +15,7 @@ trait MiddlewareCompositeTrait
     /**
      * append $middleware after this one, return the new $middlewareStack
      *
-     * @param $middleware
+     * @param MiddlewareInterface $middleware
      * @return MiddlewarePipe
      */
     public function append(MiddlewareInterface $middleware): MiddlewarePipe
@@ -31,7 +31,7 @@ trait MiddlewareCompositeTrait
     /**
      * prepend $middleware before this one, return the new $middlewareStack
      *
-     * @param $middleware
+     * @param MiddlewareInterface $middleware
      * @return MiddlewarePipe
      */
     public function prepend(MiddlewareInterface $middleware): MiddlewarePipe

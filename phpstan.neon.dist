@@ -1,7 +1,9 @@
 parameters:
   paths:
     - src
-  level: 1
+  level: 2
   excludes_analyse:
     - %currentWorkingDirectory%/src/Lit/Voltage/_example
     - %currentWorkingDirectory%/src/Lit/Bolt/_example
+  ignoreErrors:
+    - '#.+Psr\\Container\\ContainerExceptionInterface.+is not subtype of Throwable.*#'

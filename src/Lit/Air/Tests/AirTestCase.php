@@ -33,9 +33,9 @@ abstract class AirTestCase extends TestCase
     }
 
     /**
-     * @param $key
+     * @param string $key
      */
-    protected function assertKeyUnexist($key): void
+    protected function assertKeyUnexist(string $key): void
     {
         self::assertFalse($this->container->has($key), '->has should return false before the key set');
         try {
@@ -50,10 +50,10 @@ abstract class AirTestCase extends TestCase
     }
 
     /**
-     * @param $key
-     * @param $obj
+     * @param string $key
+     * @param mixed $obj
      */
-    protected function assertKeyExistWithValue($key, $obj): void
+    protected function assertKeyExistWithValue(string $key, $obj): void
     {
         self::assertTrue($this->container->has($key), '->has should return true after key set');
         self::assertSame($obj, $this->container->get($key), '->get should return the object previously set');

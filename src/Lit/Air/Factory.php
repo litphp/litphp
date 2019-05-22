@@ -173,7 +173,7 @@ class Factory
     }
 
     /**
-     * @param $basename
+     * @param string $basename
      * @param array $keys
      * @param null|string $className
      * @param array $extra
@@ -181,7 +181,7 @@ class Factory
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
      */
-    public function resolveDependency($basename, array $keys, ?string $className = null, array $extra = [])
+    public function resolveDependency(string $basename, array $keys, ?string $className = null, array $extra = [])
     {
         if ($value = $this->produceFromClass($basename, $keys, $extra)) {
             return $value[0];
@@ -260,7 +260,7 @@ class Factory
     }
 
     /**
-     * @param $basename
+     * @param string $basename
      * @param \ReflectionParameter $parameter
      * @param array $extraParameters
      * @return mixed|object

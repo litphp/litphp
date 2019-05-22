@@ -29,7 +29,7 @@ class BoltActionTest extends BoltTestCase
         $reflectionProperty = $reflectionObject->getProperty('responseFactory');
         self::assertEquals(\ReflectionProperty::IS_PROTECTED, $reflectionProperty->getModifiers());
         $reflectionProperty->setAccessible(true);
-        self::assertSame(null, $reflectionProperty->getValue($action));
+        self::assertNull($reflectionProperty->getValue($action));
 
         $action->injectResponseFactory($factory);
         self::assertSame($factory, $reflectionProperty->getValue($action));

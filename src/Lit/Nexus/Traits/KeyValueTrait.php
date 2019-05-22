@@ -23,10 +23,10 @@ trait KeyValueTrait
     }
 
     /**
-     * @param $key
+     * @param string $key
      * @return SlicedValue
      */
-    public function slice($key)
+    public function slice(string $key)
     {
         /**
          * @var KeyValueInterface $this
