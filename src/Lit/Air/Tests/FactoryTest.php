@@ -164,7 +164,8 @@ class FactoryTest extends AirTestCase
             self::fail('should not success');
         } catch (CircularDependencyException $exception) {
             $stack = $exception->getStack();
-            $this->assertInternalType('array', $stack);
+//            $this->assertInternalType('array', $stack);
+            self::assertIsArray($stack);
         }
     }
 
@@ -174,7 +175,7 @@ class FactoryTest extends AirTestCase
         return new \ArrayObject([1, 2, 3]);
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
 

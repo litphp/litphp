@@ -16,7 +16,7 @@ abstract class BoltTestCase extends NimoTestCase
      */
     protected $container;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = BoltContainerConfiguration::createContainer(BoltZendConfiguration::default());

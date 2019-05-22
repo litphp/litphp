@@ -26,7 +26,7 @@ abstract class AirTestCase extends TestCase
         return md5(uniqid());
     }
 
-    protected function setUp()
+    protected function setUp(): void
     {
         parent::setUp();
         $this->container = new Container();

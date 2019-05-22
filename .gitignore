@@ -4,3 +4,4 @@ composer.lock
 node_modules
 website/yarn.lock
 website/build/
+.phpunit.result.cache
