@@ -176,10 +176,12 @@ class Configurator
             $valueDecorator = $value['decorator'] ?? null;
             unset($value['decorator']);
 
+            $builder = [Container::class, $type];
+            assert(is_callable($builder));
             /**
              * @var RecipeInterface $recipe
              */
-            $recipe = call_user_func_array([Container::class, $type], $value);
+            $recipe = call_user_func_array($builder, $value);
 
             if ($valueDecorator) {
                 $recipe = self::wrapRecipeWithDecorators($valueDecorator, $recipe);
@@ -200,9 +202,13 @@ class Configurator
     {
         foreach ($decorators as $name => $option) {
             if (isset(self::$decorators[$name])) {
-                $recipe = call_user_func([self::$decorators[$name], 'decorate'], $recipe);
+                $decorateFn = [self::$decorators[$name], 'decorate'];
+                assert(is_callable($decorateFn));
+                $recipe = call_user_func($decorateFn, $recipe);
             } elseif (is_subclass_of($name, AbstractRecipeDecorator::class)) {
-                $recipe = call_user_func([$name, 'decorate'], $recipe);
+                $decorateFn = [$name, 'decorate'];
+                assert(is_callable($decorateFn));
+                $recipe = call_user_func($decorateFn, $recipe);
             } else {
                 throw new ContainerException("cannot understand recipe decorator [$name]");
             }

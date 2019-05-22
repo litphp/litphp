@@ -14,8 +14,7 @@ trait AttachToRequestTrait
      */
     public static function fromRequest(ServerRequestInterface $request)
     {
-        /** @noinspection PhpUndefinedClassConstantInspection */
-        $key = defined('static::ATTR_KEY') ? static::ATTR_KEY : static::class;
+        $key = defined('static::ATTR_KEY') ? constant('static::ATTR_KEY') : static::class;
         if (!$instance = $request->getAttribute($key)) {
             throw new \RuntimeException('attribute empty:' . $key);
         }
@@ -32,18 +31,21 @@ trait AttachToRequestTrait
      */
     protected function attachToRequest(ServerRequestInterface $request = null): ServerRequestInterface
     {
-        /**
-         * @var ServerRequestInterface $request
-         */
         /** @noinspection PhpUndefinedFieldInspection */
-        $request = $request ?: $this->request;
+        if (isset($this->request)) {
+            $request = $request ?: $this->request;
+        }
+        assert($request instanceof ServerRequestInterface);
 
-        /** @noinspection PhpUndefinedClassConstantInspection */
-        $key = defined('static::ATTR_KEY') ? static::ATTR_KEY : static::class;
+        $key = defined('static::ATTR_KEY') ? constant('static::ATTR_KEY') : static::class;
         if ($request->getAttribute($key)) {
             throw new \RuntimeException('attribute collision:' . $key);
         }
 
-        return $this->request = $request->withAttribute($key, $this);
+        $request = $request->withAttribute($key, $this);
+        if (isset($this->request)) {
+            $this->request = $request;
+        }
+        return $request;
     }
 }

@@ -17,8 +17,8 @@ class OffsetKeyValueTest extends TestCase
         self::assertSame($arr['key'], $kv->get('key'));
 
         self::assertFalse($kv->exists(42));
+        $level = error_reporting(E_NOTICE);
         try {
-            $level = error_reporting(E_NOTICE);
             $kv->get(42);
             self::fail('should throw');
         } catch (\Throwable $e) {
