@@ -87,6 +87,5 @@ class BoltRouterAppTest extends BoltTestCase
         } catch (StubResolveException $exception) {
             self::assertSame(404, $exception->getResponse()->getStatusCode());
         }
-
     }
 }

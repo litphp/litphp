@@ -21,6 +21,4 @@ class FixedResponseMiddlewareTest extends NimoTestCase
 
         $this->assertSame($answerRes, $returnValue);
     }
-
-
 }

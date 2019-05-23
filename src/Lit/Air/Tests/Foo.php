@@ -65,5 +65,4 @@ class Foo
     {
         return $this->splObjectStorage;
     }
-
 }

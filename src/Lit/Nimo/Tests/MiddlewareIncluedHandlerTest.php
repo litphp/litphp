@@ -24,6 +24,5 @@ class MiddlewareIncluedHandlerTest extends NimoTestCase
 
         $actualResponse = $handler->handle($request);
         Assert::assertSame($response, $actualResponse);
-
     }
 }

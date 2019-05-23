@@ -17,7 +17,12 @@ class CatchMiddlewareTest extends NimoTestCase
         $response = $this->getResponseMock();
         $request = $this->getRequestMock();
 
-        $catcher = CatchMiddleware::catcher(function ($e, $req, $hdl, $mdw) use (
+        $catcher = CatchMiddleware::catcher(function (
+            $e,
+            $req,
+            $hdl,
+            $mdw
+        ) use (
             $response,
             $runtimeException,
             $request,
@@ -34,5 +39,4 @@ class CatchMiddlewareTest extends NimoTestCase
         $result = $catcher->process($request, $handler);
         self::assertSame($response, $result);
     }
-
 }

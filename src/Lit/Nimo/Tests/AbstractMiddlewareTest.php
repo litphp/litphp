@@ -23,5 +23,4 @@ class AbstractMiddlewareTest extends NimoTestCase
 
         $this->assertSame($answerRes, $returnValue);
     }
-
 }

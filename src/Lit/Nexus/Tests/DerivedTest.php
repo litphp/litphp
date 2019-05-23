@@ -48,5 +48,4 @@ class DerivedTest extends TestCase
         self::assertTrue($freezedVal->exists());
         self::assertSame($val->get(), $freezedVal->get());
     }
-
 }

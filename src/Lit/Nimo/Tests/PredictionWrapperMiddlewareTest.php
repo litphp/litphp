@@ -37,7 +37,6 @@ class PredictionWrapperMiddlewareTest extends NimoTestCase
             $inner->unless($prediction)->process($req, $hdl);
             self::fail('should throw');
         } catch (\Exception $e) {
-
         }
     }
 

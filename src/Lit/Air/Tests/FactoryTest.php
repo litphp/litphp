@@ -36,7 +36,6 @@ class FactoryTest extends AirTestCase
             $this->factory->invoke([Foo::class, 'identity']);
             throw new \Exception('should not reach here');
         } catch (ContainerException $e) {
-
         }
         $this->container->set('!Lit\Air\Tests\Foo::identity::', [$obj]);
         $returnValue = $this->factory->invoke([Foo::class, 'identity']);
@@ -46,7 +45,6 @@ class FactoryTest extends AirTestCase
             $this->factory->invoke('is_int');
             throw new \Exception('should not reach here');
         } catch (ContainerException $e) {
-
         }
         $this->container->set('!is_int::', [42]);
         self::assertTrue($this->factory->invoke('is_int'));
@@ -56,7 +54,6 @@ class FactoryTest extends AirTestCase
             $this->factory->invoke($funcname);
             throw new \Exception('should not reach here');
         } catch (ContainerException $e) {
-
         }
         $this->container->set(sprintf('!%s::', $funcname), [$obj]);
         $returnValue = $this->factory->invoke($funcname);
@@ -76,7 +73,7 @@ class FactoryTest extends AirTestCase
         $returnValue = $this->factory->invoke([
             new class
             {
-                function foo($foo = 42)
+                public function foo($foo = 42)
                 {
                     return $foo;
                 }
@@ -153,7 +150,7 @@ class FactoryTest extends AirTestCase
     {
         self::assertEquals(2, 1 + 1);
         try {
-            $this->container->define(\ArrayObject::class, Container::builder([$this, '_circularFoo']))
+            $this->container->define(\ArrayObject::class, Container::builder([$this, 'circularFoo']))
                 ->define(Foo::class, Container::autowire(null, [
                     'bar' => Container::builder(function (\ArrayObject $object) {
                         return get_class($object);
@@ -169,7 +166,7 @@ class FactoryTest extends AirTestCase
         }
     }
 
-    public function _circularFoo(Foo $foo)
+    public function circularFoo(Foo $foo)
     {
         $this->assertInstanceOf(Foo::class, $foo);
         return new \ArrayObject([1, 2, 3]);

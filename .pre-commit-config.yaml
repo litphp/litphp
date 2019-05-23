@@ -1,0 +1,11 @@
+- repo: /Users/mcfog/Projects/lit/pre-commit-php
+  sha: 0f011f8
+  hooks:
+    - id: php-cbf
+      files: \.(php)$
+    - id: php-cs
+      files: \.(php)$
+    - id: php-unit
+      files: \.(php)$
+    - id: php-stan
+      files: \.(php)$

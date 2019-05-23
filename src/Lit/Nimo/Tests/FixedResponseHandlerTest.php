@@ -20,6 +20,4 @@ class FixedResponseHandlerTest extends NimoTestCase
 
         $this->assertSame($answerRes, $returnValue);
     }
-
-
 }
