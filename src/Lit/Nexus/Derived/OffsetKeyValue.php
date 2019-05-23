@@ -15,6 +15,10 @@ class OffsetKeyValue implements KeyValueInterface
 
     protected function __construct($content)
     {
+        if (!($content instanceof \ArrayAccess) && !is_array($content)) {
+            throw new \InvalidArgumentException();
+        }
+
         $this->content = $content;
     }
 
@@ -28,11 +32,7 @@ class OffsetKeyValue implements KeyValueInterface
             return $content;
         }
 
-        if ($content instanceof \ArrayAccess || is_array($content)) {
-            return new static($content);
-        }
-
-        throw new \InvalidArgumentException();
+        return new static($content);
     }
 
     /**

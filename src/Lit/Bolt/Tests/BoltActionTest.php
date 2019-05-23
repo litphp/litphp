@@ -5,6 +5,7 @@ namespace Lit\Bolt\Tests;
 use Http\Factory\Diactoros\ResponseFactory;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Bolt\BoltAbstractAction;
+use PHPUnit\Framework\MockObject\MockObject;
 use Zend\Diactoros\Response\EmptyResponse;
 use Zend\Diactoros\ServerRequest;
 
@@ -15,6 +16,7 @@ class BoltActionTest extends BoltTestCase
         $request = new ServerRequest();
         $response = new EmptyResponse();
 
+        /** @var BoltAbstractAction|MockObject $action */
         $action = $this->getMockForAbstractClass(BoltAbstractAction::class);
         $action->method('main')
             ->with()
@@ -32,6 +34,8 @@ class BoltActionTest extends BoltTestCase
         self::assertNull($reflectionProperty->getValue($action));
 
         $action->injectResponseFactory($factory);
-        self::assertSame($factory, $reflectionProperty->getValue($action));
+        /** @var ResponseFactory $propValue */
+        $propValue = $reflectionProperty->getValue($action);
+        self::assertSame($factory, $propValue);
     }
 }

@@ -24,7 +24,7 @@ class Container implements ContainerInterface
     protected $local = [];
 
     /**
-     * @var ContainerInterface
+     * @var ContainerInterface|null
      */
     protected $delegateContainer;
 

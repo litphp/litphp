@@ -6,6 +6,7 @@ namespace Lit\Air\Tests;
 
 use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\BuilderRecipe;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class BuilderRecipeTest extends AirTestCase
 {
@@ -13,20 +14,22 @@ class BuilderRecipeTest extends AirTestCase
     {
         $key = self::randKey();
         $obj = new \stdClass();
-        $counter = 0;
-        $factory = function () use ($obj, &$counter) {
-            $counter++;
-            return $obj;
-        };
-        $stub = Container::builder($factory);
+
+        /** @var MockObject $mock */
+        $mock = $this
+            ->getMockBuilder('mock')
+            ->setMethods(['factory'])
+            ->getMock();
+        $mock->expects($this->once())
+            ->method('factory')
+            ->will($this->returnValue($obj));
+
+        $stub = Container::builder([$mock, 'factory']);
 
         self::assertTrue($stub instanceof BuilderRecipe);
 
         $this->container->define($key, $stub);
 
         $this->assertKeyExistWithValue($key, $obj);
-        self::assertSame(1, $counter, 'factory should be invoked once');
-        $this->container->get($key);
-        self::assertSame(2, $counter, 'factory should be invoked twice');
     }
 }
