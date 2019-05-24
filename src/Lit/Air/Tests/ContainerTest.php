@@ -7,6 +7,7 @@ namespace Lit\Air\Tests;
 use Lit\Air\Psr\Container;
 use Lit\Air\Recipe\FixedValueRecipe;
 use Lit\Air\Recipe\RecipeInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class ContainerTest extends AirTestCase
 {
@@ -43,6 +44,7 @@ class ContainerTest extends AirTestCase
     public function testRecipeManagement()
     {
         $key = self::randKey();
+        /** @var RecipeInterface|MockObject $recipe */
         $recipe = self::createMock(RecipeInterface::class);
         $recipe->method('resolve')
             ->with($this->container, $key)

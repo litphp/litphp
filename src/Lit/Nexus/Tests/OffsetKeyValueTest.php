@@ -13,18 +13,18 @@ class OffsetKeyValueTest extends TestCase
 
         $kv = OffsetKeyValue::wrap($arr);
 
-        self::assertSame($arr[0], $kv->get(0));
+        self::assertSame($arr[0], $kv->get('0'));
         self::assertSame($arr['key'], $kv->get('key'));
 
-        self::assertFalse($kv->exists(42));
+        self::assertFalse($kv->exists('42'));
         $level = error_reporting(E_NOTICE);
         try {
-            $kv->get(42);
+            $kv->get('42');
             self::fail('should throw');
         } catch (\Throwable $e) {
         }
         error_reporting(E_ALL ^ E_NOTICE);
-        $kv->get(42);
+        $kv->get('42');
 
         error_reporting($level);
 

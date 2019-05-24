@@ -6,12 +6,9 @@ namespace Lit\Nexus\Derived;
 
 use Lit\Nexus\Interfaces\KeyValueInterface;
 use Lit\Nexus\Interfaces\ReadableKeyValueInterface;
-use Lit\Nexus\Traits\KeyValueTrait;
 
 class FrozenKeyValue implements ReadableKeyValueInterface
 {
-    use KeyValueTrait;
-
     /**
      * @var KeyValueInterface
      */

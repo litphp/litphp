@@ -16,13 +16,14 @@ class ConditionMiddlewareTest extends NimoTestCase
 {
     public function testFalsyCondition()
     {
-        $inner = $this->prophesize(AbstractMiddleware::class);
-        $inner->__call('main', [])->shouldNotBeCalled();
+        $proph = $this->prophesize(AbstractMiddleware::class);
+        $proph->__call('main', [])->shouldNotBeCalled();
         $request = $this->getRequestMock();
         $response = $this->getResponseMock();
         $handler = $this->assertedHandler($request, $response);
-
-        $middleware = new class($inner->reveal(), $request, $handler) extends AbstractConditionMiddleware
+        $innerMiddleware = $proph->reveal();
+        assert($innerMiddleware instanceof AbstractMiddleware);
+        $middleware = new class($innerMiddleware, $request, $handler) extends AbstractConditionMiddleware
         {
             protected $params;
 
