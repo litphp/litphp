@@ -26,8 +26,13 @@ TEXT;
 
     public static function setGlobalHandler()
     {
-        set_error_handler([static::class, 'errorHandler']);
-        set_exception_handler([static::class, 'exceptionHandler']);
+        /** @var callable $errHandler */
+        $errHandler = [static::class, 'errorHandler'];
+        set_error_handler($errHandler);
+
+        /** @var callable $exceptionHandler */
+        $exceptionHandler = [static::class, 'exceptionHandler'];
+        set_exception_handler($exceptionHandler);
     }
 
     public static function errorHandler($errno, $errstr, $errfile, $errline)

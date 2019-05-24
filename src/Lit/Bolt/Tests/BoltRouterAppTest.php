@@ -80,6 +80,7 @@ class BoltRouterAppTest extends BoltTestCase
         $request404 = (new ServerRequest())
             ->withUri(new Uri('http://localhost/404'));
 
+        /** @var FastRouteRouter $router */
         $router = $factory->getOrProduce(FastRouteRouter::class);
         try {
             $router->route($request404);

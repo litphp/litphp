@@ -81,6 +81,7 @@ class Factory
             if (is_object($callback)) {
                 $callback = [$callback, '__invoke'];
             }
+            assert(is_array($callback));
             $method = (new \ReflectionClass($callback[0]))->getMethod($callback[1]);
             $params = $method->getParameters();
         }
@@ -95,6 +96,7 @@ class Factory
             $name = $matches[1];
         }
 
+        assert(is_callable($callback));
         return call_user_func_array($callback, $this->resolveParams($params, '!' . $name, $extra));
     }
 

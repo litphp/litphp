@@ -20,7 +20,9 @@ class BoltAppTest extends BoltTestCase
             RequestHandlerInterface::class => $this->assertedHandler($request, $response, 'equal')
         ]));
         $factory = Factory::of($this->container);
-        $result = $factory->getOrProduce(BoltApp::class)->handle($request);
+        /** @var BoltApp $app */
+        $app = $factory->getOrProduce(BoltApp::class);
+        $result = $app->handle($request);
 
         self::assertSame($result, $response);
     }

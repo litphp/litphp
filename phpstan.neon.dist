@@ -1,7 +1,7 @@
 parameters:
   paths:
     - src
-  level: 5
+  level: 6
   excludes_analyse:
     - %currentWorkingDirectory%/src/Lit/Voltage/_example
     - %currentWorkingDirectory%/src/Lit/Bolt/_example

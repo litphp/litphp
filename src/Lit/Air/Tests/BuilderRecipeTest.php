@@ -24,7 +24,9 @@ class BuilderRecipeTest extends AirTestCase
             ->method('factory')
             ->will($this->returnValue($obj));
 
-        $stub = Container::builder([$mock, 'factory']);
+        /** @var callable $builder */
+        $builder = [$mock, 'factory'];
+        $stub = Container::builder($builder);
 
         self::assertTrue($stub instanceof BuilderRecipe);
 

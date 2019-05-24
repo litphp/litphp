@@ -27,7 +27,9 @@ class SingletonDecoratorTest extends AirTestCase
             ->method('factory')
             ->will($this->returnValue($obj));
 
-        $stub = (new BuilderRecipe([$mock, 'factory']))->singleton();
+        /** @var callable $builder */
+        $builder = [$mock, 'factory'];
+        $stub = (new BuilderRecipe($builder))->singleton();
 
         self::assertTrue($stub instanceof SingletonDecorator);
 
@@ -60,8 +62,10 @@ class SingletonDecoratorTest extends AirTestCase
             ->method('factory')
             ->will($this->returnValue($obj));
 
-        $stub = (new BuilderRecipe([$mock, 'factory']))->singleton();
-        $stub2 = Configurator::convertToRecipe([$mock, 'factory']);
+        /** @var callable $builder */
+        $builder = [$mock, 'factory'];
+        $stub = (new BuilderRecipe($builder))->singleton();
+        $stub2 = Configurator::convertToRecipe($builder);
 
         $this->container->define($key, $stub);
         $this->container->get($key);

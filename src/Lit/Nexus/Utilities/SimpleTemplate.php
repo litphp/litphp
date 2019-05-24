@@ -68,7 +68,7 @@ class SimpleTemplate
 
         $param = preg_replace('#^\S+\s*#', '', $statement);
         $params = preg_split('#\s+#', $statement);
-        assert($params);
+        assert(!!$params);
         $tag = array_shift($params);
 
         $result = self::parseShortTag($tag{0}, $statement);
