@@ -20,7 +20,7 @@ class Foo
      */
     public $qux;
     /**
-     * @var string
+     * @var ?string
      */
     public $ng;
 

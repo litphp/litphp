@@ -12,13 +12,15 @@ class BoltContainerStubTest extends BoltTestCase
         $result = BoltContainerStub::of(\stdClass::class)->instantiateFrom($this->container);
         self::assertInstanceOf(\stdClass::class, $result);
 
-        $result2 = BoltContainerStub::tryParse([
+        $stub = BoltContainerStub::tryParse([
             Foo::class,
             [
                 'bar' => $bar = new \stdClass(),
                 'baz' => $baz = new \stdClass(),
             ]
-        ])->instantiateFrom($this->container);
+        ]);
+        assert($stub !== null);
+        $result2 = $stub->instantiateFrom($this->container);
         self::assertInstanceOf(Foo::class, $result2);
         self::assertSame($bar, $result2->bar);
         self::assertSame($baz, $result2->baz);

@@ -23,7 +23,10 @@ class SimpleTemplate
         'php' => "<?php %0",
         '/php' => '?>',
     );
-    protected $code = null;
+    /**
+     * @var string
+     */
+    protected $code;
     protected $compiledCode;
 
     /**
@@ -54,6 +57,7 @@ class SimpleTemplate
 
             $templateCode = strtr($templateCode, $this->pre);
             $templateCode = preg_replace_callback($this->tag_re, [$this, 'resolve'], $templateCode);
+            assert(is_string($templateCode));
             $templateCode = strtr($templateCode, $this->post);
 
             $this->compiledCode = $templateCode;
@@ -67,6 +71,8 @@ class SimpleTemplate
         list(, $statement) = $match;
 
         $param = preg_replace('#^\S+\s*#', '', $statement);
+        assert(is_string($param));
+
         $params = preg_split('#\s+#', $statement);
         assert(!!$params);
         $tag = array_shift($params);
@@ -101,6 +107,7 @@ class SimpleTemplate
             case '$':
                 $arr = explode('|', $statement);
                 $statement = array_shift($arr);
+                assert(is_string($statement));
                 while ($func = array_shift($arr)) {
                     $func = explode(' ', trim($func));
                     if (count($func) == 1) {

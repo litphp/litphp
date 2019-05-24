@@ -28,7 +28,7 @@ class InstanceRecipe extends AbstractRecipe
     public function resolve(ContainerInterface $container, ?string $id = null)
     {
         $className = is_null($this->className) ? $id : $this->className;
-        if (!class_exists($className)) {
+        if (is_null($className) || !class_exists($className)) {
             throw new ContainerException('unknown autowire class name');
         }
 

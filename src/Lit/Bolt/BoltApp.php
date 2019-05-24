@@ -16,20 +16,19 @@ class BoltApp extends App
 {
     const SETTER_INJECTOR = SetterInjector::class;
     /**
-     * @var EventsHub
+     * @var ?EventsHub
      */
     protected $eventsHub;
+    /**
+     * @var ?RequestContext
+     */
+    protected $requestContext;
 
     public function injectEventsHub(?EventsHub $eventsHub)
     {
         $this->eventsHub = $eventsHub;
         return $this;
     }
-
-    /**
-     * @var RequestContext
-     */
-    protected $requestContext;
 
     public function injectRequestContext(?RequestContext $requestContext)
     {
@@ -42,6 +41,7 @@ class BoltApp extends App
      */
     public function getEventsHub(): EventsHub
     {
+        assert($this->eventsHub !== null);
         return $this->eventsHub;
     }
 
