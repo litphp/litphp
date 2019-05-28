@@ -22,7 +22,7 @@ trait MiddlewareCompositeTrait
     {
         $stack = new MiddlewarePipe();
 
-        /** @noinspection PhpParamsInspection */
+        /** @var MiddlewareInterface $this */
         return $stack
             ->append($this)
             ->append($middleware);
@@ -38,7 +38,7 @@ trait MiddlewareCompositeTrait
     {
         $stack = new MiddlewarePipe();
 
-        /** @noinspection PhpParamsInspection */
+        /** @var MiddlewareInterface $this */
         return $stack
             ->prepend($this)
             ->prepend($middleware);
@@ -46,13 +46,13 @@ trait MiddlewareCompositeTrait
 
     public function when(RequestPredictionInterface $requestPrediction): PredictionWrapperMiddleware
     {
-        /** @noinspection PhpParamsInspection */
+        /** @var MiddlewareInterface $this */
         return new PredictionWrapperMiddleware($this, $requestPrediction);
     }
 
     public function unless(RequestPredictionInterface $requestPrediction): PredictionWrapperMiddleware
     {
-        /** @noinspection PhpParamsInspection */
+        /** @var MiddlewareInterface $this */
         return new PredictionWrapperMiddleware($this, $requestPrediction, true);
     }
 

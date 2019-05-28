@@ -6,6 +6,11 @@ namespace Lit\Nimo\Traits;
 
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Trait AttachToRequestTrait
+ * @package Lit\Nimo\Traits
+ * @property ServerRequestInterface $request
+ */
 trait AttachToRequestTrait
 {
     /**
@@ -31,8 +36,7 @@ trait AttachToRequestTrait
      */
     protected function attachToRequest(ServerRequestInterface $request = null): ServerRequestInterface
     {
-        /** @noinspection PhpUndefinedFieldInspection */
-        if (isset($this->request)) {
+        if (property_exists($this, 'request')) {
             $request = $request ?: $this->request;
         }
         assert($request instanceof ServerRequestInterface);
@@ -43,7 +47,7 @@ trait AttachToRequestTrait
         }
 
         $request = $request->withAttribute($key, $this);
-        if (isset($this->request)) {
+        if (property_exists($this, 'request')) {
             $this->request = $request;
         }
         return $request;

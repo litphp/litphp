@@ -56,14 +56,12 @@ class FastRouteRouter extends AbstractRouter
         switch ($routeInfo[0]) {
             case Dispatcher::NOT_FOUND:
                 return $this->notFound;
-                break;
             case Dispatcher::METHOD_NOT_ALLOWED:
                 if (!empty($this->methodNotAllowed)) {
                     return [$this->methodNotAllowed, [$routeInfo[1]]];
                 } else {
                     return $this->notFound;
                 }
-                break;
             case Dispatcher::FOUND:
                 list(, $stub, $vars) = $routeInfo;
 
@@ -72,8 +70,6 @@ class FastRouteRouter extends AbstractRouter
                 } else {
                     return $this->proxy($stub, $vars);
                 }
-                break;
-
             default:
                 throw new \Exception(__METHOD__ . '/' . __LINE__);
         }

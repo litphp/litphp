@@ -63,6 +63,6 @@ class EventsHub extends AbstractMiddleware
         ]);
         $this->eventDispatcher->dispatch(BoltEvent::EVENT_AFTER_LOGIC, $afterEvent);
 
-        return $afterEvent->getResponse();
+        return $afterEvent->getResponse() ?: $response;
     }
 }
