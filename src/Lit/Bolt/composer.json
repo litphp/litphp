@@ -21,7 +21,7 @@
   "require": {
     "litphp/voltage": "^0.9",
     "litphp/air": "^0.9",
-    "symfony/event-dispatcher": "^4.0"
+    "symfony/event-dispatcher": ">=4.0.0 <4.3.0"
   },
   "require-dev": {
     "http-interop/http-factory-diactoros": "^1.0",
