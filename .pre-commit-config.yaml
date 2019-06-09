@@ -1,4 +1,4 @@
-- repo: /Users/mcfog/Projects/lit/pre-commit-php
+- repo: git@github.com:litphp/pre-commit-php.git
   sha: 0f011f8
   hooks:
     - id: php-cbf
