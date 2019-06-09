@@ -62,7 +62,7 @@ We use `null` value to indicate not found, and both `FastRouteRouter` and `BoltS
 
 ### Create your middleware
 
-Any [PSR-15](https://www.php-fig.org/psr/psr-15/) middleware can be used directly. If you are writing new ones, you may refer [this page](nimo-roll.md).
+Any [PSR-15](https://www.php-fig.org/psr/psr-15/) middleware can be used directly. If you are writing new ones, you may refer [this page](nimo-roll).
 
 ### Attach middleware to your app
 
@@ -167,4 +167,4 @@ There are more details about dependency injection at [guide about lit/air](air).
 
 ## Runners
 
-You should continue to [runners](runner.md) section to see options about how to actually run your 
+You should continue to [runners](runner) section to see options about how to actually run your 

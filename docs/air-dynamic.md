@@ -24,7 +24,7 @@ Here's a list of bundled recipes.
 | AutowireRecipe     | use `Factory` to *produce* value     | more detail in DI section                                  |
 | InstanceRecipe     | use `Factory` to *instantiate* value | more detail in DI section                                  |
 
-It's a relatively low-level way to construct recipe instance by hand and use `$container->define` to register it, we'll [look into](ari-config) `Configurator` which provide a plain php array form of recipe(s) and thus can manage dozens of recipes in a more clean and easy-to-maintain way.
+It's a relatively low-level way to construct recipe instance by hand and use `$container->define` to register it, we'll [look into](air-config) `Configurator` which provide a plain php array form of recipe(s) and thus can manage dozens of recipes in a more clean and easy-to-maintain way.
 
 ## Delegate
 
