@@ -48,7 +48,7 @@ The possible $ types are listed below, they are just static method name of `Cont
 | builder  | BuilderRecipe    | `builder(callable $builder, array $extra = [])`          |
 | value    | FixedValueRecipe | `value($value)`                                          |
 
-For decorator, the name should be `singleton` or `callback` for bundled decorators, and the decorator clasname if you write your custom one, the value are setted as decorator option. The singleton decorator don't need option so just use `null` , and the callback decoration's option is the callback (wrapper).
+For decorator, the name should be `singleton` or `callback` for bundled decorators, and the decorator classname if you write your custom one, the value are setted as decorator option. The singleton decorator don't need option so just use `null` , and the callback decorator's option is the callback (wrapper).
 
 ## Configuration conventions
 
@@ -70,11 +70,11 @@ There're some `C::` method receiving `array $extra` parameter, which wil be fed 
 
 #### merging configuration
 
-When merging different part of configuration (or overriding some), we recommend use native array union operator (simple `+`). This is easy to write, native, and should be enough if you follow our convention.
+When merging different part of configuration (or overriding some), we recommend to use native array union operator (`+` or `+=`). This is easy to write and manage, and should be enough if you follow our convention.
 
 #### configuration class / method
 
-If you're writing some reusable or default configuration, it's verry common that to write a method to return a configuration array. Our convention arount this is use `FooBar::configuration(/*parameters*/)` for configuration method, and use `FooConfiguration` as configuration class, and `FooConfiguration::default(/*parameters*/)` as the default configuration method. 
+If you're writing some reusable or default configuration, it's very common that to write a method to return a configuration array. Our convention arount this is use `FooBar::configuration(/*parameters*/)` for configuration method, and use `FooConfiguration` as configuration class, and `FooConfiguration::default(/*parameters*/)` as the default configuration method. 
 
 When your configuration is closely related to a single class, just add a configuration method to it. When there are (or will be) multiple related class, or your class or configuration itself is complicated, or having many other static method, you may want a dedicated configuration class.
 
@@ -108,10 +108,10 @@ use FastRoute\Dispatcher\GroupCountBased as GCBDispatcher;
                     'methodNotAllowed' => C::alias(FastRouteRouter::class, 'methodNotAllowed'),
                     'notFound' => C::alias(FastRouteRouter::class, 'notFound'),
                 ]),
-          			// null value of configuration will be resolved to null
+          		// null value of configuration will be resolved to null
                 C::join(FastRouteRouter::class, 'methodNotAllowed') => null,
                 C::join(FastRouteRouter::class, 'notFound') => null,
-			          // FastRoute\Dispatcher is interface, so can't use `provideParameter` as above
+			    // FastRoute\Dispatcher is interface, so can't use `provideParameter` as above
                 Dispatcher::class => C::singleton( // use C::produce here is also good, there differences are pretty subtle, but singleton is more safe to use
                     CachedDispatcher::class,
                     [
@@ -122,7 +122,8 @@ use FastRoute\Dispatcher\GroupCountBased as GCBDispatcher;
                         'dispatcherClass' => GCBDispatcher::class, // this is a plain string
                     ]
                 ),
-                C::join(CachedDispatcher::class, 'cache') => C::produce(VoidSingleValue::class), // VoidSingleValue is a stateless class, without construct parameter and no reason to create a second instance, use `C::produce` under this situation to reuse it's instance
+                // VoidSingleValue is a stateless class, without construct parameter and no reason to create a second instance, use `C::produce` under this situation to reuse it's instance
+                C::join(CachedDispatcher::class, 'cache') => C::produce(VoidSingleValue::class),
                 C::join(CachedDispatcher::class, DataGenerator::class) => C::singleton(GCBDataGenerator::class),
                 C::join(CachedDispatcher::class, RouteParser::class) => C::singleton(StdRouteParser::class),
                 C::join(CachedDispatcher::class, 'routeDefinition') => $routeDefinition,
@@ -131,7 +132,7 @@ use FastRoute\Dispatcher\GroupCountBased as GCBDispatcher;
 
 ```
 
-It's really a lot of configurations! For comparison we'll write some pseudo code of creating such object without DI and without singleton (reuse), and hardcode everything.
+That's really a lot of configurations! For comparison we'll write some pseudo code of creating such object without DI and without singleton (reuse), and hardcode everything.
 
 > Note the order of configuration is naturally top-down since you write it by fixing dependency exceptions, but the hand write constructing code must be bottom-up so it's harder to read
 
@@ -149,4 +150,3 @@ $router = new FastRouteRouter($dispatcher, $stubResolver, $stubMethodNotAllowed,
 
 // use $router as RouterInterface
 ```
-

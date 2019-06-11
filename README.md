@@ -20,7 +20,7 @@ php -S 127.0.0.1:3080 public/index.php
 
 **Documentation**
 
-see [[http://litphp.github.io/docs/](http://litphp.github.io/docs/)](http://litphp.github.io/docs/)
+see <http://litphp.github.io/docs/>
 
 **Components included in this repo**
 
