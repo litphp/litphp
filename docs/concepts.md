@@ -48,9 +48,11 @@ The value you fed into `RouteCollector` is called **stub**, it's a stub for conc
 
 You can change this behaviour by implementing `RouterStubResolverInterface` and fed it into **router** instance.
 
-### Getting route variables
+### Getting route arguments
 
-The variable caught by `FastRoute` is available in `$request->getAttribute(KEY)`
+The variable caught by `FastRoute` is available in `RouteArgumentBag::fromRequest($request)->get(KEY)`, or use `RouteArgumentBagGetterTrait` and `$action->routeArgs()->get(KEY)`.
+
+If you want access route arguments in psr request attributes, use `\Lit\Router\FastRoute\ArgumentHandler\ArgumentToAttribute` instead of default `\Lit\Router\FastRoute\ArgumentHandler\RouteArgumentBag`
 
 ### Not found
 
