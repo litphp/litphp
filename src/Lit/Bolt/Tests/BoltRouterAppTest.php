@@ -25,6 +25,7 @@ class BoltRouterAppTest extends BoltTestCase
     {
         $response = new Response();
 
+        /** @var ServerRequest $request */
         $request = (new ServerRequest())
             ->withUri(new Uri('http://localhost/book/42/author'));
 
@@ -39,6 +40,7 @@ class BoltRouterAppTest extends BoltTestCase
         });
 
         $response404 = new Response();
+        /** @var ServerRequest $request404 */
         $request404 = (new ServerRequest())
             ->withUri(new Uri('http://localhost/404'));
 
@@ -77,6 +79,7 @@ class BoltRouterAppTest extends BoltTestCase
         C::config($this->container, FastRouteConfiguration::default(function () {
         }));
         $factory = Factory::of($this->container);
+        /** @var ServerRequest $request404 */
         $request404 = (new ServerRequest())
             ->withUri(new Uri('http://localhost/404'));
 
