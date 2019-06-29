@@ -24,5 +24,5 @@ LitPHP is a collection of components, here's a list of them.
 | [**litphp/view-php**](https://github.com/litphp/view-php) | use native php file as templating engine| slim/php-view |
 | [**litphp/view-twig**](https://github.com/litphp/view-twig) | use twig as templating engine| twig/twig |
 
-To start write your application, you should read [quick start](quickstart). There's a quick glance of [core concepts](concepts). To run your application, you should look at [this doc about runner](runner).
+To start write your application, you should read [quick start](quickstart). There's a quick glance of [core concepts](concepts). To run your application under various environments, you should look at [this doc about runner](runner).
 

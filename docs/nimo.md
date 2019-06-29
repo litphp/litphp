@@ -4,7 +4,7 @@ title: Introduction
 sidebar_label: Introduction
 ---
 
-Nimo helps you to organize your middlewares (and handlers) together.
+Nimo helps you to organize your middlewares (and handlers).
 
 ## Installation
 
