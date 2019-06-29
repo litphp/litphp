@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/nimo
 	branch = master
-	commit = 1e79f745525ba859bd72d54097bfcca180204bf7
-	parent = ec0f69d13a91da39770b41008e52e6d6b6b1f10e
+	commit = 12de37e9ce3ba3abcabdd6b161f5904afbc62fae
+	parent = 941053fece82f75527a2af39595f82785b67d9d0
 	cmdver = 0.4.0
 	method = merge
