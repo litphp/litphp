@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Traits;
 
+use Lit\Nimo\Interfaces\ExceptionHandlerInterface;
 use Lit\Nimo\Interfaces\RequestPredictionInterface;
 use Lit\Nimo\Middlewares\CatchMiddleware;
 use Lit\Nimo\Middlewares\MiddlewarePipe;
@@ -56,7 +57,7 @@ trait MiddlewareCompositeTrait
         return new PredictionWrapperMiddleware($this, $requestPrediction, true);
     }
 
-    public function catch(callable $catcher, string $catchClass = \Throwable::class): CatchMiddleware
+    public function catch(ExceptionHandlerInterface $catcher, string $catchClass = \Throwable::class): CatchMiddleware
     {
         return new CatchMiddleware($this, $catcher, $catchClass);
     }
