@@ -11,7 +11,7 @@ Lit Bolt
 **Quickstart** 
 
 ```bash
-composer create-project --remove-vcs -s dev litphp/project myproject
+composer create-project --remove-vcs litphp/project myproject
 # you will be prompt to input your project namespace, we do the replace work for you
 cd myproject
 php -S 127.0.0.1:3080 public/index.php
