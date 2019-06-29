@@ -11,14 +11,14 @@ $handler->catch($catcher, \Throwable::class);
 $middleware->catch($catcher, \RuntimeException::class);
 ```
 
-where `$catcher` is a callable with signature
+where `$catcher` is instance of `ExceptionHandlerInterface`
 
 ```php
-catcher(
-    \Throwable $exception, 
-    RequestInterface $request, 
-    RequestHandlerInterface $orignalHandler, 
-    MiddlewareInterface $originalMiddleware // receive a NoopMiddleware in case of handler
+handle(
+  \Throwable $exception,
+  ServerRequestInterface $request,
+  RequestHandlerInterface $orignalHandler,
+  MiddlewareInterface $originalMiddleware
 ): ResponseInterface
 ```
 
@@ -30,3 +30,4 @@ $wrapped = new CatchMiddleware($middleware, $catcher, $catchClassName);
 ```
 
 for handlers, use `NoopMiddleware` & `MiddlewareIncluedHandler` to wrap
+
