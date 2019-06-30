@@ -36,7 +36,7 @@ class BoltStubResolver implements RouterStubResolverInterface
      */
     public function resolve($stub): RequestHandlerInterface
     {
-        if (is_null($stub) && $this->notFound) {
+        if ($stub === null && $this->notFound) {
             $stub = $this->notFound;
         }
 
