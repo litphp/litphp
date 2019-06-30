@@ -27,7 +27,7 @@ class Factory
     {
         if ($container instanceof Container) {
             $this->container = $container;
-        } elseif (is_null($container)) {
+        } elseif ($container === null) {
             $this->container = new Container();
         } else {
             $this->container = Container::wrap($container);

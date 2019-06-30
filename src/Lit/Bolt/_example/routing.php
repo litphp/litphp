@@ -8,8 +8,8 @@ use Lit\Runner\ZendSapi\BoltZendRunner;
 use Psr\Http\Message\ResponseInterface;
 
 is_readable(__DIR__ . '/../vendor/autoload.php')
-    ? require(__DIR__ . '/../vendor/autoload.php')
-    : require(__DIR__ . '/../../../../vendor/autoload.php');
+    ? require_once __DIR__ . '/../vendor/autoload.php'
+    : require_once __DIR__ . '/../../../../vendor/autoload.php';
 
 class ThrowResponseAction extends BoltAbstractAction
 {

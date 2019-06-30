@@ -27,8 +27,8 @@ class AutowireRecipe extends AbstractRecipe
 
     public function resolve(ContainerInterface $container, ?string $id = null)
     {
-        $className = is_null($this->className) ? $id : $this->className;
-        if (is_null($className) || !class_exists($className)) {
+        $className = $this->className ?? $id;
+        if ($className === null || !class_exists($className)) {
             throw new ContainerException('unknown autowire class name');
         }
 
