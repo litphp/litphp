@@ -1,6 +1,8 @@
 <?php
 
 // @codeCoverageIgnoreStart
+// phpcs:disable PSR1.Files.SideEffects
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
 
 use Lit\Air\Configurator as C;
 use Lit\Bolt\BoltAbstractAction;

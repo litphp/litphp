@@ -1,5 +1,8 @@
 <?php
 // @codeCoverageIgnoreStart
+// phpcs:disable PSR1.Files.SideEffects
+// phpcs:disable PSR1.Classes.ClassDeclaration.MissingNamespace
+// phpcs:disable PSR1.Classes.ClassDeclaration.MultipleClasses
 
 use FastRoute\RouteCollector;
 use Lit\Bolt\BoltAbstractAction;
