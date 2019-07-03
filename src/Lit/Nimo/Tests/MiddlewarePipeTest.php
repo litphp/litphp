@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Lit\Nimo\Tests;
 
 use Lit\Nimo\Middlewares\MiddlewarePipe;
+use Zend\Diactoros\ServerRequest;
 
 class MiddlewarePipeTest extends NimoTestCase
 {
@@ -66,5 +67,29 @@ class MiddlewarePipeTest extends NimoTestCase
             ->prepend($middleware1)
             ->process($request, $handler);
         self::assertSame($response, $res);
+    }
+
+    /**
+     * @expectedException \BadMethodCallException
+     */
+    public function testDenyHandleCall()
+    {
+        $stack = new MiddlewarePipe();
+        $stack->handle(new ServerRequest());
+    }
+    /**
+     * @expectedException \BadMethodCallException
+     */
+    public function testDenyHandleCallAfterProcess()
+    {
+        $stack = new MiddlewarePipe();
+        $answerRes = $this->getResponseMock();
+        $request = $this->getRequestMock();
+
+        $handler = $this->assertedHandler($request, $answerRes);
+        $res = $stack->process($request, $handler);
+        self::assertSame($answerRes, $res);
+
+        $stack->handle($request);
     }
 }

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Middlewares;
 
-use Lit\Nimo\Handlers\CallableHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
@@ -13,25 +12,13 @@ use Psr\Http\Server\RequestHandlerInterface;
 /**
  * Pipe or chain of middlewares. This middleware is designed to run multiple middlewares one by one.
  */
-class MiddlewarePipe extends AbstractMiddleware
+class MiddlewarePipe extends AbstractMiddleware implements RequestHandlerInterface
 {
-    /**
-     * @var RequestHandlerInterface
-     */
-    protected $nextHandler;
     /**
      * @var MiddlewareInterface[]
      */
     protected $stack = [];
     protected $index;
-
-    public function __construct()
-    {
-        $this->nextHandler = CallableHandler::wrap(function (ServerRequestInterface $request) {
-            return $this->loop($request);
-        });
-    }
-
 
     /**
      * append $middleware
@@ -63,21 +50,32 @@ class MiddlewarePipe extends AbstractMiddleware
 
     protected function main(): ResponseInterface
     {
-        $this->index = 0;
-
-        return $this->loop($this->request);
+        try {
+            $this->index = 0;
+            return $this->handle($this->request);
+        } finally {
+            $this->index = null;
+        }
     }
 
     /**
      * @param ServerRequestInterface $request The request.
      * @return ResponseInterface
      */
-    protected function loop(ServerRequestInterface $request): ResponseInterface
+    public function handle(ServerRequestInterface $request): ResponseInterface
     {
-        if (!isset($this->stack[$this->index])) {
-            return $this->delegate($request);
+        if ($this->index === null) {
+            throw new \BadMethodCallException('unexpected call to MiddlewarePipe::handle');
         }
 
-        return $this->stack[$this->index++]->process($request, $this->nextHandler);
+        if (!isset($this->stack[$this->index])) {
+            try {
+                return $this->delegate($request);
+            } finally {
+                $this->index = null;
+            }
+        }
+
+        return $this->stack[$this->index++]->process($request, $this);
     }
 }
