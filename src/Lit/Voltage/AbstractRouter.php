@@ -22,7 +22,7 @@ abstract class AbstractRouter implements RouterInterface
 
     /**
      * @param RouterStubResolverInterface $stubResolver
-     * @param RequestHandlerInterface $notFound
+     * @param RequestHandlerInterface     $notFound
      */
     public function __construct(RouterStubResolverInterface $stubResolver, $notFound = null)
     {

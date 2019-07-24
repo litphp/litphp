@@ -15,7 +15,7 @@ trait EmbedKeyValueTrait
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      * @return void
      */
     public function set($key, $value)
@@ -43,7 +43,7 @@ trait EmbedKeyValueTrait
 
     /**
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function exists($key)
     {

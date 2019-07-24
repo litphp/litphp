@@ -21,7 +21,7 @@ class BuilderRecipe extends AbstractRecipe
     /**
      * MultitonStub constructor.
      * @param callable $builder
-     * @param array $extra
+     * @param array    $extra
      */
     public function __construct(callable $builder, array $extra = [])
     {

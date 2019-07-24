@@ -40,7 +40,7 @@ class FrozenValue implements ReadableSingleValueInterface
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function exists()
     {

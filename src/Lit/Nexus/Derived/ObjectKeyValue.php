@@ -45,7 +45,7 @@ class ObjectKeyValue implements KeyValueInterface
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      * @return void
      */
     public function set(string $key, $value)
@@ -73,7 +73,7 @@ class ObjectKeyValue implements KeyValueInterface
 
     /**
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function exists(string $key)
     {

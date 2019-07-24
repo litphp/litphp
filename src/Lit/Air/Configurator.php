@@ -194,7 +194,7 @@ class Configurator
     }
 
     /**
-     * @param array $decorators
+     * @param array           $decorators
      * @param RecipeInterface $recipe
      * @return RecipeInterface
      */

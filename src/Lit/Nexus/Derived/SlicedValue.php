@@ -22,7 +22,7 @@ class SlicedValue implements SingleValueInterface
 
     /**
      * @param KeyValueInterface $keyValue
-     * @param string $key
+     * @param string            $key
      */
     public function __construct(KeyValueInterface $keyValue, $key)
     {
@@ -33,7 +33,7 @@ class SlicedValue implements SingleValueInterface
 
     /**
      * @param KeyValueInterface $keyValue
-     * @param string $key
+     * @param string            $key
      * @return static
      */
     public static function slice(KeyValueInterface $keyValue, string $key)
@@ -50,7 +50,7 @@ class SlicedValue implements SingleValueInterface
     }
 
     /**
-     * @return bool
+     * @return boolean
      */
     public function exists()
     {

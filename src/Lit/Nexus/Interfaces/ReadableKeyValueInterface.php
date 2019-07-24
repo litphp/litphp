@@ -19,7 +19,7 @@ interface ReadableKeyValueInterface
      * Return whether the key exists
      *
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function exists(string $key);
 }

@@ -168,7 +168,7 @@ class Container implements ContainerInterface
     }
 
     /**
-     * @param callable $wrapper
+     * @param callable        $wrapper
      * @param RecipeInterface $recipe
      * @return RecipeInterface
      */

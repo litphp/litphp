@@ -33,7 +33,7 @@ class JsonView extends AbstractView
     }
 
     /**
-     * @return int
+     * @return integer
      */
     public function getJsonOption()
     {
@@ -42,7 +42,7 @@ class JsonView extends AbstractView
 
     /**
      *
-     * @param int $jsonOption
+     * @param integer $jsonOption
      * @return $this
      */
     public function setJsonOption($jsonOption)

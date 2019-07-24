@@ -12,7 +12,7 @@ interface KeyValueInterface extends ReadableKeyValueInterface
      * Supported value format is undefined. implementation is free to decide, and throw some Exception on illegal value
      *
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      * @return void
      */
     public function set(string $key, $value);

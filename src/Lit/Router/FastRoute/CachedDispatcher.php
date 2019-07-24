@@ -40,10 +40,10 @@ class CachedDispatcher implements Dispatcher
     /**
      * RouteDispatcher constructor.
      * @param SingleValueInterface $cache
-     * @param RouteParser $routeParser
-     * @param DataGenerator $dataGenerator
-     * @param callable $routeDefinition
-     * @param string $dispatcherClass
+     * @param RouteParser          $routeParser
+     * @param DataGenerator        $dataGenerator
+     * @param callable             $routeDefinition
+     * @param string               $dispatcherClass
      * @internal param RouteCollector $routeCollector
      */
     public function __construct(

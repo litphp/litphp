@@ -10,7 +10,7 @@ class KeyValueUtility
 {
     /**
      * @param SingleValueInterface $store
-     * @param callable $compute
+     * @param callable             $compute
      * @return mixed
      */
     public static function getOrSet(SingleValueInterface $store, callable $compute)

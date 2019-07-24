@@ -51,7 +51,7 @@ class FrozenKeyValue implements ReadableKeyValueInterface
 
     /**
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     public function exists(string $key)
     {

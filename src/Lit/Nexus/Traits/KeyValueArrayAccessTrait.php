@@ -33,7 +33,7 @@ trait KeyValueArrayAccessTrait
 
     /**
      * @param string $key
-     * @param mixed $value
+     * @param mixed  $value
      * @return void
      */
     abstract public function set($key, $value);
@@ -52,7 +52,7 @@ trait KeyValueArrayAccessTrait
 
     /**
      * @param string $key
-     * @return bool
+     * @return boolean
      */
     abstract public function exists($key);
 }

@@ -12,7 +12,7 @@ interface RequestPredictionInterface
      * Run the prediction and return whether it's matched or not
      *
      * @param ServerRequestInterface $request
-     * @return bool
+     * @return boolean
      */
     public function isTrue(ServerRequestInterface $request): bool;
 }

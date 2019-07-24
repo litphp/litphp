@@ -46,7 +46,7 @@ class Factory
 
     /**
      * @param string $className
-     * @param array $extraParameters
+     * @param array  $extraParameters
      * @return object
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
@@ -68,7 +68,7 @@ class Factory
 
     /**
      * @param callable $callback
-     * @param array $extra
+     * @param array    $extra
      * @return mixed
      * @throws \ReflectionException
      */
@@ -102,7 +102,7 @@ class Factory
 
     /**
      * @param string $className
-     * @param array $extraParameters
+     * @param array  $extraParameters
      * @return object of $className«
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
@@ -156,7 +156,7 @@ class Factory
 
     /**
      * @param object $obj
-     * @param array $extra
+     * @param array  $extra
      * @throws \Psr\Container\ContainerExceptionInterface
      */
     public function inject($obj, array $extra = []): void
@@ -175,10 +175,10 @@ class Factory
     }
 
     /**
-     * @param string $basename
-     * @param array $keys
+     * @param string      $basename
+     * @param array       $keys
      * @param null|string $className
-     * @param array $extra
+     * @param array       $extra
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException
@@ -216,8 +216,8 @@ class Factory
 
     /**
      * @param string $basename
-     * @param array $keys
-     * @param array $extra
+     * @param array  $keys
+     * @param array  $extra
      * @return array|null
      * @throws \Psr\Container\ContainerExceptionInterface
      */
@@ -262,9 +262,9 @@ class Factory
     }
 
     /**
-     * @param string $basename
+     * @param string               $basename
      * @param \ReflectionParameter $parameter
-     * @param array $extraParameters
+     * @param array                $extraParameters
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface
      * @throws \ReflectionException

@@ -16,7 +16,7 @@ interface ReadableSingleValueInterface
     /**
      * Return whether this value exists
      *
-     * @return bool
+     * @return boolean
      */
     public function exists();
 }
