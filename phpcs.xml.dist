@@ -7,10 +7,6 @@
     <rule ref="PSR1"/>
     <rule ref="PSR2"/>
     <rule ref="PSR12"/>
-    <rule ref="Squiz.Commenting.ClassComment"/>
-    <rule ref="Squiz.Commenting.FunctionComment">
-        <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
-    </rule>
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>
             <property name="forbiddenFunctions" type="array" value="sizeof=>count,delete=>unset,require=>require_once,print=>echo,is_null=>null,create_function=>null"/>
