@@ -51,7 +51,7 @@ abstract class AirTestCase extends TestCase
 
     /**
      * @param string $key
-     * @param mixed $obj
+     * @param mixed  $obj
      */
     protected function assertKeyExistWithValue(string $key, $obj): void
     {
