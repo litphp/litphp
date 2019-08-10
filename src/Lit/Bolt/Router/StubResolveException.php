@@ -9,6 +9,9 @@ use Psr\Http\Message\ResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 use Throwable;
 
+/**
+ * Stub resolving exception
+ */
 class StubResolveException extends \RuntimeException implements ThrowableResponseInterface
 {
     protected $stub;
@@ -17,6 +20,15 @@ class StubResolveException extends \RuntimeException implements ThrowableRespons
      */
     protected $factory;
 
+    /**
+     * StubResolveException constructor.
+     *
+     * @param mixed                    $stub     The problematic stub.
+     * @param ResponseFactoryInterface $factory  Response factory used to create not found response.
+     * @param Throwable|null           $previous Previous exception.
+     * @param string                   $message  Exception message.
+     * @param integer                  $code     Exception code.
+     */
     public function __construct(
         $stub,
         ResponseFactoryInterface $factory,
@@ -37,6 +49,9 @@ class StubResolveException extends \RuntimeException implements ThrowableRespons
         return $this->stub;
     }
 
+    /**
+     * @return ResponseInterface
+     */
     public function getResponse(): ResponseInterface
     {
         $response = $this->factory->createResponse(404);

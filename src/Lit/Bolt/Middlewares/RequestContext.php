@@ -10,6 +10,10 @@ use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
+/**
+ * Subclass of SPL ArrayObject that can attach to a PSR request as middleware.
+ * Useful the store arbitary context without polluting request attributes.
+ */
 class RequestContext extends \ArrayObject implements MiddlewareInterface
 {
     use MiddlewareTrait;

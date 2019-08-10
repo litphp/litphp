@@ -10,13 +10,19 @@ use Lit\Bolt\Middlewares\RequestContext;
 use Lit\Voltage\AbstractAction;
 use Psr\Http\Message\ResponseFactoryInterface;
 
+/**
+ * Base action class for bolt
+ *
+ * It's strongly recommended to have your own action base class extending this one
+ */
 abstract class BoltAbstractAction extends AbstractAction
 {
     const SETTER_INJECTOR = SetterInjector::class;
 
     /**
+     * Injector for ResponseFactory
      *
-     * @param ResponseFactoryInterface $responseFactory
+     * @param ResponseFactoryInterface $responseFactory The ResponseFactory.
      * @return $this
      */
     public function injectResponseFactory(ResponseFactoryInterface $responseFactory): BoltAbstractAction
