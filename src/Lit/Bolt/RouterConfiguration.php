@@ -9,9 +9,17 @@ use Lit\Voltage\RouterDispatchHandler;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Configuration class for typical app using router.
+ */
 class RouterConfiguration
 {
-    public static function default()
+    /**
+     * configuration for typical app using router
+     *
+     * @return array
+     */
+    public static function default(): array
     {
         return [
             BoltApp::class => C::provideParameter([
