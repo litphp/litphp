@@ -7,6 +7,9 @@ namespace Lit\Nexus\Derived;
 use Lit\Nexus\Interfaces\ReadableSingleValueInterface;
 use Lit\Nexus\Interfaces\SingleValueInterface;
 
+/**
+ * Derived ReadableSingleValueInterface class from a SingleValueInterface. Makes it readonly.
+ */
 class FrozenValue implements ReadableSingleValueInterface
 {
     /**
@@ -20,7 +23,9 @@ class FrozenValue implements ReadableSingleValueInterface
     }
 
     /**
-     * @param SingleValueInterface $value
+     * Return a readonly instance of the given SingleValueInterface
+     *
+     * @param SingleValueInterface $value The SingleValueInterface object.
      * @return static
      */
     public static function wrap(SingleValueInterface $value)
@@ -31,17 +36,11 @@ class FrozenValue implements ReadableSingleValueInterface
         return new static($value);
     }
 
-    /**
-     * @return mixed
-     */
     public function get()
     {
         return $this->value->get();
     }
 
-    /**
-     * @return bool
-     */
     public function exists()
     {
         return $this->value->exists();

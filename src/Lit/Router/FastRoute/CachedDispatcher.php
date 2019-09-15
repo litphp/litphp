@@ -10,6 +10,9 @@ use FastRoute\RouteCollector;
 use FastRoute\RouteParser;
 use Lit\Nexus\Interfaces\SingleValueInterface;
 
+/**
+ * FastRoute dispatcher wrapper with cache support
+ */
 class CachedDispatcher implements Dispatcher
 {
     /**
@@ -39,19 +42,19 @@ class CachedDispatcher implements Dispatcher
 
     /**
      * RouteDispatcher constructor.
-     * @param SingleValueInterface $cache
-     * @param RouteParser $routeParser
-     * @param DataGenerator $dataGenerator
-     * @param callable $routeDefinition
-     * @param string $dispatcherClass
-     * @internal param RouteCollector $routeCollector
+     *
+     * @param SingleValueInterface $cache           The cache storage, should be able to serialize plain php array.
+     * @param RouteParser          $routeParser     The routeParser.
+     * @param DataGenerator        $dataGenerator   The dataGenerator.
+     * @param callable             $routeDefinition The routeDefinition.
+     * @param string               $dispatcherClass The dispatcher class name.
      */
     public function __construct(
         SingleValueInterface $cache,
         RouteParser $routeParser,
         DataGenerator $dataGenerator,
         callable $routeDefinition,
-        $dispatcherClass
+        string $dispatcherClass
     ) {
         $this->cache = $cache;
         $this->routeParser = $routeParser;

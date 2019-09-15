@@ -12,6 +12,9 @@ use Zend\Diactoros\ServerRequestFactory;
 use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
 use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
+/**
+ * Configuration for zend runner
+ */
 class BoltZendConfiguration
 {
     public static function default()

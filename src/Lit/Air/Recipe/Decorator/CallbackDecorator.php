@@ -6,6 +6,9 @@ namespace Lit\Air\Recipe\Decorator;
 
 use Psr\Container\ContainerInterface;
 
+/**
+ * Dynamic decorator that calls a callback (option value)
+ */
 class CallbackDecorator extends AbstractRecipeDecorator
 {
     public function resolve(ContainerInterface $container, ?string $id = null)

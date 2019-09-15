@@ -7,6 +7,9 @@ namespace Lit\Air\Recipe;
 use Lit\Air\Recipe\Decorator\CallbackDecorator;
 use Lit\Air\Recipe\Decorator\SingletonDecorator;
 
+/**
+ * RecipeTrait provides some wrapping method to a recipe object.
+ */
 trait RecipeTrait
 {
     public function singleton(): RecipeInterface

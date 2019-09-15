@@ -7,14 +7,17 @@ namespace Lit\Nimo\Traits;
 use Psr\Http\Message\ServerRequestInterface;
 
 /**
- * Trait AttachToRequestTrait
- * @package Lit\Nimo\Traits
+ * A common pattern that an object write itself to PSR request attributes.
+ * By default the key will be the class name, can be override with class const `ATTR_KEY`.
+ *
  * @property ServerRequestInterface $request
  */
 trait AttachToRequestTrait
 {
     /**
-     * @param ServerRequestInterface $request
+     * Get self from request (attributes).
+     *
+     * @param ServerRequestInterface $request The request.
      * @return static
      */
     public static function fromRequest(ServerRequestInterface $request)
@@ -31,7 +34,9 @@ trait AttachToRequestTrait
     }
 
     /**
-     * @param ServerRequestInterface $request
+     * Attach self to the request (in attributes) and return the new one.
+     *
+     * @param ServerRequestInterface $request The request.
      * @return ServerRequestInterface
      */
     protected function attachToRequest(ServerRequestInterface $request = null): ServerRequestInterface

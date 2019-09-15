@@ -2,7 +2,7 @@
 <ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/squizlabs/PHP_CodeSniffer/3.3.1/phpcs.xsd">
     <file>./src/</file>
-    <exclude-pattern>./src/**/Test/*</exclude-pattern>
+    <exclude-pattern>./src/**/Tests/*</exclude-pattern>
     <exclude-pattern>./vendor/*</exclude-pattern>
     <rule ref="PSR1"/>
     <rule ref="PSR2"/>

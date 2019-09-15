@@ -12,6 +12,9 @@ use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Standard stub resolver using DI container to resolve stubs
+ */
 class BoltStubResolver implements RouterStubResolverInterface
 {
     /**
@@ -30,9 +33,10 @@ class BoltStubResolver implements RouterStubResolverInterface
     }
 
     /**
-     * @param mixed $stub
+     * Resolve the stub and return a RequestHandler
+     *
+     * @param mixed $stub The stub value to be resolved.
      * @return RequestHandlerInterface
-     * @throws \ReflectionException
      */
     public function resolve($stub): RequestHandlerInterface
     {
@@ -62,7 +66,8 @@ class BoltStubResolver implements RouterStubResolverInterface
             throw $exception;
         }
 
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return $containerStub->instantiateFrom($this->container);
+        $handler = $containerStub->instantiateFrom($this->container);
+        assert($handler instanceof RequestHandlerInterface);
+        return $handler;
     }
 }

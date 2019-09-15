@@ -6,6 +6,9 @@ namespace Lit\Router\FastRoute\ArgumentHandler;
 
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Write route arguments to request attributes.
+ */
 class ArgumentToAttribute implements ArgumentHandlerInterface
 {
     public function attachArguments(

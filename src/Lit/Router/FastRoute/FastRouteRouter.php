@@ -13,6 +13,9 @@ use Lit\Voltage\Interfaces\RouterStubResolverInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Router use FastRoute to locate stub.
+ */
 class FastRouteRouter extends AbstractRouter
 {
     /**

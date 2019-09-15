@@ -5,9 +5,7 @@ declare(strict_types=1);
 namespace Lit\Nexus\Traits;
 
 /**
- * make IKeyValue accessible via \ArrayAccess
- *
- * @package Lit\Nexus\Traits
+ * \ArrayAccess implementation for KeyValueInterface
  */
 trait KeyValueArrayAccessTrait
 {
@@ -31,28 +29,11 @@ trait KeyValueArrayAccessTrait
         $this->delete($offset);
     }
 
-    /**
-     * @param string $key
-     * @param mixed $value
-     * @return void
-     */
     abstract public function set($key, $value);
 
-    /**
-     * @param string $key
-     * @return void
-     */
     abstract public function delete($key);
 
-    /**
-     * @param string $key
-     * @return mixed
-     */
     abstract public function get($key);
 
-    /**
-     * @param string $key
-     * @return bool
-     */
     abstract public function exists($key);
 }

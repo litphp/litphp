@@ -7,6 +7,9 @@ namespace Lit\Nexus\Derived;
 use Lit\Nexus\Interfaces\KeyValueInterface;
 use Lit\Nexus\Interfaces\ReadableKeyValueInterface;
 
+/**
+ * Derived ReadableKeyValueInterface class from a KeyValueInterface. Makes it readonly.
+ */
 class FrozenKeyValue implements ReadableKeyValueInterface
 {
     /**
@@ -19,8 +22,11 @@ class FrozenKeyValue implements ReadableKeyValueInterface
         $this->keyValue = $keyValue;
     }
 
+
     /**
-     * @param KeyValueInterface $keyValue
+     * Return a readonly instance of the given KeyValueInterface
+     *
+     * @param KeyValueInterface $keyValue The KeyValueInterface object.
      * @return static
      */
     public static function wrap(KeyValueInterface $keyValue)
@@ -32,7 +38,9 @@ class FrozenKeyValue implements ReadableKeyValueInterface
     }
 
     /**
-     * @param array|\ArrayAccess $content
+     * Wrap a offset content.
+     *
+     * @param array|\ArrayAccess $content The content.
      * @return static
      */
     public static function wrapOffset($content)
@@ -40,19 +48,11 @@ class FrozenKeyValue implements ReadableKeyValueInterface
         return self::wrap(OffsetKeyValue::wrap($content));
     }
 
-    /**
-     * @param string $key
-     * @return mixed
-     */
     public function get(string $key)
     {
         return $this->keyValue->get($key);
     }
 
-    /**
-     * @param string $key
-     * @return bool
-     */
     public function exists(string $key)
     {
         return $this->keyValue->exists($key);

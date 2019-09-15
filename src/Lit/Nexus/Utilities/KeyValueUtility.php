@@ -6,12 +6,17 @@ namespace Lit\Nexus\Utilities;
 
 use Lit\Nexus\Interfaces\SingleValueInterface;
 
+/**
+ * Utilities about KeyValueInterface
+ */
 class KeyValueUtility
 {
     /**
-     * @param SingleValueInterface $store
-     * @param callable $compute
-     * @return mixed
+     * Get the value from SingleValueInterface, or call $compute callback and write to it.
+     *
+     * @param SingleValueInterface $store   The storage.
+     * @param callable             $compute The method to create the value.
+     * @return mixed The value.
      */
     public static function getOrSet(SingleValueInterface $store, callable $compute)
     {

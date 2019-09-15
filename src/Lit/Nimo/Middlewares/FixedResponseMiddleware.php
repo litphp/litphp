@@ -6,12 +6,15 @@ namespace Lit\Nimo\Middlewares;
 
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * A middleware that never delegate and always return a fixed response.
+ */
 class FixedResponseMiddleware extends AbstractMiddleware
 {
     protected $fixedResponse;
 
     /**
-     * @param ResponseInterface $response always return this response
+     * @param ResponseInterface $response The fixed response.
      */
     public function __construct(ResponseInterface $response)
     {

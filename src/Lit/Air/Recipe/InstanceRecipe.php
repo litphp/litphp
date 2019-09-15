@@ -8,6 +8,12 @@ use Lit\Air\Factory;
 use Lit\Air\Psr\ContainerException;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Recipe that calls $container->instantiate to resolve.
+ *
+ * Since `instantiate` method only create instance, so this recipe will create multiple instance when resolved multiple
+ * times. Can be decorated by SingletonDecorator to makes it a singleton.
+ */
 class InstanceRecipe extends AbstractRecipe
 {
     /**

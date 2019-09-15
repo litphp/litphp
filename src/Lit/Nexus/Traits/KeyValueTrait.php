@@ -9,6 +9,9 @@ use Lit\Nexus\Derived\PrefixKeyValue;
 use Lit\Nexus\Derived\SlicedValue;
 use Lit\Nexus\Interfaces\KeyValueInterface;
 
+/**
+ * Wrapper methods for KeyValueInterface
+ */
 trait KeyValueTrait
 {
     /**
@@ -23,7 +26,7 @@ trait KeyValueTrait
     }
 
     /**
-     * @param string $key
+     * @param string $key The key.
      * @return SlicedValue
      */
     public function slice(string $key)
@@ -35,16 +38,16 @@ trait KeyValueTrait
     }
 
     /**
-     * @param string $prefix
-     * @param string $delimeter
+     * @param string $prefix    The prefix.
+     * @param string $delimeter The delimeter.
      * @return PrefixKeyValue
      */
     public function prefix(string $prefix, string $delimeter = '!!')
     {
-        /**
-         * @var KeyValueInterface|self $this
-         */
         assert($this instanceof KeyValueInterface);
+        /**
+         * @var KeyValueInterface $this
+         */
         return PrefixKeyValue::wrap($this, $prefix . $delimeter);
     }
 }

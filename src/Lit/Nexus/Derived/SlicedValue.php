@@ -8,6 +8,9 @@ use Lit\Nexus\Interfaces\KeyValueInterface;
 use Lit\Nexus\Interfaces\SingleValueInterface;
 use Lit\Nexus\Traits\SingleValueTrait;
 
+/**
+ * Derived class that given a KeyValueInterface object and a key, access its content
+ */
 class SlicedValue implements SingleValueInterface
 {
     use SingleValueTrait;
@@ -20,11 +23,7 @@ class SlicedValue implements SingleValueInterface
      */
     private $key;
 
-    /**
-     * @param KeyValueInterface $keyValue
-     * @param string $key
-     */
-    public function __construct(KeyValueInterface $keyValue, $key)
+    public function __construct(KeyValueInterface $keyValue, string $key)
     {
 
         $this->keyValue = $keyValue;
@@ -32,8 +31,10 @@ class SlicedValue implements SingleValueInterface
     }
 
     /**
-     * @param KeyValueInterface $keyValue
-     * @param string $key
+     * Make a SingleValueInterface from the KeyValueInterface and key.
+     *
+     * @param KeyValueInterface $keyValue The KeyValueInterface object.
+     * @param string            $key      The key.
      * @return static
      */
     public static function slice(KeyValueInterface $keyValue, string $key)
@@ -41,34 +42,21 @@ class SlicedValue implements SingleValueInterface
         return new static($keyValue, $key);
     }
 
-    /**
-     * @return mixed
-     */
     public function get()
     {
         return $this->keyValue->get($this->key);
     }
 
-    /**
-     * @return bool
-     */
     public function exists()
     {
         return $this->keyValue->exists($this->key);
     }
 
-    /**
-     * @param mixed $value
-     * @return void
-     */
     public function set($value)
     {
         $this->keyValue->set($this->key, $value);
     }
 
-    /**
-     * @return void
-     */
     public function delete()
     {
         $this->keyValue->delete($this->key);

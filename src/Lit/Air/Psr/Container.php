@@ -14,6 +14,9 @@ use Lit\Air\Recipe\InstanceRecipe;
 use Lit\Air\Recipe\RecipeInterface;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Air DI container
+ */
 class Container implements ContainerInterface
 {
     const CONFIGURATOR_CLASS = Configurator::class;
@@ -28,6 +31,11 @@ class Container implements ContainerInterface
      */
     protected $delegateContainer;
 
+    /**
+     * Container constructor.
+     *
+     * @param array|null $config Configuration array. See `Configurator` for more details.
+     */
     public function __construct(?array $config = null)
     {
         if ($config) {
@@ -42,41 +50,75 @@ class Container implements ContainerInterface
         $this->set(ContainerInterface::class, $this);
     }
 
+    /**
+     * Create a alias
+     *
+     * @param string $alias The alias string key.
+     * @return AbstractRecipe
+     */
     public static function alias(string $alias): AbstractRecipe
     {
         return new AliasRecipe($alias);
     }
 
+    /**
+     * Autowire this entry
+     *
+     * @param string|null $className Optional classname. Can be ommited when the entry key is the classname.
+     * @param array       $extra     Extra parameteres.
+     * @return AbstractRecipe
+     */
     public static function autowire(?string $className = null, array $extra = []): AbstractRecipe
     {
         return new AutowireRecipe($className, $extra);
     }
 
+    /**
+     * Populate an instance by factory
+     *
+     * @param string|null $className Optional classname. Can be ommited when the entry key is the classname.
+     * @param array       $extra     Extra parameteres.
+     * @return AbstractRecipe
+     */
     public static function instance(?string $className = null, array $extra = []): AbstractRecipe
     {
         return new InstanceRecipe($className, $extra);
     }
 
+    /**
+     * Calls a builder method using factory.
+     *
+     * @param callable $builder The builder method. Its parameter will be injected as dependency.
+     * @param array    $extra   Extra parameters.
+     * @return AbstractRecipe
+     */
     public static function builder(callable $builder, array $extra = []): AbstractRecipe
     {
         return new BuilderRecipe($builder, $extra);
     }
 
+    /**
+     * A fixed value
+     *
+     * @param mixed $value The value.
+     * @return AbstractRecipe
+     */
     public static function value($value): AbstractRecipe
     {
         return new FixedValueRecipe($value);
     }
 
+    /**
+     * Wraps a PSR container
+     *
+     * @param ContainerInterface $container The container.
+     * @return Container
+     */
     public static function wrap(ContainerInterface $container): self
     {
         return (new static())->setDelegateContainer($container);
     }
 
-    /**
-     * @param string $id
-     * @return mixed
-     * @throws \Psr\Container\ContainerExceptionInterface
-     */
     public function get($id)
     {
         if (array_key_exists($id, $this->local)) {
@@ -101,12 +143,25 @@ class Container implements ContainerInterface
             || ($this->delegateContainer && $this->delegateContainer->has($id));
     }
 
+    /**
+     * Set a recipe to given id
+     *
+     * @param string          $id     The key.
+     * @param RecipeInterface $recipe The recipe instance.
+     * @return Container
+     */
     public function define(string $id, RecipeInterface $recipe): self
     {
         $this->recipe[$id] = $recipe;
         return $this;
     }
 
+    /**
+     * Get recipe instance from the id
+     *
+     * @param string $id The key.
+     * @return RecipeInterface|null
+     */
     public function getRecipe(string $id): ?RecipeInterface
     {
         if (array_key_exists($id, $this->recipe)) {
@@ -116,6 +171,13 @@ class Container implements ContainerInterface
         return null;
     }
 
+    /**
+     * Get a recipe from the id, wrap a new recipe to replace it.
+     *
+     * @param string   $id      The key.
+     * @param callable $wrapper A recipe wrapper with signature (RecipeInterface): RecipeInterface.
+     * @return Container
+     */
     public function extendRecipe(string $id, callable $wrapper): self
     {
         if (!array_key_exists($id, $this->recipe)) {
@@ -129,17 +191,36 @@ class Container implements ContainerInterface
         return $this;
     }
 
+    /**
+     * Detect if there is a local entry for id
+     *
+     * @param string $id The key.
+     * @return boolean
+     */
     public function hasLocalEntry(string $id): bool
     {
         return array_key_exists($id, $this->local);
     }
 
+    /**
+     * Remove the local entry in id. Note this will never touch recipe.
+     *
+     * @param string $id The key.
+     * @return Container
+     */
     public function flush(string $id): self
     {
         unset($this->local[$id]);
         return $this;
     }
 
+    /**
+     * Convert a value into recipe and resolve it. See
+     * http://litphp.github.io/docs/air-config#structure-of-configuration
+     *
+     * @param mixed $value The value.
+     * @return mixed
+     */
     public function resolveRecipe($value)
     {
         $class = static::CONFIGURATOR_CLASS;
@@ -150,14 +231,24 @@ class Container implements ContainerInterface
         return $class::convertToRecipe($value)->resolve($this);
     }
 
-    public function set($id, $value): self
+    /**
+     * Set a local entry
+     *
+     * @param string $id    The key.
+     * @param mixed  $value The Value.
+     * @return Container
+     */
+    public function set(string $id, $value): self
     {
         $this->local[$id] = $value;
         return $this;
     }
 
     /**
-     * @param ContainerInterface $delegateContainer
+     * Set a delegate container.
+     * https://github.com/container-interop/container-interop/blob/HEAD/docs/Delegate-lookup.md
+     *
+     * @param ContainerInterface $delegateContainer The delegate container.
      * @return $this
      */
     public function setDelegateContainer(ContainerInterface $delegateContainer): self
@@ -167,11 +258,6 @@ class Container implements ContainerInterface
         return $this;
     }
 
-    /**
-     * @param callable $wrapper
-     * @param RecipeInterface $recipe
-     * @return RecipeInterface
-     */
     protected static function applyRecipeWrapper(callable $wrapper, RecipeInterface $recipe): RecipeInterface
     {
         $recipe = $wrapper($recipe);

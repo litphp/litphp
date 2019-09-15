@@ -12,6 +12,9 @@ use Lit\Voltage\App;
 use Lit\Voltage\Interfaces\ThrowableResponseInterface;
 use Psr\Http\Message\ResponseInterface;
 
+/**
+ * Bolt application
+ */
 class BoltApp extends App
 {
     const SETTER_INJECTOR = SetterInjector::class;
@@ -24,12 +27,24 @@ class BoltApp extends App
      */
     protected $requestContext;
 
+    /**
+     * Injector for EventsHub
+     *
+     * @param EventsHub|null $eventsHub The EventsHub.
+     * @return $this
+     */
     public function injectEventsHub(?EventsHub $eventsHub)
     {
         $this->eventsHub = $eventsHub;
         return $this;
     }
 
+    /**
+     * Injector for RequestContext
+     *
+     * @param RequestContext|null $requestContext The RequestContext.
+     * @return $this
+     */
     public function injectRequestContext(?RequestContext $requestContext)
     {
         $this->requestContext = $requestContext;
@@ -37,6 +52,8 @@ class BoltApp extends App
     }
 
     /**
+     * Getter for EventsHub
+     *
      * @return EventsHub
      */
     public function getEventsHub(): EventsHub

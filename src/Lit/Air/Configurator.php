@@ -13,6 +13,10 @@ use Lit\Air\Recipe\Decorator\SingletonDecorator;
 use Lit\Air\Recipe\FixedValueRecipe;
 use Lit\Air\Recipe\RecipeInterface;
 
+/**
+ * Configurator helps to build an array configuration, and writes array configuration into a container.
+ * http://litphp.github.io/docs/air-config
+ */
 class Configurator
 {
     protected static $decorators = [
@@ -20,6 +24,14 @@ class Configurator
         'singleton' => SingletonDecorator::class,
     ];
 
+    /**
+     * Write a configuration array into a container
+     *
+     * @param Container $container The container.
+     * @param array     $config    The configuration array.
+     * @param boolean   $force     Whether overwrite existing values.
+     * @return void
+     */
     public static function config(Container $container, array $config, bool $force = true): void
     {
         foreach ($config as $key => $value) {
@@ -30,6 +42,12 @@ class Configurator
         }
     }
 
+    /**
+     * Convert a mixed value into a recipe.
+     *
+     * @param mixed $value The value.
+     * @return RecipeInterface
+     */
     public static function convertToRecipe($value): RecipeInterface
     {
         if (is_object($value) && $value instanceof RecipeInterface) {
@@ -47,11 +65,24 @@ class Configurator
         return Container::value($value);
     }
 
+    /**
+     * Configuration indicating a singleton
+     *
+     * @param string $classname The class name.
+     * @param array  $extra     Extra parameters.
+     * @return array
+     */
     public static function singleton(string $classname, array $extra = []): array
     {
         return self::decorateSingleton(self::instance($classname, $extra));
     }
 
+    /**
+     * Decorate a configuration, makes it a singleton (\Lit\Air\Recipe\Decorator\SingletonDecorator)
+     *
+     * @param array $config The configuration.
+     * @return array
+     */
     public static function decorateSingleton(array $config): array
     {
         $config['decorator'] = $config['decorator'] ?? [];
@@ -60,6 +91,13 @@ class Configurator
         return $config;
     }
 
+    /**
+     * Decorate a configuration with provided callback
+     *
+     * @param array    $config   The configuration.
+     * @param callable $callback The callback.
+     * @return array
+     */
     public static function decorateCallback(array $config, callable $callback): array
     {
         $config['decorator'] = $config['decorator'] ?? [];
@@ -68,6 +106,12 @@ class Configurator
         return $config;
     }
 
+    /**
+     * Provide extra parameter for autowired entry. The key should be a valid class name.
+     *
+     * @param array $extra Extra parameters.
+     * @return array
+     */
     public static function provideParameter(array $extra = []): array
     {
         return [
@@ -77,6 +121,13 @@ class Configurator
         ];
     }
 
+    /**
+     * Configuration indicating an autowired entry.
+     *
+     * @param string|null $classname The class name. Can be ignored but better use `provideParameter` in that case.
+     * @param array       $extra     Extra parameters.
+     * @return array
+     */
     public static function produce(?string $classname, array $extra = []): array
     {
         return [
@@ -86,6 +137,13 @@ class Configurator
         ];
     }
 
+    /**
+     * Configuration indicating an instance created by factory.
+     *
+     * @param string $classname The class name.
+     * @param array  $extra     Extra parameters.
+     * @return array
+     */
     public static function instance(string $classname, array $extra = []): array
     {
         return [
@@ -95,6 +153,12 @@ class Configurator
         ];
     }
 
+    /**
+     * Configuration indicating an alias
+     *
+     * @param string ...$key Multiple keys will be auto joined.
+     * @return array
+     */
     public static function alias(string... $key): array
     {
         return [
@@ -103,15 +167,28 @@ class Configurator
         ];
     }
 
+    /**
+     * Configuration wrapping a builder method
+     *
+     * @param callable $builder The builder method.
+     * @param array    $extra   Extra parameters.
+     * @return array
+     */
     public static function builder(callable $builder, array $extra = []): array
     {
         return [
             '$' => 'builder',
             $builder,
-            $extra
+            $extra,
         ];
     }
 
+    /**
+     * Configuration wraps an arbitary value. For arrays it's recommended to always wrap with this.
+     *
+     * @param mixed $value The value.
+     * @return array
+     */
     public static function value($value): array
     {
         return [
@@ -144,10 +221,6 @@ class Configurator
         }
     }
 
-    /**
-     * @param array $value
-     * @return array
-     */
     protected static function convertArray(array $value): array
     {
         $result = [];
@@ -194,8 +267,10 @@ class Configurator
     }
 
     /**
-     * @param array $decorators
-     * @param RecipeInterface $recipe
+     * Apply decorators to a recipe and return the decorated recipe
+     *
+     * @param array           $decorators Assoc array of decorator names => options.
+     * @param RecipeInterface $recipe     The decorated recipe instance.
      * @return RecipeInterface
      */
     public static function wrapRecipeWithDecorators(array $decorators, RecipeInterface $recipe): RecipeInterface
@@ -222,6 +297,12 @@ class Configurator
         return $recipe;
     }
 
+    /**
+     * Join multiple strings with air conventional separator `::`
+     *
+     * @param string ...$args Parts of the key to be joined.
+     * @return string
+     */
     public static function join(string... $args): string
     {
         return implode('::', $args);

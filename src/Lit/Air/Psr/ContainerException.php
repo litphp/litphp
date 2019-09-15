@@ -6,6 +6,9 @@ namespace Lit\Air\Psr;
 
 use Psr\Container\ContainerExceptionInterface;
 
+/**
+ * Concrete ContainerExceptionInterface.
+ */
 class ContainerException extends \LogicException implements ContainerExceptionInterface
 {
 
