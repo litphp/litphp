@@ -10,6 +10,9 @@ use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Air DI Factory
+ */
 class Factory
 {
     const CONTAINER_KEY = self::class;
@@ -35,6 +38,12 @@ class Factory
         $this->container->set(self::CONTAINER_KEY, $this);
     }
 
+    /**
+     * Get or create a factory instance from the container
+     *
+     * @param ContainerInterface $container The container.
+     * @return Factory
+     */
     public static function of(ContainerInterface $container): self
     {
         if (!$container->has(self::CONTAINER_KEY)) {
@@ -45,11 +54,13 @@ class Factory
     }
 
     /**
-     * @param string $className
-     * @param array  $extraParameters
+     * Create a $className instance
+     *
+     * @param string $className       Requested classname.
+     * @param array  $extraParameters Extra parameters.
      * @return object
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \ReflectionException
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
+     * @throws \ReflectionException Failure during reflection process.
      */
     public function instantiate(string $className, array $extraParameters = [])
     {
@@ -67,10 +78,11 @@ class Factory
     }
 
     /**
-     * @param callable $callback
-     * @param array    $extra
+     * Call $callback with parameters injected
+     *
+     * @param callable $callback The callback to be called.
+     * @param array    $extra    Extra parameters.
      * @return mixed
-     * @throws \ReflectionException
      */
     public function invoke(callable $callback, array $extra = [])
     {
@@ -101,11 +113,13 @@ class Factory
     }
 
     /**
-     * @param string $className
-     * @param array  $extraParameters
-     * @return object of $className«
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \ReflectionException
+     * Create and save a $className instance in container.
+     *
+     * @param string $className       Requested classname.
+     * @param array  $extraParameters Extra parameters.
+     * @return object of $className
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
+     * @throws \ReflectionException Failure during reflection process.
      */
     public function produce(string $className, array $extraParameters = [])
     {
@@ -125,10 +139,12 @@ class Factory
     }
 
     /**
-     * @param string $className
+     * get $className in container, or try to produce it.
+     *
+     * @param string $className Reqeust classname.
      * @return object of $className
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \ReflectionException
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
+     * @throws \ReflectionException Failure during reflection process.
      */
     public function getOrProduce(string $className)
     {
@@ -140,10 +156,12 @@ class Factory
     }
 
     /**
-     * @param string $className
+     * Get $className in container, or try to instantiate it.
+     *
+     * @param string $className Requested classname.
      * @return object of $className
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \ReflectionException
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
+     * @throws \ReflectionException Failure during reflection process.
      */
     public function getOrInstantiate(string $className)
     {
@@ -155,11 +173,14 @@ class Factory
     }
 
     /**
-     * @param object $obj
-     * @param array  $extra
-     * @throws \Psr\Container\ContainerExceptionInterface
+     * Run injectors on object. (Typically for setter injection)
+     *
+     * @param object $obj   The object to be injected.
+     * @param array  $extra Extra paramters.
+     * @return void
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      */
-    public function inject($obj, array $extra = []): void
+    protected function inject($obj, array $extra = []): void
     {
         if (!$this->container->has(self::KEY_INJECTORS)) {
             return;
@@ -175,13 +196,16 @@ class Factory
     }
 
     /**
-     * @param string      $basename
-     * @param array       $keys
-     * @param null|string $className
-     * @param array       $extra
+     * Resolve a dependency item.
+     * http://litphp.github.io/docs/air-di#working-on-dependencies
+     *
+     * @param string      $basename  Represents who need the dependency. Often a class name.
+     * @param array       $keys      Ordered array of string keys describing the dependency.
+     * @param null|string $className Optional class name of the dependency.
+     * @param array       $extra     Extra parameters.
      * @return mixed|object
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \ReflectionException
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
+     * @throws \ReflectionException Failure during reflection process.
      */
     public function resolveDependency(string $basename, array $keys, ?string $className = null, array $extra = [])
     {
@@ -200,6 +224,12 @@ class Factory
         throw new ContainerException('failed to produce dependency');
     }
 
+    /**
+     * Register a injector.
+     *
+     * @param InjectorInterface $injector The injector.
+     * @return Factory
+     */
     public function addInjector(InjectorInterface $injector): self
     {
         if (!$this->container->has(static::KEY_INJECTORS)) {
@@ -215,11 +245,14 @@ class Factory
     }
 
     /**
-     * @param string $basename
-     * @param array  $keys
-     * @param array  $extra
-     * @return array|null
-     * @throws \Psr\Container\ContainerExceptionInterface
+     * A subprocess of dependency resolving: try use candicate keys to find dependency.
+     * http://litphp.github.io/docs/air-di#working-on-dependencies
+     *
+     * @param string $basename Represents who need the dependency. Often a class name.
+     * @param array  $keys     Ordered array of string keys describing the dependency.
+     * @param array  $extra    Extra parameters.
+     * @return array|null return single element array when success, null when fail, so null value can be handled
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      */
     protected function produceFromClass(string $basename, array $keys, array $extra = [])
     {
@@ -251,6 +284,14 @@ class Factory
         return null;
     }
 
+    /**
+     * Resolve array of ReflectionParameter into concrete values
+     *
+     * @param array  $params   Array of ReflectionParameter.
+     * @param string $basename Represents who need the dependency.
+     * @param array  $extra    Extra parameters.
+     * @return array
+     */
     protected function resolveParams(array $params, string $basename, array $extra = [])
     {
         return array_map(
@@ -262,14 +303,16 @@ class Factory
     }
 
     /**
-     * @param string               $basename
-     * @param \ReflectionParameter $parameter
-     * @param array                $extraParameters
+     * Resolve a parameter (of callback, or constructor)
+     *
+     * @param string               $basename  Represents who need the dependency.
+     * @param \ReflectionParameter $parameter The ReflectionParameter.
+     * @param array                $extra     Extra parameters.
      * @return mixed|object
-     * @throws \Psr\Container\ContainerExceptionInterface
-     * @throws \ReflectionException
+     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
+     * @throws \ReflectionException Failure during reflection process.
      */
-    protected function resolveParam($basename, \ReflectionParameter $parameter, array $extraParameters)
+    protected function resolveParam(string $basename, \ReflectionParameter $parameter, array $extra)
     {
         $hash = sprintf('%s#%d', $basename, $parameter->getPosition());
         if (isset($this->circularStore[$hash])) {
@@ -280,7 +323,7 @@ class Factory
             $this->circularStore[$hash] = true;
             list($keys, $paramClassName) = $this->parseParameter($parameter);
 
-            return $this->resolveDependency($basename, $keys, $paramClassName, $extraParameters);
+            return $this->resolveDependency($basename, $keys, $paramClassName, $extra);
         } catch (CircularDependencyException $e) {
             throw $e;
         } catch (ContainerException $e) {
@@ -298,10 +341,6 @@ class Factory
         }
     }
 
-    /**
-     * @param \ReflectionParameter $parameter
-     * @return array
-     */
     protected function parseParameter(\ReflectionParameter $parameter)
     {
         $paramClassName = null;

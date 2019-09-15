@@ -8,6 +8,12 @@ use Lit\Air\Factory;
 use Lit\Air\Psr\ContainerException;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Recipe that calls $factory->produce to resolve. a.k.a autowire.
+ *
+ * Since `produce` method will save the product under `$className` key in container and reuse it, it's singleton. If
+ * you need multiple instance, use `InstanceRecipe` instead.
+ */
 class AutowireRecipe extends AbstractRecipe
 {
     /**

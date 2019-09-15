@@ -7,6 +7,9 @@ namespace Lit\Air\Recipe;
 use Lit\Air\Factory;
 use Psr\Container\ContainerInterface;
 
+/**
+ * Calls a builder method when resolved. The "builder method" will be invoked by $factory->invoke
+ */
 class BuilderRecipe extends AbstractRecipe
 {
     /**
@@ -18,11 +21,6 @@ class BuilderRecipe extends AbstractRecipe
      */
     protected $extra;
 
-    /**
-     * MultitonStub constructor.
-     * @param callable $builder
-     * @param array    $extra
-     */
     public function __construct(callable $builder, array $extra = [])
     {
         $this->builder = $builder;

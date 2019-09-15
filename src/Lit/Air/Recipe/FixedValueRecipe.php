@@ -6,6 +6,9 @@ namespace Lit\Air\Recipe;
 
 use Psr\Container\ContainerInterface;
 
+/**
+ * Always return a fixed value. Useful for test, and as a wrapper of arbitary value.
+ */
 class FixedValueRecipe extends AbstractRecipe
 {
     protected $value;

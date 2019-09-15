@@ -6,6 +6,9 @@ namespace Lit\Air\Recipe\Decorator;
 
 use Psr\Container\ContainerInterface;
 
+/**
+ * Turns a recipe into a singleton. When it's resolved once, the value will be cached and reused.
+ */
 class SingletonDecorator extends AbstractRecipeDecorator
 {
     protected $value;

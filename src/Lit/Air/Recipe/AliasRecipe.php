@@ -6,6 +6,9 @@ namespace Lit\Air\Recipe;
 
 use Psr\Container\ContainerInterface;
 
+/**
+ * Get from another key when this recipe resolves.
+ */
 class AliasRecipe extends AbstractRecipe
 {
     /**
@@ -13,9 +16,6 @@ class AliasRecipe extends AbstractRecipe
      */
     protected $alias;
 
-    /**
-     * @param string $alias
-     */
     public function __construct(string $alias)
     {
         $this->alias = $alias;

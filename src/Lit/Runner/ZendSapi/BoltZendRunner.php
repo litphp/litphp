@@ -8,6 +8,9 @@ use Lit\Bolt\BoltContainerConfiguration;
 use Psr\Container\ContainerInterface;
 use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
+/**
+ * App runner using zend HttpHandlerRunner
+ */
 class BoltZendRunner
 {
     public static function run($config = [])
