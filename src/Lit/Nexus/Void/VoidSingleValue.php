@@ -8,9 +8,7 @@ use Lit\Nexus\Interfaces\SingleValueInterface;
 use Lit\Nexus\Traits\SingleValueTrait;
 
 /**
- * Class VoidSingleValue
- * @package Lit\Nexus\Void
- * @SuppressWarnings(PHPMD)
+ * Special SingleValueInterface that contains nothing and silently ignore any write.
  */
 class VoidSingleValue implements SingleValueInterface
 {

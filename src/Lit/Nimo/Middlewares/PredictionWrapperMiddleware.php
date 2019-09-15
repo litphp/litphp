@@ -9,6 +9,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Wraps a middleware, skip inner logic when the RequestPredictionInterface fail (or pass, by `reverted` option)
+ */
 class PredictionWrapperMiddleware extends AbstractConditionMiddleware
 {
     /**

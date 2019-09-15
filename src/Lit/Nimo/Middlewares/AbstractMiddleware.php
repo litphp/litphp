@@ -9,6 +9,9 @@ use Lit\Nimo\Traits\MiddlewareCompositeTrait;
 use Lit\Nimo\Traits\MiddlewareTrait;
 use Psr\Http\Server\MiddlewareInterface;
 
+/**
+ * Base middleware class
+ */
 abstract class AbstractMiddleware implements MiddlewareInterface
 {
     use MiddlewareTrait;

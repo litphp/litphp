@@ -8,6 +8,9 @@ use Lit\Nimo\Interfaces\ExceptionHandlerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\MiddlewareInterface;
 
+/**
+ * Middleware wrapper that try to catch soem exception when running inner middleware.
+ */
 class CatchMiddleware extends AbstractWrapperMiddleware
 {
     /**

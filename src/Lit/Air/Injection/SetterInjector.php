@@ -8,13 +8,18 @@ use Lit\Air\Factory;
 use Lit\Air\Psr\ContainerException;
 use ReflectionMethod;
 
+/**
+ * SetterInjector inject dependencies into an object by it's setter method.
+ * By default only method with name injectXXX and with single parameter will be considered.
+ */
 class SetterInjector implements InjectorInterface
 {
     protected $prefixes = ['inject'];
 
     /**
      * SetterInjector constructor.
-     * @param array|string[] $prefixes
+     *
+     * @param array|string[] $prefixes Method prefix(es) to scan.
      */
     public function __construct(array $prefixes = ['inject'])
     {
@@ -51,11 +56,6 @@ class SetterInjector implements InjectorInterface
         return defined("$class::SETTER_INJECTOR") && $class::SETTER_INJECTOR === static::class;
     }
 
-    /**
-     *
-     * @param array $prefixes
-     * @return $this
-     */
     public function setPrefixes(array $prefixes): self
     {
         $this->prefixes = $prefixes;
@@ -81,6 +81,11 @@ class SetterInjector implements InjectorInterface
         return false;
     }
 
+    /**
+     * Configuration method of setter injector.
+     *
+     * @return array
+     */
     public static function configuration()
     {
         return [

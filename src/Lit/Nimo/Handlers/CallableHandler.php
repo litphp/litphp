@@ -7,6 +7,9 @@ namespace Lit\Nimo\Handlers;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Converts a callback to a RequestHandlerInterface
+ */
 class CallableHandler extends AbstractHandler
 {
     /**

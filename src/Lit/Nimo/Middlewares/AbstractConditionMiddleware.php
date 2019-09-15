@@ -8,6 +8,9 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Base class for middleware wrapper that skip inner logic sometimes.
+ */
 abstract class AbstractConditionMiddleware extends AbstractWrapperMiddleware
 {
     protected function main(): ResponseInterface

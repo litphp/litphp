@@ -6,6 +6,9 @@ namespace Lit\Nimo\Handlers;
 
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Base class for handler wrapper.
+ */
 abstract class AbstractWrapperHandler extends AbstractHandler
 {
     /**

@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nexus\Utilities;
 
+/**
+ * A minimist error inspector
+ */
 class Inspector
 {
     protected const EXCEPTION_MESSAGE = <<<HTML
@@ -45,10 +48,6 @@ TEXT;
         throw new \ErrorException($errstr, $errno, 1, $errfile, $errline);
     }
 
-
-    /**
-     * @param \Exception $exception
-     */
     public static function exceptionHandler($exception)
     {
         $msg = sprintf(

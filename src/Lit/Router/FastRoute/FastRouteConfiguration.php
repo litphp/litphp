@@ -17,6 +17,9 @@ use Lit\Nexus\Void\VoidSingleValue;
 use Lit\Voltage\Interfaces\RouterInterface;
 use Lit\Voltage\Interfaces\RouterStubResolverInterface;
 
+/**
+ * Configuration for FastRoute router application
+ */
 class FastRouteConfiguration
 {
     public static function default($routeDefinition)

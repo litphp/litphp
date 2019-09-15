@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nexus\Interfaces;
 
+/**
+ * ReadableSingleValueInterface represent a single value that can be read.
+ */
 interface ReadableSingleValueInterface
 {
     /**

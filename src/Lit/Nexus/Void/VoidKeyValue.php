@@ -8,9 +8,7 @@ use Lit\Nexus\Interfaces\KeyValueInterface;
 use Lit\Nexus\Traits\KeyValueTrait;
 
 /**
- * Class VoidKeyValue
- * @package Lit\Nexus\Void
- * @SuppressWarnings(PHPMD)
+ * Special KeyValueInterface that contains nothing and silently ignore any write.
  */
 class VoidKeyValue implements KeyValueInterface
 {

@@ -6,6 +6,9 @@ namespace Lit\Air\Psr;
 
 use Throwable;
 
+/**
+ * Failure when there's a circular dependency.
+ */
 class CircularDependencyException extends ContainerException
 {
     /**

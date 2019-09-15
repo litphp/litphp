@@ -7,12 +7,15 @@ namespace Lit\Nimo\Handlers;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Handler that always return fixed response.
+ */
 class FixedResponseHandler extends AbstractHandler
 {
     protected $fixedResponse;
 
     /**
-     * @param ResponseInterface $response always return this response
+     * @param ResponseInterface $response The fixed response.
      */
     public function __construct(ResponseInterface $response)
     {

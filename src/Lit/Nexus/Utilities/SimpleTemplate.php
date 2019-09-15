@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Nexus\Utilities;
 
+/**
+ * Simple string template
+ */
 class SimpleTemplate
 {
     protected $tag_re = '#`([^`\r\n]+)(?:[\r\n`])#';
@@ -13,7 +16,7 @@ class SimpleTemplate
     protected $post = [
         '!!TPL_PHP!!' => '<?=\'<\'?>?',
     ];
-    protected $rule = array(
+    protected $rule = [
         'if' => '<?php if(%0):?>',
         'else' => '<?php else:?>',
         'elif' => '<?php elseif (%0):?>',
@@ -22,16 +25,13 @@ class SimpleTemplate
         '/loop' => '<?php endforeach;?>',
         'php' => "<?php %0",
         '/php' => '?>',
-    );
+    ];
     /**
      * @var string
      */
     protected $code;
     protected $compiledCode;
 
-    /**
-     * @param string $templateCode
-     */
     protected function __construct(string $templateCode)
     {
         $this->code = $templateCode;
@@ -42,12 +42,20 @@ class SimpleTemplate
         return new static($templateCode);
     }
 
-    public function render($data)
+    /**
+     * render a string
+     *
+     * @param array $data The input data.
+     * @return string
+     */
+    public function render(array $data): string
     {
         ob_start();
         extract($data);
         eval('?>' . $this->compile());
-        return ob_get_clean();
+        $ret = ob_get_clean();
+        assert(is_string($ret));
+        return $ret;
     }
 
     public function compile()

@@ -10,6 +10,9 @@ use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * Pipe or chain of middlewares. This middleware is designed to run multiple middlewares one by one.
+ */
 class MiddlewarePipe extends AbstractMiddleware
 {
     /**
@@ -35,7 +38,7 @@ class MiddlewarePipe extends AbstractMiddleware
      * return $this
      * note this method would modify $this
      *
-     * @param MiddlewareInterface $middleware
+     * @param MiddlewareInterface $middleware The middleware to be append.
      * @return $this
      */
     public function append(MiddlewareInterface $middleware): MiddlewarePipe
@@ -49,7 +52,7 @@ class MiddlewarePipe extends AbstractMiddleware
      * return $this
      * note this method would modify $this
      *
-     * @param MiddlewareInterface $middleware
+     * @param MiddlewareInterface $middleware The middleware to be prepend.
      * @return $this
      */
     public function prepend(MiddlewareInterface $middleware): MiddlewarePipe
@@ -66,7 +69,7 @@ class MiddlewarePipe extends AbstractMiddleware
     }
 
     /**
-     * @param ServerRequestInterface $request
+     * @param ServerRequestInterface $request The request.
      * @return ResponseInterface
      */
     protected function loop(ServerRequestInterface $request): ResponseInterface

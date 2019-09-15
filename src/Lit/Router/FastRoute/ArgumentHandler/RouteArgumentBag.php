@@ -8,6 +8,9 @@ use Lit\Nexus\Interfaces\ReadableKeyValueInterface;
 use Lit\Nimo\Traits\AttachToRequestTrait;
 use Psr\Http\Message\ServerRequestInterface;
 
+/**
+ * Contains all route arguments and attach to request.
+ */
 class RouteArgumentBag implements ReadableKeyValueInterface, ArgumentHandlerInterface
 {
     use AttachToRequestTrait;
