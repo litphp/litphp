@@ -9,6 +9,10 @@ use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
+/**
+ * State object as a RequestHandler, representing a "$next" handler.
+ * Used with MiddlewarePipe.
+ */
 class PipeNextHandler implements RequestHandlerInterface
 {
     /**
@@ -22,8 +26,8 @@ class PipeNextHandler implements RequestHandlerInterface
 
     /**
      * PipeNextHandler constructor.
-     * @param MiddlewarePipe $pipe
-     * @param int $index
+     * @param MiddlewarePipe $pipe The MiddlewarePipe.
+     * @param int $index Current iteration index.
      */
     public function __construct(MiddlewarePipe $pipe, int $index)
     {

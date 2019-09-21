@@ -52,16 +52,14 @@ class MiddlewarePipe extends AbstractMiddleware
         return $this->iterate($this->request, 0);
     }
 
-    protected function next(int $index): PipeNextHandler
-    {
-        return new PipeNextHandler($this, $index);
-    }
-
     /**
+     * This is a internal method for run one single iteration.
+     *
+     * @internal This is a public method for PipeNextHandler but NOT considered part of public API.
+     *
      * @param ServerRequestInterface $request The request.
-     * @param int $index Current iteration index.
+     * @param int                    $index   Current iteration index.
      * @return ResponseInterface
-     * @internal
      */
     public function iterate(ServerRequestInterface $request, int $index): ResponseInterface
     {
@@ -69,6 +67,6 @@ class MiddlewarePipe extends AbstractMiddleware
             return $this->delegate($request);
         }
 
-        return $this->stack[$index]->process($request, $this->next($index + 1));
+        return $this->stack[$index]->process($request, new PipeNextHandler($this, $index + 1));
     }
 }
