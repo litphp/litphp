@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/nexus
 	branch = master
-	commit = 9eec7324634d027950b0daa38bb13f73e26d4013
-	parent = de931ac2df060c2789c80405f6d6de83a8bac8dd
+	commit = 23adfad13a18c46ebd41c2e1f9819255c5ba5f21
+	parent = 3b6da493f6a86fef729780c470ad7ef34863c709
 	cmdver = 0.4.0
 	method = merge
