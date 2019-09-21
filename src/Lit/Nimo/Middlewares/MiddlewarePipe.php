@@ -4,11 +4,10 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Middlewares;
 
-use Lit\Nimo\Handlers\CallableHandler;
+use Lit\Nimo\Handlers\PipeNextHandler;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\MiddlewareInterface;
-use Psr\Http\Server\RequestHandlerInterface;
 
 /**
  * Pipe or chain of middlewares. This middleware is designed to run multiple middlewares one by one.
@@ -16,22 +15,9 @@ use Psr\Http\Server\RequestHandlerInterface;
 class MiddlewarePipe extends AbstractMiddleware
 {
     /**
-     * @var RequestHandlerInterface
-     */
-    protected $nextHandler;
-    /**
      * @var MiddlewareInterface[]
      */
     protected $stack = [];
-    protected $index;
-
-    public function __construct()
-    {
-        $this->nextHandler = CallableHandler::wrap(function (ServerRequestInterface $request) {
-            return $this->loop($request);
-        });
-    }
-
 
     /**
      * append $middleware
@@ -63,21 +49,24 @@ class MiddlewarePipe extends AbstractMiddleware
 
     protected function main(): ResponseInterface
     {
-        $this->index = 0;
-
-        return $this->loop($this->request);
+        return $this->iterate($this->request, 0);
     }
 
     /**
+     * This is a internal method for run one single iteration.
+     *
+     * @internal This is a public method for PipeNextHandler but NOT considered part of public API.
+     *
      * @param ServerRequestInterface $request The request.
+     * @param int                    $index   Current iteration index.
      * @return ResponseInterface
      */
-    protected function loop(ServerRequestInterface $request): ResponseInterface
+    public function iterate(ServerRequestInterface $request, int $index): ResponseInterface
     {
-        if (!isset($this->stack[$this->index])) {
+        if (!isset($this->stack[$index])) {
             return $this->delegate($request);
         }
 
-        return $this->stack[$this->index++]->process($request, $this->nextHandler);
+        return $this->stack[$index]->process($request, new PipeNextHandler($this, $index + 1));
     }
 }
