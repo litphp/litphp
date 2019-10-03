@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Air\Injection;
 
 use Lit\Air\Factory;
-use Lit\Air\Psr\ContainerException;
 use ReflectionMethod;
 
 /**
