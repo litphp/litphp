@@ -1,4 +1,7 @@
 
+## next (v0.9.2)
+- [#9](https://github.com/litphp/litphp/pull/9) air: container exception happened during setter injection is no longer ignored
+
 ## v0.9.1
 
 ### Changes
