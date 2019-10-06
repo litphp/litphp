@@ -176,7 +176,7 @@ class Factory
      * Run injectors on object. (Typically for setter injection)
      *
      * @param object $obj   The object to be injected.
-     * @param array  $extra Extra paramters.
+     * @param array  $extra Extra parameters.
      * @return void
      * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      */
