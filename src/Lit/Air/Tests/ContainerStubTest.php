@@ -1,18 +1,18 @@
 <?php
 
-namespace Lit\Bolt\Tests;
+namespace Lit\Air\Tests;
 
-use Lit\Air\Tests\Foo;
-use Lit\Bolt\Router\BoltContainerStub;
+use Lit\Air\ContainerStub;
+use Lit\Bolt\Tests\BoltTestCase;
 
-class BoltContainerStubTest extends BoltTestCase
+class ContainerStubTest extends BoltTestCase
 {
     public function testSmoke()
     {
-        $result = BoltContainerStub::of(\stdClass::class)->instantiateFrom($this->container);
+        $result = ContainerStub::of(\stdClass::class)->instantiateFrom($this->container);
         self::assertInstanceOf(\stdClass::class, $result);
 
-        $stub = BoltContainerStub::tryParse([
+        $stub = ContainerStub::tryParse([
             Foo::class,
             [
                 'bar' => $bar = new \stdClass(),
