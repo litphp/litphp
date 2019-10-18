@@ -159,7 +159,7 @@ class Configurator
      * @param string ...$key Multiple keys will be auto joined.
      * @return array
      */
-    public static function alias(string... $key): array
+    public static function alias(string ...$key): array
     {
         return [
             '$' => 'alias',
@@ -204,7 +204,8 @@ class Configurator
             return;
         }
 
-        if (substr($key, -2) === '::'
+        if (
+            substr($key, -2) === '::'
             && class_exists(substr($key, 0, -2))
         ) {
             $container->set($key, self::convertArray($value));
@@ -239,13 +240,15 @@ class Configurator
         $type = $value['$'];
         unset($value['$']);
 
-        if (array_key_exists($type, [
+        if (
+            array_key_exists($type, [
             'alias' => 1,
             'autowire' => 1,
             'instance' => 1,
             'builder' => 1,
             'value' => 1,
-        ])) {
+            ])
+        ) {
             $valueDecorator = $value['decorator'] ?? null;
             unset($value['decorator']);
 
@@ -303,7 +306,7 @@ class Configurator
      * @param string ...$args Parts of the key to be joined.
      * @return string
      */
-    public static function join(string... $args): string
+    public static function join(string ...$args): string
     {
         return implode('::', $args);
     }

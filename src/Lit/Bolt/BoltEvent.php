@@ -16,8 +16,8 @@ use Symfony\Component\EventDispatcher\GenericEvent;
  */
 class BoltEvent extends GenericEvent
 {
-    const EVENT_BEFORE_LOGIC = 'bolt.before_logic';
-    const EVENT_AFTER_LOGIC = 'bolt.after_logic';
+    public const EVENT_BEFORE_LOGIC = 'bolt.before_logic';
+    public const EVENT_AFTER_LOGIC = 'bolt.after_logic';
 
     /**
      * Create a new bolt event

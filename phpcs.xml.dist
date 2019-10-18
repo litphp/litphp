@@ -5,7 +5,6 @@
     <exclude-pattern>./src/**/Tests/*</exclude-pattern>
     <exclude-pattern>./vendor/*</exclude-pattern>
     <rule ref="PSR1"/>
-    <rule ref="PSR2"/>
     <rule ref="PSR12"/>
     <rule ref="Generic.PHP.ForbiddenFunctions">
         <properties>

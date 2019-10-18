@@ -14,6 +14,7 @@ use Lit\Nexus\Traits\SingleValueTrait;
 class SlicedValue implements SingleValueInterface
 {
     use SingleValueTrait;
+
     /**
      * @var KeyValueInterface
      */

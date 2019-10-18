@@ -13,6 +13,7 @@ use Lit\Air\Recipe\RecipeTrait;
 abstract class AbstractRecipeDecorator implements RecipeInterface
 {
     use RecipeTrait;
+
     /**
      * @var RecipeInterface
      */

@@ -17,7 +17,7 @@ use Psr\Http\Message\ResponseInterface;
  */
 class BoltApp extends App
 {
-    const SETTER_INJECTOR = SetterInjector::class;
+    public const SETTER_INJECTOR = SetterInjector::class;
     /**
      * @var ?EventsHub
      */

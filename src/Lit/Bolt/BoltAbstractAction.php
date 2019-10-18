@@ -17,7 +17,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
  */
 abstract class BoltAbstractAction extends AbstractAction
 {
-    const SETTER_INJECTOR = SetterInjector::class;
+    public const SETTER_INJECTOR = SetterInjector::class;
 
     /**
      * Injector for ResponseFactory

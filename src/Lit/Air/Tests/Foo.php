@@ -8,7 +8,7 @@ use Lit\Air\Injection\SetterInjector;
 
 class Foo
 {
-    const SETTER_INJECTOR = SetterInjector::class;
+    public const SETTER_INJECTOR = SetterInjector::class;
 
     public $bar;
     /**

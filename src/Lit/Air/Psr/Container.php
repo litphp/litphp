@@ -19,7 +19,7 @@ use Psr\Container\ContainerInterface;
  */
 class Container implements ContainerInterface
 {
-    const CONFIGURATOR_CLASS = Configurator::class;
+    public const CONFIGURATOR_CLASS = Configurator::class;
     /**
      * @var RecipeInterface[]
      */

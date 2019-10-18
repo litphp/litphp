@@ -11,7 +11,7 @@ use Psr\Http\Message\ServerRequestInterface;
  */
 trait RouteArgumentBagGetterTrait
 {
-    public function routeArgs():RouteArgumentBag
+    public function routeArgs(): RouteArgumentBag
     {
         return RouteArgumentBag::fromRequest($this->request);
     }

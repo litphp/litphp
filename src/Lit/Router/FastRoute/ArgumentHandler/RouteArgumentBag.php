@@ -14,6 +14,7 @@ use Psr\Http\Message\ServerRequestInterface;
 class RouteArgumentBag implements ReadableKeyValueInterface, ArgumentHandlerInterface
 {
     use AttachToRequestTrait;
+
     protected $routeArgs;
 
     public function attachArguments(

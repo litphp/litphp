@@ -15,8 +15,8 @@ use Psr\Container\ContainerInterface;
  */
 class Factory
 {
-    const CONTAINER_KEY = self::class;
-    const KEY_INJECTORS = self::class . '::injectors';
+    public const CONTAINER_KEY = self::class;
+    public const KEY_INJECTORS = self::class . '::injectors';
     /**
      * @var Container
      */
@@ -262,7 +262,8 @@ class Factory
         $current = $basename;
 
         do {
-            if (!empty($current)
+            if (
+                !empty($current)
                 && $this->container->has("$current::")
                 && ($value = $this->findFromArray($this->container->get("$current::"), $keys))
             ) {
