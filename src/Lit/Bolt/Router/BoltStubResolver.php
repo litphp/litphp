@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Bolt\Router;
 
+use Lit\Air\ContainerStub;
 use Lit\Air\Factory;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Handlers\FixedResponseHandler;
@@ -56,7 +57,7 @@ class BoltStubResolver implements RouterStubResolverInterface
             return FixedResponseHandler::wrap($stub);
         }
 
-        $containerStub = BoltContainerStub::tryParse($stub);
+        $containerStub = ContainerStub::tryParse($stub);
         if (!$containerStub) {
             /** @var StubResolveException $exception */
             $exception = Factory::of($this->container)->instantiate(StubResolveException::class, [
