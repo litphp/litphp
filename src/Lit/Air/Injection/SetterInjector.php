@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Air\Injection;
 
 use Lit\Air\Factory;
-use Lit\Air\Psr\ContainerException;
 use ReflectionMethod;
 
 /**
@@ -41,12 +40,8 @@ class SetterInjector implements InjectorInterface
                 $keys[] = $paramClassName = $paramClass->name;
             }
 
-            try {
-                $value = $factory->resolveDependency($class->name, $keys, $paramClassName, $extra);
-                $method->invoke($obj, $value);
-            } catch (ContainerException $e) {
-                //ignore
-            }
+            $value = $factory->resolveDependency($class->name, $keys, $paramClassName, $extra);
+            $method->invoke($obj, $value);
         }
     }
 
