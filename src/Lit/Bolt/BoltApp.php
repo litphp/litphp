@@ -37,7 +37,7 @@ class BoltApp extends App
      */
     public function injectEventsHub(?EventsHub $eventsHub)
     {
-        trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
+        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
         $this->eventsHub = $eventsHub;
         return $this;
     }

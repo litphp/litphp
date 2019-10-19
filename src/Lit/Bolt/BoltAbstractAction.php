@@ -37,7 +37,7 @@ abstract class BoltAbstractAction extends AbstractAction
      */
     protected function events(): EventsHub
     {
-        trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
+        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
         return EventsHub::fromRequest($this->request);
     }
 
