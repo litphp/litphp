@@ -12,6 +12,7 @@ use Symfony\Component\EventDispatcher\EventDispatcher;
 
 /**
  * Middleware for pub-sub pattern
+ * @deprecated
  */
 class EventsHub extends AbstractMiddleware
 {
@@ -30,16 +31,19 @@ class EventsHub extends AbstractMiddleware
      */
     public function getEventDispatcher(): EventDispatcher
     {
+        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
         return $this->eventDispatcher;
     }
 
     public function addListener($eventName, $listener, $priority = 0)
     {
+        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
         $this->eventDispatcher->addListener($eventName, $listener, $priority);
     }
 
     public function dispatch($eventName, Event $event = null)
     {
+        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
         $this->eventDispatcher->dispatch($eventName, $event);
     }
 

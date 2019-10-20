@@ -20,6 +20,7 @@ class BoltApp extends App
     public const SETTER_INJECTOR = SetterInjector::class;
     /**
      * @var ?EventsHub
+     * @deprecated
      */
     protected $eventsHub;
     /**
@@ -32,9 +33,11 @@ class BoltApp extends App
      *
      * @param EventsHub|null $eventsHub The EventsHub.
      * @return $this
+     * @deprecated
      */
     public function injectEventsHub(?EventsHub $eventsHub)
     {
+        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
         $this->eventsHub = $eventsHub;
         return $this;
     }
