@@ -70,7 +70,7 @@ class BoltRouterAppTest extends BoltTestCase
         $result404 = $app->handle($request404);
         self::assertSame($result404, $response404);
 
-        $router = $this->container->get(RouterInterface::class);
+        $router = $this->container->get(C::join(BoltApp::class, 'handler', 'router'));
         self::assertInstanceOf(VoidHandler::class, $router->route($fooRequest));
     }
 
