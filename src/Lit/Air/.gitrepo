@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/air
 	branch = master
-	commit = 58854cad185efac092b571db7e97a63b57428384
-	parent = 08dc499fc4f482d754c737d5b1068813520cc552
+	commit = 2aa0ccd7124c3e4b3c42bd6bfb7d138a0dc8fc71
+	parent = 5306a73b4782ec93223cf2dddedfa59007e0e5de
 	cmdver = 0.4.0
 	method = merge
