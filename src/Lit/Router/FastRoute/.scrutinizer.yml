@@ -10,6 +10,9 @@ filter:
   excluded_paths:
     - Tests/*
 build:
+  environment:
+    variables:
+      SYMFONY_DEPRECATIONS_HELPER: 'max[total]=999999'
   nodes:
     my-tests:
       tests:

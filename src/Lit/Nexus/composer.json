@@ -21,6 +21,9 @@
   "suggest": {
     "psr/cache-implementation": "convert cache instance to keyValue instance"
   },
+  "scripts": {
+    "test": "phpunit -c ."
+  },
   "extra": {
     "branch-alias": {
       "dev-master": "0.9.x-dev"

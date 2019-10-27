@@ -32,6 +32,9 @@
     "psr/http-server-middleware": "^1.0"
   },
   "minimum-stability": "dev",
+  "scripts": {
+    "test": "phpunit -c ."
+  },
   "extra": {
     "branch-alias": {
       "dev-master": "0.9.x-dev"
