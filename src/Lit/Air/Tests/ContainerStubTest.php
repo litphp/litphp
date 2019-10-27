@@ -3,9 +3,8 @@
 namespace Lit\Air\Tests;
 
 use Lit\Air\ContainerStub;
-use Lit\Bolt\Tests\BoltTestCase;
 
-class ContainerStubTest extends BoltTestCase
+class ContainerStubTest extends AirTestCase
 {
     public function testSmoke()
     {
@@ -17,7 +16,7 @@ class ContainerStubTest extends BoltTestCase
             [
                 'bar' => $bar = new \stdClass(),
                 'baz' => $baz = new \stdClass(),
-            ]
+            ],
         ]);
         assert($stub !== null);
         $result2 = $stub->instantiateFrom($this->container);
