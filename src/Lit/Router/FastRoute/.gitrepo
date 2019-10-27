@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/router-fast-route
 	branch = master
-	commit = 197499fc8408591cfd61d71d4b42a4bd813ae4c7
-	parent = e3ae7c8495a7e56014f04e0e072e59dd7d5bcddc
+	commit = 7b57ba6da385e004de739ddc80aabe07044ab068
+	parent = f3556d220833535e837dc2a7f91d29fd397b28a0
 	cmdver = 0.4.0
 	method = merge
