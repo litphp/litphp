@@ -14,7 +14,7 @@ jobs:
         gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
         gpg --verify phive.phar.asc phive.phar
         chmod +x phive.phar
-        ./phive.phar install phpdox
+        ./phive.phar install --trust-gpg-keys 2A8299CE842DD38C
     - name: Generate documentation
       run: ./tools/phpdox
     - name: Deploy
@@ -23,4 +23,3 @@ jobs:
         ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: gh-pages
         PUBLISH_DIR: ./docs/html
-    
