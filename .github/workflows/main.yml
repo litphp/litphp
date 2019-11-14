@@ -1,0 +1,27 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - master
+jobs:
+  build-doc:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install phpdox
+      run: |
+        wget -O phive.phar https://phar.io/releases/phive.phar
+        wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc
+        gpg -vvv --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
+        gpg -vvv --verify phive.phar.asc phive.phar
+        chmod +x phive.phar
+        ./phive.phar install --trust-gpg-keys 2A8299CE842DD38C
+    - name: Generate documentation
+      run: ./tools/phpdox
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v2.5.0
+      env:
+        ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: ./docs/html
