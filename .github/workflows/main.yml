@@ -11,8 +11,8 @@ jobs:
       run: |
         wget -O phive.phar https://phar.io/releases/phive.phar
         wget -O phive.phar.asc https://phar.io/releases/phive.phar.asc
-        gpg --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
-        gpg --verify phive.phar.asc phive.phar
+        gpg -vvv --keyserver pool.sks-keyservers.net --recv-keys 0x9D8A98B29B2D5D79
+        gpg -vvv --verify phive.phar.asc phive.phar
         chmod +x phive.phar
         ./phive.phar install --trust-gpg-keys 2A8299CE842DD38C
     - name: Generate documentation
