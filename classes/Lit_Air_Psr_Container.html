@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Lit\Air\Psr\Container</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.html">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Lit_Air_Psr">Lit\Air\Psr</a>
+          </li>
+          <li class="separator">Container</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/Lit/Air/Psr/Container.php.html#line20">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Lit\Air\Psr\</small>Container</h1>
+        <h4>Air DI container</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Container
+                implements
+                ContainerInterface
+            {<br/><ul class="none"><li>// constants</li><li>const CONFIGURATOR_CLASS = Configurator::class;</li></ul><ul class="none"><li>// members</li><li>protected array <a href="#members">$recipe</a> =
+                        ;
+                    </li><li>protected array <a href="#members">$local</a> =
+                        ;
+                    </li><li>protected <span title="Lit\Air\Psr\ContainerInterface|null">ContainerInterface|null</span> <a href="#members">$delegateContainer</a>;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/__construct.html">__construct</a>()
+                    </li><li>public static <span title="AbstractRecipe">AbstractRecipe</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/alias.html">alias</a>()
+                    </li><li>public static <span title="AbstractRecipe">AbstractRecipe</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/autowire.html">autowire</a>()
+                    </li><li>public static <span title="AbstractRecipe">AbstractRecipe</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/instance.html">instance</a>()
+                    </li><li>public static <span title="AbstractRecipe">AbstractRecipe</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/builder.html">builder</a>()
+                    </li><li>public static <span title="AbstractRecipe">AbstractRecipe</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/value.html">value</a>()
+                    </li><li>public static <span title="Container">Container</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/wrap.html">wrap</a>()
+                    </li><li>public void <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/get.html">get</a>()
+                    </li><li>public void <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/has.html">has</a>()
+                    </li><li>public <span title="Container">Container</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/define.html">define</a>()
+                    </li><li>public ?<span title="RecipeInterface">RecipeInterface</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/getRecipe.html">getRecipe</a>()
+                    </li><li>public <span title="Container">Container</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/extendRecipe.html">extendRecipe</a>()
+                    </li><li>public bool <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/hasLocalEntry.html">hasLocalEntry</a>()
+                    </li><li>public <span title="Container">Container</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/flush.html">flush</a>()
+                    </li><li>public mixed <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/resolveRecipe.html">resolveRecipe</a>()
+                    </li><li>public <span title="Container">Container</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/set.html">set</a>()
+                    </li><li>public <span title="Container">Container</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/setDelegateContainer.html">setDelegateContainer</a>()
+                    </li><li>protected static <span title="RecipeInterface">RecipeInterface</span> <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/applyRecipeWrapper.html">applyRecipeWrapper</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Implements</h4>
+          <ul>
+            <li>Psr\Container\ContainerInterface</li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="CONFIGURATOR_CLASS">CONFIGURATOR_CLASS</td>
+              <td>Configurator::class</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="delegateContainer"><strong>$delegateContainer</strong>
+                —
+                <a title="Lit\Air\Psr\ContainerInterface|null" href="../classes/Lit_Air_Psr_ContainerInterface|null.html">Lit\Air\Psr\ContainerInterface|null</a></li>
+            <li id="local">
+              <strong>$local</strong>
+            </li>
+            <li id="recipe"><strong>$recipe</strong>
+                —
+                array</li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="applyRecipeWrapper">
+              <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/applyRecipeWrapper.html">applyRecipeWrapper()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/__construct.html">__construct()</a>
+                — Container constructor.</li>
+            <li id="alias"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/alias.html">alias()</a>
+                — Create a alias</li>
+            <li id="autowire"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/autowire.html">autowire()</a>
+                — Autowire this entry</li>
+            <li id="builder"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/builder.html">builder()</a>
+                — Calls a builder method using factory.</li>
+            <li id="define"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/define.html">define()</a>
+                — Set a recipe to given id</li>
+            <li id="extendRecipe"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/extendRecipe.html">extendRecipe()</a>
+                — Get a recipe from the id, wrap a new recipe to replace it.</li>
+            <li id="flush"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/flush.html">flush()</a>
+                — Remove the local entry in id. Note this will never touch recipe.</li>
+            <li id="get">
+              <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/get.html">get()</a>
+            </li>
+            <li id="getRecipe"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/getRecipe.html">getRecipe()</a>
+                — Get recipe instance from the id</li>
+            <li id="has">
+              <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/has.html">has()</a>
+            </li>
+            <li id="hasLocalEntry"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/hasLocalEntry.html">hasLocalEntry()</a>
+                — Detect if there is a local entry for id</li>
+            <li id="instance"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/instance.html">instance()</a>
+                — Populate an instance by factory</li>
+            <li id="resolveRecipe"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/resolveRecipe.html">resolveRecipe()</a>
+                — Convert a value into recipe and resolve it. See http://litphp.github.io/docs/air-config#structure-of-configuration</li>
+            <li id="set"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/set.html">set()</a>
+                — Set a local entry</li>
+            <li id="setDelegateContainer"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/setDelegateContainer.html">setDelegateContainer()</a>
+                — Set a delegate container.</li>
+            <li id="value"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/value.html">value()</a>
+                — A fixed value</li>
+            <li id="wrap"><a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container/wrap.html">wrap()</a>
+                — Wraps a PSR container</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0 - Copyright (C) 2010 - 2019 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>

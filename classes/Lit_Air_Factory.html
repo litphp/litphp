@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Lit\Air\Factory</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.html">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Lit_Air">Lit\Air</a>
+          </li>
+          <li class="separator">Factory</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/Lit/Air/Factory.php.html#line16">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Lit\Air\</small>Factory</h1>
+        <h4>Air DI Factory</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class Factory
+            {<br/><ul class="none"><li>// constants</li><li>const CONTAINER_KEY = self::class;</li><li>const KEY_INJECTORS = self::class . '::injectors;</li></ul><ul class="none"><li>// members</li><li>protected <span title="Lit\Air\Psr\Container">Container</span> <a href="#members">$container</a>;
+                    </li><li>protected array <a href="#members">$circularStore</a> =
+                        ;
+                    </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/__construct.html">__construct</a>()
+                    </li><li>public static <span title="Factory">Factory</span> <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/of.html">of</a>()
+                    </li><li>public  <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/instantiate.html">instantiate</a>()
+                    </li><li>public mixed <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/invoke.html">invoke</a>()
+                    </li><li>public  <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/produce.html">produce</a>()
+                    </li><li>public  <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/getOrProduce.html">getOrProduce</a>()
+                    </li><li>public  <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/getOrInstantiate.html">getOrInstantiate</a>()
+                    </li><li>protected void <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/inject.html">inject</a>()
+                    </li><li>public mixed|object <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/resolveDependency.html">resolveDependency</a>()
+                    </li><li>public <span title="Factory">Factory</span> <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/addInjector.html">addInjector</a>()
+                    </li><li>protected array|null <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/produceFromClass.html">produceFromClass</a>()
+                    </li><li>protected void <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/findFromArray.html">findFromArray</a>()
+                    </li><li>protected array <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/resolveParams.html">resolveParams</a>()
+                    </li><li>protected mixed|object <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/resolveParam.html">resolveParam</a>()
+                    </li><li>protected void <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/parseParameter.html">parseParameter</a>()
+                    </li></ul>
+
+            }<br/></div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id="CONTAINER_KEY">CONTAINER_KEY</td>
+              <td>self::class</td>
+            </tr>
+            <tr>
+              <td id="KEY_INJECTORS">KEY_INJECTORS</td>
+              <td>self::class . '::injectors</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="circularStore"><strong>$circularStore</strong>
+                —
+                array</li>
+            <li id="container"><strong>$container</strong>
+                —
+                <a title="Lit\Air\Psr\Container" href="../classes/Lit_Air_Psr_Container.html">Lit\Air\Psr\Container</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="findFromArray">
+              <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/findFromArray.html">findFromArray()</a>
+            </li>
+            <li id="inject"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/inject.html">inject()</a>
+                — Run injectors on object. (Typically for setter injection)</li>
+            <li id="parseParameter">
+              <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/parseParameter.html">parseParameter()</a>
+            </li>
+            <li id="produceFromClass"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/produceFromClass.html">produceFromClass()</a>
+                — A subprocess of dependency resolving: try use candicate keys to find dependency.</li>
+            <li id="resolveParam"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/resolveParam.html">resolveParam()</a>
+                — Resolve a parameter (of callback, or constructor)</li>
+            <li id="resolveParams"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/resolveParams.html">resolveParams()</a>
+                — Resolve array of ReflectionParameter into concrete values</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/__construct.html">__construct()</a>
+            </li>
+            <li id="addInjector"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/addInjector.html">addInjector()</a>
+                — Register a injector.</li>
+            <li id="getOrInstantiate"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/getOrInstantiate.html">getOrInstantiate()</a>
+                — Get $className in container, or try to instantiate it.</li>
+            <li id="getOrProduce"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/getOrProduce.html">getOrProduce()</a>
+                — get $className in container, or try to produce it.</li>
+            <li id="instantiate"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/instantiate.html">instantiate()</a>
+                — Create a $className instance</li>
+            <li id="invoke"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/invoke.html">invoke()</a>
+                — Call $callback with parameters injected</li>
+            <li id="of"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/of.html">of()</a>
+                — Get or create a factory instance from the container</li>
+            <li id="produce"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/produce.html">produce()</a>
+                — Create and save a $className instance in container.</li>
+            <li id="resolveDependency"><a title="Lit\Air\Factory" href="../classes/Lit_Air_Factory/resolveDependency.html">resolveDependency()</a>
+                — Resolve a dependency item.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0 - Copyright (C) 2010 - 2019 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>

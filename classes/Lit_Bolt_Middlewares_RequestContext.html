@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Lit\Bolt\Middlewares\RequestContext</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.html">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Lit_Bolt_Middlewares">Lit\Bolt\Middlewares</a>
+          </li>
+          <li class="separator">RequestContext</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#constants">Constants</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/Lit/Bolt/Middlewares/RequestContext.php.html#line17">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Lit\Bolt\Middlewares\</small>RequestContext</h1>
+        <h4>Subclass of SPL ArrayObject that can attach to a PSR request as middleware.</h4>
+        <p>Useful the store arbitary context without polluting request attributes.</p>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class RequestContext
+                extends <a title="ArrayObject" href="../classes/ArrayObject.html">ArrayObject</a>
+                implements
+                MiddlewareInterface
+            {<br/><ul class="none"><li>// Inherited constants from <a title="ArrayObject" href="../classes/ArrayObject.html">ArrayObject</a></li><li>const <a href="#"/> = 1;</li><li>const <a href="#"/> = 2;</li></ul><ul class="none"><li>// methods</li><li>public void <a title="Lit\Bolt\Middlewares\RequestContext" href="../classes/Lit_Bolt_Middlewares_RequestContext/__construct.html">__construct</a>()
+                    </li><li>public void <a title="Lit\Bolt\Middlewares\RequestContext" href="../classes/Lit_Bolt_Middlewares_RequestContext/append.html">append</a>()
+                    </li><li>protected <span title="ResponseInterface">ResponseInterface</span> <a title="Lit\Bolt\Middlewares\RequestContext" href="../classes/Lit_Bolt_Middlewares_RequestContext/main.html">main</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="ArrayObject">ArrayObject</span></li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/__construct.html">__construct</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/append.html">append</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/asort.html">asort</a>()
+                        </li><li>public int <a title="ArrayObject" href="../classes/ArrayObject/count.html">count</a>()
+                        </li><li>public array <a title="ArrayObject" href="../classes/ArrayObject/exchangeArray.html">exchangeArray</a>()
+                        </li><li>public array <a title="ArrayObject" href="../classes/ArrayObject/getArrayCopy.html">getArrayCopy</a>()
+                        </li><li>public int <a title="ArrayObject" href="../classes/ArrayObject/getFlags.html">getFlags</a>()
+                        </li><li>public ArrayIterator <a title="ArrayObject" href="../classes/ArrayObject/getIterator.html">getIterator</a>()
+                        </li><li>public string <a title="ArrayObject" href="../classes/ArrayObject/getIteratorClass.html">getIteratorClass</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/ksort.html">ksort</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/natcasesort.html">natcasesort</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/natsort.html">natsort</a>()
+                        </li><li>public bool <a title="ArrayObject" href="../classes/ArrayObject/offsetExists.html">offsetExists</a>()
+                        </li><li>public mixed <a title="ArrayObject" href="../classes/ArrayObject/offsetGet.html">offsetGet</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/offsetSet.html">offsetSet</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/offsetUnset.html">offsetUnset</a>()
+                        </li><li>public string <a title="ArrayObject" href="../classes/ArrayObject/serialize.html">serialize</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/setFlags.html">setFlags</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/setIteratorClass.html">setIteratorClass</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/uasort.html">uasort</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/uksort.html">uksort</a>()
+                        </li><li>public void <a title="ArrayObject" href="../classes/ArrayObject/unserialize.html">unserialize</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Traits\MiddlewareTrait">MiddlewareTrait</span></li><li>public void <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/process.html">process</a>()
+                        </li><li>protected abstract ResponseInterface <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/main.html">main</a>()
+                        </li><li>protected void <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/delegate.html">delegate</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Traits\AttachToRequestTrait">AttachToRequestTrait</span></li><li>public static RequestContext <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/fromRequest.html">fromRequest</a>()
+                        </li><li>protected ServerRequestInterface <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/attachToRequest.html">attachToRequest</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Traits\MiddlewareCompositeTrait">MiddlewareCompositeTrait</span></li><li>public MiddlewarePipe <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/append.html">append</a>()
+                        </li><li>public MiddlewarePipe <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/append.html">appendMiddleware</a>()
+                        </li><li>public MiddlewarePipe <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/prepend.html">prepend</a>()
+                        </li><li>public MiddlewarePipe <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/prepend.html">prependMiddleware</a>()
+                        </li><li>public PredictionWrapperMiddleware <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/when.html">when</a>()
+                        </li><li>public PredictionWrapperMiddleware <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/unless.html">unless</a>()
+                        </li><li>public CatchMiddleware <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/catch.html">catch</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="ArrayObject" href="../classes/ArrayObject.html">ArrayObject</a>
+            </li>
+          </ul>
+          <h4>Uses</h4>
+          <ul>
+            <li>
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait.html">Lit\Nimo\Traits\MiddlewareTrait</a>
+            </li>
+            <li>
+              <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait.html">Lit\Nimo\Traits\AttachToRequestTrait</a>
+            </li>
+            <li>
+              <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait.html">Lit\Nimo\Traits\MiddlewareCompositeTrait</a>
+            </li>
+          </ul>
+          <h4>Implements</h4>
+          <ul>
+            <li>Psr\Http\Server\MiddlewareInterface</li>
+          </ul>
+        </div>
+        <h2 id="constants">Constants</h2>
+        <table class="styled">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td id=""/>
+              <td>1</td>
+            </tr>
+            <tr>
+              <td id=""/>
+              <td>2</td>
+            </tr>
+          </tbody>
+        </table>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="handler"><strong>$handler</strong>
+                —
+                <a title="Psr\Http\Server\RequestHandlerInterface" href="../classes/Psr_Http_Server_RequestHandlerInterface.html">Psr\Http\Server\RequestHandlerInterface</a></li>
+            <li id="request"><strong>$request</strong>
+                —
+                <a title="Psr\Http\Message\ServerRequestInterface" href="../classes/Psr_Http_Message_ServerRequestInterface.html">Psr\Http\Message\ServerRequestInterface</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="main">
+              <a title="Lit\Bolt\Middlewares\RequestContext" href="../classes/Lit_Bolt_Middlewares_RequestContext/main.html">main()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Lit\Bolt\Middlewares\RequestContext" href="../classes/Lit_Bolt_Middlewares_RequestContext/__construct.html">__construct()</a>
+            </li>
+            <li id="append">
+              <a title="Lit\Bolt\Middlewares\RequestContext" href="../classes/Lit_Bolt_Middlewares_RequestContext/append.html">append()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="ArrayObject" href="../classes/ArrayObject.html">ArrayObject</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="append"><a title="ArrayObject" href="../classes/ArrayObject/append.html">append()</a>
+                — Appends the value</li>
+            <li id="asort"><a title="ArrayObject" href="../classes/ArrayObject/asort.html">asort()</a>
+                — Sort the entries by value</li>
+            <li id="count"><a title="ArrayObject" href="../classes/ArrayObject/count.html">count()</a>
+                — Get the number of public properties in the ArrayObject</li>
+            <li id="exchangeArray"><a title="ArrayObject" href="../classes/ArrayObject/exchangeArray.html">exchangeArray()</a>
+                — Exchange the array for another one</li>
+            <li id="getArrayCopy"><a title="ArrayObject" href="../classes/ArrayObject/getArrayCopy.html">getArrayCopy()</a>
+                — Creates a copy of the ArrayObject</li>
+            <li id="getFlags"><a title="ArrayObject" href="../classes/ArrayObject/getFlags.html">getFlags()</a>
+                — Gets the behavior flags</li>
+            <li id="getIterator"><a title="ArrayObject" href="../classes/ArrayObject/getIterator.html">getIterator()</a>
+                — Create a new iterator from an ArrayObject instance</li>
+            <li id="getIteratorClass"><a title="ArrayObject" href="../classes/ArrayObject/getIteratorClass.html">getIteratorClass()</a>
+                — Gets the iterator classname for the ArrayObject</li>
+            <li id="ksort"><a title="ArrayObject" href="../classes/ArrayObject/ksort.html">ksort()</a>
+                — Sort the entries by key</li>
+            <li id="natcasesort"><a title="ArrayObject" href="../classes/ArrayObject/natcasesort.html">natcasesort()</a>
+                — Sort an array using a case insensitive "natural order" algorithm</li>
+            <li id="natsort"><a title="ArrayObject" href="../classes/ArrayObject/natsort.html">natsort()</a>
+                — Sort entries using a "natural order" algorithm</li>
+            <li id="offsetExists"><a title="ArrayObject" href="../classes/ArrayObject/offsetExists.html">offsetExists()</a>
+                — Returns whether the requested index exists</li>
+            <li id="offsetGet"><a title="ArrayObject" href="../classes/ArrayObject/offsetGet.html">offsetGet()</a>
+                — Returns the value at the specified index</li>
+            <li id="offsetSet"><a title="ArrayObject" href="../classes/ArrayObject/offsetSet.html">offsetSet()</a>
+                — Sets the value at the specified index to newval</li>
+            <li id="offsetUnset"><a title="ArrayObject" href="../classes/ArrayObject/offsetUnset.html">offsetUnset()</a>
+                — Unsets the value at the specified index</li>
+            <li id="serialize"><a title="ArrayObject" href="../classes/ArrayObject/serialize.html">serialize()</a>
+                — Serialize an ArrayObject</li>
+            <li id="setFlags"><a title="ArrayObject" href="../classes/ArrayObject/setFlags.html">setFlags()</a>
+                — Sets the behavior flags</li>
+            <li id="setIteratorClass"><a title="ArrayObject" href="../classes/ArrayObject/setIteratorClass.html">setIteratorClass()</a>
+                — Sets the iterator classname for the ArrayObject</li>
+            <li id="uasort"><a title="ArrayObject" href="../classes/ArrayObject/uasort.html">uasort()</a>
+                — Sort the entries with a user-defined comparison function and maintain key association</li>
+            <li id="uksort"><a title="ArrayObject" href="../classes/ArrayObject/uksort.html">uksort()</a>
+                — Sort the entries by keys using a user-defined comparison function</li>
+            <li id="unserialize"><a title="ArrayObject" href="../classes/ArrayObject/unserialize.html">unserialize()</a>
+                — Unserialize an ArrayObject</li>
+          </ul>
+          <h3>Inherited from <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait.html">Lit\Nimo\Traits\MiddlewareTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="delegate">
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/delegate.html">delegate()</a>
+            </li>
+            <li id="main">
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/main.html">main()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="process">
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/process.html">process()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait.html">Lit\Nimo\Traits\AttachToRequestTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="attachToRequest"><a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/attachToRequest.html">attachToRequest()</a>
+                — Attach self to the request (in attributes) and return the new one.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="fromRequest"><a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/fromRequest.html">fromRequest()</a>
+                — Get self from request (attributes).</li>
+          </ul>
+          <h3>Inherited from <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait.html">Lit\Nimo\Traits\MiddlewareCompositeTrait</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="append"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/append.html">append()</a>
+                — append $middleware after this one, return the new $middlewareStack</li>
+            <li id="appendMiddleware"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/append.html">appendMiddleware()</a>
+                — append $middleware after this one, return the new $middlewareStack</li>
+            <li id="catch"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/catch.html">catch()</a>
+                — wraps this middleware by try catch.</li>
+            <li id="prepend"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/prepend.html">prepend()</a>
+                — prepend $middleware before this one, return the new $middlewareStack</li>
+            <li id="prependMiddleware"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/prepend.html">prependMiddleware()</a>
+                — prepend $middleware before this one, return the new $middlewareStack</li>
+            <li id="unless"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/unless.html">unless()</a>
+                — return a new middleware that only take effect when the prediction is NOT passed.</li>
+            <li id="when"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/when.html">when()</a>
+                — return a new middleware that only take effect when the prediction is passed.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0 - Copyright (C) 2010 - 2019 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>

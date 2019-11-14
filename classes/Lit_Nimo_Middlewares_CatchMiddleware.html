@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html SYSTEM "about:legacy-compat">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+  <head>
+    <title>phpDox - Lit\Nimo\Middlewares\CatchMiddleware</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css" media="screen"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+  </head>
+  <body>
+    <nav class="topnav">
+      <ul>
+        <li>
+          <div class="logo"><span>/**</span>phpDox</div>
+        </li>
+        <li class="separator">
+          <a href="../index.html">Overview</a>
+        </li>
+        <li class="separator">
+          <a href="../namespaces.html">Namespaces</a>
+        </li>
+        <li>
+          <a href="../interfaces.html">Interfaces</a>
+        </li>
+        <li>
+          <a href="../classes.html">Classes</a>
+        </li>
+        <li>
+          <a href="../traits.html">Traits</a>
+        </li>
+        <li class="separator">
+          <a href="../source/index.html">Source</a>
+        </li>
+      </ul>
+    </nav>
+    <div id="mainstage">
+      <div class="box">
+        <ul class="breadcrumb">
+          <li>
+            <a href="../index.html">Overview</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html">Classes</a>
+          </li>
+          <li class="separator">
+            <a href="../classes.html#Lit_Nimo_Middlewares">Lit\Nimo\Middlewares</a>
+          </li>
+          <li class="separator">CatchMiddleware</li>
+        </ul>
+      </div>
+      <nav class="box">
+        <ul>
+          <li>
+            <a href="#introduction">Introduction</a>
+          </li>
+          <li>
+            <a href="#synopsis">Synopsis</a>
+          </li>
+          <li>
+            <a href="#hierarchy">Hierarchy</a>
+          </li>
+          <li>
+            <a href="#members">Members</a>
+          </li>
+          <li>
+            <a href="#methods">Methods</a>
+          </li>
+          <li>
+            <a href="../source/Lit/Nimo/Middlewares/CatchMiddleware.php.html#line14">Source</a>
+          </li>
+        </ul>
+      </nav>
+      <section>
+        <h1 id="introduction"><small>Lit\Nimo\Middlewares\</small>CatchMiddleware</h1>
+        <h4>Middleware wrapper that try to catch soem exception when running inner middleware.</h4>
+        <p/>
+        <ul/>
+        <h2 id="synopsis">Synopsis</h2>
+        <div class="synopsis">class CatchMiddleware
+                extends <a title="Lit\Nimo\Middlewares\AbstractWrapperMiddleware" href="../classes/Lit_Nimo_Middlewares_AbstractWrapperMiddleware.html">AbstractWrapperMiddleware</a>
+            {<br/><ul class="none"><li>// members</li><li>protected  <a href="#members">$catchClass</a>;
+                    </li><li>protected <span title="Lit\Nimo\Interfaces\ExceptionHandlerInterface">ExceptionHandlerInterface</span> <a href="#members">$catcher</a>;
+                    </li></ul><ul class="none"><li>// Inherited members from <span title="Lit\Nimo\Middlewares\AbstractWrapperMiddleware">AbstractWrapperMiddleware</span></li><li>protected <span title="Psr\Http\Server\MiddlewareInterface">MiddlewareInterface</span> <a href="#members">$innerMiddleware</a>;
+                        </li></ul><ul class="none"><li>// methods</li><li>public void <a title="Lit\Nimo\Middlewares\CatchMiddleware" href="../classes/Lit_Nimo_Middlewares_CatchMiddleware/__construct.html">__construct</a>()
+                    </li><li>public static <span title="MiddlewareInterface">MiddlewareInterface</span> <a title="Lit\Nimo\Middlewares\CatchMiddleware" href="../classes/Lit_Nimo_Middlewares_CatchMiddleware/catcher.html">catcher</a>()
+                    </li><li>protected <span title="ResponseInterface">ResponseInterface</span> <a title="Lit\Nimo\Middlewares\CatchMiddleware" href="../classes/Lit_Nimo_Middlewares_CatchMiddleware/main.html">main</a>()
+                    </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Middlewares\AbstractWrapperMiddleware">AbstractWrapperMiddleware</span></li><li>public void <a title="Lit\Nimo\Middlewares\AbstractWrapperMiddleware" href="../classes/Lit_Nimo_Middlewares_AbstractWrapperMiddleware/__construct.html">__construct</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Traits\MiddlewareTrait">MiddlewareTrait</span></li><li>public void <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/process.html">process</a>()
+                        </li><li>protected abstract ResponseInterface <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/main.html">main</a>()
+                        </li><li>protected void <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/delegate.html">delegate</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Traits\AttachToRequestTrait">AttachToRequestTrait</span></li><li>public static CatchMiddleware <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/fromRequest.html">fromRequest</a>()
+                        </li><li>protected ServerRequestInterface <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/attachToRequest.html">attachToRequest</a>()
+                        </li></ul><ul class="none"><li>// Inherited methods from <span title="Lit\Nimo\Traits\MiddlewareCompositeTrait">MiddlewareCompositeTrait</span></li><li>public MiddlewarePipe <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/append.html">append</a>()
+                        </li><li>public MiddlewarePipe <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/prepend.html">prepend</a>()
+                        </li><li>public PredictionWrapperMiddleware <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/when.html">when</a>()
+                        </li><li>public PredictionWrapperMiddleware <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/unless.html">unless</a>()
+                        </li><li>public CatchMiddleware <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/catch.html">catch</a>()
+                        </li></ul>
+
+            }<br/></div>
+        <h2 id="hierarchy">Hierarchy</h2>
+        <div class="styled">
+          <h4>Extends</h4>
+          <ul>
+            <li>
+              <a title="Lit\Nimo\Middlewares\AbstractWrapperMiddleware" href="../classes/Lit_Nimo_Middlewares_AbstractWrapperMiddleware.html">Lit\Nimo\Middlewares\AbstractWrapperMiddleware</a>
+            </li>
+          </ul>
+        </div>
+        <h2 id="members">Members</h2>
+        <div class="styled members">
+          <h4>protected</h4>
+          <ul class="members">
+            <li id="catchClass"><strong>$catchClass</strong>
+                —
+                string</li>
+            <li id="catcher"><strong>$catcher</strong>
+                —
+                <a title="Lit\Nimo\Interfaces\ExceptionHandlerInterface" href="../classes/Lit_Nimo_Interfaces_ExceptionHandlerInterface.html">Lit\Nimo\Interfaces\ExceptionHandlerInterface</a></li>
+            <li id="handler"><strong>$handler</strong>
+                —
+                <a title="Psr\Http\Server\RequestHandlerInterface" href="../classes/Psr_Http_Server_RequestHandlerInterface.html">Psr\Http\Server\RequestHandlerInterface</a></li>
+            <li id="innerMiddleware"><strong>$innerMiddleware</strong>
+                —
+                <a title="Psr\Http\Server\MiddlewareInterface" href="../classes/Psr_Http_Server_MiddlewareInterface.html">Psr\Http\Server\MiddlewareInterface</a></li>
+            <li id="request"><strong>$request</strong>
+                —
+                <a title="Psr\Http\Message\ServerRequestInterface" href="../classes/Psr_Http_Message_ServerRequestInterface.html">Psr\Http\Message\ServerRequestInterface</a></li>
+          </ul>
+        </div>
+        <h2 id="methods">Methods</h2>
+        <div class="styled">
+          <h4>protected</h4>
+          <ul>
+            <li id="main">
+              <a title="Lit\Nimo\Middlewares\CatchMiddleware" href="../classes/Lit_Nimo_Middlewares_CatchMiddleware/main.html">main()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="__construct">
+              <a title="Lit\Nimo\Middlewares\CatchMiddleware" href="../classes/Lit_Nimo_Middlewares_CatchMiddleware/__construct.html">__construct()</a>
+            </li>
+            <li id="catcher">
+              <a title="Lit\Nimo\Middlewares\CatchMiddleware" href="../classes/Lit_Nimo_Middlewares_CatchMiddleware/catcher.html">catcher()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait.html">Lit\Nimo\Traits\MiddlewareTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="delegate">
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/delegate.html">delegate()</a>
+            </li>
+            <li id="main">
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/main.html">main()</a>
+            </li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="process">
+              <a title="Lit\Nimo\Traits\MiddlewareTrait" href="../traits/Lit_Nimo_Traits_MiddlewareTrait/process.html">process()</a>
+            </li>
+          </ul>
+          <h3>Inherited from <a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait.html">Lit\Nimo\Traits\AttachToRequestTrait</a></h3>
+          <h4>protected</h4>
+          <ul>
+            <li id="attachToRequest"><a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/attachToRequest.html">attachToRequest()</a>
+                — Attach self to the request (in attributes) and return the new one.</li>
+          </ul>
+          <h4>public</h4>
+          <ul>
+            <li id="fromRequest"><a title="Lit\Nimo\Traits\AttachToRequestTrait" href="../traits/Lit_Nimo_Traits_AttachToRequestTrait/fromRequest.html">fromRequest()</a>
+                — Get self from request (attributes).</li>
+          </ul>
+          <h3>Inherited from <a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait.html">Lit\Nimo\Traits\MiddlewareCompositeTrait</a></h3>
+          <h4>public</h4>
+          <ul>
+            <li id="append"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/append.html">append()</a>
+                — append $middleware after this one, return the new $middlewareStack</li>
+            <li id="catch"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/catch.html">catch()</a>
+                — wraps this middleware by try catch.</li>
+            <li id="prepend"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/prepend.html">prepend()</a>
+                — prepend $middleware before this one, return the new $middlewareStack</li>
+            <li id="unless"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/unless.html">unless()</a>
+                — return a new middleware that only take effect when the prediction is NOT passed.</li>
+            <li id="when"><a title="Lit\Nimo\Traits\MiddlewareCompositeTrait" href="../traits/Lit_Nimo_Traits_MiddlewareCompositeTrait/when.html">when()</a>
+                — return a new middleware that only take effect when the prediction is passed.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <footer>
+      <span>Generated using phpDox 0.12.0 - Copyright (C) 2010 - 2019 by Arne Blankerts and Contributors</span>
+    </footer>
+  </body>
+</html>
