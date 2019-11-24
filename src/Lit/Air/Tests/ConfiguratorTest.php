@@ -24,14 +24,8 @@ class ConfiguratorTest extends AirTestCase
             '$' => 'autowire',
             $name,
             $extra,
-        ], C::produce($name, $extra));
-
-        $extra = [uniqid() => uniqid()];
-        self::assertEquals([
-            '$' => 'autowire',
-            null,
-            $extra,
-        ], C::provideParameter($extra));
+            false
+        ], C::produce($name, $extra, false));
 
         $name = uniqid();
         $extra = [uniqid() => uniqid()];
@@ -90,9 +84,8 @@ class ConfiguratorTest extends AirTestCase
                 '$' => 'value',
                 $val6 = new \stdClass(),
                 'decorator' => [
-                    CallbackDecorator::class => function ($delegate, $container, $key) use ($val7, $val6, $key6) {
+                    CallbackDecorator::class => function ($delegate, $container) use ($val7, $val6) {
                         self::assertTrue(is_callable($delegate));
-                        self::assertEquals($key6, $key);
                         self::assertSame($val6, $delegate());
                         $val6->answer = $val7;
                         return $val6;

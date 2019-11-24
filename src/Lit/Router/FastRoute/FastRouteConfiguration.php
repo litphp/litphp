@@ -31,7 +31,7 @@ class FastRouteConfiguration
         return [
                 RouterInterface::class => C::alias(FastRouteRouter::class),
 
-                FastRouteRouter::class => C::provideParameter([
+                FastRouteRouter::class => C::produce(FastRouteRouter::class, [
                     Dispatcher::class => C::alias(Dispatcher::class),
                     RouterStubResolverInterface::class => C::singleton(BoltStubResolver::class),
                     'methodNotAllowed' => C::alias(FastRouteRouter::class, 'methodNotAllowed'),

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Recipe;
 
-use Psr\Container\ContainerInterface;
+use Lit\Air\Psr\Container;
 
 /**
  * Get from another key when this recipe resolves.
@@ -21,7 +21,7 @@ class AliasRecipe extends AbstractRecipe
         $this->alias = $alias;
     }
 
-    public function resolve(ContainerInterface $container, ?string $id = null)
+    public function resolve(Container $container)
     {
         return $container->get($this->alias);
     }

@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Lit\Air\Recipe;
 
 use Lit\Air\Factory;
+use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
-use Psr\Container\ContainerInterface;
 
 /**
  * Recipe that calls $container->instantiate to resolve.
@@ -31,9 +31,9 @@ class InstanceRecipe extends AbstractRecipe
         $this->extra = $extra;
     }
 
-    public function resolve(ContainerInterface $container, ?string $id = null)
+    public function resolve(Container $container)
     {
-        $className = $this->className ?? $id;
+        $className = $this->className;
         if ($className === null || !class_exists($className)) {
             throw new ContainerException('unknown autowire class name');
         }

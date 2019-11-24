@@ -8,7 +8,6 @@ use Lit\Nimo\Middlewares\AbstractMiddleware;
 use Lit\Nimo\Middlewares\MiddlewarePipe;
 use PHPUnit\Framework\Assert;
 use Psr\Http\Message\ResponseInterface;
-use Zend\Diactoros\ServerRequest;
 
 class MiddlewarePipeTest extends NimoTestCase
 {

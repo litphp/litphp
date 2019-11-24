@@ -18,7 +18,7 @@ class AbstractMiddlewareTest extends NimoTestCase
             ->method('main')
             ->willReturn($answerRes);
 
-        /** @noinspection PhpParamsInspection */
+        assert($middleware instanceof AbstractMiddleware);
         $returnValue = $middleware->process($req, $this->throwHandler());
 
         $this->assertSame($answerRes, $returnValue);

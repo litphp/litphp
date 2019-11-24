@@ -20,7 +20,7 @@ class BoltZendConfiguration
     public static function default()
     {
         return [
-            RequestHandlerRunner::class => C::provideParameter([
+            RequestHandlerRunner::class => C::produce(RequestHandlerRunner::class, [
                 C::alias(BoltApp::class),
                 C::produce(SapiEmitter::class),
                 C::value([ServerRequestFactory::class, 'fromGlobals']),

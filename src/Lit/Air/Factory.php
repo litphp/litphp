@@ -113,63 +113,30 @@ class Factory
     }
 
     /**
-     * Create and save a $className instance in container.
+     * Produce a $className instance.
      *
      * @param string $className       Requested classname.
      * @param array  $extraParameters Extra parameters.
+     * @param bool   $cached          Whether to save the instance if it's not defined in container.
      * @return object of $className
-     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      * @throws \ReflectionException Failure during reflection process.
      */
-    public function produce(string $className, array $extraParameters = [])
+    public function produce(string $className, array $extraParameters = [], bool $cached = true)
     {
-        if ($this->container->hasLocalEntry($className)) {
-            return $this->container->get($className);
-        }
-
         if (!class_exists($className)) {
             throw new \RuntimeException("$className not found");
         }
 
-        $instance = $this->instantiate($className, $extraParameters);
+        if ($this->container->has($className)) {
+            return $this->container->get($className);
+        }
 
-        $this->container->set($className, $instance);
+        $instance = $this->instantiate($className, $extraParameters);
+        if ($cached) {
+            $this->container->set($className, $instance);
+        }
 
         return $instance;
-    }
-
-    /**
-     * get $className in container, or try to produce it.
-     *
-     * @param string $className Reqeust classname.
-     * @return object of $className
-     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
-     * @throws \ReflectionException Failure during reflection process.
-     */
-    public function getOrProduce(string $className)
-    {
-        $recipe = $this->container->getRecipe($className);
-        if ($recipe) {
-            return $this->container->get($className);
-        }
-        return $this->produce($className);
-    }
-
-    /**
-     * Get $className in container, or try to instantiate it.
-     *
-     * @param string $className Requested classname.
-     * @return object of $className
-     * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
-     * @throws \ReflectionException Failure during reflection process.
-     */
-    public function getOrInstantiate(string $className)
-    {
-        $recipe = $this->container->getRecipe($className);
-        if ($recipe) {
-            return $this->container->get($className);
-        }
-        return $this->instantiate($className);
     }
 
     /**
@@ -218,7 +185,7 @@ class Factory
         }
 
         if ($className && class_exists($className)) {
-            return $this->getOrInstantiate($className);
+            return $this->produce($className, [], false);
         }
 
         throw new ContainerException('failed to produce dependency');

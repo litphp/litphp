@@ -22,7 +22,7 @@ class RouterConfiguration
     public static function default(): array
     {
         return [
-            BoltApp::class => C::provideParameter([
+            BoltApp::class => C::produce(BoltApp::class, [
                 RequestHandlerInterface::class => C::alias(BoltApp::class, RouterDispatchHandler::class),
                 MiddlewareInterface::class => C::alias(BoltApp::class, MiddlewareInterface::class),
             ]),

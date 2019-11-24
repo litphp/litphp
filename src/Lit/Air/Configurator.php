@@ -111,6 +111,7 @@ class Configurator
      *
      * @param array $extra Extra parameters.
      * @return array
+     * @deprecated
      */
     public static function provideParameter(array $extra = []): array
     {
@@ -124,16 +125,18 @@ class Configurator
     /**
      * Configuration indicating an autowired entry.
      *
-     * @param string|null $classname The class name. Can be ignored but better use `provideParameter` in that case.
-     * @param array       $extra     Extra parameters.
+     * @param string $classname The class name.
+     * @param array  $extra     Extra parameters.
+     * @param bool   $cached    Whether to save the instance if it's not defined in container.
      * @return array
      */
-    public static function produce(?string $classname, array $extra = []): array
+    public static function produce(string $classname, array $extra = [], bool $cached = true): array
     {
         return [
             '$' => 'autowire',
             $classname,
             $extra,
+            $cached,
         ];
     }
 
