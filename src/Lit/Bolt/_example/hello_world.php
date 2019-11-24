@@ -28,9 +28,9 @@ class HelloAction extends BoltAbstractAction
 }
 
 BoltZendRunner::run([
-    BoltApp::class => C::provideParameter([
+    BoltApp::class => C::produce(BoltApp::class, [
         RequestHandlerInterface::class => C::produce(HelloAction::class),
-    ])
+    ]),
 ]);
 
 // @codeCoverageIgnoreEnd

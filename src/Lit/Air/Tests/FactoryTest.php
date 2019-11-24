@@ -151,7 +151,7 @@ class FactoryTest extends AirTestCase
         self::assertEquals(2, 1 + 1);
         try {
             $this->container->define(\ArrayObject::class, Container::builder([$this, 'circularFoo']))
-                ->define(Foo::class, Container::autowire(null, [
+                ->define(Foo::class, Container::autowire(Foo::class, [
                     'bar' => Container::builder(function (\ArrayObject $object) {
                         return get_class($object);
                     }),

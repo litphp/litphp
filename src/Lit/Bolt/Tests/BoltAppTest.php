@@ -3,7 +3,6 @@
 namespace Lit\Bolt\Tests;
 
 use Lit\Air\Factory;
-use Lit\Air\Psr\Container;
 use Lit\Bolt\BoltApp;
 use Psr\Http\Server\RequestHandlerInterface;
 use Zend\Diactoros\Response;
@@ -16,12 +15,12 @@ class BoltAppTest extends BoltTestCase
         $response = new Response();
         $request = new ServerRequest();
 
-        $this->container->define(BoltApp::class, Container::autowire(null, [
-            RequestHandlerInterface::class => $this->assertedHandler($request, $response, 'equal')
-        ]));
+        $this->container->provideParameter(BoltApp::class, [
+            RequestHandlerInterface::class => $this->assertedHandler($request, $response, 'equal'),
+        ]);
         $factory = Factory::of($this->container);
         /** @var BoltApp $app */
-        $app = $factory->getOrProduce(BoltApp::class);
+        $app = $factory->produce(BoltApp::class);
         $result = $app->handle($request);
 
         self::assertSame($result, $response);

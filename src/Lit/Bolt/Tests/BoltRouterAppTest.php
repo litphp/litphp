@@ -61,7 +61,7 @@ class BoltRouterAppTest extends BoltTestCase
         /**
          * @var BoltApp $app
          */
-        $app = $factory->getOrProduce(BoltApp::class);
+        $app = $factory->produce(BoltApp::class);
 
         $result = $app->handle($request);
         self::assertSame($result, $response);
@@ -84,7 +84,7 @@ class BoltRouterAppTest extends BoltTestCase
             ->withUri(new Uri('http://localhost/404'));
 
         /** @var FastRouteRouter $router */
-        $router = $factory->getOrProduce(FastRouteRouter::class);
+        $router = $factory->produce(FastRouteRouter::class);
         try {
             $router->route($request404);
             self::fail('shoulld throw');
