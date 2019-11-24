@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Lit\Bolt;
 
 use Lit\Air\Injection\SetterInjector;
-use Lit\Bolt\Middlewares\EventsHub;
 use Lit\Bolt\Middlewares\RequestContext;
 use Lit\Voltage\AbstractAction;
 use Psr\Http\Message\ResponseFactoryInterface;
@@ -30,15 +29,6 @@ abstract class BoltAbstractAction extends AbstractAction
         $this->responseFactory = $responseFactory;
 
         return $this;
-    }
-
-    /**
-     * @deprecated
-     */
-    protected function events(): EventsHub
-    {
-        @trigger_error('EventsHub is deprecated', E_USER_DEPRECATED);
-        return EventsHub::fromRequest($this->request);
     }
 
     protected function context(): RequestContext
