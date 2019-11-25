@@ -28,7 +28,7 @@ class FactoryTest extends AirTestCase
         self::assertSame($obj, $returnValue);
 
         $returnValue = $this->factory->invoke([Foo::class, 'identity'], [
-            $obj
+            $obj,
         ]);
         self::assertSame($obj, $returnValue);
 
@@ -78,7 +78,7 @@ class FactoryTest extends AirTestCase
                     return $foo;
                 }
             },
-            'foo'
+            'foo',
         ]);
         self::assertSame(42, $returnValue);
 
@@ -113,7 +113,7 @@ class FactoryTest extends AirTestCase
         $arrObj = $this->factory->instantiate(\ArrayObject::class, [
             [1, 42],
             \ArrayObject::ARRAY_AS_PROPS,
-            \RecursiveArrayIterator::class
+            \RecursiveArrayIterator::class,
         ]);
         self::assertEquals([1, 42], $arrObj->getArrayCopy());
         self::assertSame(\ArrayObject::ARRAY_AS_PROPS, $arrObj->getFlags());
@@ -121,7 +121,7 @@ class FactoryTest extends AirTestCase
 
         $foo = $this->factory->instantiate(Foo::class, [
             'bar' => $obj,
-            \stdClass::class => $obj2
+            \stdClass::class => $obj2,
         ]);
         self::assertSame([
             'bar' => $obj,
@@ -170,6 +170,18 @@ class FactoryTest extends AirTestCase
     {
         $this->assertInstanceOf(Foo::class, $foo);
         return new \ArrayObject([1, 2, 3]);
+    }
+
+    public function testInterfaceHint()
+    {
+        $obj = new \ArrayObject();
+        $this->container->set(\IteratorAggregate::class, $obj);
+        $this->factory->invoke(function (\IteratorAggregate $p) use ($obj) {
+            $this->assertEquals($obj, $p);
+            $obj['foo'] = 'bar';
+        });
+
+        $this->assertEquals('bar', $obj['foo']);
     }
 
     protected function setUp(): void

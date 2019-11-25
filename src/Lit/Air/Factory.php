@@ -314,13 +314,9 @@ class Factory
         $paramClassName = null;
         $keys = [$parameter->name];
 
-        try {
-            $paramClass = $parameter->getClass();
-            if (!empty($paramClass)) {
-                $keys[] = $paramClassName = $paramClass->name;
-            }
-        } /** @noinspection PhpRedundantCatchClauseInspection */ catch (\ReflectionException $e) {
-            //ignore exception when $parameter is type hinting for interface
+        $paramClass = $parameter->getClass();
+        if (!empty($paramClass)) {
+            $keys[] = $paramClassName = $paramClass->name;
         }
 
         $keys[] = $parameter->getPosition();
