@@ -166,7 +166,7 @@ class Factory
      * Resolve a dependency item.
      * http://litphp.github.io/docs/air-di#working-on-dependencies
      *
-     * @param string      $basename  Represents who need the dependency. Often a class name.
+     * @param string      $consumer  Represents who need the dependency. Often a class name.
      * @param array       $keys      Ordered array of string keys describing the dependency.
      * @param null|string $className Optional class name of the dependency.
      * @param array       $extra     Extra parameters.
@@ -174,9 +174,9 @@ class Factory
      * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      * @throws \ReflectionException Failure during reflection process.
      */
-    public function resolveDependency(string $basename, array $keys, ?string $className = null, array $extra = [])
+    public function resolveDependency(string $consumer, array $keys, ?string $className = null, array $extra = [])
     {
-        if ($value = $this->produceFromClass($basename, $keys, $extra)) {
+        if ($value = $this->produceFromClass($consumer, $keys, $extra)) {
             return $value[0];
         }
 
@@ -185,10 +185,10 @@ class Factory
         }
 
         if ($className && class_exists($className)) {
-            return $this->produce($className, [], false);
+            return $this->instantiate($className, $extra);
         }
 
-        throw new ContainerException('failed to produce dependency');
+        throw new ContainerException('failed to produce dependency for ' . $consumer);
     }
 
     /**
@@ -215,18 +215,18 @@ class Factory
      * A subprocess of dependency resolving: try use candicate keys to find dependency.
      * http://litphp.github.io/docs/air-di#working-on-dependencies
      *
-     * @param string $basename Represents who need the dependency. Often a class name.
+     * @param string $consumer Represents who need the dependency. Often a class name.
      * @param array  $keys     Ordered array of string keys describing the dependency.
      * @param array  $extra    Extra parameters.
      * @return array|null return single element array when success, null when fail, so null value can be handled
      * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      */
-    protected function produceFromClass(string $basename, array $keys, array $extra = [])
+    protected function produceFromClass(string $consumer, array $keys, array $extra = [])
     {
         if (!empty($extra) && ($value = $this->findFromArray($extra, $keys))) {
             return $value;
         }
-        $current = $basename;
+        $current = $consumer;
 
         do {
             if (
@@ -256,15 +256,15 @@ class Factory
      * Resolve array of ReflectionParameter into concrete values
      *
      * @param array  $params   Array of ReflectionParameter.
-     * @param string $basename Represents who need the dependency.
+     * @param string $consumer Represents who need the dependency.
      * @param array  $extra    Extra parameters.
      * @return array
      */
-    protected function resolveParams(array $params, string $basename, array $extra = [])
+    protected function resolveParams(array $params, string $consumer, array $extra = [])
     {
         return array_map(
-            function (\ReflectionParameter $parameter) use ($basename, $extra) {
-                return $this->resolveParam($basename, $parameter, $extra);
+            function (\ReflectionParameter $parameter) use ($consumer, $extra) {
+                return $this->resolveParam($consumer, $parameter, $extra);
             },
             $params
         );
@@ -273,16 +273,16 @@ class Factory
     /**
      * Resolve a parameter (of callback, or constructor)
      *
-     * @param string               $basename  Represents who need the dependency.
+     * @param string               $consumer  Represents who need the dependency.
      * @param \ReflectionParameter $parameter The ReflectionParameter.
      * @param array                $extra     Extra parameters.
      * @return mixed|object
      * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      * @throws \ReflectionException Failure during reflection process.
      */
-    protected function resolveParam(string $basename, \ReflectionParameter $parameter, array $extra)
+    protected function resolveParam(string $consumer, \ReflectionParameter $parameter, array $extra)
     {
-        $hash = sprintf('%s#%d', $basename, $parameter->getPosition());
+        $hash = sprintf('%s#%d', $consumer, $parameter->getPosition());
         if (isset($this->circularStore[$hash])) {
             throw new CircularDependencyException(array_keys($this->circularStore));
         }
@@ -291,7 +291,7 @@ class Factory
             $this->circularStore[$hash] = true;
             list($keys, $paramClassName) = $this->parseParameter($parameter);
 
-            return $this->resolveDependency($basename, $keys, $paramClassName, $extra);
+            return $this->resolveDependency($consumer, $keys, $paramClassName, $extra);
         } catch (CircularDependencyException $e) {
             throw $e;
         } catch (ContainerException $e) {
@@ -300,7 +300,7 @@ class Factory
             }
 
             throw new ContainerException(
-                sprintf('failed to produce constructor parameter "%s" for %s', $parameter->getName(), $basename),
+                sprintf('failed to produce constructor parameter "%s" for %s', $parameter->getName(), $consumer),
                 0,
                 $e
             );
