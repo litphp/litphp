@@ -158,10 +158,12 @@ class Container implements ContainerInterface
     }
 
     /**
+     * Provide parameters for a class.
+     * (Define an autowire recipe with in container with name of the class)
      *
      * @param string $className The Classname.
      * @param array  $extra     Extra parameteres.
-     * @param bool   $cached    Whether to save the instance if it's not defined in container.
+     * @param bool   $cached    Whether to reuse the instance
      * @return Container
      */
     public function provideParameter(string $className, array $extra = [], bool $cached = true)

@@ -167,7 +167,7 @@ class Factory
      * http://litphp.github.io/docs/air-di#working-on-dependencies
      *
      * @param string      $consumer  Represents who need the dependency. Often a class name.
-     * @param array       $keys      Ordered array of string keys describing the dependency.
+     * @param array       $keys      Ordered array of string keys describing required dependency.
      * @param null|string $className Optional class name of the dependency.
      * @param array       $extra     Extra parameters.
      * @return mixed|object
@@ -176,7 +176,7 @@ class Factory
      */
     public function resolveDependency(string $consumer, array $keys, ?string $className = null, array $extra = [])
     {
-        if ($value = $this->produceFromClass($consumer, $keys, $extra)) {
+        if ($value = $this->resolveBasedOnConsumer($consumer, $keys, $extra)) {
             return $value[0];
         }
 
@@ -212,7 +212,7 @@ class Factory
     }
 
     /**
-     * A subprocess of dependency resolving: try use candicate keys to find dependency.
+     * A subprocess of dependency resolving: try use candicate keys and consumer to find dependency.
      * http://litphp.github.io/docs/air-di#working-on-dependencies
      *
      * @param string $consumer Represents who need the dependency. Often a class name.
@@ -221,7 +221,7 @@ class Factory
      * @return array|null return single element array when success, null when fail, so null value can be handled
      * @throws \Psr\Container\ContainerExceptionInterface Failure when fetching dependency in container.
      */
-    protected function produceFromClass(string $consumer, array $keys, array $extra = [])
+    protected function resolveBasedOnConsumer(string $consumer, array $keys, array $extra = [])
     {
         if (!empty($extra) && ($value = $this->findFromArray($extra, $keys))) {
             return $value;

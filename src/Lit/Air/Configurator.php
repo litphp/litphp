@@ -121,22 +121,6 @@ class Configurator
     }
 
     /**
-     * Provide extra parameter for autowired entry. The key should be a valid class name.
-     *
-     * @param array $extra Extra parameters.
-     * @return array
-     * @deprecated
-     */
-    public static function provideParameter(array $extra = []): array
-    {
-        return [
-            '$' => 'autowire',
-            null,
-            $extra,
-        ];
-    }
-
-    /**
      * Configuration indicating an autowired entry.
      *
      * @param string $classname The class name.
