@@ -53,7 +53,7 @@ class BoltRouterAppTest extends BoltTestCase
         ];
         $config += FastRouteConfiguration::default(function (RouteCollector $routeCollector) use ($handler) {
             $routeCollector->get('/book/{id:\d+}/author', $handler);
-            $routeCollector->put('/foo', VoidHandler::class);
+            $routeCollector->put('/foo', [VoidHandler::class]);
         });
         C::config($this->container, $config);
 

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
+use Lit\Air\Configurator as C;
 use Lit\Air\Factory;
 use Lit\Air\Psr\CircularDependencyException;
 use Lit\Air\Psr\Container;
@@ -111,7 +112,7 @@ class FactoryTest extends AirTestCase
          * @var \ArrayObject $arrObj
          */
         $arrObj = $this->factory->instantiate(\ArrayObject::class, [
-            [1, 42],
+            C::value([1, 42]),
             \ArrayObject::ARRAY_AS_PROPS,
             \RecursiveArrayIterator::class,
         ]);
