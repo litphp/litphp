@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Injection;
 
+use Lit\Air\Configurator as C;
 use Lit\Air\Factory;
 use ReflectionMethod;
 
@@ -85,9 +86,9 @@ class SetterInjector implements InjectorInterface
     public static function configuration()
     {
         return [
-            Factory::KEY_INJECTORS => [
+            Factory::KEY_INJECTORS => C::value([
                 new SetterInjector(),
-            ],
+            ]),
         ];
     }
 }

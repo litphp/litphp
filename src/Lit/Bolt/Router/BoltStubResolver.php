@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Lit\Bolt\Router;
 
-use Lit\Air\ContainerStub;
+use Lit\Air\Configurator;
 use Lit\Air\Factory;
+use Lit\Air\Psr\Container;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Handlers\FixedResponseHandler;
 use Lit\Voltage\Interfaces\RouterStubResolverInterface;
-use Psr\Container\ContainerInterface;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
@@ -19,7 +19,7 @@ use Psr\Http\Server\RequestHandlerInterface;
 class BoltStubResolver implements RouterStubResolverInterface
 {
     /**
-     * @var ContainerInterface
+     * @var Container
      */
     protected $container;
     /**
@@ -27,7 +27,7 @@ class BoltStubResolver implements RouterStubResolverInterface
      */
     protected $notFound;
 
-    public function __construct(ContainerInterface $container, $notFound = null)
+    public function __construct(Container $container, $notFound = null)
     {
         $this->container = $container;
         $this->notFound = $notFound;
@@ -57,8 +57,9 @@ class BoltStubResolver implements RouterStubResolverInterface
             return FixedResponseHandler::wrap($stub);
         }
 
-        $containerStub = ContainerStub::tryParse($stub);
-        if (!$containerStub) {
+        $handler = Configurator::convertToRecipe($stub)->resolve($this->container);
+
+        if (!$handler instanceof RequestHandlerInterface) {
             /** @var StubResolveException $exception */
             $exception = Factory::of($this->container)->instantiate(StubResolveException::class, [
                 'stub' => $stub,
@@ -67,8 +68,6 @@ class BoltStubResolver implements RouterStubResolverInterface
             throw $exception;
         }
 
-        $handler = $containerStub->instantiateFrom($this->container);
-        assert($handler instanceof RequestHandlerInterface);
         return $handler;
     }
 }

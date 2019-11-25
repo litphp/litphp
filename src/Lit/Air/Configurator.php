@@ -6,11 +6,13 @@ namespace Lit\Air;
 
 use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
+use Lit\Air\Recipe\AutowireRecipe;
 use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\Decorator\AbstractRecipeDecorator;
 use Lit\Air\Recipe\Decorator\CallbackDecorator;
 use Lit\Air\Recipe\Decorator\SingletonDecorator;
 use Lit\Air\Recipe\FixedValueRecipe;
+use Lit\Air\Recipe\InstanceRecipe;
 use Lit\Air\Recipe\RecipeInterface;
 
 /**
@@ -58,8 +60,20 @@ class Configurator
             return (new BuilderRecipe($value))->singleton();
         }
 
-        if (is_array($value) && array_key_exists(0, $value) && isset($value['$'])) {
+        if (is_array($value) && array_key_exists(0, $value) && !empty($value['$'])) {
             return self::makeRecipe($value);
+        }
+
+        if (self::isSequentialArray($value, 1) && is_string($value[0])) {
+            return new AutowireRecipe($value[0], [], false);
+        }
+
+        if (self::isSequentialArray($value, 2) && is_string($value[0]) && class_exists($value[0])) {
+            return new InstanceRecipe($value[0], $value[1]);
+        }
+
+        if (is_array($value)) {
+            trigger_error("array should be wrapped with C::value", E_USER_NOTICE);
         }
 
         return Container::value($value);
@@ -198,6 +212,36 @@ class Configurator
             '$' => 'value',
             $value,
         ];
+    }
+
+    protected static function isSequentialArray($val, int $expectedLength = null): bool
+    {
+        if (!is_array($val)) {
+            return false;
+        }
+
+        $cnt = count($val);
+        if ($cnt === 0) {
+            return $expectedLength === null || $expectedLength === 0;
+        }
+
+        // non-empty sequential array must have zero index, fast exit for 99% assoc arrays
+        if (!array_key_exists(0, $val)) {
+            return false;
+        }
+
+        // fast exit for length assertion
+        if ($expectedLength !== null && $expectedLength !== $cnt) {
+            return false;
+        }
+
+        foreach (array_keys($val) as $k => $v) {
+            if ($k !== $v) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
     protected static function write(Container $container, $key, $value)

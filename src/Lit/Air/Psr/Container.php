@@ -69,7 +69,7 @@ class Container implements ContainerInterface
      * @param bool   $cached    Whether to save the instance if it's not defined in container.
      * @return AbstractRecipe
      */
-    public static function autowire(string $className = null, array $extra = [], bool $cached = true): AbstractRecipe
+    public static function autowire(string $className, array $extra = [], bool $cached = true): AbstractRecipe
     {
         return new AutowireRecipe($className, $extra, $cached);
     }
