@@ -39,7 +39,7 @@ class AutowireRecipe extends AbstractRecipe
         }
 
         return Factory::of($container)->produce(
-            /** @scrutinizer ignore-type */ $className,
+            /** @scrutinizer ignore-type */            $className,
             $this->extra
         );
     }

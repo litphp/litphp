@@ -39,7 +39,7 @@ class InstanceRecipe extends AbstractRecipe
         }
 
         return Factory::of($container)->instantiate(
-            /** @scrutinizer ignore-type */ $className,
+            /** @scrutinizer ignore-type */            $className,
             $this->extra
         );
     }
