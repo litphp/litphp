@@ -85,7 +85,7 @@ class SimpleTemplate
         assert(!!$params);
         $tag = array_shift($params);
 
-        $result = self::parseShortTag($tag{0}, $statement);
+        $result = self::parseShortTag($tag[0], $statement);
         if ($result !== false) {
             return $result;
         }
