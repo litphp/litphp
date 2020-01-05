@@ -60,19 +60,11 @@ class Configurator
             return (new BuilderRecipe($value))->singleton();
         }
 
-        if (is_array($value) && array_key_exists(0, $value) && !empty($value['$'])) {
-            return self::makeRecipe($value);
-        }
-
-        if (self::isSequentialArray($value, 1) && is_string($value[0])) {
-            return new AutowireRecipe($value[0], [], false);
-        }
-
-        if (self::isSequentialArray($value, 2) && is_string($value[0]) && class_exists($value[0])) {
-            return new InstanceRecipe($value[0], $value[1]);
-        }
-
         if (is_array($value)) {
+            $r = self::convertArrayToRecipe($value);
+            if ($r !== null) {
+                return $r;
+            }
             trigger_error("array should be wrapped with C::value", E_USER_NOTICE);
         }
 
@@ -239,7 +231,7 @@ class Configurator
             substr($key, -2) === '::'
             && class_exists(substr($key, 0, -2))
         ) {
-            $container->set($key, self::convertArray($value));
+            $container->set($key, self::convertArrayValueToRecipe($value));
             return;
         }
 
@@ -253,7 +245,7 @@ class Configurator
         }
     }
 
-    protected static function convertArray(array $value): array
+    protected static function convertArrayValueToRecipe(array $value): array
     {
         $result = [];
         foreach ($value as $k => $v) {
@@ -264,6 +256,23 @@ class Configurator
         }
 
         return $result;
+    }
+
+    protected static function convertArrayToRecipe(array $value): ?RecipeInterface
+    {
+        if (array_key_exists(0, $value) && !empty($value['$'])) {
+            return self::makeRecipe($value);
+        }
+
+        if (self::isSequentialArray($value, 1) && is_string($value[0])) {
+            return new AutowireRecipe($value[0], [], false);
+        }
+
+        if (self::isSequentialArray($value, 2) && is_string($value[0]) && class_exists($value[0])) {
+            return new InstanceRecipe($value[0], $value[1]);
+        }
+
+        return null;
     }
 
     protected static function makeRecipe(array $value): RecipeInterface

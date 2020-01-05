@@ -236,7 +236,6 @@ class Container implements ContainerInterface
     {
         $class = static::CONFIGURATOR_CLASS;
         /**
-         * @see Configurator::convertArray()
          * @var Configurator $class
          */
         return $class::convertToRecipe($value)->resolve($this);
