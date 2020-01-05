@@ -190,36 +190,6 @@ class Configurator
         ];
     }
 
-    protected static function isSequentialArray($val, int $expectedLength = null): bool
-    {
-        if (!is_array($val)) {
-            return false;
-        }
-
-        $cnt = count($val);
-        if ($cnt === 0) {
-            return $expectedLength === null || $expectedLength === 0;
-        }
-
-        // non-empty sequential array must have zero index, fast exit for 99% assoc arrays
-        if (!array_key_exists(0, $val)) {
-            return false;
-        }
-
-        // fast exit for length assertion
-        if ($expectedLength !== null && $expectedLength !== $cnt) {
-            return false;
-        }
-
-        foreach (array_keys($val) as $k => $v) {
-            if ($k !== $v) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     protected static function write(Container $container, $key, $value)
     {
         if (is_scalar($value) || is_resource($value)) {
@@ -264,11 +234,11 @@ class Configurator
             return self::makeRecipe($value);
         }
 
-        if (self::isSequentialArray($value, 1) && is_string($value[0])) {
+        if (Utils::isSequentialArray($value, 1) && is_string($value[0])) {
             return new AutowireRecipe($value[0], [], false);
         }
 
-        if (self::isSequentialArray($value, 2) && is_string($value[0]) && class_exists($value[0])) {
+        if (Utils::isSequentialArray($value, 2) && is_string($value[0]) && class_exists($value[0])) {
             return new InstanceRecipe($value[0], $value[1]);
         }
 
