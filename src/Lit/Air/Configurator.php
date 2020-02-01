@@ -201,7 +201,7 @@ class Configurator
             substr($key, -2) === '::'
             && class_exists(substr($key, 0, -2))
         ) {
-            $container->set($key, self::convertArrayValueToRecipe($value));
+            $container->set($key, self::mapArrayValueToRecipe($value));
             return;
         }
 
@@ -215,10 +215,10 @@ class Configurator
         }
     }
 
-    protected static function convertArrayValueToRecipe(array $value): array
+    protected static function mapArrayValueToRecipe(array $arr): array
     {
         $result = [];
-        foreach ($value as $k => $v) {
+        foreach ($arr as $k => $v) {
             $result[$k] = self::convertToRecipe($v);
             if ($result[$k] instanceof FixedValueRecipe) {
                 $result[$k] = $result[$k]->getValue();
@@ -228,27 +228,27 @@ class Configurator
         return $result;
     }
 
-    protected static function convertArrayToRecipe(array $value): ?RecipeInterface
+    protected static function convertArrayToRecipe(array $arr): ?RecipeInterface
     {
-        if (array_key_exists(0, $value) && !empty($value['$'])) {
-            return self::makeRecipe($value);
+        if (array_key_exists(0, $arr) && !empty($arr['$'])) {
+            return self::makeRecipe($arr);
         }
 
-        if (Utils::isSequentialArray($value, 1) && is_string($value[0])) {
-            return new AutowireRecipe($value[0], [], false);
+        if (Utils::isSequentialArray($arr, 1) && is_string($arr[0])) {
+            return new AutowireRecipe($arr[0], [], false);
         }
 
-        if (Utils::isSequentialArray($value, 2) && is_string($value[0]) && class_exists($value[0])) {
-            return new InstanceRecipe($value[0], $value[1]);
+        if (Utils::isSequentialArray($arr, 2) && is_string($arr[0]) && class_exists($arr[0])) {
+            return new InstanceRecipe($arr[0], $arr[1]);
         }
 
         return null;
     }
 
-    protected static function makeRecipe(array $value): RecipeInterface
+    protected static function makeRecipe(array $arr): RecipeInterface
     {
-        $type = $value['$'];
-        unset($value['$']);
+        $type = $arr['$'];
+        unset($arr['$']);
 
         if (
             array_key_exists($type, [
@@ -259,15 +259,15 @@ class Configurator
             'value' => 1,
             ])
         ) {
-            $valueDecorator = $value['decorator'] ?? null;
-            unset($value['decorator']);
+            $valueDecorator = $arr['decorator'] ?? null;
+            unset($arr['decorator']);
 
             $builder = [Container::class, $type];
             assert(is_callable($builder));
             /**
              * @var RecipeInterface $recipe
              */
-            $recipe = call_user_func_array($builder, $value);
+            $recipe = call_user_func_array($builder, $arr);
 
             if ($valueDecorator) {
                 $recipe = self::wrapRecipeWithDecorators($valueDecorator, $recipe);
