@@ -1,6 +1,10 @@
 
 ## next (v1.0.0)
 
+### Changes
+
+- [#14](https://github.com/litphp/litphp/pull/14) air API & implementation revamp around recipe interface
+
 ## v0.9.2
 
 ### Changes
