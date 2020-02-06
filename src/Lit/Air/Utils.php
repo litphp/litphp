@@ -6,7 +6,14 @@ namespace Lit\Air;
 
 class Utils
 {
-    public static function isSequentialArray($val, int $expectedLength = null): bool
+    /**
+     * Test if a value is a sequential array.
+     *
+     * @param mixed    $val            The tested value.
+     * @param int|null $expectedLength If non null, only return true if the array length is exactly this value.
+     * @return bool Whether the tested value is a sequential array.
+     */
+    public static function isSequentialArray($val, ?int $expectedLength = null): bool
     {
         if (!is_array($val)) {
             return false;
@@ -27,8 +34,9 @@ class Utils
             return false;
         }
 
-        foreach (array_keys($val) as $k => $v) {
-            if ($k !== $v) {
+        $idx = 0;
+        foreach ($val as $k => $v) {
+            if ($k !== $idx++) {
                 return false;
             }
         }
