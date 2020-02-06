@@ -65,7 +65,7 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/Lit/Air/Psr/Container.php.html#line71">Source</a>
+            <a href="../../source/Lit/Air/Psr/Container.php.html#line72">Source</a>
           </li>
         </ul>
       </nav>
@@ -76,10 +76,12 @@
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function autowire([string
-        $className = NULL,
+          <code>public function autowire(string
+        $className,
             [array
-        $extra = ]] )
+        $extra = ,
+            [boolean
+        $cached = true]] )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
@@ -87,11 +89,15 @@
           <dt><code>$className</code>
                 —
                 string</dt>
-          <dd>Optional classname. Can be ommited when the entry key is the classname.<br/><br/><br/>      </dd>
+          <dd>The Classname.</dd>
           <dt><code>$extra</code>
                 —
                 array</dt>
           <dd>Extra parameteres.</dd>
+          <dt><code>$cached</code>
+                —
+                boolean</dt>
+          <dd>Whether to save the instance if it's not defined in container.<br/><br/><br/>      </dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">

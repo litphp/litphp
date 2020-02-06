@@ -62,7 +62,7 @@
             <a href="#methods">Methods</a>
           </li>
           <li>
-            <a href="../source/Lit/Air/Configurator.php.html#line20">Source</a>
+            <a href="../source/Lit/Air/Configurator.php.html#line22">Source</a>
           </li>
         </ul>
       </nav>
@@ -80,14 +80,14 @@
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/singleton.html">singleton</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/decorateSingleton.html">decorateSingleton</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/decorateCallback.html">decorateCallback</a>()
-                    </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/provideParameter.html">provideParameter</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/produce.html">produce</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/instance.html">instance</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/alias.html">alias</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/builder.html">builder</a>()
                     </li><li>public static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/value.html">value</a>()
                     </li><li>protected static void <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/write.html">write</a>()
-                    </li><li>protected static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/convertArray.html">convertArray</a>()
+                    </li><li>protected static array <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/mapArrayValueToRecipe.html">mapArrayValueToRecipe</a>()
+                    </li><li>protected static ?<span title="RecipeInterface">RecipeInterface</span> <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/convertArrayToRecipe.html">convertArrayToRecipe</a>()
                     </li><li>protected static <span title="RecipeInterface">RecipeInterface</span> <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/makeRecipe.html">makeRecipe</a>()
                     </li><li>public static <span title="RecipeInterface">RecipeInterface</span> <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/wrapRecipeWithDecorators.html">wrapRecipeWithDecorators</a>()
                     </li><li>public static string <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/join.html">join</a>()
@@ -107,11 +107,14 @@
         <div class="styled">
           <h4>protected</h4>
           <ul>
-            <li id="convertArray">
-              <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/convertArray.html">convertArray()</a>
+            <li id="convertArrayToRecipe">
+              <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/convertArrayToRecipe.html">convertArrayToRecipe()</a>
             </li>
             <li id="makeRecipe">
               <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/makeRecipe.html">makeRecipe()</a>
+            </li>
+            <li id="mapArrayValueToRecipe">
+              <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/mapArrayValueToRecipe.html">mapArrayValueToRecipe()</a>
             </li>
             <li id="write">
               <a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/write.html">write()</a>
@@ -137,8 +140,6 @@
                 — Join multiple strings with air conventional separator `::`</li>
             <li id="produce"><a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/produce.html">produce()</a>
                 — Configuration indicating an autowired entry.</li>
-            <li id="provideParameter"><a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/provideParameter.html">provideParameter()</a>
-                — Provide extra parameter for autowired entry. The key should be a valid class name.</li>
             <li id="singleton"><a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/singleton.html">singleton()</a>
                 — Configuration indicating a singleton</li>
             <li id="value"><a title="Lit\Air\Configurator" href="../classes/Lit_Air_Configurator/value.html">value()</a>

@@ -74,7 +74,7 @@
       </nav>
       <section>
         <h1><small>Lit\Air\Factory::</small>produce</h1>
-        <h4>Create and save a $className instance in container.</h4>
+        <h4>Produce a $className instance.</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
@@ -82,7 +82,9 @@
           <code>public function produce(string
         $className,
             [array
-        $extraParameters = ] )
+        $extraParameters = ,
+            [boolean
+        $cached = true]] )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
@@ -95,6 +97,10 @@
                 —
                 array</dt>
           <dd>Extra parameters.</dd>
+          <dt><code>$cached</code>
+                —
+                boolean</dt>
+          <dd>Whether to save the instance if it's not defined in container.<br/><br/><br/>      </dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
@@ -103,12 +109,6 @@
         </dl>
         <h2 id="throws">Errors/Exceptions</h2>
         <dl class="styled">
-          <dt>
-            <code>
-              <a title="\Psr\Container\ContainerExceptionInterface" href="../../classes/_Psr_Container_ContainerExceptionInterface.html">ContainerExceptionInterface</a>
-            </code>
-          </dt>
-          <dd>Failure when fetching dependency in container.</dd>
           <dt>
             <code>
               <a title="\ReflectionException" href="../../classes/_ReflectionException.html">ReflectionException</a>

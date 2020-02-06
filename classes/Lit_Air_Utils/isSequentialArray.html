@@ -2,7 +2,7 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <title>phpDox - Lit\Air\ContainerStub::instantiateFrom</title>
+    <title>phpDox - Lit\Air\Utils::isSequentialArray</title>
     <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   </head>
@@ -45,9 +45,9 @@
             <a href="../../classes.html#Lit_Air">Lit\Air</a>
           </li>
           <li class="separator">
-            <a title="Lit\Air\ContainerStub" href="../../classes/Lit_Air_ContainerStub.html">ContainerStub</a>
+            <a title="Lit\Air\Utils" href="../../classes/Lit_Air_Utils.html">Utils</a>
           </li>
-          <li class="separator">instantiateFrom</li>
+          <li class="separator">isSequentialArray</li>
         </ul>
       </div>
       <nav class="box">
@@ -65,56 +65,39 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="#throws">Throws</a>
-          </li>
-          <li>
-            <a href="../../source/Lit/Air/ContainerStub.php.html#line77">Source</a>
+            <a href="../../source/Lit/Air/Utils.php.html#line16">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Lit\Air\ContainerStub::</small>instantiateFrom</h1>
-        <h4>Populate concrete product from given container</h4>
+        <h1><small>Lit\Air\Utils::</small>isSequentialArray</h1>
+        <h4>Test if a value is a sequential array.</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function instantiateFrom(<a title="Psr\Container\ContainerInterface" href="../../classes/Psr_Container_ContainerInterface.html">ContainerInterface</a>
-        $container,
-            [array
-        $extraParameters = ] )
+          <code>public function isSequentialArray(mixed
+        $val,
+            [int
+        $expectedLength = NULL] )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
-          <dt><code>$container</code>
+          <dt><code>$val</code>
                 —
-                <a title="Psr\Container\ContainerInterface" href="../../classes/Psr_Container_ContainerInterface.html">Psr\Container\ContainerInterface</a></dt>
-          <dd>The container.<br/><br/><br/>      </dd>
-          <dt><code>$extraParameters</code>
+                mixed</dt>
+          <dd>The tested value.</dd>
+          <dt><code>$expectedLength</code>
                 —
-                array</dt>
-          <dd>Extra parameters.</dd>
+                int</dt>
+          <dd>If non null, only return true if the array length is exactly this value.<br/><br/><br/>      </dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
-          <dt/>
-          <dd/>
-        </dl>
-        <h2 id="throws">Errors/Exceptions</h2>
-        <dl class="styled">
-          <dt>
-            <code>
-              <a title="Psr\Container\ContainerExceptionInterface" href="../../classes/Psr_Container_ContainerExceptionInterface.html">ContainerExceptionInterface</a>
-            </code>
-          </dt>
-          <dd>Failed to produce.</dd>
-          <dt>
-            <code>
-              <a title="\ReflectionException" href="../../classes/_ReflectionException.html">ReflectionException</a>
-            </code>
-          </dt>
-          <dd>Failed to produce.</dd>
+          <dt>bool</dt>
+          <dd>Whether the tested value is a sequential array.<br/>
+        </dd>
         </dl>
       </section>
     </div>

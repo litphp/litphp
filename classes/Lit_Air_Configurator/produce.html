@@ -65,7 +65,7 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/Lit/Air/Configurator.php.html#line131">Source</a>
+            <a href="../../source/Lit/Air/Configurator.php.html#line123">Source</a>
           </li>
         </ul>
       </nav>
@@ -79,7 +79,9 @@
           <code>public function produce(string
         $classname,
             [array
-        $extra = ] )
+        $extra = ,
+            [boolean
+        $cached = true]] )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
@@ -87,11 +89,15 @@
           <dt><code>$classname</code>
                 —
                 string</dt>
-          <dd>The class name. Can be ignored but better use `provideParameter` in that case.<br/><br/><br/>      </dd>
+          <dd>The class name.</dd>
           <dt><code>$extra</code>
                 —
                 array</dt>
           <dd>Extra parameters.</dd>
+          <dt><code>$cached</code>
+                —
+                boolean</dt>
+          <dd>Whether to save the instance if it's not defined in container.<br/><br/><br/>      </dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
