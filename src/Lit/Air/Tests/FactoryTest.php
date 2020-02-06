@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
+use Lit\Air\Configurator as C;
 use Lit\Air\Factory;
 use Lit\Air\Psr\CircularDependencyException;
 use Lit\Air\Psr\Container;
@@ -28,7 +29,7 @@ class FactoryTest extends AirTestCase
         self::assertSame($obj, $returnValue);
 
         $returnValue = $this->factory->invoke([Foo::class, 'identity'], [
-            $obj
+            $obj,
         ]);
         self::assertSame($obj, $returnValue);
 
@@ -78,7 +79,7 @@ class FactoryTest extends AirTestCase
                     return $foo;
                 }
             },
-            'foo'
+            'foo',
         ]);
         self::assertSame(42, $returnValue);
 
@@ -111,9 +112,9 @@ class FactoryTest extends AirTestCase
          * @var \ArrayObject $arrObj
          */
         $arrObj = $this->factory->instantiate(\ArrayObject::class, [
-            [1, 42],
+            C::value([1, 42]),
             \ArrayObject::ARRAY_AS_PROPS,
-            \RecursiveArrayIterator::class
+            \RecursiveArrayIterator::class,
         ]);
         self::assertEquals([1, 42], $arrObj->getArrayCopy());
         self::assertSame(\ArrayObject::ARRAY_AS_PROPS, $arrObj->getFlags());
@@ -121,7 +122,7 @@ class FactoryTest extends AirTestCase
 
         $foo = $this->factory->instantiate(Foo::class, [
             'bar' => $obj,
-            \stdClass::class => $obj2
+            \stdClass::class => $obj2,
         ]);
         self::assertSame([
             'bar' => $obj,
@@ -151,7 +152,7 @@ class FactoryTest extends AirTestCase
         self::assertEquals(2, 1 + 1);
         try {
             $this->container->define(\ArrayObject::class, Container::builder([$this, 'circularFoo']))
-                ->define(Foo::class, Container::autowire(null, [
+                ->define(Foo::class, Container::autowire(Foo::class, [
                     'bar' => Container::builder(function (\ArrayObject $object) {
                         return get_class($object);
                     }),
@@ -170,6 +171,18 @@ class FactoryTest extends AirTestCase
     {
         $this->assertInstanceOf(Foo::class, $foo);
         return new \ArrayObject([1, 2, 3]);
+    }
+
+    public function testInterfaceHint()
+    {
+        $obj = new \ArrayObject();
+        $this->container->set(\IteratorAggregate::class, $obj);
+        $this->factory->invoke(function (\IteratorAggregate $p) use ($obj) {
+            $this->assertEquals($obj, $p);
+            $obj['foo'] = 'bar';
+        });
+
+        $this->assertEquals('bar', $obj['foo']);
     }
 
     protected function setUp(): void

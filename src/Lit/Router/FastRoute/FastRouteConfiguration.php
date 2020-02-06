@@ -31,28 +31,32 @@ class FastRouteConfiguration
         return [
                 RouterInterface::class => C::alias(FastRouteRouter::class),
 
-                FastRouteRouter::class => C::provideParameter([
-                    Dispatcher::class => C::alias(Dispatcher::class),
-                    RouterStubResolverInterface::class => C::singleton(BoltStubResolver::class),
+                FastRouteRouter::class => C::produce(FastRouteRouter::class, [
+                    Dispatcher::class => C::alias(FastRouteRouter::class, 'dispatcher'),
+                    RouterStubResolverInterface::class => C::alias(FastRouteRouter::class, 'stubResolver'),
                     'methodNotAllowed' => C::alias(FastRouteRouter::class, 'methodNotAllowed'),
                     'notFound' => C::alias(FastRouteRouter::class, 'notFound'),
                 ]),
+                C::join(FastRouteRouter::class, 'stubResolver') => C::singleton(BoltStubResolver::class),
                 C::join(FastRouteRouter::class, 'methodNotAllowed') => null,
                 C::join(FastRouteRouter::class, 'notFound') => null,
-                Dispatcher::class => C::singleton(
+                C::join(FastRouteRouter::class, 'dispatcher') => C::singleton(
                     CachedDispatcher::class,
                     [
-                        'cache' => C::alias(CachedDispatcher::class, 'cache'),
-                        DataGenerator::class => C::alias(CachedDispatcher::class, DataGenerator::class),
-                        RouteParser::class => C::alias(CachedDispatcher::class, RouteParser::class),
-                        'routeDefinition' => C::alias(CachedDispatcher::class, 'routeDefinition'),
-                        'dispatcherClass' => GCBDispatcher::class,
+                        'cache' => C::alias(FastRouteRouter::class, 'dispatcher', 'cache'),
+                        DataGenerator::class => C::alias(FastRouteRouter::class, 'dispatcher', 'dataGenerator'),
+                        RouteParser::class => C::alias(FastRouteRouter::class, 'dispatcher', 'routeParser'),
+                        'routeDefinition' => C::alias(FastRouteRouter::class, 'dispatcher', 'routeDefinition'),
+                        'dispatcherClass' => C::alias(FastRouteRouter::class, 'dispatcher', 'dispatcherClass'),
                     ]
                 ),
-                C::join(CachedDispatcher::class, 'cache') => C::produce(VoidSingleValue::class),
-                C::join(CachedDispatcher::class, DataGenerator::class) => C::singleton(GCBDataGenerator::class),
-                C::join(CachedDispatcher::class, RouteParser::class) => C::singleton(StdRouteParser::class),
-                C::join(CachedDispatcher::class, 'routeDefinition') => $routeDefinition,
-            ] + RouterConfiguration::default();
+
+                C::join(FastRouteRouter::class, 'dispatcher', 'cache') => C::produce(VoidSingleValue::class),
+                C::join(FastRouteRouter::class, 'dispatcher', 'dataGenerator') => C::singleton(GCBDataGenerator::class),
+                C::join(FastRouteRouter::class, 'dispatcher', 'routeParser') => C::singleton(StdRouteParser::class),
+                C::join(FastRouteRouter::class, 'dispatcher', 'routeDefinition') => $routeDefinition,
+                C::join(FastRouteRouter::class, 'dispatcher', 'dispatcherClass') => GCBDispatcher::class,
+
+            ] + RouterConfiguration::default(C::alias(FastRouteRouter::class));
     }
 }

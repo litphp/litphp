@@ -1,5 +1,5 @@
 - repo: git@github.com:litphp/pre-commit-php.git
-  sha: 0f011f8
+  rev: 3ceeb21
   hooks:
     - id: php-cbf
       files: \.(php)$

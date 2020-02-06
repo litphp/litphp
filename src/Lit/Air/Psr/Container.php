@@ -64,13 +64,14 @@ class Container implements ContainerInterface
     /**
      * Autowire this entry
      *
-     * @param string|null $className Optional classname. Can be ommited when the entry key is the classname.
-     * @param array       $extra     Extra parameteres.
+     * @param string $className The Classname.
+     * @param array  $extra     Extra parameteres.
+     * @param bool   $cached    Whether to save the instance if it's not defined in container.
      * @return AbstractRecipe
      */
-    public static function autowire(?string $className = null, array $extra = []): AbstractRecipe
+    public static function autowire(string $className, array $extra = [], bool $cached = true): AbstractRecipe
     {
-        return new AutowireRecipe($className, $extra);
+        return new AutowireRecipe($className, $extra, $cached);
     }
 
     /**
@@ -126,7 +127,7 @@ class Container implements ContainerInterface
         }
 
         if (array_key_exists($id, $this->recipe)) {
-            return $this->recipe[$id]->resolve($this, $id);
+            return $this->recipe[$id]->resolve($this);
         }
 
         if ($this->delegateContainer && $this->delegateContainer->has($id)) {
@@ -157,6 +158,20 @@ class Container implements ContainerInterface
     }
 
     /**
+     * Provide parameters for a class.
+     * (Define an autowire recipe with in container with name of the class)
+     *
+     * @param string $className The Classname.
+     * @param array  $extra     Extra parameteres.
+     * @param bool   $cached    Whether to reuse the instance
+     * @return Container
+     */
+    public function provideParameter(string $className, array $extra = [], bool $cached = true)
+    {
+        return $this->define($className, self::autowire($className, $extra, $cached));
+    }
+
+    /**
      * Get recipe instance from the id
      *
      * @param string $id The key.
@@ -164,11 +179,7 @@ class Container implements ContainerInterface
      */
     public function getRecipe(string $id): ?RecipeInterface
     {
-        if (array_key_exists($id, $this->recipe)) {
-            return $this->recipe[$id];
-        }
-
-        return null;
+        return $this->recipe[$id] ?? null;
     }
 
     /**
@@ -225,7 +236,6 @@ class Container implements ContainerInterface
     {
         $class = static::CONFIGURATOR_CLASS;
         /**
-         * @see Configurator::convertArray()
          * @var Configurator $class
          */
         return $class::convertToRecipe($value)->resolve($this);

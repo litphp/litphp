@@ -47,7 +47,7 @@ class ContainerTest extends AirTestCase
         /** @var RecipeInterface|MockObject $recipe */
         $recipe = self::createMock(RecipeInterface::class);
         $recipe->method('resolve')
-            ->with($this->container, $key)
+            ->with($this->container)
             ->willReturn($obj = new \stdClass());
 
         $this->container->define($key, $recipe);

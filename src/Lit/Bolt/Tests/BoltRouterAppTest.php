@@ -53,7 +53,7 @@ class BoltRouterAppTest extends BoltTestCase
         ];
         $config += FastRouteConfiguration::default(function (RouteCollector $routeCollector) use ($handler) {
             $routeCollector->get('/book/{id:\d+}/author', $handler);
-            $routeCollector->put('/foo', VoidHandler::class);
+            $routeCollector->put('/foo', [VoidHandler::class]);
         });
         C::config($this->container, $config);
 
@@ -61,7 +61,7 @@ class BoltRouterAppTest extends BoltTestCase
         /**
          * @var BoltApp $app
          */
-        $app = $factory->getOrProduce(BoltApp::class);
+        $app = $factory->produce(BoltApp::class);
 
         $result = $app->handle($request);
         self::assertSame($result, $response);
@@ -70,7 +70,7 @@ class BoltRouterAppTest extends BoltTestCase
         $result404 = $app->handle($request404);
         self::assertSame($result404, $response404);
 
-        $router = $this->container->get(RouterInterface::class);
+        $router = $this->container->get(C::join(BoltApp::class, 'handler', 'router'));
         self::assertInstanceOf(VoidHandler::class, $router->route($fooRequest));
     }
 
@@ -84,7 +84,7 @@ class BoltRouterAppTest extends BoltTestCase
             ->withUri(new Uri('http://localhost/404'));
 
         /** @var FastRouteRouter $router */
-        $router = $factory->getOrProduce(FastRouteRouter::class);
+        $router = $factory->produce(FastRouteRouter::class);
         try {
             $router->route($request404);
             self::fail('shoulld throw');

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Recipe;
 
-use Psr\Container\ContainerInterface;
+use Lit\Air\Psr\Container;
 
 /**
  * Always return a fixed value. Useful for test, and as a wrapper of arbitary value.
@@ -18,7 +18,7 @@ class FixedValueRecipe extends AbstractRecipe
         $this->value = $value;
     }
 
-    public function resolve(ContainerInterface $container, ?string $id = null)
+    public function resolve(Container $container)
     {
         return $this->value;
     }

@@ -6,11 +6,13 @@ namespace Lit\Air;
 
 use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
+use Lit\Air\Recipe\AutowireRecipe;
 use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\Decorator\AbstractRecipeDecorator;
 use Lit\Air\Recipe\Decorator\CallbackDecorator;
 use Lit\Air\Recipe\Decorator\SingletonDecorator;
 use Lit\Air\Recipe\FixedValueRecipe;
+use Lit\Air\Recipe\InstanceRecipe;
 use Lit\Air\Recipe\RecipeInterface;
 
 /**
@@ -58,8 +60,12 @@ class Configurator
             return (new BuilderRecipe($value))->singleton();
         }
 
-        if (is_array($value) && array_key_exists(0, $value) && isset($value['$'])) {
-            return self::makeRecipe($value);
+        if (is_array($value)) {
+            $r = self::convertArrayToRecipe($value);
+            if ($r !== null) {
+                return $r;
+            }
+            trigger_error("array should be wrapped with C::value", E_USER_NOTICE);
         }
 
         return Container::value($value);
@@ -107,33 +113,20 @@ class Configurator
     }
 
     /**
-     * Provide extra parameter for autowired entry. The key should be a valid class name.
-     *
-     * @param array $extra Extra parameters.
-     * @return array
-     */
-    public static function provideParameter(array $extra = []): array
-    {
-        return [
-            '$' => 'autowire',
-            null,
-            $extra,
-        ];
-    }
-
-    /**
      * Configuration indicating an autowired entry.
      *
-     * @param string|null $classname The class name. Can be ignored but better use `provideParameter` in that case.
-     * @param array       $extra     Extra parameters.
+     * @param string $classname The class name.
+     * @param array  $extra     Extra parameters.
+     * @param bool   $cached    Whether to save the instance if it's not defined in container.
      * @return array
      */
-    public static function produce(?string $classname, array $extra = []): array
+    public static function produce(string $classname, array $extra = [], bool $cached = true): array
     {
         return [
             '$' => 'autowire',
             $classname,
             $extra,
+            $cached,
         ];
     }
 
@@ -208,7 +201,7 @@ class Configurator
             substr($key, -2) === '::'
             && class_exists(substr($key, 0, -2))
         ) {
-            $container->set($key, self::convertArray($value));
+            $container->set($key, self::mapArrayValueToRecipe($value));
             return;
         }
 
@@ -222,10 +215,10 @@ class Configurator
         }
     }
 
-    protected static function convertArray(array $value): array
+    protected static function mapArrayValueToRecipe(array $arr): array
     {
         $result = [];
-        foreach ($value as $k => $v) {
+        foreach ($arr as $k => $v) {
             $result[$k] = self::convertToRecipe($v);
             if ($result[$k] instanceof FixedValueRecipe) {
                 $result[$k] = $result[$k]->getValue();
@@ -235,10 +228,27 @@ class Configurator
         return $result;
     }
 
-    protected static function makeRecipe(array $value): RecipeInterface
+    protected static function convertArrayToRecipe(array $arr): ?RecipeInterface
     {
-        $type = $value['$'];
-        unset($value['$']);
+        if (array_key_exists(0, $arr) && !empty($arr['$'])) {
+            return self::makeRecipe($arr);
+        }
+
+        if (Utils::isSequentialArray($arr, 1) && is_string($arr[0])) {
+            return new AutowireRecipe($arr[0], [], false);
+        }
+
+        if (Utils::isSequentialArray($arr, 2) && is_string($arr[0]) && class_exists($arr[0])) {
+            return new InstanceRecipe($arr[0], $arr[1]);
+        }
+
+        return null;
+    }
+
+    protected static function makeRecipe(array $arr): RecipeInterface
+    {
+        $type = $arr['$'];
+        unset($arr['$']);
 
         if (
             array_key_exists($type, [
@@ -249,15 +259,15 @@ class Configurator
             'value' => 1,
             ])
         ) {
-            $valueDecorator = $value['decorator'] ?? null;
-            unset($value['decorator']);
+            $valueDecorator = $arr['decorator'] ?? null;
+            unset($arr['decorator']);
 
             $builder = [Container::class, $type];
             assert(is_callable($builder));
             /**
              * @var RecipeInterface $recipe
              */
-            $recipe = call_user_func_array($builder, $value);
+            $recipe = call_user_func_array($builder, $arr);
 
             if ($valueDecorator) {
                 $recipe = self::wrapRecipeWithDecorators($valueDecorator, $recipe);
