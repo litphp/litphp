@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lit\Air\Tests;
 
 use Lit\Air\Factory;
-use Lit\Air\Psr\Container;
+use Lit\Air\Recipe\AbstractRecipe;
 
 class AliasRecipeTest extends AirTestCase
 {
@@ -19,8 +19,8 @@ class AliasRecipeTest extends AirTestCase
 
         $this->container
             ->set($key, $obj)
-            ->define($key2, Container::alias($key))
-            ->define($key3, Container::alias(\stdClass::class));
+            ->define($key2, AbstractRecipe::alias($key))
+            ->define($key3, AbstractRecipe::alias(\stdClass::class));
 
         $this->assertKeyExistWithValue($key2, $obj);
         $this->assertKeyExistWithValue($key3, $obj2);

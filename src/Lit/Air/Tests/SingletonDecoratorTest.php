@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Lit\Air\Tests;
 
 use Lit\Air\Configurator;
-use Lit\Air\Psr\Container;
+use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\Decorator\SingletonDecorator;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -44,7 +44,7 @@ class SingletonDecoratorTest extends AirTestCase
         $this->container->get($key2);
 
         //re define the stub affect immediately (the cache is on Stub class, not countainer)
-        $this->container->define($key, Container::value($obj2));
+        $this->container->define($key, AbstractRecipe::value($obj2));
         $this->assertKeyExistWithValue($key, $obj2);
     }
 

@@ -109,7 +109,7 @@ class Factory
         }
 
         assert(is_callable($callback));
-        return call_user_func_array($callback, $this->resolveParams($params, '!' . $name, $extra));
+        return $callback(...$this->resolveParams($params, '!' . $name, $extra));
     }
 
     /**

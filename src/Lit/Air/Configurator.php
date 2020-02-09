@@ -6,6 +6,7 @@ namespace Lit\Air;
 
 use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
+use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\AutowireRecipe;
 use Lit\Air\Recipe\BuilderRecipe;
 use Lit\Air\Recipe\Decorator\AbstractRecipeDecorator;
@@ -68,7 +69,7 @@ class Configurator
             trigger_error("array should be wrapped with C::value", E_USER_NOTICE);
         }
 
-        return Container::value($value);
+        return AbstractRecipe::value($value);
     }
 
     /**
@@ -262,12 +263,12 @@ class Configurator
             $valueDecorator = $arr['decorator'] ?? null;
             unset($arr['decorator']);
 
-            $builder = [Container::class, $type];
+            $builder = [AbstractRecipe::class, $type];
             assert(is_callable($builder));
             /**
              * @var RecipeInterface $recipe
              */
-            $recipe = call_user_func_array($builder, $arr);
+            $recipe = $builder(...$arr);
 
             if ($valueDecorator) {
                 $recipe = self::wrapRecipeWithDecorators($valueDecorator, $recipe);

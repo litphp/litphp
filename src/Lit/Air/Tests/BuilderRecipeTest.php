@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
-use Lit\Air\Psr\Container;
+use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\BuilderRecipe;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -26,7 +26,7 @@ class BuilderRecipeTest extends AirTestCase
 
         /** @var callable $builder */
         $builder = [$mock, 'factory'];
-        $stub = Container::builder($builder);
+        $stub = AbstractRecipe::builder($builder);
 
         self::assertTrue($stub instanceof BuilderRecipe);
 

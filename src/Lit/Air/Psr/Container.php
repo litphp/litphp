@@ -6,11 +6,6 @@ namespace Lit\Air\Psr;
 
 use Lit\Air\Configurator;
 use Lit\Air\Recipe\AbstractRecipe;
-use Lit\Air\Recipe\AliasRecipe;
-use Lit\Air\Recipe\AutowireRecipe;
-use Lit\Air\Recipe\BuilderRecipe;
-use Lit\Air\Recipe\FixedValueRecipe;
-use Lit\Air\Recipe\InstanceRecipe;
 use Lit\Air\Recipe\RecipeInterface;
 use Psr\Container\ContainerInterface;
 
@@ -51,65 +46,6 @@ class Container implements ContainerInterface
     }
 
     /**
-     * Create a alias
-     *
-     * @param string $alias The alias string key.
-     * @return AbstractRecipe
-     */
-    public static function alias(string $alias): AbstractRecipe
-    {
-        return new AliasRecipe($alias);
-    }
-
-    /**
-     * Autowire this entry
-     *
-     * @param string $className The Classname.
-     * @param array  $extra     Extra parameteres.
-     * @param bool   $cached    Whether to save the instance if it's not defined in container.
-     * @return AbstractRecipe
-     */
-    public static function autowire(string $className, array $extra = [], bool $cached = true): AbstractRecipe
-    {
-        return new AutowireRecipe($className, $extra, $cached);
-    }
-
-    /**
-     * Populate an instance by factory
-     *
-     * @param string|null $className Optional classname. Can be ommited when the entry key is the classname.
-     * @param array       $extra     Extra parameteres.
-     * @return AbstractRecipe
-     */
-    public static function instance(?string $className = null, array $extra = []): AbstractRecipe
-    {
-        return new InstanceRecipe($className, $extra);
-    }
-
-    /**
-     * Calls a builder method using factory.
-     *
-     * @param callable $builder The builder method. Its parameter will be injected as dependency.
-     * @param array    $extra   Extra parameters.
-     * @return AbstractRecipe
-     */
-    public static function builder(callable $builder, array $extra = []): AbstractRecipe
-    {
-        return new BuilderRecipe($builder, $extra);
-    }
-
-    /**
-     * A fixed value
-     *
-     * @param mixed $value The value.
-     * @return AbstractRecipe
-     */
-    public static function value($value): AbstractRecipe
-    {
-        return new FixedValueRecipe($value);
-    }
-
-    /**
      * Wraps a PSR container
      *
      * @param ContainerInterface $container The container.
@@ -119,6 +55,7 @@ class Container implements ContainerInterface
     {
         return (new static())->setDelegateContainer($container);
     }
+
 
     public function get($id)
     {
@@ -168,7 +105,7 @@ class Container implements ContainerInterface
      */
     public function provideParameter(string $className, array $extra = [], bool $cached = true)
     {
-        return $this->define($className, self::autowire($className, $extra, $cached));
+        return $this->define($className, AbstractRecipe::autowire($className, $extra, $cached));
     }
 
     /**
