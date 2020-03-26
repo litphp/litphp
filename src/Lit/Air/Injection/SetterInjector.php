@@ -86,7 +86,7 @@ class SetterInjector implements InjectorInterface
     public static function configuration()
     {
         return [
-            Factory::KEY_INJECTORS => C::value([
+            Factory::CONFIG_INJECTORS => C::value([
                 new SetterInjector(),
             ]),
         ];

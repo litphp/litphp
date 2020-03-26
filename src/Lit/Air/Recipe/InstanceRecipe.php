@@ -35,7 +35,7 @@ class InstanceRecipe extends AbstractRecipe
     {
         $className = $this->className;
         if ($className === null || !class_exists($className)) {
-            throw new ContainerException('unknown autowire class name');
+            throw new ContainerException('unknown class name');
         }
 
         return Factory::of($container)->instantiate(

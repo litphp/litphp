@@ -287,7 +287,7 @@ class Configurator
      * @param RecipeInterface $recipe     The decorated recipe instance.
      * @return RecipeInterface
      */
-    public static function wrapRecipeWithDecorators(array $decorators, RecipeInterface $recipe): RecipeInterface
+    protected static function wrapRecipeWithDecorators(array $decorators, RecipeInterface $recipe): RecipeInterface
     {
         foreach ($decorators as $name => $option) {
             if (isset(self::$decorators[$name])) {
