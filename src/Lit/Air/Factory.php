@@ -16,7 +16,7 @@ use Psr\Container\ContainerInterface;
 class Factory
 {
     public const CONTAINER_KEY = self::class;
-    public const CONFIG_INJECTORS = self::class . '::injectors';
+    public const INJECTOR = self::class . '::injector';
     /**
      * @var Container
      */
@@ -149,17 +149,15 @@ class Factory
      */
     protected function inject($obj, array $extra = []): void
     {
-        if (!$this->container->has(static::CONFIG_INJECTORS)) {
+        if (!$this->container->has(static::INJECTOR)) {
             return;
         }
-        foreach ($this->container->get(static::CONFIG_INJECTORS) as $injector) {
-            /**
-             * @var InjectorInterface $injector
-             */
-            if ($injector->isTarget($obj)) {
-                $injector->inject($this, $obj, $extra);
-            }
-        }
+
+        /**
+         * @var InjectorInterface $injector
+         */
+        $injector = $this->container->get(static::INJECTOR);
+        $injector->inject($this, $obj, $extra);
     }
 
     /**
@@ -189,26 +187,6 @@ class Factory
         }
 
         throw new ContainerException('failed to produce dependency for ' . $consumer);
-    }
-
-    /**
-     * Register a injector.
-     *
-     * @param InjectorInterface $injector The injector.
-     * @return Factory
-     */
-    public function addInjector(InjectorInterface $injector): self
-    {
-        if (!$this->container->has(static::CONFIG_INJECTORS)) {
-            $this->container->set(static::CONFIG_INJECTORS, [$injector]);
-        } else {
-            $this->container->set(
-                static::CONFIG_INJECTORS,
-                array_merge($this->container->get(static::CONFIG_INJECTORS), [$injector])
-            );
-        }
-
-        return $this;
     }
 
     /**

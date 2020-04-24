@@ -12,14 +12,6 @@ use Lit\Air\Factory;
 interface InjectorInterface
 {
     /**
-     * Decide whether provided object is target of this injector.
-     *
-     * @param object $obj The object to be checked.
-     * @return boolean
-     */
-    public function isTarget($obj): bool;
-
-    /**
      * Do the injection process.
      *
      * @param Factory $factory The factory.

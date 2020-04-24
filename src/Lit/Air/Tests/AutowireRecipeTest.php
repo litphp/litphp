@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Air\Tests;
 
+use Lit\Air\Factory;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Air\Recipe\AbstractRecipe;
 use Lit\Air\Recipe\AutowireRecipe;
@@ -30,7 +31,7 @@ class AutowireRecipeTest extends AirTestCase
         self::assertEquals(null, $instance->getSplObjectStorage());
 
         $key2 = self::randKey();
-        $this->getFactory()->addInjector(new SetterInjector());
+        $this->container->set(Factory::INJECTOR, new SetterInjector());
         $this->container->define($key2, AbstractRecipe::instance(Foo::class, [
             'bar' => $obj,
         ]));
