@@ -2,7 +2,7 @@
 <!DOCTYPE html SYSTEM "about:legacy-compat">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
   <head>
-    <title>phpDox - Lit\Air\Psr\Container::instance</title>
+    <title>phpDox - Lit\Air\Recipe\AbstractRecipe::value</title>
     <link rel="stylesheet" type="text/css" href="../../css/style.css" media="screen"/>
     <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
   </head>
@@ -42,12 +42,12 @@
             <a href="../../classes.html">Classes</a>
           </li>
           <li class="separator">
-            <a href="../../classes.html#Lit_Air_Psr">Lit\Air\Psr</a>
+            <a href="../../classes.html#Lit_Air_Recipe">Lit\Air\Recipe</a>
           </li>
           <li class="separator">
-            <a title="Lit\Air\Psr\Container" href="../../classes/Lit_Air_Psr_Container.html">Container</a>
+            <a title="Lit\Air\Recipe\AbstractRecipe" href="../../classes/Lit_Air_Recipe_AbstractRecipe.html">AbstractRecipe</a>
           </li>
-          <li class="separator">instance</li>
+          <li class="separator">value</li>
         </ul>
       </div>
       <nav class="box">
@@ -65,33 +65,27 @@
             <a href="#return">Return</a>
           </li>
           <li>
-            <a href="../../source/Lit/Air/Psr/Container.php.html#line84">Source</a>
+            <a href="../../source/Lit/Air/Recipe/AbstractRecipe.php.html#line20">Source</a>
           </li>
         </ul>
       </nav>
       <section>
-        <h1><small>Lit\Air\Psr\Container::</small>instance</h1>
-        <h4>Populate an instance by factory</h4>
+        <h1><small>Lit\Air\Recipe\AbstractRecipe::</small>value</h1>
+        <h4>A fixed value</h4>
         <p/>
         <ul/>
         <h2 id="signature">Signature</h2>
         <div class="styled synopsis">
-          <code>public function instance([string
-        $className = NULL,
-            [array
-        $extra = ]] )
+          <code>public function value(mixed
+        $value )
             </code>
         </div>
         <h2 id="parameterlist">Parameters</h2>
         <dl class="styled">
-          <dt><code>$className</code>
+          <dt><code>$value</code>
                 —
-                string</dt>
-          <dd>Optional classname. Can be ommited when the entry key is the classname.<br/><br/><br/>      </dd>
-          <dt><code>$extra</code>
-                —
-                array</dt>
-          <dd>Extra parameteres.</dd>
+                mixed</dt>
+          <dd>The value.</dd>
         </dl>
         <h2 id="return">Returns</h2>
         <dl class="styled">
