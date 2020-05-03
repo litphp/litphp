@@ -57,7 +57,9 @@ class BoltStubResolver implements RouterStubResolverInterface
             return FixedResponseHandler::wrap($stub);
         }
 
-        $handler = Configurator::convertToRecipe($stub)->resolve($this->container);
+        /** @var Configurator $cfg */
+        $cfg = $this->container::CONFIGURATOR_CLASS;
+        $handler = $cfg::convertToRecipe($stub)->resolve($this->container);
 
         if (!$handler instanceof RequestHandlerInterface) {
             /** @var StubResolveException $exception */

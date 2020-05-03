@@ -7,8 +7,8 @@ namespace Lit\Air\Tests;
 use Lit\Air\Configurator as C;
 use Lit\Air\Factory;
 use Lit\Air\Psr\CircularDependencyException;
-use Lit\Air\Psr\Container;
 use Lit\Air\Psr\ContainerException;
+use Lit\Air\Recipe\AbstractRecipe;
 use Psr\Container\ContainerInterface;
 
 class FactoryTest extends AirTestCase
@@ -84,7 +84,7 @@ class FactoryTest extends AirTestCase
         self::assertSame(42, $returnValue);
 
 
-        $this->container->define(ContainerInterface::class, Container::value($this->container));
+        $this->container->define(ContainerInterface::class, AbstractRecipe::value($this->container));
         $returnValue = $this->factory->invoke(function (ContainerInterface $foo) {
             return $foo;
         });
@@ -151,9 +151,9 @@ class FactoryTest extends AirTestCase
     {
         self::assertEquals(2, 1 + 1);
         try {
-            $this->container->define(\ArrayObject::class, Container::builder([$this, 'circularFoo']))
-                ->define(Foo::class, Container::autowire(Foo::class, [
-                    'bar' => Container::builder(function (\ArrayObject $object) {
+            $this->container->define(\ArrayObject::class, AbstractRecipe::builder([$this, 'circularFoo']))
+                ->define(Foo::class, AbstractRecipe::autowire(Foo::class, [
+                    'bar' => AbstractRecipe::builder(function (\ArrayObject $object) {
                         return get_class($object);
                     }),
                 ]));

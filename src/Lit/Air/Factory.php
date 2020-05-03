@@ -16,7 +16,7 @@ use Psr\Container\ContainerInterface;
 class Factory
 {
     public const CONTAINER_KEY = self::class;
-    public const KEY_INJECTORS = self::class . '::injectors';
+    public const INJECTOR = self::class . '::injector';
     /**
      * @var Container
      */
@@ -35,7 +35,7 @@ class Factory
         } else {
             $this->container = Container::wrap($container);
         }
-        $this->container->set(self::CONTAINER_KEY, $this);
+        $this->container->set(static::CONTAINER_KEY, $this);
     }
 
     /**
@@ -46,11 +46,11 @@ class Factory
      */
     public static function of(ContainerInterface $container): self
     {
-        if (!$container->has(self::CONTAINER_KEY)) {
-            return new self($container);
+        if (!$container->has(static::CONTAINER_KEY)) {
+            return new static($container);
         }
 
-        return $container->get(self::CONTAINER_KEY);
+        return $container->get(static::CONTAINER_KEY);
     }
 
     /**
@@ -109,19 +109,19 @@ class Factory
         }
 
         assert(is_callable($callback));
-        return call_user_func_array($callback, $this->resolveParams($params, '!' . $name, $extra));
+        return $callback(...$this->resolveParams($params, '!' . $name, $extra));
     }
 
     /**
      * Produce a $className instance.
      *
-     * @param string $className       Requested classname.
-     * @param array  $extraParameters Extra parameters.
-     * @param bool   $cached          Whether to save the instance if it's not defined in container.
+     * @param string $className Requested classname.
+     * @param array  $extra     Extra parameters.
+     * @param bool   $cached    Whether to save the instance if it's not defined in container.
      * @return object of $className
      * @throws \ReflectionException Failure during reflection process.
      */
-    public function produce(string $className, array $extraParameters = [], bool $cached = true)
+    public function produce(string $className, array $extra = [], bool $cached = true)
     {
         if (!class_exists($className)) {
             throw new \RuntimeException("$className not found");
@@ -131,7 +131,7 @@ class Factory
             return $this->container->get($className);
         }
 
-        $instance = $this->instantiate($className, $extraParameters);
+        $instance = $this->instantiate($className, $extra);
         if ($cached) {
             $this->container->set($className, $instance);
         }
@@ -149,17 +149,15 @@ class Factory
      */
     protected function inject($obj, array $extra = []): void
     {
-        if (!$this->container->has(self::KEY_INJECTORS)) {
+        if (!$this->container->has(static::INJECTOR)) {
             return;
         }
-        foreach ($this->container->get(self::KEY_INJECTORS) as $injector) {
-            /**
-             * @var InjectorInterface $injector
-             */
-            if ($injector->isTarget($obj)) {
-                $injector->inject($this, $obj, $extra);
-            }
-        }
+
+        /**
+         * @var InjectorInterface $injector
+         */
+        $injector = $this->container->get(static::INJECTOR);
+        $injector->inject($this, $obj, $extra);
     }
 
     /**
@@ -189,26 +187,6 @@ class Factory
         }
 
         throw new ContainerException('failed to produce dependency for ' . $consumer);
-    }
-
-    /**
-     * Register a injector.
-     *
-     * @param InjectorInterface $injector The injector.
-     * @return Factory
-     */
-    public function addInjector(InjectorInterface $injector): self
-    {
-        if (!$this->container->has(static::KEY_INJECTORS)) {
-            $this->container->set(static::KEY_INJECTORS, [$injector]);
-        } else {
-            $this->container->set(
-                static::KEY_INJECTORS,
-                array_merge($this->container->get(static::KEY_INJECTORS), [$injector])
-            );
-        }
-
-        return $this;
     }
 
     /**
@@ -289,7 +267,7 @@ class Factory
 
         try {
             $this->circularStore[$hash] = true;
-            list($keys, $paramClassName) = $this->parseParameter($parameter);
+            [$keys, $paramClassName] = Factory::parseParameter($parameter);
 
             return $this->resolveDependency($consumer, $keys, $paramClassName, $extra);
         } catch (CircularDependencyException $e) {
@@ -309,7 +287,7 @@ class Factory
         }
     }
 
-    protected function parseParameter(\ReflectionParameter $parameter)
+    protected static function parseParameter(\ReflectionParameter $parameter)
     {
         $paramClassName = null;
         $keys = [$parameter->name];

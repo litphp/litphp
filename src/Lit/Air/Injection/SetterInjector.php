@@ -28,6 +28,10 @@ class SetterInjector implements InjectorInterface
 
     public function inject(Factory $factory, $obj, array $extra = []): void
     {
+        if (!$this->isTarget($obj)) {
+            return;
+        }
+
         $class = new \ReflectionClass($obj);
         foreach ($class->getMethods(ReflectionMethod::IS_PUBLIC) as $method) {
             if (!$this->shouldBeInjected($method)) {
@@ -46,7 +50,7 @@ class SetterInjector implements InjectorInterface
         }
     }
 
-    public function isTarget($obj): bool
+    protected function isTarget($obj): bool
     {
         $class = get_class($obj);
         return defined("$class::SETTER_INJECTOR") && $class::SETTER_INJECTOR === static::class;
@@ -86,9 +90,7 @@ class SetterInjector implements InjectorInterface
     public static function configuration()
     {
         return [
-            Factory::KEY_INJECTORS => C::value([
-                new SetterInjector(),
-            ]),
+            Factory::INJECTOR => C::value(new SetterInjector()),
         ];
     }
 }
