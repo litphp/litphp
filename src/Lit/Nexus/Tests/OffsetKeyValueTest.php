@@ -13,6 +13,7 @@ class OffsetKeyValueTest extends TestCase
 
         $kv = OffsetKeyValue::wrap($arr);
 
+        self::assertSame($arr, $kv->getContent());
         self::assertSame($arr[0], $kv->get('0'));
         self::assertSame($arr['key'], $kv->get('key'));
 
