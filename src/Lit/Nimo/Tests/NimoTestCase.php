@@ -50,7 +50,6 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                /** @noinspection PhpUndefinedFieldInspection */
                 [$expectedRequest, $response, $assertion] = $this->params;
                 if ($assertion === 'equal') {
                     Assert::assertEquals(
@@ -75,7 +74,6 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                /** @noinspection PhpUndefinedFieldInspection */
                 list($expectedRequest, $passedRequest) = $this->params;
                 Assert::assertSame($expectedRequest, $this->request);
                 return $this->delegate($passedRequest);
@@ -94,7 +92,6 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                /** @noinspection PhpUndefinedFieldInspection */
                 list($expectedRequest, $expectedHandler, $response) = $this->params;
                 Assert::assertSame($expectedRequest, $this->request);
                 Assert::assertSame($expectedHandler, $this->handler);
@@ -114,7 +111,6 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                /** @noinspection PhpUndefinedFieldInspection */
                 list($expectedRequest, $expectedHandler, $throwable) = $this->params;
                 Assert::assertSame($expectedRequest, $this->request);
                 Assert::assertSame($expectedHandler, $this->handler);

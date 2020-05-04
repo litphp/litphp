@@ -13,8 +13,10 @@ class DerivedTest extends TestCase
 {
     public function testFunction()
     {
-        $kv = ObjectKeyValue::wrap((object)['foo' => new \stdClass(), 'bar!!baz' => new \stdClass()]);
+        $content = (object)['foo' => new \stdClass(), 'bar!!baz' => new \stdClass()];
+        $kv = ObjectKeyValue::wrap($content);
 
+        self::assertSame($content, $kv->getContent());
         $prefixed = $kv->prefix('bar');
         self::assertFalse($prefixed->exists('foo'));
         self::assertTrue($prefixed->exists('baz'));
@@ -47,5 +49,10 @@ class DerivedTest extends TestCase
         self::assertFalse($freezedVal instanceof SingleValueInterface);
         self::assertTrue($freezedVal->exists());
         self::assertSame($val->get(), $freezedVal->get());
+
+        $kv->delete('foo');
+        self::assertFalse($kv->exists('foo'));
+        self::assertFalse(property_exists($content, 'foo'));
+
     }
 }
