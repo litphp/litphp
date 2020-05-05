@@ -19,13 +19,12 @@
     ]
   },
   "require": {
-    "litphp/voltage": "^0.9",
-    "litphp/air": "^0.9.2",
+    "litphp/voltage": "^1.0",
+    "litphp/air": "^1.0"
   },
   "require-dev": {
-    "litphp/nexus": "^0.9",
-    "litphp/router-fast-route": "^0.9",
-    "litphp/runner-zend-sapi": "^0.9",
+    "litphp/router-fast-route": "^1.0",
+    "litphp/runner-zend-sapi": "^1.0",
     "phpunit/phpunit": "^7.5"
   },
   "scripts": {
@@ -33,7 +32,7 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.9.x-dev"
+      "dev-master": "1.0.x-dev"
     }
   },
   "suggest": {

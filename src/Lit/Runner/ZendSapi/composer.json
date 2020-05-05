@@ -17,7 +17,7 @@
     ]
   },
   "require": {
-    "litphp/bolt": "^0.9",
+    "litphp/bolt": "^1.0",
     "zendframework/zend-diactoros": "^2.0",
     "zendframework/zend-httphandlerrunner": "^1.0"
   },
@@ -28,7 +28,7 @@
   "prefer-stable": true,
   "extra": {
     "branch-alias": {
-      "dev-master": "0.9.x-dev"
+      "dev-master": "1.0.x-dev"
     }
   }
 }
