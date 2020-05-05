@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/voltage
 	branch = master
-	commit = b8a92f8954bdd92735bb11ccf92d028369e96a0f
-	parent = cdf5e54e3745d741e2ade7711fff25ba787b3104
+	commit = 49826f86d6bcd723bc40104910ac5927958315ee
+	parent = 245cf3c4f639ab70c0ea68e7eb4753a3b5a91777
 	cmdver = 0.4.0
 	method = merge
