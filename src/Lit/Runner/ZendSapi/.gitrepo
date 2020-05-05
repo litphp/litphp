@@ -6,7 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/runner-zend-sapi.git
 	branch = master
-	commit = 110279e7702fd9fcd08779450e010ffb80cec46c
-	parent = 219879525cf7b8e5ba7592c9416a4f895f4bc013
+	commit = 8e785447cfdae84208d75dbd95de0c830f46bd80
+	parent = 9d7d545695ef8018696f13234ae54f03fb695728
 	cmdver = 0.4.0
 	method = merge
