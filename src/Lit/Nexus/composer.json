@@ -19,9 +19,6 @@
   "require": {
     "phpunit/phpunit": "^7.5"
   },
-  "suggest": {
-    "psr/cache-implementation": "convert cache instance to keyValue instance"
-  },
   "scripts": {
     "test": "phpunit -c ."
   },
