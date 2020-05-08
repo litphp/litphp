@@ -7,6 +7,7 @@ namespace Lit\Bolt\Router;
 use Lit\Air\Configurator;
 use Lit\Air\Factory;
 use Lit\Air\Psr\Container;
+use Lit\Air\Utils;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Handlers\FixedResponseHandler;
 use Lit\Voltage\Interfaces\RouterStubResolverInterface;
@@ -55,6 +56,27 @@ class BoltStubResolver implements RouterStubResolverInterface
 
         if ($stub instanceof ResponseInterface) {
             return FixedResponseHandler::wrap($stub);
+        }
+
+        //$className
+        if (is_string($stub) && class_exists($stub) && is_subclass_of($stub, RequestHandlerInterface::class)) {
+            $handler = Factory::of($this->container)->instantiate($stub);
+            assert($handler instanceof RequestHandlerInterface);
+
+            return $handler;
+        }
+
+        //[$className, $params]
+        if (
+            Utils::isSequentialArray($stub, 2)
+            && is_string($stub[0])
+            && class_exists($stub[0])
+            && is_subclass_of($stub[0], RequestHandlerInterface::class)
+        ) {
+            $handler = Factory::of($this->container)->instantiate($stub[0], $stub[1]);
+            assert($handler instanceof RequestHandlerInterface);
+
+            return $handler;
         }
 
         /** @var Configurator $cfg */
