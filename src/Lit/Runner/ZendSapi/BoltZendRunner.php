@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Lit\Runner\ZendSapi;
 
+use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 use Lit\Bolt\BoltContainerConfiguration;
 use Psr\Container\ContainerInterface;
-use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 /**
  * App runner using zend HttpHandlerRunner

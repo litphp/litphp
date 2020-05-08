@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Lit\Runner\ZendSapi;
 
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ServerRequestFactory;
+use Laminas\HttpHandlerRunner\Emitter\SapiEmitter;
+use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 use Lit\Air\Configurator as C;
 use Lit\Bolt\BoltApp;
 use Psr\Http\Message\ResponseFactoryInterface;
-use Zend\Diactoros\ResponseFactory;
-use Zend\Diactoros\ServerRequestFactory;
-use Zend\HttpHandlerRunner\Emitter\SapiEmitter;
-use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 /**
  * Configuration for zend runner

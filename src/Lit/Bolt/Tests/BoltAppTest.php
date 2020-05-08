@@ -2,14 +2,14 @@
 
 namespace Lit\Bolt\Tests;
 
+use Laminas\Diactoros\Response;
+use Laminas\Diactoros\ServerRequest;
 use Lit\Air\Factory;
 use Lit\Bolt\BoltAbstractAction;
 use Lit\Bolt\BoltApp;
 use Lit\Voltage\ThrowableResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Response;
-use Zend\Diactoros\ServerRequest;
 
 class BoltAppTest extends BoltTestCase
 {

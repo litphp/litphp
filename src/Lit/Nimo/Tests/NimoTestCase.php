@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Lit\Nimo\Tests;
 
+use Laminas\Diactoros\Request\ArraySerializer;
 use Lit\Nimo\Handlers\AbstractHandler;
 use Lit\Nimo\Handlers\CallableHandler;
 use Lit\Nimo\Middlewares\AbstractMiddleware;
@@ -12,7 +13,6 @@ use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
-use Zend\Diactoros\Request\ArraySerializer;
 
 abstract class NimoTestCase extends TestCase
 {
@@ -74,7 +74,7 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                list($expectedRequest, $passedRequest) = $this->params;
+                [$expectedRequest, $passedRequest] = $this->params;
                 Assert::assertSame($expectedRequest, $this->request);
                 return $this->delegate($passedRequest);
             }
@@ -92,7 +92,7 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                list($expectedRequest, $expectedHandler, $response) = $this->params;
+                [$expectedRequest, $expectedHandler, $response] = $this->params;
                 Assert::assertSame($expectedRequest, $this->request);
                 Assert::assertSame($expectedHandler, $this->handler);
                 return $response;
@@ -111,7 +111,7 @@ abstract class NimoTestCase extends TestCase
 
             protected function main(): ResponseInterface
             {
-                list($expectedRequest, $expectedHandler, $throwable) = $this->params;
+                [$expectedRequest, $expectedHandler, $throwable] = $this->params;
                 Assert::assertSame($expectedRequest, $this->request);
                 Assert::assertSame($expectedHandler, $this->handler);
                 throw $throwable;

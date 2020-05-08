@@ -40,10 +40,8 @@
       "dev-master": "1.0.x-dev"
     }
   },
-  "suggest": {
-    "zendframework/zend-diactoros": "PSR-7 implementation and middleware runner"
-  },
   "require-dev": {
+    "laminas/laminas-diactoros": "^2.3",
     "phpunit/phpunit": "^7.5"
   }
 }
