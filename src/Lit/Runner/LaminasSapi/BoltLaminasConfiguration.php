@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Lit\Runner\ZendSapi;
+namespace Lit\Runner\LaminasSapi;
 
 use Laminas\Diactoros\ResponseFactory;
 use Laminas\Diactoros\ServerRequestFactory;
@@ -15,7 +15,7 @@ use Psr\Http\Message\ResponseFactoryInterface;
 /**
  * Configuration for zend runner
  */
-class BoltZendConfiguration
+class BoltLaminasConfiguration
 {
     public static function default()
     {

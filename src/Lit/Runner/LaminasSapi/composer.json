@@ -1,5 +1,5 @@
 {
-  "name": "litphp/runner-zend-sapi",
+  "name": "litphp/runner-laminas-sapi",
   "description": "",
   "license": "ISC",
   "authors": [
@@ -10,7 +10,7 @@
   ],
   "autoload": {
     "psr-4": {
-      "Lit\\Runner\\ZendSapi\\": ""
+      "Lit\\Runner\\LaminasSapi\\": ""
     },
     "exclude-from-classmap": [
       "/Tests/"

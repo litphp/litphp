@@ -35,7 +35,7 @@
     "litphp/nexus": "self.version",
     "litphp/nimo": "self.version",
     "litphp/router-fast-route": "self.version",
-    "litphp/runner-zend-sapi": "self.version"
+    "litphp/runner-laminas-sapi": "self.version"
   },
   "autoload": {
     "psr-4": {

@@ -31,5 +31,5 @@ see <http://litphp.github.io/docs/>
 | **litphp/voltage** | fundamental application structure |
 | **litphp/bolt** | the microframework |
 | **litphp/router-fast-route** | a router that integrates FastRoute |
-| **litphp/runner-zend-sapi** | run you bolt app with zend-diactoros on standard SAPI |
+| **litphp/runner-laminas-sapi** | run you bolt app with laminas-diactoros on standard SAPI |
 | **litphp/nexus** | utility / interface helps development |

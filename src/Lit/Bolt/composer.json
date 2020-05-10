@@ -24,7 +24,7 @@
   },
   "require-dev": {
     "litphp/router-fast-route": "^1.0",
-    "litphp/runner-zend-sapi": "^1.0",
+    "litphp/runner-laminas-sapi": "^1.0",
     "phpunit/phpunit": "^7.5"
   },
   "scripts": {
