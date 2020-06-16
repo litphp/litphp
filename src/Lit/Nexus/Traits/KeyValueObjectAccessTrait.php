@@ -29,11 +29,11 @@ trait KeyValueObjectAccessTrait
         $this->delete($name);
     }
 
-    abstract public function set($key, $value);
+    abstract public function set(string $key, $value);
 
-    abstract public function delete($key);
+    abstract public function delete(string $key);
 
-    abstract public function get($key);
+    abstract public function get(string $key);
 
-    abstract public function exists($key);
+    abstract public function exists(string $key);
 }

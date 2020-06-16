@@ -16,22 +16,22 @@ trait EmbedKeyValueTrait
      */
     protected $innerKeyValue;
 
-    public function set($key, $value)
+    public function set(string $key, $value)
     {
         $this->innerKeyValue->set($key, $value);
     }
 
-    public function delete($key)
+    public function delete(string $key)
     {
         $this->innerKeyValue->delete($key);
     }
 
-    public function get($key)
+    public function get(string $key)
     {
         return $this->innerKeyValue->get($key);
     }
 
-    public function exists($key)
+    public function exists(string $key)
     {
         return $this->innerKeyValue->exists($key);
     }
