@@ -2,22 +2,22 @@
 
 declare(strict_types=1);
 
-namespace Lit\Runner\ZendSapi;
+namespace Lit\Runner\LaminasSapi;
 
+use Laminas\HttpHandlerRunner\RequestHandlerRunner;
 use Lit\Bolt\BoltContainerConfiguration;
 use Psr\Container\ContainerInterface;
-use Zend\HttpHandlerRunner\RequestHandlerRunner;
 
 /**
  * App runner using zend HttpHandlerRunner
  */
-class BoltZendRunner
+class BoltLaminasRunner
 {
     public static function run($config = [])
     {
         $container = $config instanceof ContainerInterface
             ? $config
-            : BoltContainerConfiguration::createContainer($config + BoltZendConfiguration::default());
+            : BoltContainerConfiguration::createContainer($config + BoltLaminasConfiguration::default());
 
         /** @var RequestHandlerRunner $runner */
         $runner = $container->get(RequestHandlerRunner::class);

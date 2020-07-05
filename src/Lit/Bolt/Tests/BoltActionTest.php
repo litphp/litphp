@@ -2,12 +2,12 @@
 
 namespace Lit\Bolt\Tests;
 
+use Laminas\Diactoros\Response\EmptyResponse;
+use Laminas\Diactoros\ResponseFactory;
+use Laminas\Diactoros\ServerRequest;
 use Lit\Air\Injection\SetterInjector;
 use Lit\Bolt\BoltAbstractAction;
 use PHPUnit\Framework\MockObject\MockObject;
-use Zend\Diactoros\Response\EmptyResponse;
-use Zend\Diactoros\ResponseFactory;
-use Zend\Diactoros\ServerRequest;
 
 class BoltActionTest extends BoltTestCase
 {
