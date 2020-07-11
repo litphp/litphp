@@ -6,6 +6,7 @@
 [subrepo]
 	remote = git@github.com:litphp/runner-laminas-sapi.git
 	branch = master
-	commit = 
+	commit = 7aef629eece996c98b7c14e4b6ca87958fa6f196
 	method = merge
-	cmdver = 0.4.0
+	cmdver = 0.4.1
+	parent = 0d1aa04d2494bbe3005b6a56566c2c9a174906ae
