@@ -22,7 +22,7 @@ use Lit\Voltage\Interfaces\RouterStubResolverInterface;
  */
 class FastRouteConfiguration
 {
-    public static function default($routeDefinition)
+    public static function default($routeDefinition, $middleware = null)
     {
         if (is_callable($routeDefinition)) {
             $routeDefinition = C::value($routeDefinition);
@@ -57,6 +57,6 @@ class FastRouteConfiguration
                 C::join(FastRouteRouter::class, 'dispatcher', 'routeDefinition') => $routeDefinition,
                 C::join(FastRouteRouter::class, 'dispatcher', 'dispatcherClass') => GCBDispatcher::class,
 
-            ] + RouterConfiguration::default(C::alias(FastRouteRouter::class));
+            ] + RouterConfiguration::default(C::alias(FastRouteRouter::class), $middleware);
     }
 }
